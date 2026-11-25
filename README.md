@@ -61,7 +61,7 @@ No hay paso de compilación. Las peticiones externas son las fuentes de Google F
 | --- | --- |
 | `COST` | Costes por evento de cada día (`act`, `trans`, `fly`, `food`), en euros por persona. Se asocian por orden de aparición. |
 | `EXTRA` | Gastos del día que no pertenecen a un evento (desayunos, cafés, taxis). |
-| `LODGE` y `NOLODGE` | Precio de la habitación doble por noche (se reparte entre dos personas) y días sin noche. |
+| `LODGE` y `NOLODGE` | Precio de la habitación doble por noche y días sin noche. Con `PAX = 3` se cobra como triple (+30 %, `TRIPLE`) y se reparte entre tres. |
 | `FLIGHT` | Precio del billete Madrid–Ho Chi Minh por persona, ida y vuelta (€460, ya comprado). |
 | `OPTS` | Opciones de transporte, entradas, comida, alojamiento y Tết de cada día. |
 | `P` | Puntos del mapa con longitud y latitud. |
@@ -96,7 +96,7 @@ La web se publica desde la rama `main`, carpeta raíz, con GitHub Pages. Cada `g
 
 ## Supuestos y límites
 
-- Precios en euros por persona, suponiendo dos viajeros que comparten taxi, coche y habitación, y un cambio de 1 € ≈ 30.000 ₫. Son estimaciones y conviene confirmarlos en las webs oficiales antes de viajar.
+- Precios en euros por persona, suponiendo tres viajeros (`PAX = 3`) que comparten taxi, coche y habitación triple (la doble +30 %); el transporte en coche o taxi sale a un tercio por persona (2/3 de lo previsto para dos), y un cambio de 1 € ≈ 30.000 ₫. Son estimaciones y conviene confirmarlos en las webs oficiales antes de viajar.
 - El billete de avión a Vietnam (€460 por persona, ya comprado) va aparte del total diario. El presupuesto incluye además tres vuelos internos y 15 noches de alojamiento, con recargo por el Tết.
 - No incluye eSIM, seguro, propinas ni compras personales.
 - El Tết Đinh Mùi cae el sábado 6 de febrero de 2027 y el 20 de febrero es Rằm tháng Giêng. Según el aviso del Ministerio del Interior vietnamita ([Bộ Nội vụ, 2027](https://cafef.vn/bo-noi-vu-thong-bao-chi-tiet-lich-nghi-tet-am-lich-quoc-khanh-2027-188261010120450778.chn)), el descanso oficial va del 4 al 10 de febrero; los horarios reales de museos y restaurantes cambian, así que conviene comprobarlos unos días antes.

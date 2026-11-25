@@ -976,7 +976,7 @@ html { scroll-padding-top: 4.5rem; }
 
 <section class="wrap budget" id="presupuesto">
   <h2>Presupuesto estimado</h2>
-  <p class="sub">Euros por persona. Se supone que los dos viajeros comparten habitación, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
+  <p class="sub">Euros por persona, para tres viajeros que comparten habitación triple, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
   <div class="tiles" id="budgetTiles"></div>
   <h3 class="bh">En qué se va el dinero</h3>
   <div class="bar" id="budgetBar" role="img" aria-label="Reparto del presupuesto por categoría"></div>
@@ -1003,10 +1003,10 @@ html { scroll-padding-top: 4.5rem; }
     <div>
       <h3>Qué incluye</h3>
       <ul>
-        <li>Dos viajeros que comparten habitación, taxi y coche; las cifras son por persona.</li>
+        <li>Tres viajeros que comparten habitación triple (la doble más un 30 %), taxi y coche; las cifras son por persona. Con tres, el coche o taxi sale a un tercio en vez de a la mitad.</li>
         <li>Vuelo Madrid–Ho Chi Minh ida y vuelta: €460 por persona (billetes ya comprados).</li>
         <li>Tres vuelos internos: Ho Chi Minh → Đà Nẵng, Huế → Hà Nội y Hà Nội → Ho Chi Minh (de €55 a €65 por tramo).</li>
-        <li>Alojamiento: 15 noches. 3 en Ho Chi Minh y 4 en Hội An a ~€55, 1 en Huế a ~€45, 5 en Hà Nội a ~€52, 1 en Ninh Bình a ~€50 y 1 de crucero (cabina para dos, con comidas) a €200. Las noches del Tết llevan recargo.</li>
+        <li>Alojamiento: 15 noches. 3 en Ho Chi Minh y 4 en Hội An a ~€55, 1 en Huế a ~€45, 5 en Hà Nội a ~€52, 1 en Ninh Bình a ~€50 y 1 de crucero (cabina con comidas) a €200. Precios de habitación doble; con tres personas llevan un +30 %. Las noches del Tết llevan recargo.</li>
         <li>El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 2:30 del domingo 21. La primera noche (la del 5) se reserva igualmente, porque entráis al hotel de madrugada.</li>
       </ul>
     </div>
@@ -1070,7 +1070,12 @@ html { scroll-padding-top: 4.5rem; }
   var LBL = { act: 'Entradas', trans: 'Transporte', fly: 'Vuelos int.', food: 'Comida', lodge: 'Alojamiento' };
   var CHIP = { act: 'Entradas', trans: 'Transporte', fly: 'Vuelo', food: 'Comida' };
   var KEYS = ['act', 'trans', 'fly', 'food', 'lodge'];
-  /* Habitación doble por noche (€), repartida entre dos personas. El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 2:30 del domingo 21. */
+  /* Viajeros: con 3 personas el coche o taxi se reparte entre 3 (el transporte por persona baja a 2/3) y la habitación pasa a triple (+30 % sobre la doble). Poned PAX = 2 para volver a dos viajeros. */
+  var PAX = 3, TRIPLE = 1.3;
+  var pxv = function (k, v) { return k === 'trans' ? v * 2 / PAX : v; };
+  var roomPP = function (room) { return PAX === 2 ? room / 2 : room * TRIPLE / PAX; };
+  var roomTxt = function (room) { return PAX === 2 ? 'habitación doble a ~' + eur(room) : 'habitación triple a ~' + eur(room * TRIPLE) + ' (doble de ' + eur(room) + ' + 30 % por la tercera cama)'; };
+  /* Habitación doble por noche (€), repartida entre las personas del grupo. El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 2:30 del domingo 21. */
   var LODGE = {
     vie5: { room: 55, n: 'Distrito 1, Ho Chi Minh; noche del 5, con entrada de madrugada' }, sab6: { room: 55, n: 'Distrito 1, Ho Chi Minh' }, dom7: { room: 55, n: 'Distrito 1, Ho Chi Minh' },
     lun8: { room: 55, n: 'Hội An' }, mar9: { room: 55, n: 'Hội An' }, mie10: { room: 55, n: 'Hội An' }, jue11: { room: 55, n: 'Hội An' },
@@ -2254,7 +2259,7 @@ html { scroll-padding-top: 4.5rem; }
       spec.split(',').forEach(function (sp) {
         var p = sp.split(':'), chip = document.createElement('span');
         if (p[0] === 'note') { chip.className = 'chip note'; chip.textContent = p[1]; }
-        else { t[p[0]] += +p[1]; chip.className = 'chip ' + p[0]; chip.textContent = CHIP[p[0]] + ' ~' + eur(p[1]); }
+        else { t[p[0]] += pxv(p[0], +p[1]); chip.className = 'chip ' + p[0]; chip.textContent = CHIP[p[0]] + ' ~' + eur(pxv(p[0], +p[1])); }
         box.appendChild(chip);
       });
       ev.children[1].appendChild(box);
@@ -2277,16 +2282,16 @@ html { scroll-padding-top: 4.5rem; }
     });
 
     var ex = EXTRA[day.id] || {};
-    t.food += ex.food || 0; t.trans += ex.trans || 0;
+    t.food += ex.food || 0; t.trans += pxv('trans', ex.trans || 0);
     var lg = LODGE[day.id];
-    if (lg) t.lodge = lg.room / 2;
+    if (lg) t.lodge = roomPP(lg.room);
     var total = t.act + t.trans + t.fly + t.food + t.lodge;
     var sum = document.createElement('li'); sum.className = 'sum';
     sum.innerHTML = KEYS.map(function (k) {
       return '<div><small>' + LBL[k] + '</small><b>' + (k === 'lodge' && !lg ? 'Sin noche' : '~' + eur(t[k])) + '</b></div>';
     }).join('') + '<div class="tot"><small>Total día</small><b>~' + eur(total) + '</b></div>' +
       (ex.n ? '<p>Incluye ' + eur((ex.food || 0) + (ex.trans || 0)) + ' en ' + ex.n + ' que no figuran arriba.</p>' : '') +
-      (lg ? '<p>Alojamiento: habitación doble a ~' + eur(lg.room) + ' la noche (' + lg.n + '), repartida entre dos.</p>' : '<p>' + (NOLODGE[day.id] || 'Sin alojamiento.') + '</p>');
+      (lg ? '<p>Alojamiento: ' + roomTxt(lg.room) + ' la noche (' + lg.n + '), repartida entre ' + PAX + '.</p>' : '<p>' + (NOLODGE[day.id] || 'Sin alojamiento.') + '</p>');
     day.querySelector('.events').appendChild(sum);
     rows.push([NAMES[day.id], t, total]);
     KEYS.forEach(function (k) { grand[k] += t[k]; });
@@ -2727,10 +2732,10 @@ html { scroll-padding-top: 4.5rem; }
       var e = a.days[d], t = ZERO();
       e.ev.forEach(function (v) {
         (v[3] || '').split(',').forEach(function (sp) {
-          var p = sp.split(':'); if (p[0] && p[0] !== 'note' && t[p[0]] !== undefined) t[p[0]] += +p[1];
+          var p = sp.split(':'); if (p[0] && p[0] !== 'note' && t[p[0]] !== undefined) t[p[0]] += pxv(p[0], +p[1]);
         });
       });
-      if (a.kind === 'swap') { t.food += (e.ex && e.ex.food) || 0; t.trans += (e.ex && e.ex.trans) || 0; t.lodge = (e.room || 0) / 2; }
+      if (a.kind === 'swap') { t.food += (e.ex && e.ex.food) || 0; t.trans += pxv('trans', (e.ex && e.ex.trans) || 0); t.lodge = roomPP(e.room || 0); }
       a.c[d] = t;
     });
   });
@@ -2824,7 +2829,7 @@ html { scroll-padding-top: 4.5rem; }
     if (!spec) return '';
     return '<div class="chips">' + spec.split(',').map(function (sp) {
       var p = sp.split(':');
-      return p[0] === 'note' ? '<span class="chip note">' + p[1] + '</span>' : '<span class="chip ' + p[0] + '">' + CHIP[p[0]] + ' ~' + eur(p[1]) + '</span>';
+      return p[0] === 'note' ? '<span class="chip note">' + p[1] + '</span>' : '<span class="chip ' + p[0] + '">' + CHIP[p[0]] + ' ~' + eur(pxv(p[0], +p[1])) + '</span>';
     }).join('') + '</div>';
   };
   var evH = function (v, tag) {
@@ -2850,7 +2855,7 @@ html { scroll-padding-top: 4.5rem; }
     var gt = sumT(grand), all = gt + FLIGHT;
     var tiles = [
       ['main', 'Total con vuelo internacional', eur(all), 'por persona'],
-      ['', 'Para dos personas', eur(all * 2), 'vuelo internacional incluido'],
+      ['', 'Para ' + (PAX === 3 ? 'tres' : 'dos') + ' personas', eur(all * PAX), 'vuelo internacional incluido'],
       ['', 'Sin vuelo internacional', eur(gt), 'por persona, vuelos internos incluidos'],
       ['', 'Media diaria en Vietnam', eur(Math.round(gt / DAYS_VN)), DAYS_VN + ' días']
     ];
@@ -2932,7 +2937,7 @@ html { scroll-padding-top: 4.5rem; }
         if (!sw) h = '<li class="althead">Extras elegidos<span>Se suman al plan base de este día.</span></li>' + h;
         h += '<li class="sum altsum">' + KEYS.map(function (k) {
           return '<div><small>' + LBL[k] + '</small><b>' + (k === 'lodge' && !t.lodge ? 'Sin noche' : '~' + eur(t[k])) + '</b></div>';
-        }).join('') + '<div class="tot"><small>Total día</small><b>~' + eur(now) + '</b></div><p>Plan base: ~' + eur(base) + ' · con lo elegido ' + sg(now - base) + '.' + (sw && sw.days[d].room ? ' Alojamiento: habitación doble a ~' + eur(sw.days[d].room) + ' (' + sw.days[d].n + '), repartida entre dos.' : '') + '</p></li>';
+        }).join('') + '<div class="tot"><small>Total día</small><b>~' + eur(now) + '</b></div><p>Plan base: ~' + eur(base) + ' · con lo elegido ' + sg(now - base) + '.' + (sw && sw.days[d].room ? ' Alojamiento: ' + roomTxt(sw.days[d].room) + ' (' + sw.days[d].n + '), repartida entre ' + PAX + '.' : '') + '</p></li>';
         r.alt.innerHTML = h;
       } else r.alt.innerHTML = '';
       r.dt.innerHTML = 'Día: <b>~' + eur(now) + '</b> por persona' + (on ? ' <small>(con alternativas)</small>' : '');
