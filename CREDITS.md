@@ -30,5 +30,25 @@ Las fotos de `assets/img/` proceden de [Wikimedia Commons](https://commons.wikim
 | Tràng An (Ninh Bình) | [Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg](https://commons.wikimedia.org/wiki/File:Trang_An_Landscape_Complex,_Ninh_Binh_Province,_Vietnam,_20240202_1456_5313.jpg) | Jakub Hałun | CC BY 4.0 |
 | Hang Múa (Ninh Bình) | [View from Hang Mua.jpg](https://commons.wikimedia.org/wiki/File:View_from_Hang_Mua.jpg) | Shyamal | CC BY-SA 4.0 |
 | Bahía de Hạ Long | [View of sea from Titov Island, Ha Long Bay, Vietnam, 20240128 1337 3732.jpg](https://commons.wikimedia.org/wiki/File:View_of_sea_from_Titov_Island,_Ha_Long_Bay,_Vietnam,_20240128_1337_3732.jpg) | Jakub Hałun | CC BY 4.0 |
+| Ferri en el río Tiền (Mỹ Tho) | [Ferry boat on Mekong River in My Tho.jpg](https://commons.wikimedia.org/wiki/File:Ferry_boat_on_Mekong_River_in_My_Tho.jpg) | Yuqiao | CC BY 4.0 |
+| Barcos turísticos en el río Tiền (Mekong) | [Tàu du lịch ghé cồn Lân.jpg](https://commons.wikimedia.org/wiki/File:T%C3%A0u_du_l%E1%BB%8Bch_gh%C3%A9_c%E1%BB%93n_L%C3%A2n.jpg) | Bùi Thụy Đào Nguyên | CC BY-SA 3.0 |
+| Playa de Lăng Cô | [Lang Co Beach, Vietnam (6944154050).jpg](https://commons.wikimedia.org/wiki/File:Lang_Co_Beach,_Vietnam_(6944154050).jpg) | David McKelvey | CC BY 2.0 |
+| Playa de An Bàng (Hội An) | [2024-11-23 An Bang Beach in Hoi An in November.jpg](https://commons.wikimedia.org/wiki/File:2024-11-23_An_Bang_Beach_in_Hoi_An_in_November.jpg) | Alexkom000 | CC BY 4.0 |
+| Playa de Mỹ Khê (Đà Nẵng) | [My Khe Beach Danang Coastline.jpg](https://commons.wikimedia.org/wiki/File:My_Khe_Beach_Danang_Coastline.jpg) | Jpatokal | CC BY-SA 4.0 |
+| Mercado central de Hội An | [Hoi An Central Market (15242392187).jpg](https://commons.wikimedia.org/wiki/File:Hoi_An_Central_Market_(15242392187).jpg) | Gary Todd | CC0 |
+| Barcas con farolillos en el río Thu Bồn (Hội An) | [Boats with lanterns on the Thu Bon river IMG 3864.jpg](https://commons.wikimedia.org/wiki/File:Boats_with_lanterns_on_the_Thu_Bon_river_IMG_3864.jpg) | Kuroczynski | CC BY-SA 4.0 |
+| Sastrería de Hội An | [Ants Silk Tailoring shop of Hoi An in 2015.jpg](https://commons.wikimedia.org/wiki/File:Ants_Silk_Tailoring_shop_of_Hoi_An_in_2015.jpg) | Vuong Tri Binh | CC BY-SA 4.0 |
+| Clase de cocina en Hội An | [Cooking class, Hoi An (46366000532).jpg](https://commons.wikimedia.org/wiki/File:Cooking_class,_Hoi_An_(46366000532).jpg) | Isabell Schulz | CC BY-SA 2.0 |
+| Barco dragón en el río Perfume (Huế) | [Huế - Vietnamese dragon boat operating as a tourist vessel on the Perfume River.jpg](https://commons.wikimedia.org/wiki/File:Hu%E1%BA%BF_-_Vietnamese_dragon_boat_operating_as_a_tourist_vessel_on_the_Perfume_River.jpg) | P. Hughes | CC BY 4.0 |
+| Bún bò Huế | [Bún bò Huế (20201109).jpg](https://commons.wikimedia.org/wiki/File:B%C3%BAn_b%C3%B2_Hu%E1%BA%BF_(20201109).jpg) | Baoothersks | CC BY-SA 4.0 |
+| Río Sài Gòn al anochecer | [Saigon at Blue Hour.jpg](https://commons.wikimedia.org/wiki/File:Saigon_at_Blue_Hour.jpg) | Radek Kucharski | CC BY 2.0 |
+| Museo de Etnología de Vietnam (Hà Nội) | [Exterior view - Vietnam Museum of Ethnology - Hanoi, Vietnam - DSC03432.JPG](https://commons.wikimedia.org/wiki/File:Exterior_view_-_Vietnam_Museum_of_Ethnology_-_Hanoi,_Vietnam_-_DSC03432.JPG) | Daderot | CC0 |
+| Pagoda de Trấn Quốc (Hà Nội) | [Tran Quoc Pagoda, Hanoi, Vietnam, 20240204 1409 5812.jpg](https://commons.wikimedia.org/wiki/File:Tran_Quoc_Pagoda,_Hanoi,_Vietnam,_20240204_1409_5812.jpg) | Jakub Hałun | CC BY 4.0 |
+| Café de huevo (Hà Nội) | [Egg Coffee (6923068614).jpg](https://commons.wikimedia.org/wiki/File:Egg_Coffee_(6923068614).jpg) | David McKelvey | CC BY 2.0 |
+| Calle Tạ Hiện (Hà Nội) | [Tạ Hiện Street.jpg](https://commons.wikimedia.org/wiki/File:T%E1%BA%A1_Hi%E1%BB%87n_Street.jpg) | Christophe95 | CC BY-SA 4.0 |
+| Tam Cốc (Ninh Bình) | [Tam Coc Ninh Binh (53115).jpg](https://commons.wikimedia.org/wiki/File:Tam_Coc_Ninh_Binh_(53115).jpg) | Andre Hospers | CC BY 4.0 |
+| Cueva Sửng Sốt (Hạ Long) | [Sung Sot Cave, Ha Long Bay, Vietnam, 20240128 1549 3836.jpg](https://commons.wikimedia.org/wiki/File:Sung_Sot_Cave,_Ha_Long_Bay,_Vietnam,_20240128_1549_3836.jpg) | Jakub Hałun | CC BY 4.0 |
+| Isla de Ti Tốp (Hạ Long) | [Ti Top Island.jpg](https://commons.wikimedia.org/wiki/File:Ti_Top_Island.jpg) | David Stanley | CC BY 4.0 |
+| Crucero en la bahía de Hạ Long | [Asia Cruise Junk in Halong bay.JPG](https://commons.wikimedia.org/wiki/File:Asia_Cruise_Junk_in_Halong_bay.JPG) | Arianos | Dominio público |
 
-Varios lugares comparten foto: la del delta del Mekong ilustra también Mỹ Tho y la isla Thới Sơn, la de Lăng Cô es la del paso de Hải Vân y la de la bahía de Hạ Long vale para el puerto, las cuevas y el fondeo del crucero.
+La foto del casco antiguo de Hội An sirve también para el hotel de la ciudad, y la del Old Quarter de Hà Nội para el hotel de Hà Nội.

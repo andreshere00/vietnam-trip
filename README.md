@@ -21,7 +21,7 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). Entre media
 - **Leyenda y distancias**: kilómetros y tiempo aproximado de cada tramo, con el total del día y una escala.
 - **Opciones de transporte, entradas, comida, alojamiento y Tết** para cada día, con precios estimados. La pestaña «Tết» explica cierres, tradiciones y reservas.
 - **Presupuesto** por día y total (entradas, transporte, vuelos internos, comida y alojamiento), por persona.
-- **Fotos y fichas «por qué ir»** de cada lugar: miniatura en el itinerario y ficha emergente al pasar el ratón, enfocar o tocar un pin del mapa o un evento.
+- **Fotos y fichas «por qué ir»** de casi cada evento (45 fotos distintas): miniatura en el itinerario y ficha emergente al pasar el ratón, enfocar o tocar un pin del mapa o un evento.
 - **Recorrido día a día**: la navegación fija marca el día visible, muestra el progreso del scroll y cada tarjeta enlaza con el día siguiente.
 - **Modo nocturno** con botón en la barra, que recuerda tu elección y respeta la preferencia del sistema.
 - **Diseño adaptado al móvil**: mapas, tablas y fichas se adaptan a pantallas estrechas (la ficha se muestra como panel inferior).
