@@ -492,6 +492,46 @@ html { scroll-padding-top: 4.5rem; }
 .dinfo > summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: .2rem .7rem; align-items: baseline; padding: .7rem .9rem; min-height: 2.75rem; }
 .dinfo > summary span { color: var(--muted); font-size: .86rem; }
 .dinfo .opts { padding: 0 .9rem 1rem; }
+
+/* Plegar y desplegar */
+.viewbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: .6rem .8rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; position: sticky; top: 4.1rem; z-index: 5; box-shadow: 0 4px 12px -8px color-mix(in srgb, var(--ink) 30%, transparent); }
+.vb-l { font-family: var(--display); font-weight: 700; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-right: auto; }
+.viewbar button { font: inherit; font-size: .86rem; font-weight: 600; min-height: 2.25rem; padding: .25rem .8rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.viewbar button:hover { border-color: var(--fg); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.date { cursor: pointer; }
+.dtog { order: 6; margin-left: .5rem; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--a); cursor: pointer; display: grid; place-items: center; font-size: 1.1rem; line-height: 1; align-self: center; }
+.dtog span { transition: transform .15s ease; display: block; transform: translateY(-2px) rotate(180deg); }
+.dtog[aria-expanded="false"] span { transform: translateY(-3px); }
+.day.collapsed > :not(.date):not(.dprev) { display: none !important; }
+.dprev { display: none; margin: 0; }
+.day.collapsed .dprev { display: block; padding: .55rem 1.5rem .7rem; font-size: .88rem; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dprev span + span::before { content: " · "; }
+.dprev i { font-style: normal; font-weight: 700; color: var(--a); font-variant-numeric: tabular-nums; }
+.day.collapsed .date { border-bottom: 1px dashed var(--line); }
+.days { gap: 1rem; }
+.dotog { width: 100%; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: inherit; text-align: left; min-height: 2rem; }
+.dot-t { font-family: var(--display); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--a); font-weight: 700; }
+.dosum { font-size: .88rem; font-weight: 700; color: var(--jade); text-transform: none; letter-spacing: 0; }
+.dot-n { margin-left: auto; font-size: .8rem; color: var(--muted); }
+.dotog i { font-style: normal; color: var(--a); transition: transform .15s ease; }
+.dotog[aria-expanded="true"] i { transform: rotate(180deg); }
+.dopts { padding: .55rem .9rem; }
+.dopts h3 { margin: 0; }
+.dobody { padding-top: .35rem; }
+.stog { display: flex; align-items: center; gap: .6rem; width: 100%; background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; }
+.stog .chev { margin-left: auto; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-size: 1.1rem; color: var(--red); transition: transform .15s ease; flex: none; }
+.stog[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.sec-off .secbody { display: none; }
+.sec-off h2 { margin-bottom: 0; }
+/* Vista compacta: solo hora y título */
+.compact .ev p, .compact .ev .chips, .compact .ev .whyrow, .compact .evimg, .compact .althead span { display: none; }
+.compact .ev { padding-block: .4rem; }
+.compact .ev h3 { font-size: 1rem; margin: 0; }
+.compact .dopt small { display: none; }
+@media (max-width: 640px) { .viewbar { top: 3.6rem; } .vb-l { width: 100%; } .day.collapsed .dprev { padding-inline: 1rem; } }
 </style>
 </head>
 <body>
@@ -1957,7 +1997,7 @@ html { scroll-padding-top: 4.5rem; }
     var m = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: false, zoomSnap: 0.25 });
     var rec = { m: m, tl: tiles().addTo(m) };
     LMAPS.push(rec);
-    if (window.ResizeObserver) new ResizeObserver(function () { m.invalidateSize(); }).observe(el);
+    if (window.ResizeObserver) new ResizeObserver(function () { m.invalidateSize(); if (m.__fit && !m.__fitted && el.clientWidth) { m.__fitted = true; m.__fit(); } }).observe(el);
     return m;
   }
   function retile() { LMAPS.forEach(function (r) { r.m.removeLayer(r.tl); r.tl = tiles().addTo(r.m); }); }
@@ -2042,7 +2082,8 @@ html { scroll-padding-top: 4.5rem; }
         .bindTooltip(q.l, { permanent: true, direction: 'auto', className: 'ltip', interactive: false })
         .addTo(map);
     });
-    map.fitBounds(L.latLngBounds(ll), { paddingTopLeft: [60, 40], paddingBottomRight: [60, 30], maxZoom: 16 });
+    map.__fit = function () { map.fitBounds(L.latLngBounds(ll), { paddingTopLeft: [60, 40], paddingBottomRight: [60, 30], maxZoom: 16 }); };
+    if (el.clientWidth) { map.__fitted = true; map.__fit(); } else map.setView(ll[0], 12);
     L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
   }
 
@@ -2080,7 +2121,8 @@ html { scroll-padding-top: 4.5rem; }
         .bindTooltip(q.n, { permanent: true, direction: left ? 'left' : 'right', className: 'ltip big', interactive: false })
         .addTo(map);
     });
-    map.fitBounds(L.latLngBounds(all), { padding: [30, 30] });
+    map.__fit = function () { map.fitBounds(L.latLngBounds(all), { padding: [30, 30] }); };
+    if (el.clientWidth) { map.__fitted = true; map.__fit(); } else map.setView([16, 106], 5);
     L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
     document.getElementById('ovStops').innerHTML = OV.stops.map(function (q, i) {
       return '<li style="--c:' + q.c + '"><span class="nb" style="--a:' + q.c + '">' + (i + 1) + '</span><div><b>' + q.n + '</b><small>' + q.sub + '</small></div></li>';
@@ -2654,7 +2696,7 @@ html { scroll-padding-top: 4.5rem; }
   Object.keys(altDays).forEach(function (d) {
     var r = DAYREF[d], day = r.day, swaps = altDays[d].filter(function (a) { return a.kind === 'swap'; }), adds = altDays[d].filter(function (a) { return a.kind === 'add'; });
     var w = document.createElement('section'); w.className = 'dopts'; w.setAttribute('aria-label', 'Opciones del día');
-    var h = '<h3>Opciones del día</h3>';
+    var h = '<h3><button type="button" class="dotog" aria-expanded="false"><span class="dot-t">Opciones del día</span><small class="dosum"></small><span class="dot-n">' + altDays[d].length + ' opciones</span><i aria-hidden="true">⌄</i></button></h3><div class="dobody" hidden>';
     var row = function (a, type) {
       var id = 'o-' + d + '-' + (a ? a.id : 'base'), sp = a ? spanTxt(a) : '';
       return '<label class="dopt" for="' + id + '"><input type="' + type + '" id="' + id + '" name="plan-' + d + '" value="' + (a ? a.id : '') + '">' +
@@ -2663,7 +2705,7 @@ html { scroll-padding-top: 4.5rem; }
     };
     if (swaps.length) h += '<fieldset><legend>Plan del día <span>elige uno</span></legend>' + row(null, 'radio') + swaps.map(function (a) { return row(a, 'radio'); }).join('') + '</fieldset>';
     if (adds.length) h += '<fieldset><legend>Añadir al día <span>puedes marcar varios</span></legend>' + adds.map(function (a) { return row(a, 'checkbox'); }).join('') + '</fieldset>';
-    w.innerHTML = h;
+    w.innerHTML = h + '</div>';
     w.querySelectorAll('input').forEach(function (inp) {
       var a = ALT_BY[inp.value] || null;
       dctl.push({ d: d, a: a, inp: inp, row: inp.closest('.dopt') });
@@ -2874,6 +2916,83 @@ html { scroll-padding-top: 4.5rem; }
       document.getElementById('actBar').innerHTML = '<b>' + n + '</b> de <b>' + tot + '</b> actividades marcadas · <b>' + ALTS.filter(function (a) { return sel[a.id]; }).length + '</b> alternativas elegidas';
     };
     afterRender = refresh; refresh();
+  })();
+
+  /* ---------- Plegar y desplegar: días, opciones, secciones y nivel de detalle ---------- */
+  (function () {
+    var FK = 'vn-fold', st = {};
+    try { st = JSON.parse(localStorage.getItem(FK) || '{}') || {}; } catch (e) {}
+    var save = function () { try { localStorage.setItem(FK, JSON.stringify(st)); } catch (e) {} };
+    var html = document.documentElement;
+    /* Nivel de detalle */
+    var setCompact = function (on) { html.classList.toggle('compact', on); st.compact = on; save(); bar.querySelectorAll('.seg button').forEach(function (b) { b.setAttribute('aria-pressed', String((b.dataset.v === 'c') === on)); }); };
+    /* Barra sobre los días */
+    var days = document.querySelector('.days');
+    var bar = document.createElement('div'); bar.className = 'viewbar';
+    bar.innerHTML = '<span class="vb-l">Itinerario</span><button type="button" data-a="open">Desplegar todos</button><button type="button" data-a="close">Plegar todos</button>' +
+      '<span class="seg" role="group" aria-label="Nivel de detalle"><button type="button" data-v="f" aria-pressed="true">Detallado</button><button type="button" data-v="c" aria-pressed="false">Compacto</button></span>';
+    days.insertBefore(bar, days.firstChild);
+    /* Días */
+    var setDay = function (d, open) {
+      var r = DAYREF[d]; r.day.classList.toggle('collapsed', !open);
+      r.tog.setAttribute('aria-expanded', String(open)); r.tog.setAttribute('aria-label', (open ? 'Plegar ' : 'Desplegar ') + NAMES[d]);
+      (st.days = st.days || {})[d] = open ? 1 : 0;
+    };
+    ORDER.forEach(function (d) {
+      var r = DAYREF[d], head = r.day.querySelector('.date');
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'dtog'; b.innerHTML = '<span aria-hidden="true">⌄</span>';
+      head.appendChild(b); r.tog = b;
+      var pv = document.createElement('p'); pv.className = 'dprev'; head.insertAdjacentElement('afterend', pv); r.prev = pv;
+      head.addEventListener('click', function (e) { if (e.target.closest('a')) return; setDay(d, r.day.classList.contains('collapsed')); save(); });
+      var open = st.days && st.days[d] !== undefined ? !!st.days[d] : false;
+      setDay(d, open);
+    });
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.a) { ORDER.forEach(function (d) { setDay(d, b.dataset.a === 'open'); }); save(); }
+      if (b.dataset.v) setCompact(b.dataset.v === 'c');
+    });
+    setCompact(!!st.compact);
+    /* Al navegar a un día, se despliega */
+    var openFromHash = function (id) { if (DAYREF[id] && DAYREF[id].day.classList.contains('collapsed')) { setDay(id, true); save(); } };
+    document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href^="#"]'); if (a) openFromHash(a.getAttribute('href').slice(1)); }, true);
+    window.addEventListener('hashchange', function () { openFromHash(location.hash.slice(1)); });
+    if (location.hash) openFromHash(location.hash.slice(1));
+    /* Panel de opciones de cada día */
+    ORDER.forEach(function (d) {
+      var r = DAYREF[d], w = r.day.querySelector('.dopts'); if (!w) return;
+      var tg = w.querySelector('.dotog'), body = w.querySelector('.dobody');
+      tg.addEventListener('click', function () { var o = body.hidden; body.hidden = !o; tg.setAttribute('aria-expanded', String(o)); });
+      r.dosum = w.querySelector('.dosum');
+    });
+    /* Resumen de cada día plegado y del panel de opciones */
+    var previews = function () {
+      ORDER.forEach(function (d) {
+        var r = DAYREF[d], sw = swapFor(d), list = sw ? sw.days[d].ev.map(function (v) { return [v[0], v[1]]; })
+          : [].map.call(r.base.querySelectorAll('.ev'), function (ev) { var h = ev.querySelector('h3'); return [ev.querySelector('.time').textContent, h.childNodes[0].textContent]; });
+        var adds = ALTS.filter(function (a) { return a.kind === 'add' && sel[a.id] && a.days[d]; });
+        adds.forEach(function (a) { a.days[d].ev.forEach(function (v) { list.push([v[0], v[1] + ' (extra)']); }); });
+        r.prev.innerHTML = (sw ? '<b>' + sw.title + ':</b> ' : '') + list.map(function (x) { return '<span><i>' + x[0] + '</i> ' + x[1] + '</span>'; }).join('');
+        if (r.dosum) r.dosum.textContent = (sw ? sw.title : 'Plan base') + (adds.length ? ' + ' + adds.length + (adds.length > 1 ? ' extras' : ' extra') : '');
+      });
+    };
+    var prevAR = afterRender;
+    afterRender = function () { if (prevAR) prevAR(); previews(); };
+    previews();
+    /* Secciones generales */
+    [['ruta', true], ['actividades', false], ['alternativas', false], ['presupuesto', true]].forEach(function (x) {
+      var sec = document.getElementById(x[0]); if (!sec) return;
+      var h2 = sec.querySelector('h2'), body = document.createElement('div'); body.className = 'secbody';
+      while (h2.nextSibling) body.appendChild(h2.nextSibling);
+      sec.appendChild(body);
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'stog';
+      b.innerHTML = '<span class="st-t"></span><span aria-hidden="true" class="chev">⌄</span>';
+      b.querySelector('.st-t').textContent = h2.textContent; h2.textContent = ''; h2.appendChild(b);
+      var set = function (open) { sec.classList.toggle('sec-off', !open); b.setAttribute('aria-expanded', String(open)); (st.sec = st.sec || {})[x[0]] = open ? 1 : 0; };
+      set(st.sec && st.sec[x[0]] !== undefined ? !!st.sec[x[0]] : x[1]);
+      b.addEventListener('click', function () { set(sec.classList.contains('sec-off')); save(); });
+      document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#' + x[0] + '"]'); if (a && sec.classList.contains('sec-off')) { set(true); save(); } }, true);
+    });
   })();
 })();
 </script>

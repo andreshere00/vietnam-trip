@@ -16,6 +16,7 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura
 ## Qué incluye
 
 - **Noche de fiesta** en el plan base (jueves 18, Old Quarter de Hà Nội) y **Củ Chi + campo de tiro + Mekong** el domingo 7.
+- **Plegar y desplegar**: los días empiezan plegados con un resumen de horas y actividades; se despliegan pulsando la cabecera, desde la barra de días o con «Desplegar todos / Plegar todos». Hay vista «Detallado» o «Compacto» (solo hora y título), y las secciones Ruta, Actividades, Alternativas y Presupuesto también se pliegan. El estado se guarda en el navegador.
 - **Itinerario día a día**, con horarios y notas de cada actividad y una etiqueta con el día del calendario lunar (Giao thừa, Mùng 1… Rằm tháng Giêng).
 - **Ruta general** con un mapa de Vietnam, las bases con sus noches y la tabla de etapas (vuelos, coche y tiempo).
 - **Cada día en dos columnas**: a un lado el mapa (más pequeño y fijo al hacer scroll) y al otro un panel «Opciones del día» (plan base o alternativas con botones de opción, y extras con casillas), el itinerario y la «Información práctica» plegable. En móvil se apilan.
