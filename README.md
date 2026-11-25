@@ -17,6 +17,7 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura
 
 - **Noche de fiesta** en el plan base (jueves 18, Old Quarter de Hà Nội) y **Củ Chi + campo de tiro + Mekong** el domingo 7.
 - **Iconografía con Material Symbols** (Google Fonts) en eventos, costes, pestañas, opciones, flechas y secciones, para leer el itinerario de un vistazo. Se asignan por palabras clave del título en `index.html` (bloque «Iconografía»).
+- **Página «Línea de tiempo»** (`itinerario.html`, enlazada desde la barra y el menú): cada día es un tramo de una línea de tiempo con sus paradas numeradas, y a la derecha un mapa fijo que sigue al día que se lee (o al pulsar su cabecera o un número). «Mi elección» muestra el plan con las alternativas que habéis elegido en la web principal (la elección se comparte por `localStorage`); «Plan base» las ignora. Cada día lleva «Otras opciones» con todas las alternativas y extras como ramas, con su minilínea de tiempo y un botón «Ver en el mapa» para previsualizar su recorrido (línea y pines discontinuos). Las paradas de las alternativas que no están en el plan base son aproximadas. En móvil el mapa queda fijo arriba y se puede plegar.
 - **Menú modal de secciones** (botón de cuadrícula en la barra superior): Ruta, Actividades, Alternativas, Presupuesto y Notas, cada una con su icono y un dato en vivo (marcadas, elegidas, total).
 - **Elección predilecta por defecto**: la web se abre con **Sa Pa + Fansipan (18–19)** y **copas en Hội An/Đà Nẵng (jueves 11)** ya elegidas, marcadas con ★ «Predilecta». Se cambian en cualquier momento y el botón «Restaurar elección recomendada» vuelve a ellas. Se definen con `pref: true` en `ALTS`.
 - **Clima por zona** (medias históricas de febrero, no una previsión): cada día lleva una insignia con el rango de temperatura y, al abrirlo, una ficha con el tipo de tiempo (calor seco, calor húmedo, fresco con lloviznas, frío con niebla…), temperatura, humedad, lluvia y qué ropa llevar. Cada caso tiene su icono y su color; las alternativas que cambian de zona (Sa Pa, Hà Giang, Mai Châu, Đà Lạt, Bà Nà) cambian también el clima. La ruta general muestra el rango de cada base. Los datos están en el bloque `WX` de `index.html`.
@@ -45,6 +46,7 @@ La paleta sale de la bandera de Vietnam —rojo y amarillo de la estrella— sob
 ```
 .
 ├── index.html   # la web principal: HTML, CSS y JavaScript
+├── itinerario.html  # página aparte: línea de tiempo con las alternativas y un mapa
 ├── assets/js/data.js  # datos compartidos del viaje (lugares, mapas, alternativas, costes)
 ├── assets/img/  # fotos de los lugares (Wikimedia Commons, ≤ 800 px)
 ├── CREDITS.md   # autores y licencias de las fotos
@@ -57,7 +59,7 @@ No hay paso de compilación. Las peticiones externas son las fuentes de Google F
 
 ## Cómo está construida
 
-`index.html` contiene el contenido de cada día como HTML y genera mapas, costes y presupuesto con JavaScript a partir de unos bloques de datos. Los bloques `NAMES`, `COST`, `P`, `MAPS`, `PLACE`, `EVP` y `ALTS` viven en `assets/js/data.js` (los comparte con la página de la línea de tiempo); el resto, al inicio del `<script>` de `index.html`:
+`index.html` contiene el contenido de cada día como HTML y genera mapas, costes y presupuesto con JavaScript a partir de unos bloques de datos. Los bloques `NAMES`, `COST`, `P`, `MAPS`, `PLACE`, `EVP` y `ALTS` viven en `assets/js/data.js` (los comparte con `itinerario.html`, que además lee el texto de cada día de `index.html` y guarda en su propio `<script>` las coordenadas aproximadas `XP` y la tabla `AG` con el punto de cada evento de las alternativas); el resto, al inicio del `<script>` de `index.html`:
 
 | Bloque | Qué define |
 | --- | --- |

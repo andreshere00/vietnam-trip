@@ -623,6 +623,7 @@ html { scroll-padding-top: 4.5rem; }
   <header><h2 id="menuT">Ir a…</h2><button type="button" class="mclose" aria-label="Cerrar"><span class="mi" aria-hidden="true">close</span></button></header>
   <nav class="mgrid" aria-label="Secciones">
     <a class="mopt" href="#ruta"><span class="mi" aria-hidden="true">map</span><b>Ruta</b><small>Mapa de Vietnam y etapas</small></a>
+    <a class="mopt" href="itinerario.html"><span class="mi" aria-hidden="true">timeline</span><b>Línea de tiempo</b><small>Días, opciones y mapa en otra página</small></a>
     <a class="mopt" href="#actividades"><span class="mi" aria-hidden="true">checklist</span><b>Actividades</b><small data-k="act">Lista para marcar</small></a>
     <a class="mopt" href="#alternativas"><span class="mi" aria-hidden="true">alt_route</span><b>Alternativas</b><small data-k="alt">Cambiar o añadir</small></a>
     <a class="mopt" href="#presupuesto"><span class="mi" aria-hidden="true">payments</span><b>Presupuesto</b><small data-k="bud">Total y por día</small></a>
@@ -704,6 +705,7 @@ html { scroll-padding-top: 4.5rem; }
       <li><a href="#dom21" style="--z: var(--muted)"><b>21</b><span>Dom</span></a></li>
       <li class="sep" aria-hidden="true"></li>
       <li><a class="txt" href="#ruta">Ruta</a></li>
+      <li><a class="txt" href="itinerario.html">Línea de tiempo</a></li>
       <li><a class="txt" href="#actividades">Actividades</a></li>
       <li><a class="txt" href="#alternativas">Alternativas</a></li>
       <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
@@ -2206,7 +2208,7 @@ html { scroll-padding-top: 4.5rem; }
   (function () {
     var list = document.getElementById('navList'), prog = document.getElementById('navProg');
     var links = {}, ids = [];
-    list.querySelectorAll('a').forEach(function (a) { var id = a.getAttribute('href').slice(1); links[id] = a; ids.push(id); });
+    list.querySelectorAll('a[href^="#"]').forEach(function (a) { var id = a.getAttribute('href').slice(1); links[id] = a; ids.push(id); });
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     /* Rueda del ratón sobre la barra: desplaza en horizontal; en el resto de la página, en vertical */
     list.addEventListener('wheel', function (e) {
@@ -2684,7 +2686,7 @@ html { scroll-padding-top: 4.5rem; }
       document.querySelectorAll('.fl small').forEach(function (b) { pre(b, /Ida/.test(b.textContent) ? 'flight_takeoff' : 'flight_land'); });
       document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, 'payments'); });
       document.querySelectorAll('.nav a.txt').forEach(function (a) {
-        var m = { '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
+        var m = { 'itinerario.html': 'timeline', '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
       });
       document.querySelectorAll('.stog .st-t').forEach(function (t) {
         var s = t.textContent; pre(t, /ruta/i.test(s) ? 'map' : /actividades/i.test(s) ? 'checklist' : /alternativas/i.test(s) ? 'alt_route' : /presupuesto/i.test(s) ? 'payments' : '');

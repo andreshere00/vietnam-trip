@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Línea de tiempo · Vietnam 5–21 Febrero</title>
+<meta name="description" content="Itinerario de Vietnam en línea de tiempo, día a día, con las alternativas como ramas y un mapa que sigue el recorrido.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8201a'/%3E%3Cpolygon points='16,5 19.2,12.6 27,13.2 21,18.4 22.9,26 16,21.9 9.1,26 11,18.4 5,13.2 12.8,12.6' fill='%23ffcd00'/%3E%3C/svg%3E">
+<script>try { var th = localStorage.getItem('theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="preconnect" href="https://tile.openstreetmap.org">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:wght@600;700;900&display=swap">
+<style>
+:root {
+  --cream: #fbf1dc; --paper: #fffaf0; --ink: #2a1610; --muted: #6a5648;
+  --red: #c8201a; --yellow: #ffcd00; --gold: #a87400; --jade: #2f7d4f; --teal: #0f7487; --indigo: #2c4a8f; --lotus: #c43a73; --hue: #7a4a9b;
+  --on-red: #ffffff; --line: #e2cfa3; --bg: var(--cream); --surface: var(--paper); --fg: var(--ink);
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --hdr: 112px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cream: #1b100c; --paper: #2a1913; --ink: #fbeed4; --muted: #cdb7a0; --line: #4c3328;
+    --red: #ff6b5c; --yellow: #ffd84a; --gold: #ffcd3c; --jade: #6fc78c; --teal: #52c5d8; --indigo: #93b3ff; --lotus: #ff8cb6; --hue: #cfa2f0;
+    --on-red: #1b100c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --cream: #1b100c; --paper: #2a1913; --ink: #fbeed4; --muted: #cdb7a0; --line: #4c3328;
+  --red: #ff6b5c; --yellow: #ffd84a; --gold: #ffcd3c; --jade: #6fc78c; --teal: #52c5d8; --indigo: #93b3ff; --lotus: #ff8cb6; --hue: #cfa2f0;
+  --on-red: #1b100c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+:root { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.mi { font-family: "Material Symbols Outlined"; font-weight: 400; font-style: normal; font-size: 1.25em; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; direction: ltr; vertical-align: -.25em; font-feature-settings: "liga"; -webkit-font-feature-settings: "liga"; }
+.wrap { max-width: 1280px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Cabecera fija: título, controles y barra de días */
+.top { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; gap: 10px; min-height: 56px; padding-block: 6px; }
+.back { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px 0 8px; border-radius: 22px; text-decoration: none; font-weight: 700; font-size: .88rem; border: 1px solid var(--line); background: var(--surface); }
+.back:hover { border-color: var(--gold); }
+.ttl { margin: 0; font: 700 1.15rem/1.15 var(--display); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ttl small { display: block; font: 500 .72rem/1.2 var(--body); color: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); padding: 2px; }
+.seg button { white-space: nowrap; min-height: 40px; padding: 0 14px; border: 0; border-radius: 20px; background: none; cursor: pointer; font-weight: 700; font-size: .85rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.seg button[aria-pressed="true"] { background: var(--red); color: var(--on-red); }
+.ibtn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; display: grid; place-items: center; }
+.ibtn[aria-pressed="true"] { background: var(--gold); color: #fff; border-color: var(--gold); }
+.ibtn:hover { border-color: var(--gold); }
+.days { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 10px; scrollbar-width: thin; }
+.days a { flex: 0 0 auto; width: 44px; min-height: 48px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; display: grid; place-items: center; align-content: center; line-height: 1.05; border-bottom: 4px solid var(--z, var(--muted)); }
+.days a b { font-size: 1.05rem; }
+.days a span { font-size: .66rem; color: var(--muted); text-transform: uppercase; }
+.days a[aria-current="true"] { background: var(--z); border-color: var(--z); }
+.days a[aria-current="true"] b, .days a[aria-current="true"] span { color: var(--on-red); }
+
+/* Resumen y leyenda */
+.lead { padding: 18px 0 6px; }
+.lead p { margin: 0 0 8px; color: var(--muted); max-width: 70ch; }
+.lead .sum { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: .9rem; }
+.lead .sum b { color: var(--fg); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 8px 0 0; padding: 0; list-style: none; font-size: .8rem; color: var(--muted); }
+.legend li::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: -1px; }
+.legend li.alt::before { background: none; border: 2px dashed var(--muted); width: 14px; height: 0; border-radius: 0; border-width: 0 0 2px; vertical-align: 3px; }
+
+/* Cuadrícula: línea de tiempo y mapa */
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); gap: 24px; align-items: start; padding-bottom: 60px; }
+.mapcol { position: sticky; top: calc(var(--hdr) + 12px); height: calc(100vh - var(--hdr) - 28px); min-height: 360px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.mapcap { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: .85rem; min-height: 48px; }
+.mapcap b { font-weight: 700; }
+.mapcap span.n { color: var(--muted); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mapcap button { min-height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font-weight: 700; font-size: .8rem; display: inline-flex; align-items: center; gap: 4px; }
+.mapcap button:hover { border-color: var(--gold); }
+#tmap { flex: 1; min-height: 200px; background: var(--neighbor, #e9dec3); }
+.mapnote { padding: 6px 12px; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--line); background: var(--surface); }
+.mapnote:empty { display: none; }
+.nomap { padding: 24px; text-align: center; color: var(--muted); }
+#tmap .leaflet-container { font-family: var(--body); }
+:root[data-theme="dark"] .osm { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .osm { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); } }
+.lpinw { background: none; border: 0; }
+.lstop { width: 28px; height: 28px; border-radius: 50%; background: var(--c); border: 2.5px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4); display: grid; place-items: center; cursor: pointer; transition: transform .12s; }
+.lstop span { color: #fff; font: 700 12px/1 var(--body); }
+.lstop.alt { border-style: dashed; }
+.lstop.hot { transform: scale(1.3); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 40%, transparent), 0 2px 6px rgba(0,0,0,.4); }
+.lcity { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--c); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.45); color: #fff; font: 700 13px/1 var(--body); cursor: pointer; }
+.lcity.on { box-shadow: 0 0 0 5px color-mix(in srgb, var(--c) 40%, transparent), 0 2px 8px rgba(0,0,0,.45); }
+
+/* Línea de tiempo */
+.tl-days { display: grid; gap: 18px; min-width: 0; }
+.tday { --z: var(--muted); border: 1px solid var(--line); border-left: 6px solid var(--z); border-radius: 14px; background: var(--surface); scroll-margin-top: calc(var(--hdr) + 12px); transition: box-shadow .15s; }
+.tday.active { box-shadow: 0 0 0 3px color-mix(in srgb, var(--z) 35%, transparent); }
+.tdh { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: none; border: 0; text-align: left; cursor: pointer; border-radius: 10px 10px 0 0; min-height: 64px; }
+.tdh:hover { background: color-mix(in srgb, var(--z) 8%, transparent); }
+.tdn { flex: 0 0 auto; width: 52px; height: 52px; border-radius: 12px; background: var(--z); color: var(--on-red); display: grid; place-items: center; align-content: center; line-height: 1; }
+.tdn small { font-size: .62rem; text-transform: uppercase; letter-spacing: .04em; }
+.tdn b { font: 700 1.35rem/1 var(--display); }
+.tdt { flex: 1; min-width: 0; }
+.tdt b { display: block; font-size: 1.05rem; line-height: 1.25; }
+.tdt small { color: var(--muted); font-size: .8rem; }
+.pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 12px; font-size: .74rem; font-weight: 700; border: 1px solid var(--line); background: var(--bg); color: var(--muted); white-space: nowrap; }
+.pill.ok { border-color: var(--jade); color: var(--jade); }
+.pill.pref { border-color: var(--gold); color: var(--gold); }
+.pill.tet { border-color: var(--red); color: var(--red); }
+.pill .mi { font-size: 1.1em; }
+.tdp { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+.banner { margin: 0 14px 8px; padding: 8px 12px; border-radius: 10px; border: 1px dashed var(--z); background: color-mix(in srgb, var(--z) 8%, transparent); font-size: .86rem; }
+.banner b { font-weight: 700; }
+ol.tl { list-style: none; margin: 0; padding: 4px 14px 10px; }
+.tev { position: relative; display: grid; grid-template-columns: 52px 30px minmax(0, 1fr); column-gap: 8px; padding-bottom: 12px; }
+.tev::before { content: ""; position: absolute; left: calc(52px + 8px + 14px); top: 26px; bottom: -2px; width: 2px; background: var(--line); }
+.tev:last-child::before { display: none; }
+.tev .tm { text-align: right; font: 700 .85rem/28px var(--body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.tev .nd { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--z); background: var(--surface); display: grid; place-items: center; font: 700 12px/1 var(--body); color: var(--z); z-index: 1; padding: 0; cursor: default; }
+.tev .nd.has { background: var(--z); color: var(--on-red); cursor: pointer; }
+.tev .nd.has:hover { transform: scale(1.12); }
+.tev .nd.dot { width: 14px; height: 14px; margin: 7px 7px; border-width: 2px; }
+.tev.alt .nd { border-style: dashed; }
+.tev.alt .nd.has { background: color-mix(in srgb, var(--z) 80%, var(--surface)); }
+.tev .bd { min-width: 0; border-radius: 8px; padding: 2px 6px; margin: 0 -6px; }
+.tev .hd { display: flex; align-items: flex-start; gap: 6px; width: 100%; border: 0; background: none; padding: 0; text-align: left; cursor: pointer; min-height: 28px; }
+.tev .hd h3 { margin: 0; font-size: .98rem; line-height: 28px; font-weight: 600; flex: 1; min-width: 0; }
+.tev .hd .chv { color: var(--muted); font-size: 1.2em; transition: transform .15s; margin-top: 2px; }
+.tev.open .hd .chv { transform: rotate(180deg); }
+.tev.hot .bd { background: color-mix(in srgb, var(--z) 14%, transparent); }
+.tev.tet h3::after { content: "Tết"; margin-left: 8px; font: 700 .68rem/1 var(--body); color: var(--red); border: 1px solid var(--red); border-radius: 8px; padding: 1px 5px; vertical-align: 2px; }
+.tev .tag { font: 700 .66rem/1 var(--body); text-transform: uppercase; letter-spacing: .04em; padding: 2px 6px; border-radius: 8px; background: color-mix(in srgb, var(--z) 18%, transparent); color: var(--fg); margin-left: 6px; vertical-align: 2px; }
+.tev p { margin: 2px 0 4px; font-size: .9rem; color: var(--muted); }
+.tev p, .tev .chips { display: none; }
+.tev.open p { display: block; }
+.tev.open .chips, .showall .tev .chips { display: flex; }
+.showall .tev p { display: block; }
+.chips { flex-wrap: wrap; gap: 4px; margin: 2px 0 2px; }
+.chip { font-size: .72rem; padding: 1px 8px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); }
+.chip.act { border-color: var(--indigo); } .chip.trans { border-color: var(--teal); } .chip.fly { border-color: var(--hue); } .chip.food { border-color: var(--gold); }
+.price { display: inline-block; margin-left: auto; font-size: .76rem; font-weight: 700; color: var(--muted); white-space: nowrap; line-height: 28px; }
+
+/* Opciones del día */
+details.opts { border-top: 1px solid var(--line); }
+details.opts > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 10px 14px; min-height: 48px; font-weight: 700; font-size: .92rem; }
+details.opts > summary::-webkit-details-marker { display: none; }
+details.opts > summary .chv { margin-left: auto; transition: transform .15s; color: var(--muted); }
+details.opts[open] > summary .chv { transform: rotate(180deg); }
+details.opts > summary small { color: var(--muted); font-weight: 500; }
+.ocards { display: grid; gap: 10px; padding: 0 14px 14px; }
+.ocard { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--bg); }
+.ocard.on { border-color: var(--jade); background: color-mix(in srgb, var(--jade) 7%, var(--bg)); }
+.ocard header { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.ocard h4 { margin: 0; font-size: .96rem; flex: 1 1 200px; line-height: 1.3; }
+.ocard .s { margin: 4px 0 6px; font-size: .86rem; color: var(--muted); }
+.ocard .acts { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+.btn { min-height: 38px; padding: 0 12px; border-radius: 19px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 700; font-size: .82rem; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+.btn:hover { border-color: var(--gold); }
+.btn[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #fff; }
+.ocard ol.tl { padding: 6px 0 0; }
+.kind { font-size: .72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+.msg { padding: 20px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); }
+footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-size: .85rem; }
+
+@media (max-width: 960px) {
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .mapcol { order: -1; position: sticky; top: var(--hdr); z-index: 30; height: 36vh; min-height: 230px; margin-inline: -16px; border-radius: 0; border-inline: 0; }
+  .mapcol.min { height: 48px; min-height: 0; }
+  .mapcol.min #tmap, .mapcol.min .mapnote { display: none; }
+  .tday { scroll-margin-top: calc(var(--hdr) + 36vh + 14px); }
+  .tdp { display: none; }
+  .ttl small { display: none; }
+}
+@media (max-width: 560px) {
+  .ttl { display: none; }
+  .bar { justify-content: space-between; gap: 6px; }
+  .seg button { padding: 0 10px; font-size: .8rem; }
+  .seg .mi { display: none; }
+  .back span.t { display: none; }
+  .mapcap .bt { display: none; }
+  .mapcap button { padding: 0 9px; }
+  .back { padding: 0 8px; }
+  .tev { grid-template-columns: 44px 28px minmax(0, 1fr); column-gap: 6px; }
+  .tev::before { left: calc(44px + 6px + 13px); }
+}
+@media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="back" href="index.html" title="Volver a la web principal"><span class="mi" aria-hidden="true">arrow_back</span><span class="t">Web principal</span></a>
+      <h1 class="ttl">Línea de tiempo<small>Vietnam · 5–21 de febrero de 2027</small></h1>
+      <div class="seg" role="group" aria-label="Qué plan mostrar">
+        <button type="button" id="mMine" aria-pressed="true" title="Con las alternativas que habéis elegido en la web principal"><span class="mi" aria-hidden="true">star</span>Mi elección</button>
+        <button type="button" id="mBase" aria-pressed="false" title="Solo el plan base, sin alternativas"><span class="mi" aria-hidden="true">route</span>Plan base</button>
+      </div>
+      <button type="button" class="ibtn" id="btnDet" aria-pressed="false" aria-label="Mostrar todos los detalles" title="Mostrar u ocultar los detalles de cada parada"><span class="mi" aria-hidden="true">notes</span></button>
+      <button type="button" class="ibtn" id="themeBtn" aria-label="Cambiar entre modo claro y nocturno" title="Modo claro o nocturno"><span class="mi" aria-hidden="true">contrast</span></button>
+    </div>
+    <nav class="days" id="dayBar" aria-label="Días del viaje"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="lead">
+    <p id="lead">Cada día es un tramo de la línea de tiempo: pulsad su cabecera o un número para verlo en el mapa. Las alternativas aparecen como ramas con línea discontinua dentro de cada día.</p>
+    <div class="sum" id="sum"></div>
+    <ul class="legend" id="legend" aria-label="Leyenda"></ul>
+  </section>
+  <div class="grid">
+    <div class="tl-days" id="tlDays"><p class="msg">Cargando el itinerario…</p></div>
+    <aside class="mapcol" id="mapCol" aria-label="Mapa del itinerario">
+      <div class="mapcap"><span class="mi" aria-hidden="true">map</span><b id="capT">Vietnam</b><span class="n" id="capN">Ruta completa</span><button type="button" id="btnAll" title="Ver toda la ruta"><span class="mi" aria-hidden="true">zoom_out_map</span><span class="bt">Ruta completa</span></button><button type="button" id="btnMin" class="mmin" title="Plegar o desplegar el mapa" aria-label="Plegar el mapa" hidden><span class="mi" aria-hidden="true">expand_less</span></button></div>
+      <div id="tmap" role="region" aria-label="Mapa"></div>
+      <div class="mapnote" id="mapNote"></div>
+    </aside>
+  </div>
+</main>
+<footer class="wrap f">Mapa © colaboradores de OpenStreetMap. Los puntos marcados como aproximados son orientativos. Precios y horas son estimaciones. <a href="index.html#presupuesto">Ver presupuesto</a> · <a href="index.html#alternativas">Elegir alternativas</a></footer>
+
+<noscript><p class="wrap msg">Esta página necesita JavaScript.</p></noscript>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="assets/js/data.js"></script>
+<script>
+(function () {
+  var P = VN.P, MAPS = VN.MAPS, EVP = VN.EVP, COST = VN.COST, NAMES = VN.NAMES, ALTS = VN.ALTS;
+  var PAX = 3;
+  var ZONES = { trip: ['Vuelos', '--muted'], sgn: ['Ho Chi Minh', '--red'], mekong: ['Delta del Mekong', '--jade'], hoian: ['Hội An y Đà Nẵng', '--gold'], hue: ['Huế', '--hue'], hanoi: ['Hà Nội', '--indigo'], ninh: ['Ninh Bình', '--lotus'], halong: ['Bahía de Hạ Long', '--teal'] };
+  var esc = function (t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); };
+  var eur = function (n) { return '€' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var $ = function (id) { return document.getElementById(id); };
+  var css = function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim() || '#888'; };
+  var mm = window.matchMedia('(max-width: 960px)');
+  var ALT_BY = {}; ALTS.forEach(function (a) { ALT_BY[a.id] = a; });
+
+  /* ---------- Puntos extra (aproximados) para las alternativas que salen del itinerario base ---------- */
+  var XP = {
+    dlk: [108.3672, 11.7502, 'Liên Khương', 'Aeropuerto de Liên Khương (Đà Lạt)'], linhphuoc: [108.5075, 11.9505, 'Linh Phước', 'Pagoda Linh Phước, la de las botellas'],
+    dalat: [108.4437, 11.9435, 'Đà Lạt', 'Centro de Đà Lạt y lago Xuân Hương'], datanla: [108.4476, 11.9014, 'Datanla', 'Cascada de Datanla'],
+    catba: [107.0482, 20.7255, 'Cát Bà', 'Puerto de Cát Bà'], viethai: [106.9985, 20.7015, 'Việt Hải', 'Aldea de Việt Hải'], lanha: [107.1, 20.76, 'Lan Hạ', 'Fondeo en la bahía de Lan Hạ'],
+    mc: [105.0592, 20.6586, 'Mai Châu', 'Valle de Mai Châu'], poom: [105.0785, 20.6747, 'Poom Coong', 'Aldeas thái de Poom Coong'],
+    sapa: [103.8438, 22.3364, 'Sa Pa', 'Ciudad de Sa Pa'], catcat: [103.8309, 22.3277, 'Cát Cát', 'Aldea de Cát Cát'], fansipan: [103.7762, 22.3086, 'Fansipan', 'Estación del teleférico del Fansipan'], laochai: [103.861, 22.313, 'Lao Chải', 'Aldeas de Lao Chải y Tả Van'],
+    hg: [104.9836, 22.8233, 'Hà Giang', 'Ciudad de Hà Giang'], quanba: [104.9667, 23.0667, 'Quản Bạ', 'Montañas Gemelas de Quản Bạ'], yenminh: [105.1833, 23.1, 'Yên Minh', 'Yên Minh'], dongvan: [105.363, 23.279, 'Đồng Văn', 'Đồng Văn'],
+    lungcu: [105.3153, 23.3639, 'Lũng Cú', 'Torre de la bandera de Lũng Cú'], meovac: [105.4261, 23.1608, 'Mèo Vạc', 'Mèo Vạc y paso de Mã Pí Lèng'], duga: [105.2, 22.98, 'Du Già', 'Du Già'],
+    bana: [107.9886, 15.9975, 'Bà Nà Hills', 'Bà Nà Hills y Puente Dorado'], cuadai: [108.394, 15.8733, 'Cửa Đại', 'Embarcadero de Cửa Đại'], clc: [108.5169, 15.9556, 'Cù Lao Chàm', 'Isla de Cù Lao Chàm'],
+    dnst: [108.2118, 16.0714, 'Est. Đà Nẵng', 'Estación de tren de Đà Nẵng'], hst: [107.569, 16.4553, 'Est. Huế', 'Estación de tren de Huế'],
+    tuduc: [107.5604, 16.4331, 'Tự Đức', 'Tumba de Tự Đức'], baidinh: [105.8625, 20.274, 'Bái Đính', 'Pagoda de Bái Đính'], thung: [108.3722, 15.8767, 'Cẩm Thanh', 'Bosque de cocoteros de agua de Cẩm Thanh'], buivien: [106.6935, 10.7673, 'Bùi Viện', 'Calle Bùi Viện']
+  };
+  var pt = function (k) {
+    if (!k) return null;
+    if (P[k]) return { k: k, lon: P[k].lon, lat: P[k].lat, l: P[k].l, full: P[k].full, ap: false };
+    var x = XP[k]; return x ? { k: k, lon: x[0], lat: x[1], l: x[2], full: x[3], ap: true } : null;
+  };
+  /* Punto de cada evento de una alternativa, en el orden de sus eventos */
+  var AG = {
+    'mekong-full': { dom7: ['myt', 'ton', null, 'bt', 'hsg', null] }, cuchi: { dom7: [null, 'cuchi', 'cuchi', null, null, null] },
+    dalat: { dom7: ['sgn', 'dlk', 'linhphuoc', 'dalat', 'datanla', 'dlk', 'hsg'] },
+    catba: { mar16: ['hnb', 'catba', 'viethai', 'lanha'], mie17: ['lanha', 'catba', null, 'hh2', 'hh2'] },
+    maichau: { jue18: ['hh2', 'poom', 'mc', 'mc', null, 'hh2'] },
+    sapa: { jue18: ['hh2', 'sapa', 'catcat', 'sapa'], vie19: ['fansipan', 'laochai', null, 'hh2'] },
+    hagiang: { mar16: ['hnb', 'hh2', 'hg', 'hg'], mie17: ['quanba', 'yenminh', 'dongvan', 'dongvan'], jue18: ['lungcu', 'meovac', null, 'duga', 'duga'], vie19: ['duga', 'hg', 'hg', 'hh2'] },
+    'mie10-banahills': { mie10: ['hh', 'bana', null, null, 'hh', null] }, 'mie10-thung': { mie10: ['thung'] },
+    'jue11-champan': { jue11: ['cuadai', 'clc', 'clc', 'hh', 'hoian'] }, 'vie12-tren': { vie12: ['dnst', 'hst', 'hhue', 'thienmu', 'bunbo'] },
+    'lun15-tamcoc': { lun15: ['hh2', 'hnb', null, 'hangmua', 'hnb', null] }, 'lun15-baidinh': { lun15: ['baidinh'] }, 'sab13-tuduc': { sab13: ['tuduc'] },
+    'hue-diario': { vie12: ['hh', 'haivan', 'daino', null, 'thienmu', 'khaidinh', 'hh', 'hoian'], sab13: ['hh', 'dad', null, 'hh2'] },
+    'dom7-privado': { dom7: ['myt', 'ton', null, 'bt', 'hsg', null] },
+    'fiesta-hoian': { jue11: ['hoian'] }, 'fiesta-hn': { vie19: ['tahien'] }, 'fiesta-sgn': { sab20: ['buivien'] },
+    'comp-hoian': { mar9: ['hoian'] }, 'comp-hn': { mie17: ['hh2'] }, 'comp-sgn': { sab20: ['benthanh'] },
+    'sab6-barco': { sab6: ['rio'] }, 'vie12-dragon': { vie12: ['hhue'] }, 'dom14-comida': { dom14: ['hh2'] }, 'dom14-tranvia': { dom14: ['hh2'] }, 'lun8-desayuno': { lun8: ['hsg'] }
+  };
+
+  /* ---------- Estado: la elección se comparte con la web principal ---------- */
+  var SK = 'vn-alts2', MK = 'vn-tl-mode', mode = 'mine', showAll = false;
+  var loadSel = function () {
+    var s = {}; ALTS.forEach(function (a) { if (a.pref) s[a.id] = 1; });
+    try { var raw = localStorage.getItem(SK); if (raw !== null) { s = {}; (JSON.parse(raw) || []).forEach(function (id) { if (ALT_BY[id]) s[id] = 1; }); } } catch (e) {}
+    return s;
+  };
+  var sel = loadSel();
+  try { if (localStorage.getItem(MK) === 'base') mode = 'base'; } catch (e) {}
+  var swapFor = function (d) {
+    if (mode === 'base') return null;
+    for (var i = 0; i < ALTS.length; i++) if (ALTS[i].kind === 'swap' && sel[ALTS[i].id] && ALTS[i].days[d]) return ALTS[i];
+    return null;
+  };
+  var addsFor = function (d) { return mode === 'base' ? [] : ALTS.filter(function (a) { return a.kind === 'add' && sel[a.id] && a.days[d]; }); };
+  var optsFor = function (d) { return ALTS.filter(function (a) { return a.days[d]; }); };
+  var mins = function (t) { var p = String(t).split(':'); return (+p[0]) * 60 + (+p[1] || 0); };
+  var pxv = function (k, v) { return k === 'trans' ? v * 2 / PAX : v; };
+  var CHIP = { act: 'Entradas', trans: 'Transporte', fly: 'Vuelo', food: 'Comida' };
+  var priceOf = function (spec) {
+    var t = 0; (spec || '').split(',').forEach(function (sp) { var p = sp.split(':'); if (p[0] && p[0] !== 'note' && CHIP[p[0]]) t += pxv(p[0], +p[1]); });
+    return t;
+  };
+  var chipsH = function (spec) {
+    if (!spec) return '';
+    return '<div class="chips">' + spec.split(',').map(function (sp) {
+      var p = sp.split(':');
+      return p[0] === 'note' ? '<span class="chip">' + esc(p[1]) + '</span>' : (CHIP[p[0]] ? '<span class="chip ' + p[0] + '">' + CHIP[p[0]] + ' ~' + eur(pxv(p[0], +p[1])) + '</span>' : '');
+    }).join('') + '</div>';
+  };
+
+  /* ---------- Lectura del itinerario base desde index.html ---------- */
+  var DAYS = [];
+  var parse = function (html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.querySelectorAll('section.day').forEach(function (s) {
+      var z = Object.keys(ZONES).filter(function (k) { return s.classList.contains(k); })[0] || 'trip';
+      var evs = [];
+      s.querySelectorAll('.events > .ev').forEach(function (li, i) {
+        var h = li.querySelector('h3'), p = li.querySelector('p');
+        evs.push({ time: li.querySelector('.time').textContent.trim(), title: h ? h.textContent.trim() : '', text: p ? p.textContent.trim() : '', tet: li.classList.contains('tet'), i: i });
+      });
+      var badge = s.querySelector('.date .badge');
+      DAYS.push({ id: s.id, z: z, dow: s.querySelector('.dow').textContent.trim(), num: s.querySelector('.num').textContent.trim(), place: s.querySelector('.place').textContent.trim(), badge: badge ? badge.textContent.trim() : '', ev: evs });
+    });
+  };
+
+  /* Eventos de un día según el modo: plan base o alternativa elegida, más los extras, con su punto en el mapa */
+  var dayItems = function (d, only) {
+    var items = [], sw = only && only.kind === 'swap' ? only : swapFor(d.id);
+    if (only) {
+      var ag = (AG[only.id] || {})[d.id] || [];
+      return only.days[d.id].ev.map(function (v, i) { return { time: v[0], title: v[1], text: v[2], spec: v[3], pt: pt(ag[i]), alt: only }; });
+    }
+    if (sw) {
+      var ags = (AG[sw.id] || {})[d.id] || [];
+      sw.days[d.id].ev.forEach(function (v, i) { items.push({ time: v[0], title: v[1], text: v[2], spec: v[3], pt: pt(ags[i]), alt: sw }); });
+    } else {
+      d.ev.forEach(function (e) { items.push({ time: e.time, title: e.title, text: e.text, spec: (COST[d.id] || [])[e.i] || '', tet: e.tet, pt: pt((EVP[d.id] || [])[e.i]) }); });
+    }
+    addsFor(d.id).forEach(function (a) {
+      var aga = (AG[a.id] || {})[d.id] || [];
+      a.days[d.id].ev.forEach(function (v, i) {
+        var m = mins(v[0]), at = items.length;
+        for (var k = 0; k < items.length; k++) if (mins(items[k].time) > m) { at = k; break; }
+        items.splice(at, 0, { time: v[0], title: v[1], text: v[2], spec: v[3], pt: pt(aga[i]), alt: a });
+      });
+    });
+    return items;
+  };
+  /* Numeración de las paradas con mapa */
+  var number = function (items) {
+    var n = 0, seen = {};
+    items.forEach(function (it) {
+      if (!it.pt) return;
+      it.n = ++n; var g = seen[it.pt.k] = seen[it.pt.k] || { pt: it.pt, nums: [], alt: !!it.alt };
+      g.nums.push(n);
+      if (!it.alt) g.alt = false;
+    });
+    return seen;
+  };
+
+  /* ---------- Mapa ---------- */
+  var map = null, layer = null, lastFit = null, curDay = null, hotEv = null, markers = {}, ovPrev = null;
+  var CITIES = [['Ho Chi Minh', 'hsg', '--red'], ['Hội An', 'hh', '--gold'], ['Huế', 'hhue', '--hue'], ['Hà Nội', 'hh2', '--indigo'], ['Ninh Bình', 'hnb', '--lotus'], ['Hạ Long', 'hl', '--teal']];
+  var LEGS = [[0, 1, 1], [1, 2, 0], [2, 3, 1], [3, 4, 0], [4, 5, 0], [5, 3, 0], [3, 0, 1]];
+  var isDark = function () { var t = document.documentElement.getAttribute('data-theme'); return t ? t === 'dark' : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); };
+  var ll = function (k) { var p = pt(k); return p ? [p.lat, p.lon] : null; };
+  var coord = function (r) { return Array.isArray(r) ? [r[1], r[0]] : ll(r); };
+  var stopIcon = function (txt, color, alt, hot) {
+    return L.divIcon({ className: 'lpinw', iconSize: [28, 28], iconAnchor: [14, 14], tooltipAnchor: [14, 0], html: '<div class="lstop' + (alt ? ' alt' : '') + (hot ? ' hot' : '') + '" style="--c:' + color + '"><span>' + txt + '</span></div>' });
+  };
+  var initMap = function () {
+    if (!window.L) { $('tmap').innerHTML = '<p class="nomap">No se ha podido cargar el mapa (¿sin conexión?). La línea de tiempo sigue funcionando.</p>'; return false; }
+    map = L.map('tmap', { scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: false, zoomSnap: 0.25 });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, className: 'osm', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+    layer = L.layerGroup().addTo(map);
+    map.setView([16, 107], 5);
+    if (window.ResizeObserver) { var rw = 0, rh = 0; new ResizeObserver(function () { var el = $('tmap'); map.invalidateSize(); if ((el.clientWidth !== rw || el.clientHeight !== rh) && el.clientWidth && lastFit) { map.fitBounds(lastFit[0], lastFit[1]); } rw = el.clientWidth; rh = el.clientHeight; }).observe($('tmap')); }
+    return true;
+  };
+  var note = function (t) { $('mapNote').textContent = t || ''; };
+  var caption = function (t, n) { $('capT').textContent = t; $('capN').textContent = n || ''; };
+  var showOverview = function () {
+    curDay = null; hotEv = null; markers = {};
+    document.querySelectorAll('.tday.active').forEach(function (e) { e.classList.remove('active'); });
+    document.querySelectorAll('#dayBar a[aria-current]').forEach(function (e) { e.removeAttribute('aria-current'); });
+    caption('Vietnam', 'Ruta completa del viaje');
+    if (!map) return;
+    layer.clearLayers();
+    var b = [];
+    LEGS.forEach(function (l) {
+      var a = ll(CITIES[l[0]][1]), c = ll(CITIES[l[1]][1]);
+      L.polyline([a, c], { color: css('--muted'), weight: 3, opacity: .8, dashArray: l[2] ? '3 8' : null }).addTo(layer);
+    });
+    CITIES.forEach(function (c, i) {
+      var p = ll(c[1]); b.push(p);
+      L.marker(p, { icon: L.divIcon({ className: 'lpinw', iconSize: [34, 34], iconAnchor: [17, 17], tooltipAnchor: [17, 0], html: '<div class="lcity" style="--c:' + css(c[2]) + '">' + (i + 1) + '</div>' }), keyboard: false })
+        .bindTooltip(c[0], { direction: 'auto' }).addTo(layer);
+    });
+    /* Escapadas elegidas: ramas discontinuas */
+    var drawn = 0;
+    if (mode === 'mine') ALTS.forEach(function (a) {
+      if (!sel[a.id] || !AG[a.id]) return;
+      Object.keys(AG[a.id]).forEach(function (d) {
+        var dd = DAYS.filter(function (x) { return x.id === d; })[0]; if (!dd) return;
+        var pts = AG[a.id][d].map(pt).filter(Boolean); if (!pts.length) return;
+        var far = pts.filter(function (p) { return !P[p.k]; }); if (!far.length) return;
+        var col = css(ZONES[dd.z][1]), line = pts.map(function (p) { return [p.lat, p.lon]; });
+        L.polyline(line, { color: col, weight: 3, dashArray: '6 6', opacity: .9 }).addTo(layer);
+        far.forEach(function (p) { b.push([p.lat, p.lon]); L.marker([p.lat, p.lon], { icon: stopIcon('★', col, true), keyboard: false }).bindTooltip(esc(p.l) + ' · ' + esc(a.title) + ' (aproximado)', { direction: 'auto' }).addTo(layer); });
+        drawn++;
+      });
+    });
+    note(drawn ? 'Las ramas discontinuas son las escapadas que habéis elegido; los puntos son aproximados.' : 'Las líneas discontinuas son vuelos internos; las continuas, carretera. Elegid un día para verlo.');
+    lastFit = [b, { padding: [36, 36], maxZoom: 7 }]; map.fitBounds(lastFit[0], lastFit[1]);
+  };
+  var showDay = function (d, preview) {
+    if (!map) return;
+    var items = dayItems(d, preview), groups = number(items), col = css(ZONES[d.z][1]), hasAlt = items.some(function (i) { return i.alt; });
+    layer.clearLayers(); markers = {};
+    var b = [], usingAlt = !!(preview || swapFor(d.id)), fallback = false;
+    var routes = MAPS[d.id] || [];
+    var altPts = items.filter(function (i) { return i.alt && i.pt; });
+    if (usingAlt && !altPts.length) fallback = true;
+    if (!usingAlt || fallback) {
+      routes.forEach(function (cfg) {
+        var line = cfg.route.map(coord).filter(Boolean); line.forEach(function (p) { b.push(p); });
+        L.polyline(line, { color: col, weight: 5, opacity: fallback ? .45 : .9, lineJoin: 'round', dashArray: cfg.mode === 'walk' ? '2 8' : cfg.mode === 'boat' ? '8 8' : null }).addTo(layer);
+      });
+    } else {
+      var line = items.filter(function (i) { return i.pt; }).map(function (i) { return [i.pt.lat, i.pt.lon]; });
+      L.polyline(line, { color: col, weight: 4, dashArray: '8 8', opacity: .9 }).addTo(layer);
+    }
+    if (!fallback) Object.keys(groups).forEach(function (k) {
+      var g = groups[k], p = g.pt; b.push([p.lat, p.lon]);
+      var m = L.marker([p.lat, p.lon], { icon: stopIcon(g.nums[0], col, g.alt), keyboard: false })
+        .bindTooltip(g.nums.join(' y ') + ' · ' + esc(p.full) + (p.ap ? ' (aproximado)' : ''), { direction: 'auto' }).addTo(layer);
+      m.on('click', function () { focusEv(d.id, g.nums[0], true, preview ? document.querySelector('#d-' + d.id + ' .ocard[data-alt="' + preview.id + '"]') : null); });
+      markers[g.nums[0]] = { m: m, g: g, col: col };
+    });
+    var any = Object.keys(groups).length > 0;
+    caption(NAMES[d.id] + ' · ' + d.place, preview ? 'Vista previa: ' + preview.title : usingAlt && !fallback ? 'Plan elegido: ' + (swapFor(d.id) || preview).title : any || routes.length ? Object.keys(groups).length + ' paradas' : 'Sin mapa propio');
+    note(fallback ? 'Esta opción no tiene puntos propios: se muestra la ruta del plan base.' : (hasAlt && usingAlt ? 'Línea y pines discontinuos: puntos de la alternativa (aproximados).' : (any || routes.length ? 'Los números del mapa coinciden con los de la línea de tiempo.' : 'Este día no tiene mapa.')));
+    if (!b.length) { var home = ll(P.hh && 'hh') ; map.setView([16, 107], 5); return; }
+    if (b.length === 1) { lastFit = null; map.setView(b[0], 13); } else { lastFit = [b, { padding: [36, 36], maxZoom: 15 }]; map.fitBounds(lastFit[0], lastFit[1]); }
+  };
+
+  /* ---------- Interacción ---------- */
+  var setActive = function (id, fromScroll) {
+    if (curDay === id && !preview) return;
+    curDay = id; preview = null;
+    document.querySelectorAll('.tday').forEach(function (e) { e.classList.toggle('active', e.id === 'd-' + id); });
+    document.querySelectorAll('#dayBar a').forEach(function (a) { if (a.getAttribute('href') === '#d-' + id) { a.setAttribute('aria-current', 'true'); if (fromScroll) a.scrollIntoView({ block: 'nearest', inline: 'center' }); } else a.removeAttribute('aria-current'); });
+    document.querySelectorAll('[data-prev][aria-pressed="true"]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    var d = DAYS.filter(function (x) { return x.id === id; })[0]; if (d) showDay(d);
+  };
+  var preview = null;
+  var focusEv = function (id, n, scroll, scope) {
+    var li = (scope || document.querySelector('#d-' + id)).querySelector('.tev[data-n="' + n + '"]');
+    document.querySelectorAll('.tev.hot').forEach(function (e) { e.classList.remove('hot'); });
+    if (li) { li.classList.add('hot'); if (scroll === true) li.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    if (curDay !== id) setActive(id, false);
+    Object.keys(markers).forEach(function (k) { var e = markers[k].m.getElement(); if (e) e.firstChild.classList.toggle('hot', +k === +n || markers[k].g.nums.indexOf(+n) >= 0); });
+    var mk = markers[n] || Object.keys(markers).map(function (k) { return markers[k]; }).filter(function (x) { return x.g.nums.indexOf(+n) >= 0; })[0];
+    if (mk && map) { map.flyTo(mk.m.getLatLng(), Math.max(map.getZoom(), 13), { duration: .6 }); mk.m.openTooltip(); }
+  };
+
+  /* ---------- Dibujo de la línea de tiempo ---------- */
+  var evH = function (it, nVisible, inOpt) {
+    var num = it.n ? '<button type="button" class="nd has" aria-label="Ver la parada ' + it.n + ' en el mapa" data-pin="' + it.n + '">' + it.n + '</button>' : '<span class="nd dot" aria-hidden="true"></span>';
+    var pr = priceOf(it.spec), body = it.text ? '<p>' + esc(it.text) + '</p>' : '';
+    var tag = it.alt && !inOpt ? '<i class="tag">' + (it.alt.kind === 'swap' ? 'Alternativa' : 'Extra') + '</i>' : '';
+    return '<li class="tev' + (it.alt ? ' alt' : '') + (it.tet ? ' tet' : '') + (inOpt ? ' in-opt' : '') + '"' + (it.n ? ' data-n="' + it.n + '"' : '') + '><span class="tm">' + esc(it.time) + '</span>' + num +
+      '<div class="bd"><button type="button" class="hd" aria-expanded="false"><h3>' + esc(it.title) + tag + '</h3>' + (pr ? '<span class="price">~' + eur(pr) + '</span>' : '') + (it.text || it.spec ? '<span class="mi chv" aria-hidden="true">expand_more</span>' : '') + '</button>' + body + chipsH(it.spec) + '</div></li>';
+  };
+  var optH = function (a, d) {
+    var on = !!sel[a.id] && mode === 'mine', ev = dayItems(d, a), hasGeo = ev.some(function (i) { return i.pt; });
+    ev.forEach(function (i, k) { i.n = i.pt ? (ev.slice(0, k + 1).filter(function (x) { return x.pt; }).length) : 0; });
+    var span = Object.keys(a.days).length > 1 ? ' · ' + Object.keys(a.days).map(function (x) { return NAMES[x]; }).join(' – ') : '';
+    return '<article class="ocard' + (on ? ' on' : '') + '" data-alt="' + a.id + '"><header><span class="kind">' + (a.kind === 'swap' ? 'Cambia el día' : 'Se añade al día') + '</span>' +
+      (a.pref ? '<span class="pill pref"><span class="mi" aria-hidden="true">star</span>Predilecta</span>' : '') + (on ? '<span class="pill ok"><span class="mi" aria-hidden="true">check</span>Elegida</span>' : '') + '</header>' +
+      '<h4>' + a.title + '<small style="font-weight:500;color:var(--muted)">' + esc(span) + '</small></h4><p class="s">' + a.s + '</p>' +
+      '<div class="acts">' + (hasGeo ? '<button type="button" class="btn" data-prev="' + a.id + '" aria-pressed="false"><span class="mi" aria-hidden="true">map</span>Ver en el mapa</button>' : '') +
+      '<a class="btn" href="index.html#' + d.id + '"><span class="mi" aria-hidden="true">tune</span>' + (on ? 'Cambiar en la web' : 'Elegir en la web') + '</a></div>' +
+      '<ol class="tl">' + ev.map(function (i) { return evH(i, 0, true); }).join('') + '</ol></article>';
+  };
+  var render = function () {
+    var root = $('tlDays'), keep = curDay;
+    var totalStops = 0, nSel = ALTS.filter(function (a) { return sel[a.id]; }).length;
+    root.innerHTML = DAYS.map(function (d) {
+      var items = dayItems(d); number(items);
+      totalStops += items.filter(function (i) { return i.n; }).length;
+      var sw = swapFor(d.id), adds = addsFor(d.id), opts = optsFor(d.id), z = ZONES[d.z];
+      var pills = (d.badge ? '<span class="pill tet">' + esc(d.badge) + '</span>' : '') + (sw ? '<span class="pill ok"><span class="mi" aria-hidden="true">swap_horiz</span>Alternativa</span>' : '') + (adds.length ? '<span class="pill ok"><span class="mi" aria-hidden="true">add</span>' + adds.length + (adds.length > 1 ? ' extras' : ' extra') + '</span>' : '');
+      var banner = sw ? '<p class="banner"><b>Plan elegido: ' + sw.title + '.</b> Sustituye al plan base de este día.</p>' : '';
+      var optsH = opts.length ? '<details class="opts"' + (showAll ? ' open' : '') + '><summary><span class="mi" aria-hidden="true">alt_route</span>Otras opciones <small>' + opts.length + ' · alternativas y extras de este día</small><span class="mi chv" aria-hidden="true">expand_more</span></summary><div class="ocards">' + opts.map(function (a) { return optH(a, d); }).join('') + '</div></details>' : '';
+      return '<section class="tday" id="d-' + d.id + '" style="--z: var(' + z[1] + ')" data-day="' + d.id + '"><button type="button" class="tdh" data-sel="' + d.id + '" aria-label="Ver ' + NAMES[d.id] + ' en el mapa"><span class="tdn"><small>' + esc(d.dow.slice(0, 3)) + '</small><b>' + esc(d.num) + '</b></span>' +
+        '<span class="tdt"><b>' + esc(d.place) + '</b><small>' + z[0] + ' · ' + items.length + ' paradas</small></span><span class="tdp">' + pills + '</span></button>' + banner +
+        '<ol class="tl">' + items.map(function (i) { return evH(i); }).join('') + '</ol>' + optsH + '</section>';
+    }).join('');
+    $('sum').innerHTML = '<span><b>' + DAYS.length + '</b> días</span><span><b>' + totalStops + '</b> paradas en el mapa</span><span>' + (mode === 'mine' ? '<b>' + nSel + '</b> alternativas elegidas' : 'Plan base, sin alternativas') + '</span>';
+    document.body.classList.toggle('showall', showAll);
+    $('mMine').setAttribute('aria-pressed', mode === 'mine'); $('mBase').setAttribute('aria-pressed', mode === 'base');
+    $('btnDet').setAttribute('aria-pressed', showAll);
+    if (keep) { var id = keep; curDay = null; setActive(id, false); }
+  };
+
+  /* ---------- Eventos ---------- */
+  $('tlDays').addEventListener('click', function (e) {
+    var t = e.target;
+    var pin = t.closest('[data-pin]');
+    if (pin) {
+      var tday = pin.closest('.tday'), day = tday.dataset.day, card = pin.closest('.ocard'), want = card ? ALT_BY[card.dataset.alt] : null;
+      if ((preview || null) !== want || curDay !== day) {
+        var dd0 = DAYS.filter(function (x) { return x.id === day; })[0];
+        document.querySelectorAll('[data-prev]').forEach(function (b) { b.setAttribute('aria-pressed', String(!!want && b.dataset.prev === want.id)); });
+        preview = want; curDay = day;
+        document.querySelectorAll('.tday').forEach(function (x) { x.classList.toggle('active', x === tday); });
+        showDay(dd0, want);
+      }
+      focusEv(day, pin.dataset.pin, false, card || tday); return;
+    }
+    var pv = t.closest('[data-prev]');
+    if (pv) {
+      var dd = DAYS.filter(function (x) { return x.id === pv.closest('.tday').dataset.day; })[0], on = pv.getAttribute('aria-pressed') !== 'true';
+      document.querySelectorAll('[data-prev]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      if (on) { pv.setAttribute('aria-pressed', 'true'); curDay = dd.id; preview = ALT_BY[pv.dataset.prev]; document.querySelectorAll('.tday').forEach(function (x) { x.classList.toggle('active', x === pv.closest('.tday')); }); showDay(dd, preview); }
+      else { preview = null; var id = dd.id; curDay = null; setActive(id, false); }
+      return;
+    }
+    var hd = t.closest('.hd');
+    if (hd) { var li = hd.closest('.tev'), o = !li.classList.contains('open'); li.classList.toggle('open', o); hd.setAttribute('aria-expanded', o); if (li.dataset.n) focusEv(li.closest('.tday').dataset.day, li.dataset.n, null); return; }
+    var sl = t.closest('[data-sel]');
+    if (sl) setActive(sl.dataset.sel, false);
+  });
+  /* El día activo sigue al scroll */
+  var spy = null;
+  var spyMargin = function () {
+    var top = $('top').offsetHeight + (mm.matches ? $('mapCol').offsetHeight : 0) + 16;
+    var band = mm.matches ? 90 : Math.round(innerHeight * .4);
+    return '-' + top + 'px 0px -' + Math.max(0, innerHeight - top - band) + 'px 0px';
+  };
+  var watch = function () {
+    if (!window.IntersectionObserver) return;
+    spy = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting && !preview) setActive(en.target.dataset.day, true); });
+    }, { rootMargin: spyMargin(), threshold: 0 });
+    document.querySelectorAll('.tday').forEach(function (s) { spy.observe(s); });
+  };
+  var rewatch = function () { if (spy) spy.disconnect(); watch(); };
+  $('btnAll').addEventListener('click', function () { preview = null; showOverview(); });
+  $('mMine').addEventListener('click', function () { setMode('mine'); });
+  $('mBase').addEventListener('click', function () { setMode('base'); });
+  var setMode = function (m) { mode = m; try { localStorage.setItem(MK, m); } catch (e) {} preview = null; render(); rewatch(); if (!curDay) showOverview(); };
+  $('btnDet').addEventListener('click', function () { showAll = !showAll; render(); rewatch(); });
+  window.addEventListener('storage', function (e) { if (e.key === SK) { sel = loadSel(); render(); rewatch(); if (!curDay) showOverview(); } });
+  /* En móvil el mapa se puede plegar */
+  var syncMin = function () { $('btnMin').hidden = !mm.matches; if (!mm.matches) $('mapCol').classList.remove('min'); };
+  if (mm.addEventListener) mm.addEventListener('change', syncMin); syncMin();
+  $('btnMin').addEventListener('click', function () { var c = $('mapCol'), m = c.classList.toggle('min'); this.setAttribute('aria-label', m ? 'Desplegar el mapa' : 'Plegar el mapa'); this.firstChild.textContent = m ? 'expand_more' : 'expand_less'; if (!m && map) setTimeout(function () { map.invalidateSize(); }, 50); rewatch(); });
+  /* Tema */
+  $('themeBtn').addEventListener('click', function () {
+    var d = !isDark(), r = document.documentElement; r.setAttribute('data-theme', d ? 'dark' : 'light');
+    try { localStorage.setItem('theme', d ? 'dark' : 'light'); } catch (e) {}
+    var id = curDay; if (map) { curDay = null; if (id) setActive(id, false); else showOverview(); }
+  });
+  /* Altura de la cabecera fija (para el mapa y el scroll) */
+  var setHdr = function () { document.documentElement.style.setProperty('--hdr', $('top').offsetHeight + 'px'); };
+  window.addEventListener('resize', function () { setHdr(); rewatch(); });
+
+  /* ---------- Arranque ---------- */
+  $('legend').innerHTML = Object.keys(ZONES).map(function (k) { return '<li style="--c: var(' + ZONES[k][1] + ')">' + ZONES[k][0] + '</li>'; }).join('') + '<li class="alt">Línea discontinua: alternativa o vuelo</li>';
+  var hasMap = initMap();
+  fetch('index.html').then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (html) {
+    parse(html);
+    $('dayBar').innerHTML = DAYS.map(function (d) { return '<a href="#d-' + d.id + '" style="--z: var(' + ZONES[d.z][1] + ')" aria-label="' + esc(NAMES[d.id]) + '"><b>' + esc(d.num) + '</b><span>' + esc(d.dow.slice(0, 3)) + '</span></a>'; }).join('');
+    render(); setHdr(); showOverview(); watch();
+    if (location.hash.indexOf('#d-') === 0) setTimeout(function () { var el = document.querySelector(location.hash); if (el) { el.scrollIntoView(); setActive(el.dataset.day, false); } }, 150);
+  }).catch(function () {
+    $('tlDays').innerHTML = '<p class="msg">No se ha podido leer el itinerario. Si abrís el archivo directamente desde el disco, servid la carpeta (por ejemplo con <code>python3 -m http.server</code>) o usad la web publicada.</p>';
+  });
+  setHdr();
+})();
+</script>
+</body>
+</html>
