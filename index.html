@@ -503,7 +503,7 @@ html { scroll-padding-top: 4.5rem; }
   <div class="tetbox">
     <h2>Viajar durante el Tết</h2>
     <p>El Tết Đinh Mùi (año de la Cabra) cae el <strong>sábado 6 de febrero de 2027</strong>: despegáis en la madrugada del viernes 5 y aterrizáis a la 1:10 del sábado 6, ya en mùng 1, el primer día del año. Giao thừa, la noche de fin de año, os pilla en el aire. El Ministerio del Interior vietnamita fija el descanso oficial del 4 al 10 de febrero; muchos negocios cierran entre 3 y 7 días y los vuelos, trenes y hoteles se encarecen. Hội An, los templos, los parques y los hoteles siguen abiertos.</p>
-    <p>Cada día lleva una pestaña «Tết» con lo que cambia: cierres, tradiciones y reservas. El 20 de febrero es el 15.º día del año, Rằm tháng Giêng, la primera luna llena.</p>
+    <p>Cada día lleva una pestaña «Tết» con lo que cambia: cierres, tradiciones y reservas. Para los primeros días (6–9 feb), cuando más cierra, hay un <strong>plan B por el Tết</strong> en la sección «Alternativas» y dentro de cada día. El 20 de febrero es el 15.º día del año, Rằm tháng Giêng, la primera luna llena.</p>
   </div>
 
   <section class="route" id="ruta" aria-labelledby="ruta-h">
@@ -2235,7 +2235,52 @@ html { scroll-padding-top: 4.5rem; }
       ], ex: { food: 5 }, room: 50, n: 'homestay en Tam Cốc, Ninh Bình' } } },
     { id: 'lun15-baidinh', kind: 'add', grp: 'Ninh Bình', title: 'Pagoda de Bái Đính', s: 'El complejo budista más grande del sudeste asiático.',
       days: { lun15: { ev: [['16:30', 'Pagoda de Bái Đính', 'Complejo con corredores de arhats y budas gigantes; a 10 min de Tràng An. Dedicadle 1–1,5 h.', 'act:3,trans:4']] } } }
-
+,
+    { id: 'sab6-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 1 con los templos cerrados: miradores y centros comerciales', s: 'Si Chợ Lớn y las pagodas están cerrados o abarrotados: Ópera, Landmark 81 y centros comerciales abiertos, con la calle de las flores al atardecer.',
+      days: { sab6: { ev: [
+        ['10:30', 'Desayuno tardío en el hotel', 'Muchos cafés y restaurantes cierran en mùng 1: el desayuno del hotel es lo más seguro.', 'food:8'],
+        ['12:00', 'Paseo exterior: Ópera, Ayuntamiento, Correos y Notre-Dame', 'Se ven por fuera aunque estén cerrados por dentro; con calles casi vacías, es el día ideal para pasear por el Distrito 1.', ''],
+        ['14:00', 'Almuerzo en un centro comercial', 'Vincom y Saigon Centre suelen abrir; comprobadlo la víspera.', 'food:12'],
+        ['15:30', 'Mirador del Landmark 81 (SkyView) o del Bitexco', 'Vistas de la ciudad y del río Sài Gòn; confirmad el horario de Tết antes de ir.', 'act:15,trans:5'],
+        ['17:30', 'Calle de las flores de Nguyễn Huệ', 'Es la gran fiesta del Tết y está abierta al público.', ''],
+        ['19:30', 'Cena en el hotel o en un restaurante reservado', 'Reservad desde ya: en mùng 1 casi todo está cerrado.', 'food:20']
+      ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
+    { id: 'sab6-cena', kind: 'add', grp: 'Plan B por el Tết', title: 'Cena reservada en el hotel', s: 'Cena segura en mùng 1, cuando casi todo cierra.',
+      days: { sab6: { ev: [['20:00', 'Cena reservada en el restaurante del hotel', 'Reservad antes de viajar. Menús de Tết con bánh chưng, carne estofada y sopa de melón amargo.', 'food:20']] } } },
+    { id: 'dom7-privado', kind: 'swap', grp: 'Plan B por el Tết', title: 'Delta del Mekong en coche privado', s: 'Si las excursiones en grupo no salen en mùng 2: coche con conductor a Mỹ Tho y Bến Tre, a vuestro ritmo.',
+      days: { dom7: { ev: [
+        ['7:30', 'Salida en coche privado hacia Mỹ Tho', 'Coche con conductor (€70–100 por coche; el precio sube en Tết). Reservad con antelación y confirmad que el barquero trabaja.', 'trans:40'],
+        ['10:00', 'Barco por el río Tiền y la isla Thới Sơn', 'Pagad la lancha en el muelle: la excursión organizada no hace falta.', 'act:10'],
+        ['12:30', 'Almuerzo en una finca', 'Si está cerrada, comida en Mỹ Tho; llevad efectivo.', 'food:10'],
+        ['14:30', 'Huertos de cocoteros en Bến Tre', 'Paseo y canales; en Tết algunas casas están cerradas.', 'act:4'],
+        ['17:30', 'Regreso a Ho Chi Minh', 'Llegada hacia las 19:30.', ''],
+        ['20:00', 'Cena en el Distrito 1', 'Reservad: muchos locales siguen cerrados.', 'food:12']
+      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
+    { id: 'dom7-ciudad', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 2 en la ciudad: Thảo Điền, spa y río', s: 'Si no hay excursiones al delta: día tranquilo en Ho Chi Minh, con spa y un paseo en barco por el río.',
+      days: { dom7: { ev: [
+        ['9:30', 'Desayuno y café en Thảo Điền', 'Barrio de cafés internacionales y tiendas, con más locales abiertos que el centro.', 'food:10,trans:4'],
+        ['12:00', 'Spa o masaje', 'Una hora de masaje (€15–20); reservad.', 'act:18'],
+        ['15:00', 'Paseo en barco por el río Sài Gòn', 'Barco turístico desde Bạch Đằng, 1 h 30 min.', 'act:12'],
+        ['19:00', 'Cena en el Distrito 1', 'Reservada con antelación.', 'food:15']
+      ], ex: { food: 5 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
+    { id: 'lun8-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 3: miradores en vez de museo y mercado', s: 'Si el Museo de la Guerra y Bến Thành están cerrados: paseo, Skydeck y traslado al vuelo.',
+      days: { lun8: { ev: [
+        ['8:30', 'Paseo por el Distrito 1', 'Ópera, Ayuntamiento y Correos por fuera, y café en la calle Đồng Khởi.', 'food:4'],
+        ['10:00', 'Bitexco Skydeck', 'Mirador a 178 m con vistas del río; ~€12.', 'act:12'],
+        ['12:00', 'Traslado al aeropuerto', '', 'trans:7'],
+        ['14:30', 'Vuelo Ho Chi Minh → Đà Nẵng', '1 h 20 min.', 'fly:60'],
+        ['17:00', 'Llegada a Đà Nẵng y traslado a Hội An', '~45 min.', 'trans:7'],
+        ['19:30', 'Primer paseo y cena en Hội An', '', 'food:12']
+      ], ex: { food: 6 }, room: 55, n: 'Hội An' } } },
+    { id: 'mar9-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Hội An sin tiendas: bici, playa y linternas', s: 'Si el sastre y muchos locales siguen cerrados: bici entre arrozales, playa y paseo por el casco al caer la tarde.',
+      days: { mar9: { ev: [
+        ['8:30', 'Desayuno en el hotel', '', 'food:5'],
+        ['9:30', 'Casco antiguo de Hội An', 'Las calles siguen abiertas; algunas casas históricas y tiendas cierran.', 'act:4'],
+        ['12:30', 'Almuerzo en un restaurante abierto', 'Mirad las valoraciones recientes: en Tết abren pocos.', 'food:10'],
+        ['14:30', 'Bici hasta la playa de An Bàng', 'Paseo de 5 km entre arrozales y chiringuitos.', 'trans:2'],
+        ['17:30', 'Atardecer en el río Hoài', 'Barcas con farolillos.', 'act:4'],
+        ['19:30', 'Cena junto al río', '', 'food:12']
+      ], ex: { food: 5 }, room: 55, n: 'Hội An' } } }
   ];
 
   /* ---------- Alternativas: estado, tarjetas y recálculo ---------- */
