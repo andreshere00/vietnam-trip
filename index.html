@@ -633,6 +633,9 @@ details.dl > summary { list-style: none; }
 details.dl > summary::-webkit-details-marker { display: none; }
 .rtools .btn { min-height: 2.75rem; padding: 0 1.1rem; border-radius: 1.4rem; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 700; font-size: .92rem; display: inline-flex; align-items: center; gap: .4rem; }
 .rtools .btn:hover { border-color: var(--gold); }
+.nav #dlNav { display: contents; }
+.nav details.dl > summary .mi { font-size: 1.6rem; }
+.nav .dlm { left: auto; right: 0; }
 .dlm { position: absolute; left: 0; top: calc(100% + .4rem); z-index: 40; min-width: 16rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); padding: .4rem; display: grid; }
 .dlm button { display: grid; grid-template-columns: 2rem 1fr; column-gap: .5rem; text-align: left; padding: .5rem .65rem; border: 0; background: none; border-radius: 10px; cursor: pointer; min-height: 3.25rem; align-items: center; font: inherit; color: inherit; }
 .dlm button:hover { background: color-mix(in srgb, var(--gold) 14%, transparent); }
@@ -737,6 +740,7 @@ details.dl > summary::-webkit-details-marker { display: none; }
       <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
       <li><a class="txt" href="#notas">Notas</a></li>
     </ul>
+    <span id="dlNav"></span>
     <button type="button" class="theme-btn menu-btn" id="menuBtn" aria-label="Abrir el menú de secciones" title="Secciones"><span class="mi" style="font-size:1.6rem" aria-hidden="true">apps</span></button>
     <button type="button" class="theme-btn" id="themeBtn" aria-label="Cambiar a modo nocturno" title="Cambiar a modo nocturno">
       <svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
@@ -2712,6 +2716,7 @@ details.dl > summary::-webkit-details-marker { display: none; }
   /* ---------- Reservar y descargar ---------- */
   (function () {
     VNB.mountDownload(document.getElementById('dlMount'));
+    VNB.mountDownload(document.getElementById('dlNav'), 'ic');
     var upd = function () {
       VNB.reload();
       var c = VNB.counts(), q = function (id, t) { document.getElementById(id).textContent = t; };

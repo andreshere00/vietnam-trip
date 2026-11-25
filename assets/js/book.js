@@ -371,7 +371,8 @@ var VNB = (function () {
   };
   /* Botón con menú de formatos; se monta en el elemento dado */
   var mountDownload = function (el, cls) {
-    el.innerHTML = '<details class="dl ' + (cls || '') + '"><summary class="btn" title="Descargar el itinerario seleccionado"><span class="mi" aria-hidden="true">download</span><span class="dlt">Descargar itinerario</span></summary><div class="dlm" role="menu"><button type="button" role="menuitem" data-fmt="ics"><span class="mi" aria-hidden="true">calendar_month</span><b>Calendario (.ics)</b><small>Para Google, Apple u Outlook</small></button><button type="button" role="menuitem" data-fmt="txt"><span class="mi" aria-hidden="true">description</span><b>Texto (.txt)</b><small>Día a día, para leer o imprimir</small></button></div></details>';
+    var ic = cls === 'ic';
+    el.innerHTML = '<details class="dl ' + (ic ? 'dlic' : '') + '"><summary class="' + (ic ? 'ibtn theme-btn' : 'btn') + '" title="Descargar el itinerario seleccionado" aria-label="Descargar el itinerario seleccionado"><span class="mi" aria-hidden="true">download</span>' + (ic ? '' : '<span class="dlt">Descargar itinerario</span>') + '</summary><div class="dlm" role="menu"><button type="button" role="menuitem" data-fmt="ics"><span class="mi" aria-hidden="true">calendar_month</span><b>Calendario (.ics)</b><small>Para Google, Apple u Outlook</small></button><button type="button" role="menuitem" data-fmt="txt"><span class="mi" aria-hidden="true">description</span><b>Texto (.txt)</b><small>Día a día, para leer o imprimir</small></button></div></details>';
     var dt = el.querySelector('details');
     dt.addEventListener('click', function (e) {
       var b = e.target.closest('[data-fmt]'); if (!b) return;
@@ -393,7 +394,7 @@ var VNB = (function () {
       var t = document.documentElement.getAttribute('data-theme'), dark = t ? t === 'dark' : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark'); try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
     });
-    mountDownload($('dlMount'));
+    mountDownload($('dlMount'), 'ic');
   };
   var summary = function () {
     var c = counts(), ch = chosen();

@@ -232,7 +232,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
         <button type="button" id="mMine" aria-pressed="true" title="Con las alternativas que habéis elegido en la web principal"><span class="mi" aria-hidden="true">star</span>Mi elección</button>
         <button type="button" id="mBase" aria-pressed="false" title="Solo el plan base, sin alternativas"><span class="mi" aria-hidden="true">route</span>Plan base</button>
       </div>
-      <details class="dl" id="rsDl"><summary class="ibtn" aria-label="Reservar y descargar" title="Reservar y descargar"><span class="mi" aria-hidden="true">shopping_cart</span></summary><div class="dlm" role="menu"><a href="estancia.html" role="menuitem"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small>Dónde dormir, por precios</small></a><a href="transporte.html" role="menuitem"><span class="mi" aria-hidden="true">directions_transit</span><b>Transporte</b><small>Vuelos, trenes y traslados</small></a><a href="eventos.html" role="menuitem"><span class="mi" aria-hidden="true">confirmation_number</span><b>Eventos</b><small>Entradas y excursiones</small></a><hr><button type="button" role="menuitem" data-fmt="ics"><span class="mi" aria-hidden="true">calendar_month</span><b>Descargar calendario (.ics)</b><small>Del itinerario seleccionado</small></button><button type="button" role="menuitem" data-fmt="txt"><span class="mi" aria-hidden="true">description</span><b>Descargar texto (.txt)</b><small>Día a día, para leer o imprimir</small></button></div></details>
+      <details class="dl" id="rsDl"><summary class="ibtn" aria-label="Ir a reservas" title="Reservar"><span class="mi" aria-hidden="true">shopping_cart</span></summary><div class="dlm" role="menu"><a href="estancia.html" role="menuitem"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small>Dónde dormir, por precios</small></a><a href="transporte.html" role="menuitem"><span class="mi" aria-hidden="true">directions_transit</span><b>Transporte</b><small>Vuelos, trenes y traslados</small></a><a href="eventos.html" role="menuitem"><span class="mi" aria-hidden="true">confirmation_number</span><b>Eventos</b><small>Entradas y excursiones</small></a></div></details>
+      <span id="dlNav"></span>
       <button type="button" class="ibtn" id="btnDet" aria-pressed="false" aria-label="Mostrar todos los detalles" title="Mostrar u ocultar los detalles de cada parada"><span class="mi" aria-hidden="true">notes</span></button>
       <button type="button" class="ibtn" id="themeBtn" aria-label="Cambiar entre modo claro y nocturno" title="Modo claro o nocturno"><span class="mi" aria-hidden="true">contrast</span></button>
     </div>
@@ -610,8 +611,7 @@ details.dl > summary::-webkit-details-marker { display: none; }
   /* ---------- Arranque ---------- */
   $('legend').innerHTML = Object.keys(ZONES).map(function (k) { return '<li style="--c: var(' + ZONES[k][1] + ')">' + ZONES[k][0] + '</li>'; }).join('') + '<li class="alt">Línea discontinua: alternativa o vuelo</li>';
   VNB.setMode(mode); VNB.bind($('tlDays'));
-  document.getElementById('rsDl').addEventListener('click', function (e) { var b = e.target.closest('[data-fmt]'); if (!b) return; b.disabled = true; var dd = this; VNBdl(b.dataset.fmt).then(function () { b.disabled = false; dd.open = false; }); });
-  var VNBdl = function (f) { return VNB.download(f).catch(function () { alert('No se ha podido preparar la descarga.'); }); };
+  VNB.mountDownload($('dlNav'), 'ic');
   document.addEventListener('click', function (e) { var dd = document.getElementById('rsDl'); if (!dd.contains(e.target)) dd.open = false; });
   var hasMap = initMap();
   fetch('index.html').then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (html) {
