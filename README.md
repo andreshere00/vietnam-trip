@@ -17,7 +17,8 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura
 
 - **Itinerario día a día**, con horarios y notas de cada actividad y una etiqueta con el día del calendario lunar (Giao thừa, Mùng 1… Rằm tháng Giêng).
 - **Ruta general** con un mapa de Vietnam, las bases con sus noches y la tabla de etapas (vuelos, coche y tiempo).
-- **Un mapa por día** dibujado en SVG, con costa, ríos, lagos, carreteras, pagodas y paradas numeradas en el orden de la ruta, más el islote kárstico de Hạ Long.
+- **Cada día en dos columnas**: a un lado el mapa (más pequeño y fijo al hacer scroll) y al otro un panel «Opciones del día» (plan base o alternativas con botones de opción, y extras con casillas), el itinerario y la «Información práctica» plegable. En móvil se apilan.
+- **Mapas reales** con Leaflet y teselas de OpenStreetMap: ruta del día, pines numerados por tipo de lugar, distancias por tramo y botón «Abrir en Google Maps» con la ruta. Si Leaflet no carga (sin conexión), se dibujan los esquemas SVG de respaldo.
 - **Leyenda y distancias**: kilómetros y tiempo aproximado de cada tramo, con el total del día y una escala.
 - **Opciones de transporte, entradas, comida, alojamiento y Tết** para cada día, con precios estimados. La pestaña «Tết» explica cierres, tradiciones y reservas.
 - **Lista de actividades** por ciudad (sección «Actividades»): todas las visitas y entradas del plan, con checkbox para marcar las que queréis hacer y las alternativas, que se eligen desde la misma lista. Se guarda en el navegador.
@@ -44,7 +45,7 @@ La paleta sale de la bandera de Vietnam —rojo y amarillo de la estrella— sob
 └── README.md
 ```
 
-No hay dependencias ni paso de compilación. Las únicas peticiones externas son las fuentes de Google Fonts (Playfair Display y Be Vietnam Pro); sin conexión, el navegador usa fuentes de respaldo.
+No hay paso de compilación. Las peticiones externas son las fuentes de Google Fonts (Playfair Display y Be Vietnam Pro), Leaflet 1.9.4 desde unpkg (con integridad SRI) y las teselas de OpenStreetMap; sin conexión, el navegador usa fuentes de respaldo y los mapas SVG.
 
 ## Cómo está construida
 

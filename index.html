@@ -9,6 +9,8 @@
 <script>try { var th = localStorage.getItem('theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="preconnect" href="https://tile.openstreetmap.org">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:wght@600;700;900&display=swap">
 <style>
 /* Layout: cabecera con paisaje; cada día es una tarjeta con la fecha a la izquierda y, a la derecha, mapa de la ruta, itinerario y opciones de transporte, entradas, comida y alojamiento. */
@@ -414,6 +416,82 @@ html { scroll-padding-top: 4.5rem; }
 .actrow .am a { color: inherit; }
 .actrow.alt .am::before { content: "alternativa · "; }
 .actrow.dis { opacity: .6; }
+
+/* Mapas con teselas */
+.lmap { height: 400px; width: 100%; background: var(--water); z-index: 0; }
+.lmap.ov { height: 600px; }
+@media (max-width: 640px) { .lmap { height: 320px; } .lmap.ov { height: 460px; } }
+.lmap.leaflet-container { font-family: var(--body); }
+.mapbox figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem 1rem; }
+.gmaps { font-family: var(--body); text-transform: none; letter-spacing: 0; font-size: .85rem; font-weight: 700; color: var(--indigo); text-decoration: none; border: 1px solid color-mix(in srgb, var(--indigo) 40%, transparent); border-radius: 999px; padding: .2rem .7rem; white-space: nowrap; }
+.gmaps:hover { background: color-mix(in srgb, var(--indigo) 12%, transparent); }
+.lpinw { background: none; border: 0; }
+.lpin { width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--c); border: 2.5px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4); display: grid; place-items: center; cursor: pointer; transition: transform .12s ease; }
+.lpin span { transform: rotate(45deg); color: #fff; font: 700 13px/1 var(--body); }
+.lpin:hover, .lpin:focus-visible { transform: rotate(-45deg) scale(1.15); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 45%, transparent), 0 2px 6px rgba(0,0,0,.4); }
+.lstop { width: 28px; height: 28px; border-radius: 50%; background: var(--c); border: 2.5px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4); display: grid; place-items: center; }
+.lstop span { color: #fff; font: 700 13px/1 var(--body); }
+.leaflet-tooltip.ltip { background: rgba(255,255,255,.94); color: #1f1f1f; border: 0; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font: 700 12.5px/1.2 var(--body); padding: 3px 7px; }
+.leaflet-tooltip.ltip.big { font-size: 14px; }
+.leaflet-tooltip.ltip::before { display: none; }
+.lkm { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; background: #fff; color: #1f1f1f; border: 2px solid var(--a, var(--red)); font: 700 11.5px/1.2 var(--body); padding: 1px 7px; border-radius: 999px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.lroute { stroke: var(--a, var(--red)); }
+.lcase { stroke: #fff; }
+.lcar { stroke: var(--red); }
+.lair { stroke: var(--hue); }
+:root[data-theme="dark"] .leaflet-tooltip.ltip, :root[data-theme="dark"] .lkm { background: rgba(30,22,18,.92); color: #fbeed4; }
+:root[data-theme="dark"] .lcase { stroke: #1b100c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .leaflet-tooltip.ltip, :root:not([data-theme="light"]) .lkm { background: rgba(30,22,18,.92); color: #fbeed4; } :root:not([data-theme="light"]) .lcase { stroke: #1b100c; } }
+.leaflet-control-zoom a { color: #1f1f1f; }
+:root[data-theme="dark"] .osm { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .osm { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); } }
+
+/* Día en dos columnas */
+.dgrid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.25rem; padding: 1.1rem 1.5rem 0; align-items: start; }
+.dgrid.nomap { grid-template-columns: minmax(0, 1fr); }
+.dside { display: grid; gap: 1rem; min-width: 0; }
+.dside.one { position: sticky; top: 4.75rem; }
+.dside .mapbox { padding: 0; }
+.dside .lmap { height: 300px; }
+.dside .mapbox figcaption { font-size: .72rem; padding: .5rem .7rem; }
+.dside .mleg { padding: .2rem .7rem .5rem; gap: 0; }
+.dside .mleg details summary { min-height: 2.4rem; }
+.mdist summary b, .mdist summary span { letter-spacing: 0; text-transform: none; font-family: var(--body); }
+.mdist summary b { color: var(--a); margin-left: .4rem; }
+.mdist summary span { font-weight: 400; margin-left: .3rem; }
+@media (min-width: 1200px) { main.wrap, .wrap.days, .days.wrap { max-width: 1280px; } }
+.dmain { min-width: 0; display: grid; gap: 1rem; align-content: start; }
+.dmain > .events { padding: 0; }
+.dmain > .events.altev { padding-top: .75rem; }
+.day.swapped .dgrid { grid-template-columns: minmax(0, 1fr); }
+.day.swapped .dside { display: none; }
+@media (max-width: 960px) { .dgrid { grid-template-columns: minmax(0, 1fr); } .dside.one { position: static; } }
+@media (max-width: 640px) { .dgrid { padding: 1rem 1rem 0; } .dside .lmap { height: 260px; } }
+/* Opciones del día */
+.dopts { border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--a) 6%, var(--surface)); padding: .75rem .9rem .5rem; }
+.dopts h3 { margin: 0 0 .35rem; font-family: var(--display); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--a); }
+.dopts fieldset { border: 0; margin: 0; padding: 0 0 .4rem; }
+.dopts legend { font-size: .82rem; font-weight: 700; padding: .3rem 0 .2rem; }
+.dopts legend span { font-weight: 400; color: var(--muted); margin-left: .35rem; }
+.dopt { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .6rem; align-items: start; padding: .5rem .6rem; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
+.dopt + .dopt { margin-top: .15rem; }
+@media (hover: hover) { .dopt:not(.dis):hover { background: var(--surface); border-color: var(--line); } }
+.dopt.on { background: var(--surface); border-color: var(--jade); box-shadow: inset 3px 0 0 var(--jade); }
+.dopt.dis { cursor: not-allowed; opacity: .6; }
+.dopt input { margin: .2rem 0 0; width: 1.1rem; height: 1.1rem; accent-color: var(--jade); }
+.dot { display: grid; gap: .1rem; min-width: 0; }
+.dot b { font-size: .95rem; line-height: 1.3; }
+.dot b i { font-style: normal; font-weight: 400; font-size: .78rem; color: var(--muted); }
+.dot small { color: var(--muted); font-size: .84rem; line-height: 1.4; }
+.dopt:not(.on) .dot small { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.dwhy { font-style: normal; font-size: .8rem; color: var(--gold); }
+.dpr { font-variant-numeric: tabular-nums; font-weight: 700; font-size: .88rem; white-space: nowrap; color: var(--muted); padding-top: .1rem; }
+.dpr.pos { color: var(--red); } .dpr.neg { color: var(--jade); }
+/* Información práctica plegable */
+.dinfo { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.dinfo > summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: .2rem .7rem; align-items: baseline; padding: .7rem .9rem; min-height: 2.75rem; }
+.dinfo > summary span { color: var(--muted); font-size: .86rem; }
+.dinfo .opts { padding: 0 .9rem 1rem; }
 </style>
 </head>
 <body>
@@ -851,6 +929,7 @@ html { scroll-padding-top: 4.5rem; }
 
 <footer class="wrap">Buen viaje · Chúc mừng năm mới<br>Fotos de Wikimedia Commons. <a href="https://github.com/andreshere00/vietnam-trip/blob/main/CREDITS.md">Ver créditos y licencias</a></footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
@@ -1705,7 +1784,7 @@ html { scroll-padding-top: 4.5rem; }
     });
   }
 
-  function drawMap(cfg, day) {
+  function drawMapSVG(cfg, day) {
     var pj = proj(cfg.box, 600), W = pj.W, H = pj.H, s = pj.s, X = pj.X, Y = pj.Y, D = pj.D;
     var fig = document.createElement('figure');
     var cap = document.createElement('figcaption'); cap.textContent = cfg.title; fig.appendChild(cap);
@@ -1805,11 +1884,11 @@ html { scroll-padding-top: 4.5rem; }
     fig.appendChild(leg);
 
     var box = document.createElement('div'); box.className = 'mapbox'; box.appendChild(fig);
-    day.insertBefore(box, day.querySelector('.events'));
+    var tgt = day.querySelector('.dside'); if (tgt) tgt.appendChild(box); else day.insertBefore(box, day.querySelector('.events'));
   }
 
-  /* Mapa de la ruta completa */
-  function drawOverview() {
+  /* Mapa de la ruta completa (esquema SVG de respaldo) */
+  function drawOverviewSVG() {
     var fig = document.getElementById('ovMap');
     var pj = proj(OV.box, OV.W);
     var svg = S('svg', { viewBox: '0 0 ' + pj.W + ' ' + pj.H, 'class': 'msvg', role: 'img', 'aria-label': 'Mapa de Vietnam con la ruta del viaje de sur a norte' }, fig);
@@ -1854,12 +1933,177 @@ html { scroll-padding-top: 4.5rem; }
       return '<tr><td>' + r[0] + '</td><td><span class="mode ' + r[2] + '">' + r[3] + '</span> ' + r[1] + '</td><td>' + r[4] + '</td></tr>';
     }).join('');
   }
+  /* ---------- Mapas con teselas (Leaflet + OpenStreetMap/CARTO). Si Leaflet no carga, se dibujan los esquemas SVG. ---------- */
+  var LMAPS = [];
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function tiles() {
+    return L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, className: 'osm',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+  }
+  function newLMap(el) {
+    var m = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: false, zoomSnap: 0.25 });
+    var rec = { m: m, tl: tiles().addTo(m) };
+    LMAPS.push(rec);
+    if (window.ResizeObserver) new ResizeObserver(function () { m.invalidateSize(); }).observe(el);
+    return m;
+  }
+  function retile() { LMAPS.forEach(function (r) { r.m.removeLayer(r.tl); r.tl = tiles().addTo(r.m); }); }
+  if (window.L) {
+    new MutationObserver(retile).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    var mqd = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    if (mqd && mqd.addEventListener) mqd.addEventListener('change', retile);
+  }
+  var PCOL = { nat: 'var(--jade)', mus: 'var(--indigo)', mon: 'var(--gold)', hotel: 'var(--teal)', hub: '#4b4b4b', mkt: 'var(--lotus)', sm: '#8a8a8a' };
+  var esc = function (t) { return String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); };
+  function pinIcon(id, n) {
+    var q = P[id];
+    return L.divIcon({ className: 'lpinw', iconSize: [30, 30], iconAnchor: [15, 36], tooltipAnchor: [16, -20],
+      html: '<div class="lpin pin" data-place="' + id + '" tabindex="0" role="button" aria-label="Por qué ir: ' + esc(q.full) + '" style="--c:' + (PCOL[q.t] || '#4b4b4b') + '"><span>' + n + '</span></div>' });
+  }
+  function kmIcon(txt) { return L.divIcon({ className: 'lkmw', iconSize: [0, 0], html: '<span class="lkm">' + txt + '</span>' }); }
+  function gmapsUrl(cfg, ids) {
+    var seq = ids.filter(function (id, i) { return i === 0 || id !== ids[i - 1]; }).map(function (id) { return P[id].lat + ',' + P[id].lon; });
+    var u = 'https://www.google.com/maps/dir/?api=1&origin=' + seq[0] + '&destination=' + seq[seq.length - 1];
+    var mid = seq.slice(1, -1).slice(0, 9);
+    if (mid.length) u += '&waypoints=' + mid.join('%7C');
+    var tm = { car: 'driving', walk: 'walking', bike: 'bicycling' }[cfg.mode];
+    return u + (tm ? '&travelmode=' + tm : '');
+  }
+
+  function drawMapL(cfg, day) {
+    var path = [], pins = [], order = [];
+    cfg.route.forEach(function (it) {
+      if (typeof it === 'string') {
+        var q = P[it]; path.push([q.lon, q.lat]); pins.push([path.length - 1, it]);
+        if (order.indexOf(it) < 0) order.push(it);
+      } else path.push(it);
+    });
+    var legs = [], total = 0, totalMin = 0, mids = [];
+    for (var k = 0; k < pins.length - 1; k++) {
+      var i0 = pins[k][0], i1 = pins[k + 1][0], len = 0;
+      for (var j = i0; j < i1; j++) len += hv(path[j], path[j + 1]);
+      var f = cfg.mode === 'walk' ? 1.25 : cfg.mode === 'bike' ? 1.2 : cfg.mode === 'boat' ? 1.2 : (i1 - i0 > 1 ? 1.15 : 1.35);
+      var km = len * f;
+      var sp = cfg.speed || (cfg.mode === 'walk' ? 4 : cfg.mode === 'bike' ? 12 : cfg.mode === 'boat' ? 14 : km < 8 ? 18 : km < 40 ? 32 : km < 100 ? 48 : 55);
+      var min = km / sp * 60; total += km; totalMin += min;
+      legs.push({ a: order.indexOf(pins[k][1]) + 1, b: order.indexOf(pins[k + 1][1]) + 1, km: km, min: min });
+      var half = len / 2, acc = 0, mp = path[i0];
+      for (var m = i0; m < i1; m++) { var sgm = hv(path[m], path[m + 1]); if (acc + sgm >= half) { var u = sgm ? (half - acc) / sgm : 0; mp = [path[m][0] + (path[m + 1][0] - path[m][0]) * u, path[m][1] + (path[m + 1][1] - path[m][1]) * u]; break; } acc += sgm; }
+      if (km >= 1.5) mids.push([mp, km]);
+    }
+    var fig = document.createElement('figure');
+    var cap = document.createElement('figcaption');
+    cap.innerHTML = '<span>' + cfg.title + '</span><a class="gmaps" target="_blank" rel="noopener" href="' + gmapsUrl(cfg, pins.map(function (p) { return p[1]; })) + '">Abrir en Google Maps <span aria-hidden="true">↗</span></a>';
+    fig.appendChild(cap);
+    var el = document.createElement('div'); el.className = 'lmap'; el.setAttribute('role', 'region'); el.setAttribute('aria-label', 'Mapa: ' + cfg.title);
+    fig.appendChild(el);
+    var leg = document.createElement('div'); leg.className = 'mleg';
+    var dot = function (c) { return '<svg viewBox="0 0 30 16" aria-hidden="true"><circle cx="15" cy="8" r="6.5" fill="' + c + '" stroke="#fff" stroke-width="1.5"/></svg>'; };
+    var line = '<svg viewBox="0 0 30 16" aria-hidden="true"><path d="M1 8H29" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M1 8H29" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"' + (cfg.mode === 'walk' ? ' stroke-dasharray="1 7"' : cfg.mode === 'boat' ? ' stroke-dasharray="9 6"' : '') + '/></svg>';
+    var sym = '<div><h4>Leyenda</h4><ul class="sw">' +
+      '<li>' + line + 'Ruta del día (' + MODE[cfg.mode] + ')</li>' +
+      '<li>' + dot('var(--gold)') + 'Templos, pagodas y ciudadelas</li>' +
+      '<li>' + dot('var(--jade)') + 'Naturaleza y paisajes</li>' +
+      '<li>' + dot('var(--indigo)') + 'Museos y teatros</li>' +
+      '<li>' + dot('var(--lotus)') + 'Mercados y calles</li>' +
+      '<li>' + dot('var(--teal)') + 'Hotel o fondeo</li>' +
+      '<li>' + dot('#4b4b4b') + 'Aeropuerto, puerto y paradas</li></ul></div>';
+    var rows = legs.map(function (l) {
+      return '<tr><td><span class="nb">' + l.a + '</span>→<span class="nb">' + l.b + '</span> ' + P[order[l.a - 1]].l + ' → ' + P[order[l.b - 1]].l + '</td><td>' + fmtK(l.km) + '</td><td>' + fmtT(l.min) + '</td></tr>';
+    }).join('');
+    var names = order.map(function (id, n) { return '<span class="nb">' + (n + 1) + '</span> ' + P[id].full; }).join(' · ');
+    leg.innerHTML = '<details class="symleg mdist"><summary>Distancias <b>' + fmtK(total) + ' · ' + fmtT(totalMin) + '</b> <span>' + MODE[cfg.mode] + '</span></summary><table class="dist"><tbody>' + rows + '<tr class="tot"><td>Total</td><td>' + fmtK(total) + '</td><td>' + fmtT(totalMin) + '</td></tr></tbody></table><p class="mnote">' + names + '. Distancias por carretera estimadas; en Tết el tiempo puede variar.' + (cfg.note ? ' ' + cfg.note : '') + '</p></details>' +
+      '<details class="symleg"><summary>Leyenda de colores</summary>' + sym + '</details>';
+    fig.appendChild(leg);
+    var box = document.createElement('div'); box.className = 'mapbox'; box.appendChild(fig);
+    var tgt = day.querySelector('.dside'); if (tgt) tgt.appendChild(box); else day.insertBefore(box, day.querySelector('.events'));
+
+    var map = newLMap(el), ll = path.map(function (p) { return [p[1], p[0]]; });
+    var dash = cfg.mode === 'walk' ? '1 9' : cfg.mode === 'boat' ? '10 8' : null;
+    L.polyline(ll, { className: 'lcase', weight: 9, opacity: 1, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(map);
+    L.polyline(ll, { className: 'lroute', weight: 5, opacity: 1, dashArray: dash, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(map);
+    mids.forEach(function (x) { L.marker([x[0][1], x[0][0]], { icon: kmIcon(fmtK(x[1])), interactive: false, keyboard: false }).addTo(map); });
+    order.forEach(function (id, n) {
+      var q = P[id];
+      L.marker([q.lat, q.lon], { icon: pinIcon(id, n + 1), keyboard: false, riseOnHover: true })
+        .bindTooltip(q.l, { permanent: true, direction: 'auto', className: 'ltip', interactive: false })
+        .addTo(map);
+    });
+    map.fitBounds(L.latLngBounds(ll), { paddingTopLeft: [60, 40], paddingBottomRight: [60, 30], maxZoom: 16 });
+    L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
+  }
+
+  function drawOverviewL() {
+    var fig = document.getElementById('ovMap');
+    var el = document.createElement('div'); el.className = 'lmap ov'; el.setAttribute('role', 'region'); el.setAttribute('aria-label', 'Mapa de Vietnam con la ruta del viaje de sur a norte');
+    fig.appendChild(el);
+    var note = document.createElement('p'); note.className = 'mnote';
+    note.innerHTML = '<span class="mode car">Carretera</span><span class="mode air">Vuelo</span> Pulsa + y − para acercarte. Trazados aproximados.';
+    fig.appendChild(note);
+    var map = newLMap(el), all = [];
+    OV.legs.forEach(function (lg) {
+      var a = OV.stops[lg[0]], b = OV.stops[lg[1]], pts;
+      if (lg[2] === 'air') {
+        var A = [a.lat, a.lon], B = [b.lat, b.lon], k = lg[3] / 160;
+        var C = [(A[0] + B[0]) / 2 + (B[1] - A[1]) * k, (A[1] + B[1]) / 2 - (B[0] - A[0]) * k];
+        pts = [];
+        for (var t = 0; t <= 1.001; t += 0.05) pts.push([(1 - t) * (1 - t) * A[0] + 2 * (1 - t) * t * C[0] + t * t * B[0], (1 - t) * (1 - t) * A[1] + 2 * (1 - t) * t * C[1] + t * t * B[1]]);
+        L.polyline(pts, { className: 'lair', weight: 3, dashArray: '2 8', lineCap: 'round', interactive: false }).addTo(map);
+      } else {
+        var key = lg[0] + '-' + lg[1];
+        pts = [[a.lat, a.lon]];
+        if (key === '4-5') pts.push([20.42, 106.17], [20.85, 106.69]);
+        if (key === '1-2') pts.push([16.2, 108.13]);
+        pts.push([b.lat, b.lon]);
+        L.polyline(pts, { className: 'lcase', weight: 8, interactive: false, lineCap: 'round' }).addTo(map);
+        L.polyline(pts, { className: 'lcar', weight: 4.5, interactive: false, lineCap: 'round', lineJoin: 'round' }).addTo(map);
+      }
+      all = all.concat(pts);
+    });
+    OV.stops.forEach(function (q, i) {
+      all.push([q.lat, q.lon]);
+      var left = q.lab[2] === 'end';
+      L.marker([q.lat, q.lon], { keyboard: false, icon: L.divIcon({ className: 'lpinw', iconSize: [28, 28], iconAnchor: [14, 14], tooltipAnchor: [left ? -14 : 14, 0], html: '<div class="lstop" style="--c:' + q.c + '"><span>' + (i + 1) + '</span></div>' }) })
+        .bindTooltip(q.n, { permanent: true, direction: left ? 'left' : 'right', className: 'ltip big', interactive: false })
+        .addTo(map);
+    });
+    map.fitBounds(L.latLngBounds(all), { padding: [30, 30] });
+    L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
+    document.getElementById('ovStops').innerHTML = OV.stops.map(function (q, i) {
+      return '<li style="--c:' + q.c + '"><span class="nb" style="--a:' + q.c + '">' + (i + 1) + '</span><div><b>' + q.n + '</b><small>' + q.sub + '</small></div></li>';
+    }).join('');
+    document.getElementById('ovStages').innerHTML = STAGES.map(function (r) {
+      return '<tr><td>' + r[0] + '</td><td><span class="mode ' + r[2] + '">' + r[3] + '</span> ' + r[1] + '</td><td>' + r[4] + '</td></tr>';
+    }).join('');
+  }
+  function drawMap(cfg, day) {
+    if (window.L) { try { return drawMapL(cfg, day); } catch (e) { if (window.console) console.error(e); } }
+    return drawMapSVG(cfg, day);
+  }
+  function drawOverview() {
+    if (window.L) { try { return drawOverviewL(); } catch (e) { if (window.console) console.error(e); } }
+    return drawOverviewSVG();
+  }
+
   try { drawOverview(); } catch (e) { if (window.console) console.error(e); }
 
   /* ---------- Montaje de cada día ---------- */
   var rows = [], grand = { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 }, DAYREF = {}, ORDER = [];
   document.querySelectorAll('.day').forEach(function (day) {
+    /* Dos columnas: mapa a un lado, opciones e itinerario al otro */
+    var grid = document.createElement('div'); grid.className = 'dgrid';
+    grid.innerHTML = '<div class="dside"></div><div class="dmain"></div>';
+    day.insertBefore(grid, day.querySelector('.events'));
+    grid.lastChild.appendChild(day.querySelector('.events'));
     (MAPS[day.id] || []).forEach(function (m) { try { drawMap(m, day); } catch (e) { if (window.console) console.error(e); } });
+    var nmap = grid.firstChild.children.length;
+    if (!nmap) grid.classList.add('nomap'); else if (nmap === 1) grid.firstChild.classList.add('one');
 
     var t = { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 };
     var costs = COST[day.id] || [];
@@ -1949,7 +2193,10 @@ html { scroll-padding-top: 4.5rem; }
         });
       });
       show(0);
-      day.appendChild(wrap);
+      var info = document.createElement('details'); info.className = 'dinfo';
+      info.innerHTML = '<summary><b>Información práctica</b><span>' + [o.trans && 'transporte', o.tick && 'entradas', o.food && 'comida', o.sleep && 'alojamiento', o.tet && 'Tết'].filter(Boolean).join(' · ') + '</span></summary>';
+      info.appendChild(wrap);
+      day.querySelector('.dmain').appendChild(info);
     }
     var nx = day.nextElementSibling;
     var link = document.createElement('a');
@@ -2369,6 +2616,19 @@ html { scroll-padding-top: 4.5rem; }
   var sg = function (x) { return (x >= 0 ? '+' : '−') + eur(Math.abs(x)); };
   var NDAYS = function (a) { var n = Object.keys(a.days).length; return a.kind === 'add' ? 'Añade al día' : (n > 1 ? 'Cambia ' + n + ' días' : 'Cambia el día'); };
   var cards = [];
+  var setAlt = function (a, want) {
+    if (!want) delete sel[a.id];
+    else {
+      if (blocked(a)) return;
+      if (a.kind === 'swap') ALTS.forEach(function (o) {
+        if (o !== a && o.kind === 'swap' && sel[o.id] && Object.keys(o.days).some(function (d) { return a.days[d]; })) delete sel[o.id];
+      });
+      sel[a.id] = 1;
+    }
+    normalize();
+    try { localStorage.setItem(SK, JSON.stringify(Object.keys(sel))); } catch (e) {}
+    render();
+  };
   var makeCard = function (a, dayId) {
     var c = document.createElement('div'); c.className = 'altcard k-' + a.kind;
     var dk = Object.keys(a.days), ds = dk.length > 1 ? NAMES[dk[0]] + ' – ' + NAMES[dk[dk.length - 1]] : NAMES[dk[0]];
@@ -2377,35 +2637,37 @@ html { scroll-padding-top: 4.5rem; }
       '<h4 class="ac-t">' + a.title + '</h4><p class="ac-s">' + a.s + '</p><p class="ac-w" hidden></p>' +
       '<div class="ac-f"><div class="ac-d"><b></b><small></small></div><button type="button" class="ac-b" aria-pressed="false"></button></div>';
     var b = c.querySelector('.ac-b');
-    b.addEventListener('click', function () {
-      if (sel[a.id]) delete sel[a.id];
-      else {
-        if (blocked(a)) return;
-        if (a.kind === 'swap') ALTS.forEach(function (o) {
-          if (o !== a && o.kind === 'swap' && sel[o.id] && Object.keys(o.days).some(function (d) { return a.days[d]; })) delete sel[o.id];
-        });
-        sel[a.id] = 1;
-      }
-      normalize();
-      try { localStorage.setItem(SK, JSON.stringify(Object.keys(sel))); } catch (e) {}
-      render();
-    });
+    b.addEventListener('click', function () { setAlt(a, !sel[a.id]); });
     cards.push({ a: a, el: c, btn: b });
     return c;
   };
-  /* Panel de cada día con alternativas */
-  var altDays = {};
+  /* Panel «Opciones del día»: plan (radio) y extras (casillas) */
+  var altDays = {}, dctl = [];
   ALTS.forEach(function (a) { Object.keys(a.days).forEach(function (d) { (altDays[d] = altDays[d] || []).push(a); }); });
+  var spanTxt = function (a) { var k = Object.keys(a.days); return k.length > 1 ? NAMES[k[0]] + '–' + NAMES[k[k.length - 1]].replace(/^\D+/, '') : ''; };
   Object.keys(altDays).forEach(function (d) {
-    var r = DAYREF[d], day = r.day;
-    var w = document.createElement('div'); w.className = 'altwrap';
-    var dt = document.createElement('details'); dt.className = 'altd';
-    dt.innerHTML = '<summary><span class="altt">＋ Cambiar o añadir en este día</span><span class="altn">' + altDays[d].length + '</span><span class="altsel"></span></summary><div class="altcards"></div>';
-    var box = dt.querySelector('.altcards');
-    altDays[d].forEach(function (a) { box.appendChild(makeCard(a, d)); });
-    w.appendChild(dt);
-    day.querySelector('.date').insertAdjacentElement('afterend', w);
-    r.wrap = w; r.sel = dt.querySelector('.altsel'); r.det = dt;
+    var r = DAYREF[d], day = r.day, swaps = altDays[d].filter(function (a) { return a.kind === 'swap'; }), adds = altDays[d].filter(function (a) { return a.kind === 'add'; });
+    var w = document.createElement('section'); w.className = 'dopts'; w.setAttribute('aria-label', 'Opciones del día');
+    var h = '<h3>Opciones del día</h3>';
+    var row = function (a, type) {
+      var id = 'o-' + d + '-' + (a ? a.id : 'base'), sp = a ? spanTxt(a) : '';
+      return '<label class="dopt" for="' + id + '"><input type="' + type + '" id="' + id + '" name="plan-' + d + '" value="' + (a ? a.id : '') + '">' +
+        '<span class="dot"><b>' + (a ? a.title : 'Plan base') + (sp ? ' <i>' + sp + '</i>' : '') + '</b><small>' + (a ? a.s : 'El itinerario tal cual aparece abajo.') + '</small><em class="dwhy" hidden></em></span>' +
+        '<span class="dpr"></span></label>';
+    };
+    if (swaps.length) h += '<fieldset><legend>Plan del día <span>elige uno</span></legend>' + row(null, 'radio') + swaps.map(function (a) { return row(a, 'radio'); }).join('') + '</fieldset>';
+    if (adds.length) h += '<fieldset><legend>Añadir al día <span>puedes marcar varios</span></legend>' + adds.map(function (a) { return row(a, 'checkbox'); }).join('') + '</fieldset>';
+    w.innerHTML = h;
+    w.querySelectorAll('input').forEach(function (inp) {
+      var a = ALT_BY[inp.value] || null;
+      dctl.push({ d: d, a: a, inp: inp, row: inp.closest('.dopt') });
+      inp.addEventListener('change', function () {
+        if (!a) { swaps.forEach(function (o) { if (sel[o.id]) setAlt(o, false); }); return; }
+        setAlt(a, a.kind === 'swap' ? true : inp.checked);
+      });
+    });
+    var main = day.querySelector('.dmain');
+    main.insertBefore(w, main.firstChild);
     var ul = document.createElement('ul'); ul.className = 'events altev'; ul.hidden = true;
     r.base.insertAdjacentElement('afterend', ul); r.alt = ul;
   });
@@ -2505,13 +2767,13 @@ html { scroll-padding-top: 4.5rem; }
       r.base.classList.toggle('is-off', !!sw);
       r.day.classList.toggle('swapped', !!sw);
       var off = !!sw;
-      r.day.querySelectorAll('.mapbox, .opts').forEach(function (el) { el.classList.toggle('is-off', off); });
+      r.day.querySelectorAll('.dinfo').forEach(function (el) { el.classList.toggle('is-off', off); });
       r.alt.hidden = !on;
       var t = finalT(d), base = sumT(r.t), now = sumT(t);
       if (on) {
         var h = '';
         if (sw) {
-          h += '<li class="althead">Plan elegido: <b>' + sw.title + '</b><span>Sustituye al plan base de este día. Los mapas y las opciones de abajo corresponden al plan base.</span></li>';
+          h += '<li class="althead">Plan elegido: <b>' + sw.title + '</b><span>Sustituye al plan base de este día; el mapa y la información práctica del plan base se ocultan. Para volver, elige «Plan base» arriba.</span></li>';
           sw.days[d].ev.forEach(function (v) { h += evH(v); });
         }
         adds.forEach(function (a) {
@@ -2524,10 +2786,16 @@ html { scroll-padding-top: 4.5rem; }
         }).join('') + '<div class="tot"><small>Total día</small><b>~' + eur(now) + '</b></div><p>Plan base: ~' + eur(base) + ' · con lo elegido ' + sg(now - base) + '.' + (sw && sw.days[d].room ? ' Alojamiento: habitación doble a ~' + eur(sw.days[d].room) + ' (' + sw.days[d].n + '), repartida entre dos.' : '') + '</p></li>';
         r.alt.innerHTML = h;
       } else r.alt.innerHTML = '';
-      r.sel.textContent = on ? 'Elegido: ' + (sw ? sw.title : '') + (sw && adds.length ? ' + ' : '') + adds.map(function (a) { return a.title; }).join(' + ') : '';
-      r.det.classList.toggle('has', on);
-      if (on) r.det.open = true;
       r.dt.innerHTML = 'Día: <b>~' + eur(now) + '</b> por persona' + (on ? ' <small>(con alternativas)</small>' : '');
+    });
+    dctl.forEach(function (c) {
+      var a = c.a, on = a ? !!sel[a.id] : !swapFor(c.d), why = a && !on ? blocked(a) : '';
+      c.inp.checked = on; c.inp.disabled = !!why;
+      c.row.classList.toggle('on', on); c.row.classList.toggle('dis', !!why);
+      var wy = c.row.querySelector('.dwhy'); wy.hidden = !why; wy.textContent = why;
+      var pr = c.row.querySelector('.dpr');
+      if (!a) pr.textContent = '';
+      else { var dl = delta(a), free = a.kind === 'add' && Math.round(dl) === 0; pr.textContent = free ? 'sin coste fijo' : sg(dl); pr.className = 'dpr' + (free ? '' : dl > 0.5 ? ' pos' : dl < -0.5 ? ' neg' : ''); }
     });
     drawBudget();
     if (afterRender) afterRender();
