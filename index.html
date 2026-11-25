@@ -379,6 +379,24 @@ html { scroll-padding-top: 4.5rem; }
 .altnote { margin: .6rem 0 0; font-size: .9rem; color: var(--muted); }
 .daytotal small { color: var(--jade); }
 @media (max-width: 640px) { .altwrap { padding-inline: 1rem; } }
+
+/* Lista de actividades */
+.acts { padding-block: 2rem 0; scroll-margin-top: 4.5rem; }
+.acts h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .25rem; }
+.acts .sub { margin: 0 0 .9rem; color: var(--muted); max-width: 52rem; }
+.actgrp { margin-top: 1.25rem; }
+.actgrp h3 { font-family: var(--display); font-size: 1.05rem; margin: 0 0 .5rem; color: var(--c, var(--red)); display: flex; gap: .6rem; align-items: baseline; }
+.actgrp h3 small { font-family: var(--body); font-weight: 400; color: var(--muted); font-size: .8rem; }
+.actgrp ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: .5rem; }
+.actrow { display: flex; gap: .6rem; align-items: flex-start; min-width: 0; padding: .55rem .7rem; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--red)); }
+.actrow.on { background: color-mix(in srgb, var(--jade) 10%, var(--surface)); border-left-color: var(--jade); }
+.actrow input { flex: none; width: 1.25rem; height: 1.25rem; margin: .15rem 0 0; accent-color: var(--jade); }
+.actrow label { display: grid; gap: .1rem; min-width: 0; cursor: pointer; font-size: .92rem; }
+.actrow b { font-weight: 700; line-height: 1.3; }
+.actrow .am { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.actrow .am a { color: inherit; }
+.actrow.alt .am::before { content: "alternativa · "; }
+.actrow.dis { opacity: .6; }
 </style>
 </head>
 <body>
@@ -386,8 +404,8 @@ html { scroll-padding-top: 4.5rem; }
 <header class="hero" id="top">
   <div class="wrap">
     <p class="eyebrow">Viernes 5 – Domingo 21 de febrero · Tết Đinh Mùi 2027</p>
-    <h1>Vietnam: de Sài Gòn a la bahía de Hạ Long</h1>
-    <p class="lede">Quince noches de sur a norte: Sài Gòn, el delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y Hạ Long. El viaje coincide con el Tết, el Año Nuevo lunar (el día 1 es el sábado 6 de febrero): ciudades más tranquilas los primeros días, templos y flores por todas partes, y mucho que reservar con tiempo.</p>
+    <h1>Vietnam: de Ho Chi Minh a la bahía de Hạ Long</h1>
+    <p class="lede">Quince noches de sur a norte: Ho Chi Minh, el delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y Hạ Long. El viaje coincide con el Tết, el Año Nuevo lunar (el día 1 es el sábado 6 de febrero): ciudades más tranquilas los primeros días, templos y flores por todas partes, y mucho que reservar con tiempo.</p>
     <div class="flights">
       <div class="fl"><small>Ida</small><b>Vie 5 feb · 00:40 Madrid → Sáb 6 feb · 01:10 Ciudad Ho Chi Minh</b><span>Madrid (MAD) → Tân Sơn Nhất (SGN), con escala · 18 h 30 min. Salís de casa la noche del jueves 4</span></div>
       <div class="fl"><small>Vuelta</small><b>Dom 21 feb · 02:30 Ciudad Ho Chi Minh → Dom 21 feb · 20:30 Madrid</b><span>SGN → MAD, con escala · 24 h. Horas locales: Vietnam va 6 h por delante de Madrid</span></div>
@@ -457,6 +475,7 @@ html { scroll-padding-top: 4.5rem; }
       <li><a href="#dom21" style="--z: var(--muted)"><b>21</b><span>Dom</span></a></li>
       <li class="sep" aria-hidden="true"></li>
       <li><a class="txt" href="#ruta">Ruta</a></li>
+      <li><a class="txt" href="#actividades">Actividades</a></li>
       <li><a class="txt" href="#alternativas">Alternativas</a></li>
       <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
       <li><a class="txt" href="#notas">Notas</a></li>
@@ -471,7 +490,7 @@ html { scroll-padding-top: 4.5rem; }
 
 <main class="wrap">
   <div class="legend" aria-label="Leyenda de colores">
-    <span style="--c: var(--red)">Sài Gòn</span>
+    <span style="--c: var(--red)">Ho Chi Minh</span>
     <span style="--c: var(--jade)">Delta del Mekong</span>
     <span style="--c: var(--gold)">Hội An</span>
     <span style="--c: var(--hue)">Huế</span>
@@ -505,7 +524,7 @@ html { scroll-padding-top: 4.5rem; }
   <div class="days">
 
     <section class="day trip" id="vie5">
-      <div class="date"><span class="dow">Viernes</span><span class="num">5</span><span class="place">Madrid → Sài Gòn</span></div>
+      <div class="date"><span class="dow">Viernes</span><span class="num">5</span><span class="place">Madrid → Ho Chi Minh</span></div>
       <ul class="events">
         <li class="ev"><span class="time">21:30</span><div><h3>Salida hacia el aeropuerto de Madrid-Barajas (jueves 4)</h3><p>Facturación abierta unas 3 h antes del vuelo. Llevad el pasaporte (con 6 meses de validez) y los datos del vuelo de vuelta.</p></div></li>
         <li class="ev"><span class="time">0:40</span><div><h3>Vuelo Madrid → Ciudad Ho Chi Minh</h3><p>Despegáis en la madrugada del viernes 5 y aterrizáis el sábado 6 a la 1:10 hora de Vietnam: 18 h 30 min de viaje con escala. Poneos el horario vietnamita desde el despegue y dormid en el avión.</p></div></li>
@@ -513,7 +532,7 @@ html { scroll-padding-top: 4.5rem; }
     </section>
 
     <section class="day sgn" id="sab6">
-      <div class="date"><span class="dow">Sábado</span><span class="num">6</span><span class="place">Sài Gòn</span><span class="badge lunar">Mùng 1 · Tết</span></div>
+      <div class="date"><span class="dow">Sábado</span><span class="num">6</span><span class="place">Ho Chi Minh</span><span class="badge lunar">Mùng 1 · Tết</span></div>
       <ul class="events">
         <li class="ev"><span class="time">1:10</span><div><h3>Aterrizaje en Tân Sơn Nhất (SGN)</h3><p>Pasáis la medianoche del Tết en el aire. Inmigración y equipaje, cerca de 1 h. Con la exención de visado os sellan 45 días. Sacad dongs del cajero y activad la eSIM. Grab o taxi al Distrito 1 (25–40 min, con poco tráfico).</p></div></li>
         <li class="ev"><span class="time">3:00</span><div><h3>Check-in en el hotel y descanso</h3><p>Avisad al hotel de la llegada de madrugada y reservad desde la noche del 5, para entrar sin esperar. Dormid hasta media mañana: es mùng 1 y todo abre tarde.</p></div></li>
@@ -533,18 +552,18 @@ html { scroll-padding-top: 4.5rem; }
         <li class="ev"><span class="time">10:00</span><div><h3>Barco por el río Tiền y la isla Thới Sơn</h3><p>Lancha entre islas, talleres de caramelo de coco y miel, y paseo en sampán por canales cubiertos de palmeras nipa.</p></div></li>
         <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en una finca</h3><p>Pescado oreja de elefante frito (cá tai tượng), rollitos y fruta tropical.</p></div></li>
         <li class="ev"><span class="time">14:30</span><div><h3>Huertos de cocoteros en Bến Tre</h3><p>Carro de caballos, bici entre cocoteros y música tradicional (đờn ca tài tử) en una casa.</p></div></li>
-        <li class="ev"><span class="time">17:30</span><div><h3>Regreso a Sài Gòn</h3><p>Llegada hacia las 19:30.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Regreso a Ho Chi Minh</h3><p>Llegada hacia las 19:30.</p></div></li>
         <li class="ev"><span class="time">20:00</span><div><h3>Cena en el Distrito 1</h3><p>Cơm tấm (arroz con cerdo) o bún thịt nướng.</p></div></li>
       </ul>
     </section>
 
     <section class="day hoian" id="lun8">
-      <div class="date"><span class="dow">Lunes</span><span class="num">8</span><span class="place">Sài Gòn → Hội An</span><span class="badge lunar">Mùng 3</span></div>
+      <div class="date"><span class="dow">Lunes</span><span class="num">8</span><span class="place">Ho Chi Minh → Hội An</span><span class="badge lunar">Mùng 3</span></div>
       <ul class="events">
         <li class="ev"><span class="time">8:30</span><div><h3>Museo de los Vestigios de la Guerra</h3><p>Uno de los museos más visitados del país, sobre la guerra desde la mirada vietnamita. Duro pero imprescindible; reservad 1,5 h y confirmad el horario de Tết.</p></div></li>
         <li class="ev"><span class="time">10:30</span><div><h3>Mercado de Bến Thành</h3><p>Café, fruta y souvenirs, con regateo. Si está cerrado por Tết, tomad un café en la calle Đồng Khởi.</p></div></li>
         <li class="ev"><span class="time">12:00</span><div><h3>Traslado al aeropuerto</h3><p>Salid con margen: son mùng 3 y los aeropuertos están llenos.</p></div></li>
-        <li class="ev"><span class="time">14:30</span><div><h3>Vuelo Sài Gòn → Đà Nẵng</h3><p>1 h 20 min. Facturad el equipaje con 2 h de antelación.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Vuelo Ho Chi Minh → Đà Nẵng</h3><p>1 h 20 min. Facturad el equipaje con 2 h de antelación.</p></div></li>
         <li class="ev"><span class="time">17:00</span><div><h3>Llegada a Đà Nẵng y traslado a Hội An</h3><p>30 km por la carretera de la costa, unos 45 min.</p></div></li>
         <li class="ev"><span class="time">19:30</span><div><h3>Primer paseo y cena en Hội An</h3><p>El casco antiguo se ilumina con farolillos de seda y, en Tết, con flores y ramas de melocotonero.</p></div></li>
       </ul>
@@ -679,11 +698,11 @@ html { scroll-padding-top: 4.5rem; }
     </section>
 
     <section class="day sgn" id="sab20">
-      <div class="date"><span class="dow">Sábado</span><span class="num">20</span><span class="place">Hà Nội → Sài Gòn → Madrid</span><span class="badge lunar">Rằm tháng Giêng</span></div>
+      <div class="date"><span class="dow">Sábado</span><span class="num">20</span><span class="place">Hà Nội → Ho Chi Minh → Madrid</span><span class="badge lunar">Rằm tháng Giêng</span></div>
       <ul class="events">
         <li class="ev"><span class="time">6:45</span><div><h3>Salida al aeropuerto de Nội Bài</h3><p>Grab, unos 45 min. Facturad 2 h antes del vuelo.</p></div></li>
-        <li class="ev"><span class="time">9:00</span><div><h3>Vuelo Hà Nội → Sài Gòn</h3><p>2 h 10 min. Es el vuelo de más margen: salid lo más pronto posible, porque el internacional a Madrid sale de madrugada, a las 2:30 del domingo.</p></div></li>
-        <li class="ev"><span class="time">11:30</span><div><h3>Llegada a Sài Gòn y traslado al centro</h3><p>Consigna de equipaje en el aeropuerto o en un hotel del Distrito 1.</p></div></li>
+        <li class="ev"><span class="time">9:00</span><div><h3>Vuelo Hà Nội → Ho Chi Minh</h3><p>2 h 10 min. Es el vuelo de más margen: salid lo más pronto posible, porque el internacional a Madrid sale de madrugada, a las 2:30 del domingo.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Llegada a Ho Chi Minh y traslado al centro</h3><p>Consigna de equipaje en el aeropuerto o en un hotel del Distrito 1.</p></div></li>
         <li class="ev"><span class="time">13:00</span><div><h3>Última comida y compras</h3><p>Cơm tấm y café de Trung Nguyên y regalos en Bến Thành.</p></div></li>
         <li class="ev tet"><span class="time">15:30</span><div><h3>Pagoda y luna llena: Rằm tháng Giêng</h3><p>El 15.º día del año es la primera luna llena y los templos se llenan de fieles con flores, frutas e incienso. Una despedida a la luz de la tradición.</p></div></li>
         <li class="ev"><span class="time">22:00</span><div><h3>Cena y traslado al aeropuerto de SGN</h3><p>Cenad temprano y recoged el equipaje de la consigna. Llegad hacia las 23:30, 3 h antes del vuelo intercontinental de las 2:30.</p></div></li>
@@ -691,7 +710,7 @@ html { scroll-padding-top: 4.5rem; }
     </section>
 
     <section class="day trip" id="dom21">
-      <div class="date"><span class="dow">Domingo</span><span class="num">21</span><span class="place">Sài Gòn → Madrid</span></div>
+      <div class="date"><span class="dow">Domingo</span><span class="num">21</span><span class="place">Ho Chi Minh → Madrid</span></div>
       <ul class="events">
         <li class="ev"><span class="time">2:30</span><div><h3>Vuelo Ciudad Ho Chi Minh → Madrid</h3><p>Despegáis en la madrugada del domingo 21 y aterrizáis a las 20:30 hora de Madrid, tras 24 h de viaje con escala.</p></div></li>
         <li class="ev"><span class="time">20:30</span><div><h3>Llegada a Madrid-Barajas</h3><p>Seis horas de diferencia con Vietnam: el cambio de hora hacia el oeste se lleva mejor. Metro o Cercanías a casa.</p></div></li>
@@ -700,6 +719,13 @@ html { scroll-padding-top: 4.5rem; }
 
   </div>
 </main>
+
+<section class="wrap acts" id="actividades" aria-labelledby="act-h">
+  <h2 id="act-h">Lista de actividades</h2>
+  <p class="sub">Todo lo que se puede hacer en el viaje, por ciudad: marcad lo que queréis hacer (se guarda en este navegador). Las alternativas, al final, se eligen aquí mismo y cambian el presupuesto.</p>
+  <div class="altbar" id="actBar" aria-live="polite"></div>
+  <div id="actList"></div>
+</section>
 
 <section class="wrap alts" id="alternativas" aria-labelledby="alt-h">
   <h2 id="alt-h">Alternativas y extras</h2>
@@ -749,9 +775,9 @@ html { scroll-padding-top: 4.5rem; }
       <h3>Qué incluye</h3>
       <ul>
         <li>Dos viajeros que comparten habitación, taxi y coche; las cifras son por persona.</li>
-        <li>Vuelo Madrid–Sài Gòn ida y vuelta: €460 por persona (billetes ya comprados).</li>
-        <li>Tres vuelos internos: Sài Gòn → Đà Nẵng, Huế → Hà Nội y Hà Nội → Sài Gòn (de €55 a €65 por tramo).</li>
-        <li>Alojamiento: 15 noches. 3 en Sài Gòn y 4 en Hội An a ~€55, 1 en Huế a ~€45, 5 en Hà Nội a ~€52, 1 en Ninh Bình a ~€50 y 1 de crucero (cabina para dos, con comidas) a €200. Las noches del Tết llevan recargo.</li>
+        <li>Vuelo Madrid–Ho Chi Minh ida y vuelta: €460 por persona (billetes ya comprados).</li>
+        <li>Tres vuelos internos: Ho Chi Minh → Đà Nẵng, Huế → Hà Nội y Hà Nội → Ho Chi Minh (de €55 a €65 por tramo).</li>
+        <li>Alojamiento: 15 noches. 3 en Ho Chi Minh y 4 en Hội An a ~€55, 1 en Huế a ~€45, 5 en Hà Nội a ~€52, 1 en Ninh Bình a ~€50 y 1 de crucero (cabina para dos, con comidas) a €200. Las noches del Tết llevan recargo.</li>
         <li>El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 2:30 del domingo 21. La primera noche (la del 5) se reserva igualmente, porque entráis al hotel de madrugada.</li>
       </ul>
     </div>
@@ -771,18 +797,18 @@ html { scroll-padding-top: 4.5rem; }
     <div>
       <h2>Por qué este orden</h2>
       <ul>
-        <li><strong>Sài Gòn (6–8):</strong> aterrizáis a la 1:10 de mùng 1. Tres noches en el Distrito 1 aprovechan los días de calles más tranquilas, con el delta del Mekong como excursión de día.</li>
+        <li><strong>Ho Chi Minh (6–8):</strong> aterrizáis a la 1:10 de mùng 1. Tres noches en el Distrito 1 aprovechan los días de calles más tranquilas, con el delta del Mekong como excursión de día.</li>
         <li><strong>Hội An (8–11):</strong> cuatro noches en el mismo hotel dan tiempo para Mỹ Sơn, las Montañas de Mármol, la cocina local y un día sin prisas. Es la base más cómoda en Tết: el casco antiguo sigue abierto y con farolillos.</li>
         <li><strong>Huế (12–13):</strong> una noche tras cruzar el paso de Hải Vân y un día completo para la Ciudadela, antes de volar al norte.</li>
         <li><strong>Hà Nội (13–14 y 17–19):</strong> la base se parte en dos para ir a Ninh Bình y a Hạ Long sin cargar con las maletas. Cuando volvéis, el 17, la ciudad ya ha reabierto.</li>
         <li><strong>Hạ Long (16–17):</strong> la bahía va al final del norte porque con niebla se cancelan salidas; si falla, el 18 y el 19 sirven de colchón.</li>
-        <li><strong>El 20:</strong> vuelo de mañana de Hà Nội a Sài Gòn para enlazar con el internacional de las 2:30 del domingo, con una tarde y una noche para despediros.</li>
+        <li><strong>El 20:</strong> vuelo de mañana de Hà Nội a Ho Chi Minh para enlazar con el internacional de las 2:30 del domingo, con una tarde y una noche para despediros.</li>
       </ul>
     </div>
     <div>
       <h2>Clima y qué llevar</h2>
       <ul>
-        <li><strong>Sur (Sài Gòn, delta):</strong> estación seca, de 24 a 33 °C. Ropa ligera, gorra y crema solar.</li>
+        <li><strong>Sur (Ho Chi Minh, delta):</strong> estación seca, de 24 a 33 °C. Ropa ligera, gorra y crema solar.</li>
         <li><strong>Centro (Hội An, Huế):</strong> de 18 a 25 °C con chubascos posibles, sobre todo en Huế. Paraguas o impermeable ligero.</li>
         <li><strong>Norte (Hà Nội, Ninh Bình, Hạ Long):</strong> de 12 a 19 °C, con bruma y llovizna. Una chaqueta de abrigo y capas.</li>
         <li><strong>Templos:</strong> hombros y rodillas cubiertos; descalzaos donde se indique.</li>
@@ -793,7 +819,7 @@ html { scroll-padding-top: 4.5rem; }
     <div>
       <h2>Ideas extra si sobra energía</h2>
       <ul>
-        <li>Túneles de Củ Chi, a 70 km de Sài Gòn, si abren en Tết (medio día).</li>
+        <li>Túneles de Củ Chi, a 70 km de Ho Chi Minh, si abren en Tết (medio día).</li>
         <li>Bà Nà Hills y el Puente Dorado, cerca de Đà Nẵng: muy concurrido en Tết.</li>
         <li>Puente del Dragón de Đà Nẵng: escupe fuego y agua los sábados y domingos a las 21:00.</li>
         <li>Chùa Hương desde Hà Nội, con su festival de primavera (todo el día).</li>
@@ -816,7 +842,7 @@ html { scroll-padding-top: 4.5rem; }
   var KEYS = ['act', 'trans', 'fly', 'food', 'lodge'];
   /* Habitación doble por noche (€), repartida entre dos personas. El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 2:30 del domingo 21. */
   var LODGE = {
-    vie5: { room: 55, n: 'Distrito 1, Sài Gòn; noche del 5, con entrada de madrugada' }, sab6: { room: 55, n: 'Distrito 1, Sài Gòn' }, dom7: { room: 55, n: 'Distrito 1, Sài Gòn' },
+    vie5: { room: 55, n: 'Distrito 1, Ho Chi Minh; noche del 5, con entrada de madrugada' }, sab6: { room: 55, n: 'Distrito 1, Ho Chi Minh' }, dom7: { room: 55, n: 'Distrito 1, Ho Chi Minh' },
     lun8: { room: 55, n: 'Hội An' }, mar9: { room: 55, n: 'Hội An' }, mie10: { room: 55, n: 'Hội An' }, jue11: { room: 55, n: 'Hội An' },
     vie12: { room: 45, n: 'Huế' }, sab13: { room: 52, n: 'Old Quarter, Hà Nội' }, dom14: { room: 52, n: 'Old Quarter, Hà Nội' },
     lun15: { room: 50, n: 'homestay en Tam Cốc, Ninh Bình' }, mar16: { room: 200, n: 'cabina doble de crucero con todas las comidas, Hạ Long' },
@@ -824,7 +850,7 @@ html { scroll-padding-top: 4.5rem; }
   };
   var NOLODGE = { sab20: 'Sin alojamiento: el vuelo a Madrid sale a las 2:30 del domingo 21.', dom21: 'Sin alojamiento: de vuelta en casa.' };
   var eur = function (n) { return '€' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
-  var FLIGHT = 460; /* € por persona, ida y vuelta Madrid–Sài Gòn (billetes ya comprados) */
+  var FLIGHT = 460; /* € por persona, ida y vuelta Madrid–Ho Chi Minh (billetes ya comprados) */
 
   /* ---------- Costes por evento (orden en cada día), € por persona ---------- */
   var COST = {
@@ -906,7 +932,7 @@ html { scroll-padding-top: 4.5rem; }
         ['Hotel de lujo junto al río', '€150 o más', 'Fuera de este presupuesto.']
       ],
       tet: [
-        ['Giao thừa', '', 'La medianoche del 5 al 6 se celebra el cambio de año, y vosotros la pasáis en el aire, con la llegada a la 1:10. En Sài Gòn la gente se concentra en Nguyễn Huệ y junto al río; suele haber fuegos artificiales en algún punto, que se anuncian días antes.'],
+        ['Giao thừa', '', 'La medianoche del 5 al 6 se celebra el cambio de año, y vosotros la pasáis en el aire, con la llegada a la 1:10. En Ho Chi Minh la gente se concentra en Nguyễn Huệ y junto al río; suele haber fuegos artificiales en algún punto, que se anuncian días antes.'],
         ['Mùng 1: el día más tranquilo', '', 'Las familias se quedan en casa o van a los templos. Poco tráfico y calles vacías, ideales para pasear.'],
         ['Templos llenos', '', 'Se reza por el año nuevo. Vestid con respeto y evitad fotografiar a los fieles.'],
         ['Flores y frutas', '', 'Mercadillos de mai amarilla y de melocotonero rosa (hoa đào), y bandejas de cinco frutas (mâm ngũ quả) por toda la ciudad.']
@@ -1247,7 +1273,7 @@ html { scroll-padding-top: 4.5rem; }
       ],
       food: [
         ['Comida de despedida', '€6–12', 'Cơm tấm, bún thịt nướng o bò lá lốt.'],
-        ['Café de Sài Gòn', '€1–2', 'Cà phê sữa đá con leche condensada.'],
+        ['Café de Ho Chi Minh', '€1–2', 'Cà phê sữa đá con leche condensada.'],
         ['Cena en el aeropuerto', '€8–15', 'Más cara; mejor comer en la ciudad antes.']
       ],
       tet: [
@@ -1266,7 +1292,7 @@ html { scroll-padding-top: 4.5rem; }
   /* ---------- Geografía (lon, lat) ---------- */
   var P = {
     sgn: { lon: 106.652, lat: 10.8188, l: 'Aeropuerto SGN', full: 'Aeropuerto de Tân Sơn Nhất (SGN)', t: 'hub' },
-    hsg: { lon: 106.694, lat: 10.7675, l: 'Hotel Sài Gòn', full: 'Hotel en el Distrito 1 (zona Bến Thành)', t: 'hotel' },
+    hsg: { lon: 106.694, lat: 10.7675, l: 'Hotel Ho Chi Minh', full: 'Hotel en el Distrito 1 (zona Bến Thành)', t: 'hotel' },
     nguyenhue: { lon: 106.7032, lat: 10.7743, l: 'Nguyễn Huệ', full: 'Calle Nguyễn Huệ (calle de las flores)', t: 'mkt' },
     ducba: { lon: 106.6995, lat: 10.7799, l: 'Notre-Dame', full: 'Catedral de Notre-Dame y Oficina de Correos', t: 'mon' },
     ngochoang: { lon: 106.6985, lat: 10.7922, l: 'Emperador de Jade', full: 'Pagoda del Emperador de Jade (Phước Hải)', t: 'mon' },
@@ -1389,7 +1415,7 @@ html { scroll-padding-top: 4.5rem; }
       route: ['hsg', [106.685, 10.762], [106.67, 10.7545], 'thienhau', [106.67, 10.76], [106.686, 10.776], [106.693, 10.786], 'ngochoang', [106.699, 10.785], 'ducba', 'nguyenhue', 'hsg'],
       lab: { hsg: [-14, 24, 'end'], thienhau: [16, 24, 'start'], ngochoang: [-16, 5, 'end'], ducba: [-16, 20, 'end'], nguyenhue: [16, 5, 'start'] } }],
     dom7: [
-      { title: 'De Sài Gòn a Mỹ Tho', box: [106.2, 106.85, 10.88, 10.28], mode: 'car', speed: 40,
+      { title: 'De Ho Chi Minh a Mỹ Tho', box: [106.2, 106.85, 10.88, 10.28], mode: 'car', speed: 40,
         route: ['hsg', [106.64, 10.75], [106.58, 10.7], [106.5, 10.62], [106.45, 10.53], [106.4, 10.42], 'myt'],
         lab: { hsg: [16, 5, 'start'], myt: [-16, 5, 'end'] },
         note: 'El regreso repite el mismo camino: otros ~70 km y 1 h 45 min.' },
@@ -1452,7 +1478,7 @@ html { scroll-padding-top: 4.5rem; }
     vie19: [{ title: 'Pueblo de cerámica de Bát Tràng', box: [105.8, 105.95, 21.06, 20.95], mode: 'car',
       route: ['hh2', [105.857, 21.02], [105.872, 21.005], [105.895, 20.99], 'battrang', [105.895, 20.99], [105.872, 21.005], [105.857, 21.02], 'hh2'],
       lab: { hh2: [-14, -10, 'end'], battrang: [-16, 24, 'end'] } }],
-    sab20: [{ title: 'Última tarde en Sài Gòn', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
+    sab20: [{ title: 'Última tarde en Ho Chi Minh', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
       route: ['sgn', [106.662, 10.807], [106.677, 10.7925], [106.689, 10.7835], 'benthanh', [106.693, 10.785], 'ngochoang', [106.67, 10.805], 'sgn'],
       lab: { sgn: [18, 6, 'start'], benthanh: [16, 22, 'start'], ngochoang: [16, 5, 'start'] } }]
   };
@@ -1461,7 +1487,7 @@ html { scroll-padding-top: 4.5rem; }
   var PLACE = {
     sgn: { img: null, why: 'Es la puerta de entrada: aterrizáis a la 1:10 de la madrugada de mùng 1. Con el efectivo y la eSIM resueltos, os vais directos al hotel a dormir.' },
     hsg: { img: null, why: 'El Distrito 1 reúne el centro histórico, el río y los restaurantes en un radio de 2 km. Es la base más cómoda para tres noches.' },
-    nguyenhue: { img: 'nguyenhue', why: 'Paseo peatonal que cada Tết se convierte en un jardín temporal con flores, bonsáis y la mascota del año. Es el corazón de la fiesta en Sài Gòn.' },
+    nguyenhue: { img: 'nguyenhue', why: 'Paseo peatonal que cada Tết se convierte en un jardín temporal con flores, bonsáis y la mascota del año. Es el corazón de la fiesta en Ho Chi Minh.' },
     ducba: { img: 'ducba', why: 'Basílica de ladrillo rojo de 1880, junto a la Oficina Central de Correos (1891): dos joyas coloniales francesas a un paseo una de la otra.' },
     ngochoang: { img: 'ngochoang', why: 'Templo taoísta de 1909 lleno de humo de incienso y figuras de madera. Los primeros días de Tết se llena de fieles pidiendo suerte.' },
     thienhau: { img: 'thienhau', why: 'Templo chino de 1760 dedicado a la diosa del mar, con espirales de incienso que cuelgan del techo y un interior ornamentado, en el barrio de Chợ Lớn.' },
@@ -1584,7 +1610,7 @@ html { scroll-padding-top: 4.5rem; }
   var OV = {
     box: [103.5, 110.6, 23.6, 8.5], W: 450,
     stops: [
-      { n: 'Sài Gòn', lon: 106.7, lat: 10.78, c: 'var(--red)', lab: [14, 5, 'start'], sub: '6–8 feb · 3 noches' },
+      { n: 'Ho Chi Minh', lon: 106.7, lat: 10.78, c: 'var(--red)', lab: [14, 5, 'start'], sub: '6–8 feb · 3 noches' },
       { n: 'Hội An', lon: 108.33, lat: 15.88, c: 'var(--gold)', lab: [14, 5, 'start'], sub: '8–12 feb · 4 noches' },
       { n: 'Huế', lon: 107.58, lat: 16.46, c: 'var(--hue)', lab: [-14, 5, 'end'], sub: '12–13 feb · 1 noche' },
       { n: 'Hà Nội', lon: 105.85, lat: 21.03, c: 'var(--indigo)', lab: [-14, 5, 'end'], sub: '13–15 feb · 2 noches, y 17–20 feb · 3 noches' },
@@ -1594,15 +1620,15 @@ html { scroll-padding-top: 4.5rem; }
     legs: [[0, 1, 'air', 30], [1, 2, 'car', 0], [2, 3, 'air', 24], [3, 4, 'car', 0], [4, 5, 'car', 0], [5, 3, 'car', 0], [3, 0, 'air', 46]]
   };
   var STAGES = [
-    ['5–6 feb', 'Madrid → Sài Gòn', 'intl', 'Vuelo', '18 h 30'],
-    ['8 feb', 'Sài Gòn → Đà Nẵng → Hội An', 'air', 'Vuelo y coche', '1 h 20 + 45 min'],
+    ['5–6 feb', 'Madrid → Ho Chi Minh', 'intl', 'Vuelo', '18 h 30'],
+    ['8 feb', 'Ho Chi Minh → Đà Nẵng → Hội An', 'air', 'Vuelo y coche', '1 h 20 + 45 min'],
     ['12 feb', 'Hội An → Huế por Hải Vân', 'car', 'Coche', '~4 h'],
     ['13 feb', 'Huế → Hà Nội', 'air', 'Vuelo', '1 h 15'],
     ['15 feb', 'Hà Nội → Ninh Bình', 'car', 'Coche', '~2 h'],
     ['16 feb', 'Ninh Bình → bahía de Hạ Long', 'car', 'Coche', '~3 h 30'],
     ['17 feb', 'Hạ Long → Hà Nội', 'car', 'Shuttle', '~3 h'],
-    ['20 feb', 'Hà Nội → Sài Gòn', 'air', 'Vuelo', '2 h 10'],
-    ['21 feb', 'Sài Gòn → Madrid', 'intl', 'Vuelo', '24 h']
+    ['20 feb', 'Hà Nội → Ho Chi Minh', 'air', 'Vuelo', '2 h 10'],
+    ['21 feb', 'Ho Chi Minh → Madrid', 'intl', 'Vuelo', '24 h']
   ];
 
   /* ---------- Utilidades ---------- */
@@ -2033,45 +2059,45 @@ html { scroll-padding-top: 4.5rem; }
       days: { mar9: { ev: [['16:00', 'Compras en Hội An: linternas, cuero y seda', 'Linternas de seda plegables (€3–10), zapatos y bolsos de cuero a medida (€25–50), seda y cerámica. Regatead con una sonrisa: se baja un 20–30%. Se hace entre el sastre y el atardecer.', 'note:Compras aparte; unos €30–70']] } } },
     { id: 'comp-hn', kind: 'add', grp: 'Compras', title: 'Compras en el Old Quarter de Hà Nội', s: 'Seda, café, té y lacados en las calles de los gremios.',
       days: { mie17: { ev: [['16:30', 'Compras: Hàng Gai, Hàng Bông y Đồng Xuân', 'Hàng Gai es la calle de la seda y los bordados; Hàng Bông, de tejidos y ropa; Đồng Xuân, el mercado cubierto mayorista (cierra hacia las 18:00). Café en grano, té y lacados como regalo.', 'note:Compras aparte; unos €30–80']] } } },
-    { id: 'comp-sgn', kind: 'add', grp: 'Compras', title: 'Compras en el Distrito 1 de Sài Gòn', s: 'Centros comerciales y mercados antes de volar.',
+    { id: 'comp-sgn', kind: 'add', grp: 'Compras', title: 'Compras en el Distrito 1 de Ho Chi Minh', s: 'Centros comerciales y mercados antes de volar.',
       days: { sab20: { ev: [['17:30', 'Compras: Takashimaya, Saigon Square y Đồng Khởi', 'Saigon Square es de regateo (ropa, bolsos, souvenirs); Takashimaya y Vincom, de precio fijo y con aire acondicionado. Dejad la maleta en la consigna del hotel.', 'trans:3,note:Compras aparte; unos €30–80']] } } },
 
     { id: 'fiesta-hoian', kind: 'add', grp: 'Salir de fiesta', title: 'Copas en Hội An o salida a Đà Nẵng', s: 'Cócteles junto al río o la noche de la playa de Đà Nẵng.',
       days: { jue11: { ev: [['21:30', 'Copas junto al río en Hội An o salida a Đà Nẵng', 'Hội An es tranquila de noche: cócteles y cerveza artesanal junto al río, música en directo y bares hasta medianoche. Para fiesta de verdad, Đà Nẵng está a 30 min en Grab, con bares, rooftops y discotecas junto a la playa de Mỹ Khê.', 'food:12,trans:5']] } } },
     { id: 'fiesta-hn', kind: 'add', grp: 'Salir de fiesta', title: 'Noche de fiesta en el Old Quarter', s: 'Tạ Hiện, calles peatonales y rooftops de Hà Nội.',
       days: { vie19: { ev: [['21:30', 'Fiesta en Tạ Hiện y en un rooftop del lago', 'El viernes por la noche las calles peatonales del lago Hoàn Kiếm y el Old Quarter se llenan: bia hơi en Tạ Hiện, bares y discotecas, y rooftops con vistas al lago (cócteles €5–9). Los locales cierran hacia la 1:00–2:00. Cuidado: el sábado hay que salir a las 6:45 hacia el aeropuerto.', 'food:15']] } } },
-    { id: 'fiesta-sgn', kind: 'add', grp: 'Salir de fiesta', title: 'Última noche en Bùi Viện (Sài Gòn)', s: 'La calle de la fiesta de Sài Gòn antes del vuelo de madrugada.',
+    { id: 'fiesta-sgn', kind: 'add', grp: 'Salir de fiesta', title: 'Última noche en Bùi Viện (Ho Chi Minh)', s: 'La calle de la fiesta de Ho Chi Minh antes del vuelo de madrugada.',
       days: { sab20: { ev: [['20:00', 'Copas y música en Bùi Viện y Phạm Ngũ Lão', 'Calle peatonal con bares, música en directo y comida callejera: la zona de fiesta más animada de la ciudad, con rooftops a 10 min. El vuelo a Madrid sale a las 2:30: salid de la calle hacia las 21:45 para el traslado de las 22:00.', 'food:12']] } } },
 
-    { id: 'cuchi-mekong', kind: 'swap', grp: 'Excursiones desde Sài Gòn', title: 'Củ Chi y Mekong en un solo día', s: 'Túneles de la guerra por la mañana y río Tiền por la tarde, en una excursión de día completo (11–12 h).',
+    { id: 'cuchi-mekong', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Củ Chi y Mekong en un solo día', s: 'Túneles de la guerra por la mañana y río Tiền por la tarde, en una excursión de día completo (11–12 h).',
       days: { dom7: { ev: [
         ['7:00', 'Salida hacia Củ Chi', 'Excursión de día completo con recogida en el hotel: ~1 h 15 min hasta los túneles de Bến Dược.', 'act:45'],
         ['8:30', 'Túneles de Củ Chi', 'Red subterránea de la guerra: se baja a un tramo ensanchado y se ven trampas y cocinas bajo tierra. Reservad 2 h. Junto al recinto hay un campo de tiro opcional (ver «Campo de tiro»).', 'note:Entrada incluida en la excursión'],
         ['11:30', 'Almuerzo y traslado a Mỹ Tho', 'Comida incluida; ~2 h por autopista.', 'note:Incluido en la excursión'],
         ['14:00', 'Barco por el río Tiền y la isla Thới Sơn', 'Versión corta del plan base: lancha, caramelo de coco y paseo en sampán.', 'note:Incluido en la excursión'],
-        ['17:30', 'Regreso a Sài Gòn', 'Llegada hacia las 19:30–20:00. Es un día largo.', ''],
+        ['17:30', 'Regreso a Ho Chi Minh', 'Llegada hacia las 19:30–20:00. Es un día largo.', ''],
         ['20:30', 'Cena en el Distrito 1', 'Cơm tấm o bún thịt nướng.', 'food:8']
-      ], ex: { food: 5 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
-    { id: 'cuchi', kind: 'swap', grp: 'Excursiones desde Sài Gòn', title: 'Solo Củ Chi, con tarde libre', s: 'Túneles de Củ Chi por la mañana y tarde en el centro. El Mekong queda fuera.',
+      ], ex: { food: 5 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
+    { id: 'cuchi', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Solo Củ Chi, con tarde libre', s: 'Túneles de Củ Chi por la mañana y tarde en el centro. El Mekong queda fuera.',
       days: { dom7: { ev: [
         ['8:00', 'Salida hacia Củ Chi', 'Excursión de media jornada (4–5 h) o coche con conductor; 70 km, 1 h 15 min.', 'act:20'],
         ['9:30', 'Túneles de Củ Chi', 'Recorrido por los túneles, trampas y cocinas subterráneas; se puede bajar al tramo ensanchado. Junto al recinto hay un campo de tiro opcional.', 'note:Entrada incluida en la excursión'],
         ['12:30', 'Almuerzo en el Distrito 1', 'Vuelta hacia las 13:00.', 'food:8'],
         ['14:30', 'Tarde libre: Ópera, Đồng Khởi y Bitexco', 'Paseo por la Ópera, el Ayuntamiento y la calle Đồng Khởi; mirador del Bitexco Skydeck.', 'act:12'],
         ['19:30', 'Cena en el Distrito 1', 'Phở, bánh xèo o cơm tấm.', 'food:10']
-      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
-    { id: 'tiro-cuchi', kind: 'add', grp: 'Excursiones desde Sài Gòn', title: 'Campo de tiro de Củ Chi', s: 'Disparar fusiles de asalto junto a los túneles. Requiere elegir antes una de las excursiones a Củ Chi.', req: ['cuchi', 'cuchi-mekong'],
+      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
+    { id: 'tiro-cuchi', kind: 'add', grp: 'Excursiones desde Ho Chi Minh', title: 'Campo de tiro de Củ Chi', s: 'Disparar fusiles de asalto junto a los túneles. Requiere elegir antes una de las excursiones a Củ Chi.', req: ['cuchi', 'cuchi-mekong'],
       days: { dom7: { ev: [['10:30', 'Campo de tiro de Củ Chi', 'Junto a los túneles hay un campo de tiro con fusiles de asalto (AK-47, M16 y otros, según el día). Las balas se pagan aparte y en efectivo: unos 60.000 ₫ (~€2) cada una, en paquetes de 10. Se dispara con un monitor y protección auditiva. La edad mínima es de 16 a 18 años según el operador. Precios y armas varían: confirmadlo con la excursión.', 'act:20']] } } },
-    { id: 'dalat', kind: 'swap', grp: 'Excursiones desde Sài Gòn', title: 'Đà Lạt y la pagoda de las botellas', s: 'Excursión en avión para ver Linh Phước, la «pagoda de las botellas». Madrugón y dos vuelos, sin cambiar de hotel.',
+    { id: 'dalat', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Đà Lạt y la pagoda de las botellas', s: 'Excursión en avión para ver Linh Phước, la «pagoda de las botellas». Madrugón y dos vuelos, sin cambiar de hotel.',
       days: { dom7: { ev: [
         ['5:00', 'Salida al aeropuerto de Tân Sơn Nhất', 'El vuelo sale hacia las 7:00–7:30. Comprobad los horarios de Vietjet, Vietnam Airlines o Bamboo y comprad pronto: en Tết suben.', 'trans:7'],
-        ['7:30', 'Vuelo Sài Gòn → Đà Lạt (Liên Khương)', 'Una hora de vuelo. El aeropuerto está a ~30 km de la ciudad: taxi o bus, unos 40 min.', 'fly:45'],
+        ['7:30', 'Vuelo Ho Chi Minh → Đà Lạt (Liên Khương)', 'Una hora de vuelo. El aeropuerto está a ~30 km de la ciudad: taxi o bus, unos 40 min.', 'fly:45'],
         ['9:30', 'Pagoda Linh Phước (la de las botellas)', 'También llamada Ve Chai: fachada y esculturas cubiertas de cristal, porcelana y botellas rotas, con un dragón hecho con unas 12.000 botellas. Está en Trại Mát, a las afueras de Đà Lạt. Dedicadle 1–2 h; abre hacia las 8:00–17:00.', 'trans:10'],
         ['12:00', 'Almuerzo en Đà Lạt', 'Bánh căn o lẩu gà lá é. La ciudad está a 1.500 m: fresco (12–22 °C).', 'food:8'],
         ['14:00', 'Cascada de Datanla y paseo por el centro', 'Cascada con toboganes y mirador; después el mercado de Đà Lạt y el lago Xuân Hương.', 'act:6'],
-        ['17:30', 'Vuelo Đà Lạt → Sài Gòn', 'Reservad la vuelta para última hora de la tarde. Llegada hacia las 19:00.', 'fly:45'],
+        ['17:30', 'Vuelo Đà Lạt → Ho Chi Minh', 'Reservad la vuelta para última hora de la tarde. Llegada hacia las 19:00.', 'fly:45'],
         ['20:30', 'Cena en el Distrito 1', 'Cenad cerca del hotel.', 'food:8']
-      ], ex: { food: 4 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
+      ], ex: { food: 4 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
 
     { id: 'catba', kind: 'swap', grp: 'Cruceros', title: 'Crucero eco en Lan Hạ y Cát Bà', s: 'En vez de Hạ Long: bahía de Lan Hạ, más tranquila y limpia, con un operador ecológico y kayak entre los karst.', noadd: true,
       days: {
@@ -2142,21 +2168,21 @@ html { scroll-padding-top: 4.5rem; }
     { id: 'vie5-esim', kind: 'add', grp: 'Antes y después del vuelo', title: 'Comprar la eSIM antes de salir', s: 'Datos nada más aterrizar, sin colas de madrugada.',
       days: { vie5: { ev: [['19:00', 'Comprar la eSIM de Vietnam', 'Se compra y se instala en casa (Airalo, Holafly u operadores locales); se activa al aterrizar. Os servirá para Grab y mapas a la 1:10 de la madrugada.', 'act:8']] } } },
     { id: 'dom21-sala', kind: 'add', grp: 'Antes y después del vuelo', title: 'Sala VIP o ducha en SGN', s: 'Descansar y ducharse antes de 24 h de viaje.',
-      days: { dom21: { ev: [['0:30', 'Sala VIP o ducha en el aeropuerto de SGN', 'Muchas salas aceptan pase de día (~€20–30) con buffet, ducha y sillones. Útil tras la noche en Sài Gòn.', 'act:25']] } } },
+      days: { dom21: { ev: [['0:30', 'Sala VIP o ducha en el aeropuerto de SGN', 'Muchas salas aceptan pase de día (~€20–30) con buffet, ducha y sillones. Útil tras la noche en Ho Chi Minh.', 'act:25']] } } },
 
-    { id: 'sab6-masaje', kind: 'add', grp: 'Sài Gòn', title: 'Masaje tras el viaje', s: 'Una hora de masaje para soltar el jet lag, en mùng 1.',
+    { id: 'sab6-masaje', kind: 'add', grp: 'Ho Chi Minh', title: 'Masaje tras el viaje', s: 'Una hora de masaje para soltar el jet lag, en mùng 1.',
       days: { sab6: { ev: [['16:00', 'Masaje de una hora', 'Muchos spas abren en Tết (con recargo). Reservad por teléfono o por la app del hotel.', 'act:15']] } } },
-    { id: 'sab6-barco', kind: 'add', grp: 'Sài Gòn', title: 'Cena en barco por el río Sài Gòn', s: 'Cena con vistas a la ciudad iluminada, en vez de la terraza.',
+    { id: 'sab6-barco', kind: 'add', grp: 'Ho Chi Minh', title: 'Cena en barco por el río Sài Gòn', s: 'Cena con vistas a la ciudad iluminada, en vez de la terraza.',
       days: { sab6: { ev: [['19:00', 'Cena en barco por el río Sài Gòn', 'Barcos desde el muelle de Bạch Đằng, 1 h 30 min de paseo con buffet y música en directo. Reservad: en Tết se llenan.', 'food:25']] } } },
-    { id: 'sab6-relax', kind: 'swap', grp: 'Sài Gòn', title: 'Día de descanso por el jet lag', s: 'Plan tranquilo: desayuno tardío, spa y paseo, en vez de los templos de Chợ Lớn.',
+    { id: 'sab6-relax', kind: 'swap', grp: 'Ho Chi Minh', title: 'Día de descanso por el jet lag', s: 'Plan tranquilo: desayuno tardío, spa y paseo, en vez de los templos de Chợ Lớn.',
       days: { sab6: { ev: [
         ['10:30', 'Desayuno tardío y café', 'Ya habéis dormido poco: phở o bánh mì sin prisa en el hotel o en un café abierto.', 'food:8'],
         ['12:30', 'Spa o masaje', 'Una hora de masaje o un baño en la piscina del hotel.', 'act:15'],
         ['15:30', 'Paseo por Nguyễn Huệ y la calle de las flores', 'Flores de mai amarilla y bonsáis; id al atardecer.', ''],
         ['19:30', 'Cena junto al río Sài Gòn', 'Muelle de Bạch Đằng y terrazas del Distrito 1.', 'food:15']
-      ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
+      ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
 
-    { id: 'lun8-desayuno', kind: 'add', grp: 'Sài Gòn', title: 'Desayuno de phở y café vietnamita', s: 'Empezar el día como un local antes del museo.',
+    { id: 'lun8-desayuno', kind: 'add', grp: 'Ho Chi Minh', title: 'Desayuno de phở y café vietnamita', s: 'Empezar el día como un local antes del museo.',
       days: { lun8: { ev: [['7:30', 'Desayuno de phở y cà phê sữa đá', 'Un cuenco de phở bò y café con leche condensada en una calle del Distrito 1, antes de abrir el museo.', 'food:4']] } } },
 
     { id: 'mie10-banahills', kind: 'swap', grp: 'Hội An y Đà Nẵng', title: 'Bà Nà Hills y el Puente Dorado', s: 'En vez de Mỹ Sơn: teleférico a la montaña, jardines franceses y el Puente Dorado. Muy turístico, pero espectacular.', noadd: true,
@@ -2362,7 +2388,7 @@ html { scroll-padding-top: 4.5rem; }
     });
     document.getElementById('budgetFoot').innerHTML =
       '<tr class="sub"><th scope="row">Total sin vuelo internacional</th><td>' + eur(grand.act) + '</td><td>' + eur(grand.trans) + '</td><td>' + eur(grand.fly) + '</td><td>' + eur(grand.food) + '</td><td>' + eur(grand.lodge) + '</td><td>' + mini(grand, gt) + '</td><td>~' + eur(gt) + '</td></tr>' +
-      '<tr class="fl2"><th scope="row">Vuelo internacional</th><td colspan="6">Madrid–Sài Gòn, ida y vuelta, por persona (ya comprado)</td><td>' + eur(FLIGHT) + '</td></tr>' +
+      '<tr class="fl2"><th scope="row">Vuelo internacional</th><td colspan="6">Madrid–Ho Chi Minh, ida y vuelta, por persona (ya comprado)</td><td>' + eur(FLIGHT) + '</td></tr>' +
       '<tr class="grand"><th scope="row" colspan="7">Total con vuelo internacional</th><td>~' + eur(all) + '</td></tr>';
     var chosen = ALTS.filter(function (a) { return sel[a.id]; }), dsum = 0;
     chosen.forEach(function (a) { dsum += delta(a); });
@@ -2374,6 +2400,7 @@ html { scroll-padding-top: 4.5rem; }
       : 'Plan base sin cambios · total con vuelo: <b>~' + eur(all) + '</b> por persona';
   };
 
+  var afterRender = null;
   var render = function () {
     cards.forEach(function (c) {
       var a = c.a, on = !!sel[a.id], why = on ? '' : blocked(a), dl = delta(a);
@@ -2414,8 +2441,77 @@ html { scroll-padding-top: 4.5rem; }
       r.dt.innerHTML = 'Día: <b>~' + eur(now) + '</b> por persona' + (on ? ' <small>(con alternativas)</small>' : '');
     });
     drawBudget();
+    if (afterRender) afterRender();
   };
   render();
+  /* ---------- Lista de actividades ---------- */
+  (function () {
+    var ZN = { sgn: ['Ho Chi Minh', 'var(--red)'], mekong: ['Delta del Mekong', 'var(--jade)'], hoian: ['Hội An y Đà Nẵng', 'var(--gold)'], hue: ['Huế', 'var(--hue)'], hanoi: ['Hà Nội', 'var(--indigo)'], ninh: ['Ninh Bình', 'var(--lotus)'], halong: ['Bahía de Hạ Long', 'var(--teal)'] };
+    var order = ['sgn', 'mekong', 'hoian', 'hue', 'hanoi', 'ninh', 'halong'], by = {};
+    order.forEach(function (z) { by[z] = []; });
+    var AK = 'vn-acts', done = {};
+    try { (JSON.parse(localStorage.getItem(AK) || '[]') || []).forEach(function (k) { done[k] = 1; }); } catch (e) {}
+    var save = function () { try { localStorage.setItem(AK, JSON.stringify(Object.keys(done))); } catch (e) {} };
+    ORDER.forEach(function (d) {
+      var day = DAYREF[d].day, z = order.filter(function (k) { return day.classList.contains(k); })[0];
+      if (!z) return;
+      var costs = COST[d] || [], seen = {};
+      DAYREF[d].base.querySelectorAll('.ev').forEach(function (ev, i) {
+        var pl = ev.dataset.place, ty = pl && P[pl] && P[pl].t, spec = costs[i] || '';
+        var m = /(?:^|,)act:(\d+)/.exec(spec), isAct = (pl && ty !== 'hub' && ty !== 'hotel') || m;
+        if (!isAct) return;
+        var h = ev.querySelector('h3'), title = h.childNodes[0] ? h.childNodes[0].textContent : h.textContent;
+        if (seen[title]) return; seen[title] = 1;
+        by[z].push({ key: d + '-' + i, title: title, day: d, time: ev.querySelector('.time').textContent, price: m ? +m[1] : 0, img: pl && PLACE[pl] && PLACE[pl].img });
+      });
+    });
+    var root = document.getElementById('actList'), rows = [];
+    var row = function (o, c) {
+      var li = document.createElement('li'); li.className = 'actrow' + (o.alt ? ' alt' : ''); li.style.setProperty('--c', c);
+      var id = 'act-' + o.key.replace(/[^\w-]/g, '_');
+      li.innerHTML = '<input type="checkbox" id="' + id + '"><label for="' + id + '"><b></b><span class="am"></span></label>';
+      li.querySelector('b').textContent = o.title;
+      li.querySelector('.am').innerHTML = (o.when || '') + (o.price ? ' · ~' + eur(o.price) : '');
+      var cb = li.querySelector('input');
+      cb.addEventListener('change', function () {
+        if (o.alt) { var cd = cards.filter(function (x) { return x.a.id === o.alt; })[0]; if (cd && !cd.btn.disabled || sel[o.alt]) cd.btn.click(); render(); return; }
+        if (cb.checked) done[o.key] = 1; else delete done[o.key];
+        save(); refresh();
+      });
+      rows.push({ o: o, li: li, cb: cb });
+      return li;
+    };
+    order.forEach(function (z) {
+      if (!by[z].length) return;
+      var g = document.createElement('div'); g.className = 'actgrp'; g.style.setProperty('--c', ZN[z][1]);
+      g.innerHTML = '<h3>' + ZN[z][0] + '<small></small></h3><ul></ul>';
+      var ul = g.querySelector('ul');
+      by[z].forEach(function (o) { o.when = '<a href="#' + o.day + '">' + NAMES[o.day] + '</a> · ' + o.time; ul.appendChild(row(o, ZN[z][1])); });
+      root.appendChild(g);
+    });
+    var ag = document.createElement('div'); ag.className = 'actgrp'; ag.style.setProperty('--c', 'var(--muted)');
+    ag.innerHTML = '<h3>Alternativas y extras<small>se eligen aquí y cambian el presupuesto</small></h3><ul></ul>';
+    ALTS.forEach(function (a) {
+      var days = Object.keys(a.days).map(function (d) { return '<a href="#' + d + '">' + NAMES[d] + '</a>'; }).join(', ');
+      ag.querySelector('ul').appendChild(row({ key: 'alt:' + a.id, alt: a.id, title: a.title, when: days }, 'var(--muted)'));
+    });
+    root.appendChild(ag);
+    var refresh = function () {
+      var n = 0, tot = 0;
+      rows.forEach(function (r) {
+        var on = r.o.alt ? !!sel[r.o.alt] : !!done[r.o.key];
+        r.cb.checked = on; r.li.classList.toggle('on', on);
+        if (r.o.alt) { var why = on ? '' : blocked(ALT_BY[r.o.alt]); r.cb.disabled = !!why; r.li.classList.toggle('dis', !!why); r.li.title = why; }
+        else { tot++; if (on) n++; }
+      });
+      root.querySelectorAll('.actgrp').forEach(function (g) {
+        var cs = g.querySelectorAll('.actrow:not(.alt) input');
+        if (cs.length) g.querySelector('small').textContent = [].filter.call(cs, function (c) { return c.checked; }).length + ' de ' + cs.length + ' marcadas';
+      });
+      document.getElementById('actBar').innerHTML = '<b>' + n + '</b> de <b>' + tot + '</b> actividades marcadas · <b>' + ALTS.filter(function (a) { return sel[a.id]; }).length + '</b> alternativas elegidas';
+    };
+    afterRender = refresh; refresh();
+  })();
 })();
 </script>
 </body>

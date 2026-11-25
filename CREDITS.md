@@ -4,12 +4,12 @@ Las fotos de `assets/img/` proceden de [Wikimedia Commons](https://commons.wikim
 
 | Lugar | Archivo | Autor | Licencia |
 | --- | --- | --- | --- |
-| Calle de las flores Nguyễn Huệ (Sài Gòn) | [Nguyen Hue treet in Tet.jpg](https://commons.wikimedia.org/wiki/File:Nguyen_Hue_treet_in_Tet.jpg) | Timback | CC BY-SA 4.0 |
-| Pagoda del Emperador de Jade (Sài Gòn) | [Jade Emperor Pagoda (9981966414).jpg](https://commons.wikimedia.org/wiki/File:Jade_Emperor_Pagoda_(9981966414).jpg) | Gary Todd | CC0 |
+| Calle de las flores Nguyễn Huệ (Ho Chi Minh) | [Nguyen Hue treet in Tet.jpg](https://commons.wikimedia.org/wiki/File:Nguyen_Hue_treet_in_Tet.jpg) | Timback | CC BY-SA 4.0 |
+| Pagoda del Emperador de Jade (Ho Chi Minh) | [Jade Emperor Pagoda (9981966414).jpg](https://commons.wikimedia.org/wiki/File:Jade_Emperor_Pagoda_(9981966414).jpg) | Gary Todd | CC0 |
 | Templo de Thiên Hậu (Chợ Lớn) | [Thien Hau Temple, Cholon (51208102653).jpg](https://commons.wikimedia.org/wiki/File:Thien_Hau_Temple,_Cholon_(51208102653).jpg) | Alexander Synaptic | CC BY-SA 2.0 |
-| Catedral de Notre-Dame y Correos (Sài Gòn) | [Basilica of Our Lady Immaculate.jpg](https://commons.wikimedia.org/wiki/File:Basilica_of_Our_Lady_Immaculate.jpg) | Maksim Sokolov | CC BY-SA 4.0 |
-| Mercado de Bến Thành (Sài Gòn) | [Ben Thanh Market, 2023 (05).jpg](https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market,_2023_(05).jpg) | Bahnfrend | CC BY-SA 4.0 |
-| Museo de los Vestigios de la Guerra (Sài Gòn) | [War Remnants Museum, HCMC, front.JPG](https://commons.wikimedia.org/wiki/File:War_Remnants_Museum,_HCMC,_front.JPG) | Prenn | CC BY-SA 3.0 |
+| Catedral de Notre-Dame y Correos (Ho Chi Minh) | [Basilica of Our Lady Immaculate.jpg](https://commons.wikimedia.org/wiki/File:Basilica_of_Our_Lady_Immaculate.jpg) | Maksim Sokolov | CC BY-SA 4.0 |
+| Mercado de Bến Thành (Ho Chi Minh) | [Ben Thanh Market, 2023 (05).jpg](https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market,_2023_(05).jpg) | Bahnfrend | CC BY-SA 4.0 |
+| Museo de los Vestigios de la Guerra (Ho Chi Minh) | [War Remnants Museum, HCMC, front.JPG](https://commons.wikimedia.org/wiki/File:War_Remnants_Museum,_HCMC,_front.JPG) | Prenn | CC BY-SA 3.0 |
 | Delta del Mekong (Bến Tre) | [20190924 Ben Tre river boat-1.jpg](https://commons.wikimedia.org/wiki/File:20190924_Ben_Tre_river_boat-1.jpg) | Balon Greyjoy | CC0 |
 | Casco antiguo de Hội An | [Hội An, Ancient Town, 2020-01 CN-10.jpg](https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ancient_Town,_2020-01_CN-10.jpg) | Steffen Schmitz | CC BY-SA 4.0 |
 | Puente Cubierto japonés (Hội An) | [Hội An, Chùa Cầu, 2020-01 CN-02.jpg](https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ch%C3%B9a_C%E1%BA%A7u,_2020-01_CN-02.jpg) | Steffen Schmitz | CC BY-SA 4.0 |

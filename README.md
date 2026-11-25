@@ -1,6 +1,6 @@
 # Vietnam 5–21 de febrero de 2027
 
-Itinerario interactivo de quince noches por Vietnam (Sài Gòn, delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y bahía de Hạ Long), pensado para el Tết, el Año Nuevo lunar, y publicado como página estática en GitHub Pages.
+Itinerario interactivo de quince noches por Vietnam (Ho Chi Minh, delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y bahía de Hạ Long), pensado para el Tết, el Año Nuevo lunar, y publicado como página estática en GitHub Pages.
 
 **Web:** https://andreshere00.github.io/vietnam-trip/
 
@@ -11,7 +11,7 @@ Itinerario interactivo de quince noches por Vietnam (Sài Gòn, delta del Mekong
 | Madrid → Ciudad Ho Chi Minh (SGN) | viernes 5 feb · 00:40 | sábado 6 feb · 01:10 |
 | Ciudad Ho Chi Minh (SGN) → Madrid | domingo 21 feb · 02:30 | domingo 21 feb · 20:30 |
 
-Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura 18 h 30 min y la vuelta 24 h; se sale de casa la noche del jueves 4 y se aterriza en Vietnam ya en mùng 1, tras la medianoche del Tết. Entre medias hay tres vuelos internos: Sài Gòn → Đà Nẵng (8 feb), Huế → Hà Nội (13 feb) y Hà Nội → Sài Gòn (20 feb).
+Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura 18 h 30 min y la vuelta 24 h; se sale de casa la noche del jueves 4 y se aterriza en Vietnam ya en mùng 1, tras la medianoche del Tết. Entre medias hay tres vuelos internos: Ho Chi Minh → Đà Nẵng (8 feb), Huế → Hà Nội (13 feb) y Hà Nội → Ho Chi Minh (20 feb).
 
 ## Qué incluye
 
@@ -20,7 +20,8 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura
 - **Un mapa por día** dibujado en SVG, con costa, ríos, lagos, carreteras, pagodas y paradas numeradas en el orden de la ruta, más el islote kárstico de Hạ Long.
 - **Leyenda y distancias**: kilómetros y tiempo aproximado de cada tramo, con el total del día y una escala.
 - **Opciones de transporte, entradas, comida, alojamiento y Tết** para cada día, con precios estimados. La pestaña «Tết» explica cierres, tradiciones y reservas.
-- **Alternativas y extras elegibles en cada uno de los 17 días** (panel «Cambiar o añadir en este día» y sección «Alternativas»), por ejemplo: compras en Hội An, Hà Nội y Sài Gòn; fiesta en Hội An/Đà Nẵng, Hà Nội y Bùi Viện; Củ Chi (con campo de tiro opcional), Củ Chi y Mekong en un día, Đà Lạt con la pagoda de las botellas (Linh Phước); crucero eco en Lan Hạ y Cát Bà; Mai Châu, Sa Pa y Hà Giang Loop. Además hay extras y cambios para los demás días (masaje, cena en barco, Bà Nà Hills, Cù Lao Chàm, tren a Huế, Tam Cốc, Bái Đính…). Cada una indica su efecto en el presupuesto, que se recalcula, y la elección se guarda en el navegador.
+- **Lista de actividades** por ciudad (sección «Actividades»): todas las visitas y entradas del plan, con checkbox para marcar las que queréis hacer y las alternativas, que se eligen desde la misma lista. Se guarda en el navegador.
+- **Alternativas y extras elegibles en cada uno de los 17 días** (panel «Cambiar o añadir en este día» y sección «Alternativas»), por ejemplo: compras en Hội An, Hà Nội y Ho Chi Minh; fiesta en Hội An/Đà Nẵng, Hà Nội y Bùi Viện; Củ Chi (con campo de tiro opcional), Củ Chi y Mekong en un día, Đà Lạt con la pagoda de las botellas (Linh Phước); crucero eco en Lan Hạ y Cát Bà; Mai Châu, Sa Pa y Hà Giang Loop. Además hay extras y cambios para los demás días (masaje, cena en barco, Bà Nà Hills, Cù Lao Chàm, tren a Huế, Tam Cốc, Bái Đính…). Cada una indica su efecto en el presupuesto, que se recalcula, y la elección se guarda en el navegador.
 - **Presupuesto** por día y total (entradas, transporte, vuelos internos, comida y alojamiento), por persona.
 - **Fotos y fichas «por qué ir»** de casi cada evento (45 fotos distintas): miniatura en el itinerario y ficha emergente al pasar el ratón, enfocar o tocar un pin del mapa o un evento.
 - **Recorrido día a día**: la navegación fija marca el día visible, muestra el progreso del scroll y cada tarjeta enlaza con el día siguiente.
@@ -54,7 +55,7 @@ No hay dependencias ni paso de compilación. Las únicas peticiones externas son
 | `COST` | Costes por evento de cada día (`act`, `trans`, `fly`, `food`), en euros por persona. Se asocian por orden de aparición. |
 | `EXTRA` | Gastos del día que no pertenecen a un evento (desayunos, cafés, taxis). |
 | `LODGE` y `NOLODGE` | Precio de la habitación doble por noche (se reparte entre dos personas) y días sin noche. |
-| `FLIGHT` | Precio del billete Madrid–Sài Gòn por persona, ida y vuelta (€460, ya comprado). |
+| `FLIGHT` | Precio del billete Madrid–Ho Chi Minh por persona, ida y vuelta (€460, ya comprado). |
 | `OPTS` | Opciones de transporte, entradas, comida, alojamiento y Tết de cada día. |
 | `P` | Puntos del mapa con longitud y latitud. |
 | `PLACE`, `PH`, `EVP` | Foto y texto «por qué ir» de cada lugar, créditos de las fotos y lugar asociado a cada evento. |
