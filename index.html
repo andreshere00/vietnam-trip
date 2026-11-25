@@ -545,6 +545,13 @@ html { scroll-padding-top: 4.5rem; }
   .date .badge { grid-column: 1 / 3; grid-row: 3; justify-self: start; font-size: .62rem; }
   .daytotal { grid-column: 2 / 4; grid-row: 3; justify-self: end; margin: 0; font-size: .8rem; padding: .1rem .5rem; }
 }
+
+.ic { display: inline-block; margin-right: .4em; font-style: normal; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-size: .95em; line-height: 1; letter-spacing: 0; text-transform: none; }
+.ev h3 .ic { font-size: 1.05em; margin-right: .45em; }
+.chip .ic, .sum small .ic { margin-right: .3em; }
+.nav a.txt .ic { display: none; }
+@media (min-width: 900px) { .nav a.txt .ic { display: inline-block; } }
+.compact .ev h3 .ic { font-size: 1em; }
 </style>
 </head>
 <body>
@@ -3006,6 +3013,63 @@ html { scroll-padding-top: 4.5rem; }
       b.addEventListener('click', function () { set(sec.classList.contains('sec-off')); save(); });
       document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#' + x[0] + '"]'); if (a && sec.classList.contains('sec-off')) { set(true); save(); } }, true);
     });
+  })();
+
+  /* ---------- Iconografía: símbolos en lugar de texto donde el significado se sobreentiende ---------- */
+  (function () {
+    var ICO = {
+      act: '🎟️', trans: '🚗', fly: '✈️', food: '🍜', lodge: '🏨', tick: '🎟️', sleep: '🏨', tet: '🧧',
+      swap: '🔄', add: '➕'
+    };
+    var RULES = [
+      [/tiro/i, '🎯'], [/t[uú]neles/i, '🕳️'], [/clase de cocina|cocina vietnamita/i, '👩‍🍳'], [/tai chi/i, '🧘'],
+      [/masaje|spa\b/i, '💆'], [/fiesta|copas|discoteca|rooftop|bia h/i, '🍹'], [/fuegos|giao th/i, '🎆'],
+      [/vuelo|aterrizaje|despegue|aeropuerto|llegada a madrid/i, '✈️'], [/tren /i, '🚆'], [/ferry|barco|crucero|kayak|lancha|embarque|sampán|fondeo|desembarco/i, '🚤'],
+      [/caf[eé]|cà phê/i, '☕'], [/almuerzo|cena|desayuno|brunch|comida|phở|bún|pesca de calamares/i, '🍜'],
+      [/templo|pagoda|catedral|mausoleo|ciudadela|tumba|santuario|bái đính|linh phư/i, '🛕'],
+      [/museo|prisión|vestigios|teatro|marionetas|ópera/i, '🏛️'], [/compras|sastrer|mercado|bến thành|linternas/i, '🛍️'],
+      [/bici|ciclo/i, '🚲'], [/playa|mỹ khê|an bàng|surf/i, '🏖️'], [/cueva|gruta|karst|bahía|isla|hang m|tràng an|tam cốc|arrozales|lago|río|cascada|paso de|mirador|skydeck|landmark|bà nà|fansipan|sa pa|valle/i, '🏞️'],
+      [/check-in|hotel|descanso|maletas|alojamiento|homestay/i, '🧳'], [/salida|traslado|regreso|autobús|shuttle|coche|taxi|grab/i, '🚗'],
+      [/flores|calle de las/i, '🌸'], [/paseo|centro|casco|old quarter|distrito/i, '🚶']
+    ];
+    var iconFor = function (t) { for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(t)) return RULES[i][1]; return '📍'; };
+    var pre = function (el, ico) {
+      if (!el || el.getAttribute('data-ic')) return;
+      el.setAttribute('data-ic', '1');
+      var s = document.createElement('span'); s.className = 'ic'; s.setAttribute('aria-hidden', 'true'); s.textContent = ico;
+      el.insertBefore(s, el.firstChild);
+    };
+    var decorate = function () {
+      document.querySelectorAll('.ev h3').forEach(function (h) { pre(h, iconFor(h.textContent)); });
+      document.querySelectorAll('.chip.act, .chip.trans, .chip.fly, .chip.food').forEach(function (c) { pre(c, ICO[c.className.split(' ')[1]]); });
+      document.querySelectorAll('.sum small').forEach(function (sm) {
+        var t = sm.textContent.toLowerCase();
+        pre(sm, /entradas/.test(t) ? ICO.act : /transp/.test(t) ? ICO.trans : /vuelo/.test(t) ? ICO.fly : /comida/.test(t) ? ICO.food : /aloj/.test(t) ? ICO.lodge : '∑');
+      });
+      document.querySelectorAll('.tab').forEach(function (b) { var k = b.className.split(' ')[1]; pre(b, ICO[k] || ''); });
+      document.querySelectorAll('.dinfo > summary b').forEach(function (b) { pre(b, 'ℹ️'); });
+      document.querySelectorAll('.dot-t').forEach(function (b) { pre(b, '🧭'); });
+      document.querySelectorAll('.ac-k').forEach(function (b) { pre(b, /Añade/.test(b.textContent) ? ICO.add : ICO.swap); });
+      document.querySelectorAll('.dopts legend').forEach(function (l) { pre(l, /Añadir/.test(l.textContent) ? ICO.add : '🔄'); });
+      document.querySelectorAll('.badge.lunar').forEach(function (b) { pre(b, '🌙'); });
+      document.querySelectorAll('.fl small').forEach(function (b) { pre(b, /Ida/.test(b.textContent) ? '🛫' : '🛬'); });
+      document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, '💶'); });
+      document.querySelectorAll('.nav a.txt').forEach(function (a) {
+        var m = { '#ruta': '🗺️', '#actividades': '✅', '#alternativas': '🔀', '#presupuesto': '💶', '#notas': '📝' }; pre(a, m[a.getAttribute('href')] || '');
+      });
+      document.querySelectorAll('.stog .st-t').forEach(function (t) {
+        var s = t.textContent; pre(t, /ruta/i.test(s) ? '🗺️' : /actividades/i.test(s) ? '✅' : /alternativas/i.test(s) ? '🔀' : /presupuesto/i.test(s) ? '💶' : '');
+      });
+      document.querySelectorAll('.altbar, .actbar').forEach(function (b) { pre(b, '📊'); });
+      document.querySelectorAll('.altgrp h3').forEach(function (h) {
+        var t = h.textContent, m = [[/Compras/, '🛍️'], [/fiesta/, '🍹'], [/Excursiones/, '🚐'], [/Cruceros/, '🚢'], [/norte/, '🏔️'], [/Antes/, '🧳'], [/Plan B/, '🧧'], [/Huế/, '🏯'], [/Hội An/, '🏮'], [/Hà Nội/, '🏙️'], [/Ninh/, '⛰️'], [/Ho Chi Minh/, '🌆']];
+        for (var i = 0; i < m.length; i++) if (m[i][0].test(t)) { pre(h, m[i][1]); return; }
+      });
+      document.querySelectorAll('.dpr.pos, .dpr.neg').forEach(function () {});
+    };
+    var prev = afterRender;
+    afterRender = function () { if (prev) prev(); decorate(); };
+    decorate();
   })();
 })();
 </script>
