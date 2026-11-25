@@ -384,12 +384,14 @@ var VNB = (function () {
 
   /* ================= PÁGINAS ================= */
   var PG = { itinerario: ['itinerario.html', 'Línea de tiempo', 'timeline'], estancia: ['estancia.html', 'Estancia', 'hotel'], transporte: ['transporte.html', 'Transporte', 'directions_transit'], eventos: ['eventos.html', 'Eventos', 'confirmation_number'] };
+  var ACC = { itinerario: '--indigo', estancia: '--teal', transporte: '--red', eventos: '--gold' };
+  var HEAD = { estancia: ['Dónde dormir', 'hotel'], transporte: ['Cómo moveros', 'directions_transit'], eventos: ['Qué reservar', 'confirmation_number'] };
   var mIcon = { flight: 'flight', search: 'travel_explore', train: 'train', bus: 'directions_bus', taxi: 'local_taxi', car: 'directions_car', walk: 'directions_walk' };
   var $ = function (id) { return document.getElementById(id); };
   var chrome = function (key, title, lead) {
     document.body.innerHTML = '<header class="top"><div class="wrap"><div class="bar"><a class="back" href="index.html" title="Volver a la web principal"><span class="mi" aria-hidden="true">arrow_back</span><span class="t">Web principal</span></a><h1 class="ttl">' + esc(title) + '<small>Vietnam · 5–21 de febrero de 2027</small></h1><span id="dlMount"></span><button type="button" class="ibtn" id="themeBtn" aria-label="Cambiar entre modo claro y nocturno" title="Modo claro o nocturno"><span class="mi" aria-hidden="true">contrast</span></button></div>' +
-      '<nav class="tabs" aria-label="Secciones de reservas">' + Object.keys(PG).map(function (k) { return '<a href="' + PG[k][0] + '"' + (k === key ? ' aria-current="page"' : '') + '><span class="mi" aria-hidden="true">' + PG[k][2] + '</span>' + PG[k][1] + '</a>'; }).join('') + '</nav></div></header>' +
-      '<main class="wrap"><section class="lead"><p>' + lead + '</p><div class="sum" id="sum"></div></section><div id="app"><p class="msg">Cargando…</p></div></main><footer class="wrap f">Los precios son estimaciones y los enlaces son de búsqueda o de la web de cada proveedor, sin comisiones. Comprobad el precio y la cancelación antes de pagar. <a href="index.html">Volver a la web principal</a></footer>';
+      '<nav class="tabs" aria-label="Secciones">' + Object.keys(PG).map(function (k) { return '<a href="' + PG[k][0] + '" style="--tz: var(' + ACC[k] + ')"' + (k === key ? ' aria-current="page"' : '') + '><span class="mi" aria-hidden="true">' + PG[k][2] + '</span>' + PG[k][1] + '</a>'; }).join('') + '</nav></div></header>' +
+      '<main class="wrap"><header class="chap" style="--z: var(' + ACC[key] + ')"><span class="chap-ic" aria-hidden="true"><span class="mi">' + HEAD[key][1] + '</span></span><div><span class="chap-k">' + esc(PG[key][1]) + '</span><h2>' + esc(HEAD[key][0]) + '</h2></div><p class="chap-s">' + lead + '</p><div class="sum" id="sum"></div></header><div id="app"><p class="msg">Cargando…</p></div></main><footer class="wrap f">Los precios son estimaciones y los enlaces son de búsqueda o de la web de cada proveedor, sin comisiones. Comprobad el precio y la cancelación antes de pagar. <a href="index.html">Volver a la web principal</a></footer>';
     $('themeBtn').addEventListener('click', function () {
       var t = document.documentElement.getAttribute('data-theme'), dark = t ? t === 'dark' : !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark'); try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
@@ -409,12 +411,13 @@ var VNB = (function () {
   };
   var hashScroll = function () { if (location.hash) { var el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(function () { el.scrollIntoView({ block: 'center' }); el.classList.add('flash'); }, 150); } };
 
+  var grp = function (ic, t, sub, z) { return '<div class="grp" style="--z: var(' + (z || '--teal') + ')"><span class="gi" aria-hidden="true"><span class="mi">' + ic + '</span></span><div><b>' + esc(t) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</div></div>'; };
   var pageStay = function () {
     chrome('estancia', 'Estancia', 'Dónde dormir en cada tramo de vuestro itinerario, con cuatro categorías de precio (tres en los homestays de montaña y en el crucero). Cada botón abre la búsqueda con las fechas, tres personas y el rango de precio ya puestos.');
     var ss = stays();
     $('app').innerHTML = '<div class="best"><span class="mi" aria-hidden="true">verified</span><div><b>Mejor sitio para reservar</b><p>Booking.com: la mayoría de las tarifas se cancelan gratis hasta unos días antes y se paga en el alojamiento, así que podéis reservar ya y ajustar después. Probad la misma búsqueda en Google Hoteles y comparad el precio final con impuestos. En Tết las habitaciones buenas se agotan.</p></div></div>' +
       '<p class="note">Los precios son por <b>habitación para tres personas</b> y noche, con impuestos. «P. p.» es por persona y refleja el coste típico de la categoría.</p>' +
-      ss.map(function (s) {
+      grp('bed', 'Noche a noche', ss.length + (ss.length === 1 ? ' alojamiento' : ' alojamientos') + ' según vuestro itinerario', '--teal') + ss.map(function (s) {
         var c = s.c, T = c.cruise ? TIERS_CRUISE : (c.home ? TIERS_HOME : TIERS), base = c.cruise ? c.base * 1.3 / 3 : c.base * 1.3 / 3 * s.nights;
         var tiers = T.map(function (t) {
           var pp = c.cruise ? t.typ : t.typ / 3, tot = c.cruise ? pp : pp * s.nights, dl = tot - base;
@@ -460,7 +463,7 @@ var VNB = (function () {
   var pageTransport = function () {
     chrome('transporte', 'Transporte', 'El seguro de viaje y cada traslado de vuestro itinerario, con dos o tres formas de hacerlo, su precio y dónde comprarlo. Los billetes de tren se suelen abrir unos 60 días antes de la salida (confirmadlo en la web de Vietnam Railways).');
     var ls = legs();
-    $('app').innerHTML = '<div class="best"><span class="mi" aria-hidden="true">verified</span><div><b>Mejor sitio para comprar</b><p><b>Vuelos:</b> comparad en Google Flights o Skyscanner y comprad en la web de la aerolínea. <b>Tren:</b> la web oficial de Vietnam Railways o un agente autorizado como Vexere (más fácil con tarjeta extranjera). <b>Autobús y traslados:</b> 12Go o Klook. <b>Ciudad:</b> Grab. <b>Seguro:</b> contratadlo ya, antes de nada más (ver abajo).</p></div></div>' + insHtml() +
+    $('app').innerHTML = '<div class="best"><span class="mi" aria-hidden="true">verified</span><div><b>Mejor sitio para comprar</b><p><b>Vuelos:</b> comparad en Google Flights o Skyscanner y comprad en la web de la aerolínea. <b>Tren:</b> la web oficial de Vietnam Railways o un agente autorizado como Vexere (más fácil con tarjeta extranjera). <b>Autobús y traslados:</b> 12Go o Klook. <b>Ciudad:</b> Grab. <b>Seguro:</b> contratadlo ya, antes de nada más (ver abajo).</p></div></div>' + grp('health_and_safety', 'Antes de salir', 'Seguro de viaje', '--red') + insHtml() + grp('route', 'Traslados, día a día', ls.length + ' trayectos con dos o tres formas de hacerlos', '--indigo') +
       ls.map(function (l) {
         return '<section class="card' + (done[l.stuff] ? ' isdone' : '') + '" id="' + l.stuff + '" style="--z: var(' + (l.d ? '--teal' : '--muted') + ')"><header class="ch"><div><h2>' + esc(l.t) + '</h2><p class="meta"><span class="mi" aria-hidden="true">calendar_month</span>' + (l.d ? '<b>' + longD(l.d) + '</b> · ' : '') + esc(l.s) + '</p></div>' + checkH(l.stuff) + '</header><div class="opts">' +
           l.opts.map(function (o) {

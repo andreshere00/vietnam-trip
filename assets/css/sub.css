@@ -144,3 +144,23 @@ footer.f { text-align: center; padding: 28px 0 60px; color: var(--muted); font-s
 /* Seguro de viaje */
 .tier .pts { margin: 2px 0 10px; padding-left: 1.1em; font-size: .85rem; color: var(--muted); }
 .tier .pts li { margin: 2px 0; }
+
+/* Cabecera de página y separadores de grupo */
+header.chap { --z: var(--red); position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .4rem 1rem; align-items: center; padding: 18px 20px; margin: 18px 0 8px; border: 1px solid color-mix(in srgb, var(--z) 38%, var(--line)); border-left: 8px solid var(--z); border-radius: 16px; background: linear-gradient(105deg, color-mix(in srgb, var(--z) 16%, var(--surface)), var(--surface) 78%); overflow: hidden; }
+.chap-ic { width: 58px; height: 58px; border-radius: 50%; background: var(--z); color: var(--on-red); display: grid; place-items: center; box-shadow: 0 0 0 5px color-mix(in srgb, var(--z) 22%, transparent); }
+.chap-ic .mi { font-size: 2rem; vertical-align: 0; }
+.chap-k { display: block; font: 700 .7rem/1.2 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--z); }
+header.chap h2 { font-family: var(--display); font-size: clamp(1.45rem, 4vw, 2rem); line-height: 1.15; margin: .15rem 0 0; }
+.chap-s { grid-column: 1 / -1; margin: 0; max-width: 72ch; color: var(--muted); }
+header.chap .sum { grid-column: 1 / -1; }
+.grp { --z: var(--teal); display: flex; align-items: center; gap: 12px; margin: 30px 0 6px; }
+.grp::after { content: ""; flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 17px); order: 3; }
+.grp .gi { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--z); color: var(--on-red); display: grid; place-items: center; box-shadow: 0 0 0 4px color-mix(in srgb, var(--z) 20%, transparent); }
+.grp .gi .mi { font-size: 1.5rem; vertical-align: 0; }
+.grp b { display: block; font: 700 1.25rem/1.2 var(--display); }
+.grp small { color: var(--muted); font-size: .85rem; }
+.tabs a .mi { color: var(--tz, var(--muted)); }
+.tabs a[aria-current="page"] { background: var(--tz, var(--red)); border-color: var(--tz, var(--red)); }
+.tabs a[aria-current="page"] .mi { color: inherit; }
+.dayg h2 { padding: 8px 14px; border-radius: 12px; border: 1px solid var(--line); border-left: 6px solid var(--gold); background: color-mix(in srgb, var(--gold) 9%, var(--surface)); align-items: center; }
+@media (max-width: 560px) { header.chap { padding: 14px 14px; gap: .3rem .75rem; } .chap-ic { width: 48px; height: 48px; } .chap-ic .mi { font-size: 1.6rem; } }

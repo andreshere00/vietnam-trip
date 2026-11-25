@@ -642,6 +642,29 @@ details.dl > summary::-webkit-details-marker { display: none; }
 .dlm button .mi { grid-row: span 2; font-size: 1.5rem; color: var(--gold); }
 .dlm button small { color: var(--muted); font-size: .78rem; }
 .dlm button:disabled { opacity: .5; cursor: progress; }
+
+/* Capítulos y separadores de sección */
+header.chap { --z: var(--red); position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .4rem 1rem; align-items: center; padding: 1.1rem 1.25rem; margin: 0 0 1.25rem; border: 1px solid color-mix(in srgb, var(--z) 38%, var(--line)); border-left: 8px solid var(--z); border-radius: 16px; background: linear-gradient(105deg, color-mix(in srgb, var(--z) 16%, var(--surface)), var(--surface) 78%); overflow: hidden; }
+header.chap::after { content: attr(data-n); position: absolute; right: 4rem; bottom: -1.3rem; font: 900 6.5rem/1 var(--display); color: color-mix(in srgb, var(--z) 14%, transparent); pointer-events: none; }
+.chap-ic { width: 3.6rem; height: 3.6rem; border-radius: 50%; background: var(--z); color: var(--on-red); display: grid; place-items: center; box-shadow: 0 0 0 5px color-mix(in srgb, var(--z) 22%, transparent); }
+.chap-ic .mi { font-size: 2.1rem; vertical-align: 0; }
+.chap-k { display: block; font: 700 .7rem/1.2 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--z); }
+header.chap h2 { font-family: var(--display); font-size: clamp(1.45rem, 4vw, 2rem); line-height: 1.15; margin: .15rem 0 0; color: var(--fg); }
+.chap-s { grid-column: 1 / -1; margin: 0; max-width: 62ch; color: var(--muted); position: relative; z-index: 1; }
+.notes header.chap { margin-bottom: 0; }
+.notes header.chap h2 { color: var(--fg); font-size: clamp(1.45rem, 4vw, 2rem); margin: .15rem 0 0; }
+.sdiv { display: flex; align-items: center; gap: 1rem; margin-block: 2.4rem 1.6rem; }
+.sdiv::before, .sdiv::after { content: ""; flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 17px); }
+.sdiv .orn { display: inline-flex; align-items: center; gap: .6rem; }
+.sdiv .orn .mi { font-size: 1.6rem; color: var(--gold); }
+.sdiv .star { width: 1.3rem; height: 1.3rem; background: var(--red); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+div.sdiv:not(.wrap) { margin-top: 2rem; }
+@media (max-width: 560px) {
+  header.chap { padding: .9rem 1rem; gap: .3rem .75rem; }
+  .chap-ic { width: 3rem; height: 3rem; }
+  .chap-ic .mi { font-size: 1.7rem; }
+  header.chap::after { font-size: 4.5rem; bottom: -.8rem; }
+}
 </style>
 </head>
 <body>
@@ -769,8 +792,11 @@ details.dl > summary::-webkit-details-marker { display: none; }
   </div>
 
   <section class="route" id="ruta" aria-labelledby="ruta-h">
-    <h2 id="ruta-h">La ruta de un vistazo</h2>
-    <p class="sub">Cinco bases y un crucero, con tres vuelos internos para no perder días en carretera. Los vuelos desde y hacia Madrid se suman aparte.</p>
+    <header class="chap" data-n="01" style="--z: var(--red)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">map</span></span>
+    <div><span class="chap-k">Capítulo 1 · Ruta</span><h2 id="ruta-h">La ruta de un vistazo</h2></div>
+    <p class="chap-s">Cinco bases y un crucero, con tres vuelos internos para no perder días en carretera. Los vuelos desde y hacia Madrid se suman aparte.</p>
+  </header>
     <div class="routegrid">
       <figure class="ovmap" id="ovMap"><figcaption>Vietnam, de sur a norte</figcaption></figure>
       <div>
@@ -783,6 +809,12 @@ details.dl > summary::-webkit-details-marker { display: none; }
     </div>
   </section>
 
+  <div class="sdiv" aria-hidden="true"><span class="orn"><span class="mi">spa</span><i class="star"></i><span class="mi">spa</span></span></div>
+  <header class="chap" data-n="02" style="--z: var(--gold)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">calendar_month</span></span>
+    <div><span class="chap-k">Capítulo 2 · Día a día</span><h2>Día a día</h2></div>
+    <p class="chap-s">Diecisiete días, del viernes 5 al domingo 21. Cada día lleva su mapa, sus horas y su pestaña de Tết; el color de la etiqueta indica la zona.</p>
+  </header>
   <div class="days">
 
     <section class="day trip" id="vie5">
@@ -984,16 +1016,26 @@ details.dl > summary::-webkit-details-marker { display: none; }
   </div>
 </main>
 
+<div class="wrap sdiv" aria-hidden="true"><span class="orn"><span class="mi">spa</span><i class="star"></i><span class="mi">spa</span></span></div>
+
 <section class="wrap acts" id="actividades" aria-labelledby="act-h">
-  <h2 id="act-h">Lista de actividades</h2>
-  <p class="sub">Todo lo que se puede hacer en el viaje, por ciudad: marcad lo que queréis hacer (se guarda en este navegador). Las alternativas, al final, se eligen aquí mismo y cambian el presupuesto.</p>
+  <header class="chap" data-n="03" style="--z: var(--jade)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">checklist</span></span>
+    <div><span class="chap-k">Capítulo 3 · Actividades</span><h2 id="act-h">Lista de actividades</h2></div>
+    <p class="chap-s">Todo lo que se puede hacer en el viaje, por ciudad: marcad lo que queréis hacer (se guarda en este navegador). Las alternativas, al final, se eligen aquí mismo y cambian el presupuesto.</p>
+  </header>
   <div class="altbar" id="actBar" aria-live="polite"></div>
   <div id="actList"></div>
 </section>
 
+<div class="wrap sdiv" aria-hidden="true"><span class="orn"><span class="mi">spa</span><i class="star"></i><span class="mi">spa</span></span></div>
+
 <section class="wrap alts" id="alternativas" aria-labelledby="alt-h">
-  <h2 id="alt-h">Alternativas y extras</h2>
-  <p class="sub">Elegid lo que más os apetezca: compras, fiesta, excursiones, cruceros y escapadas al norte. Cada alternativa aparece también dentro de su día, y el presupuesto se recalcula al elegir. Se guardan en este navegador.</p>
+  <header class="chap" data-n="04" style="--z: var(--indigo)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">alt_route</span></span>
+    <div><span class="chap-k">Capítulo 4 · Alternativas</span><h2 id="alt-h">Alternativas y extras</h2></div>
+    <p class="chap-s">Elegid lo que más os apetezca: compras, fiesta, excursiones, cruceros y escapadas al norte. Cada alternativa aparece también dentro de su día, y el presupuesto se recalcula al elegir. Se guardan en este navegador.</p>
+  </header>
   <div class="altbar" id="altBar" aria-live="polite"></div>
   <button type="button" class="altreset" id="altReset">Restaurar elección recomendada</button>
   <div class="altbase">
@@ -1010,9 +1052,14 @@ details.dl > summary::-webkit-details-marker { display: none; }
   <div id="altList"></div>
 </section>
 
+<div class="wrap sdiv" aria-hidden="true"><span class="orn"><span class="mi">spa</span><i class="star"></i><span class="mi">spa</span></span></div>
+
 <section class="wrap reservas" id="reservas" aria-labelledby="res-h">
-  <h2 id="res-h">Reservar y descargar</h2>
-  <p class="sub">Tres páginas con lo que hay que comprar según el itinerario que hayáis elegido, y el mejor sitio para cada cosa. Si cambiáis las alternativas, las listas cambian con ellas.</p>
+  <header class="chap" data-n="05" style="--z: var(--teal)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">shopping_cart</span></span>
+    <div><span class="chap-k">Capítulo 5 · Reservas y comida</span><h2 id="res-h">Reservar, comer y descargar</h2></div>
+    <p class="chap-s">Tres páginas con lo que hay que comprar según el itinerario que hayáis elegido, y el mejor sitio para cada cosa, más una guía de dónde comer en cada zona. Si cambiáis las alternativas, las listas cambian con ellas.</p>
+  </header>
   <div class="rgrid">
     <a class="rcard" href="estancia.html"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small id="rsStay">Dónde dormir, por categorías de precio</small></a>
     <a class="rcard" href="transporte.html"><span class="mi" aria-hidden="true">directions_transit</span><b>Transporte</b><small id="rsLeg">Vuelos, trenes, autobuses y traslados</small></a>
@@ -1021,9 +1068,14 @@ details.dl > summary::-webkit-details-marker { display: none; }
   <div class="rtools"><span id="dlMount"></span><span class="rprog" id="rsProg"></span></div>
 </section>
 
+<div class="wrap sdiv" aria-hidden="true"><span class="orn"><span class="mi">spa</span><i class="star"></i><span class="mi">spa</span></span></div>
+
 <section class="wrap budget" id="presupuesto">
-  <h2>Presupuesto estimado</h2>
-  <p class="sub">Euros por persona, para tres viajeros que comparten habitación triple, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
+  <header class="chap" data-n="06" style="--z: var(--hue)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">payments</span></span>
+    <div><span class="chap-k">Capítulo 6 · Presupuesto</span><h2>Presupuesto estimado</h2></div>
+    <p class="chap-s">Euros por persona, para tres viajeros que comparten habitación triple, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
+  </header>
   <div class="tiles" id="budgetTiles"></div>
   <h3 class="bh">En qué se va el dinero</h3>
   <div class="bar" id="budgetBar" role="img" aria-label="Reparto del presupuesto por categoría"></div>
@@ -1068,8 +1120,15 @@ details.dl > summary::-webkit-details-marker { display: none; }
   </div>
 </section>
 
+<div class="wrap sdiv" aria-hidden="true"><span class="orn"><span class="mi">spa</span><i class="star"></i><span class="mi">spa</span></span></div>
+
 <section class="notes" id="notas">
   <div class="wrap">
+    <header class="chap full" data-n="07" style="--z: var(--lotus)">
+    <span class="chap-ic" aria-hidden="true"><span class="mi">sticky_note_2</span></span>
+    <div><span class="chap-k">Capítulo 7 · Notas</span><h2>Notas del viaje</h2></div>
+    <p class="chap-s">Por qué este orden, qué clima encontraréis y qué llevar.</p>
+  </header>
     <div>
       <h2>Por qué este orden</h2>
       <ul>
@@ -2628,8 +2687,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
     /* Secciones generales */
     [['ruta', true], ['actividades', false], ['alternativas', false], ['presupuesto', true]].forEach(function (x) {
       var sec = document.getElementById(x[0]); if (!sec) return;
-      var h2 = sec.querySelector('h2'), body = document.createElement('div'); body.className = 'secbody';
-      while (h2.nextSibling) body.appendChild(h2.nextSibling);
+      var h2 = sec.querySelector('h2'), hd = h2.closest('header.chap') || h2, body = document.createElement('div'); body.className = 'secbody';
+      while (hd.nextSibling) body.appendChild(hd.nextSibling);
       sec.appendChild(body);
       var b = document.createElement('button'); b.type = 'button'; b.className = 'stog';
       b.innerHTML = '<span class="st-t"></span><span aria-hidden="true" class="chev"><span class="mi chv">expand_more</span></span>';
@@ -2682,9 +2741,6 @@ details.dl > summary::-webkit-details-marker { display: none; }
       document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, 'payments'); });
       document.querySelectorAll('.nav a.txt').forEach(function (a) {
         var m = { 'itinerario.html': 'timeline', '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#reservas': 'shopping_cart', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
-      });
-      document.querySelectorAll('.stog .st-t').forEach(function (t) {
-        var s = t.textContent; pre(t, /ruta/i.test(s) ? 'map' : /actividades/i.test(s) ? 'checklist' : /alternativas/i.test(s) ? 'alt_route' : /presupuesto/i.test(s) ? 'payments' : '');
       });
       document.querySelectorAll('.altbar, .actbar').forEach(function (b) { pre(b, 'bar_chart'); });
       document.querySelectorAll('.altgrp h3').forEach(function (h) {
