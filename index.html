@@ -2450,7 +2450,7 @@ html { scroll-padding-top: 4.5rem; }
     { id: 'fiesta-hoian', kind: 'add', grp: 'Salir de fiesta', title: 'Copas en Hội An o salida a Đà Nẵng', s: 'Cócteles junto al río o la noche de la playa de Đà Nẵng.',
       days: { jue11: { ev: [['21:30', 'Copas junto al río en Hội An o salida a Đà Nẵng', 'Hội An es tranquila de noche: cócteles y cerveza artesanal junto al río, música en directo y bares hasta medianoche. Para fiesta de verdad, Đà Nẵng está a 30 min en Grab, con bares, rooftops y discotecas junto a la playa de Mỹ Khê.', 'food:12,trans:5']] } } },
     { id: 'fiesta-hn', kind: 'add', grp: 'Salir de fiesta', title: 'Noche de fiesta en el Old Quarter', s: 'Tạ Hiện, calles peatonales y rooftops de Hà Nội.',
-      days: { vie19: { ev: [['21:30', 'Fiesta en Tạ Hiện y en un rooftop del lago', 'El viernes por la noche las calles peatonales del lago Hoàn Kiếm y el Old Quarter se llenan: bia hơi en Tạ Hiện, bares y discotecas, y rooftops con vistas al lago (cócteles €5–9). Los locales cierran hacia la 1:00–2:00. Cuidado: el sábado hay que salir a las 6:45 hacia el aeropuerto.', 'food:15']] } } },
+      days: { vie19: { ev: [['21:30', 'Fiesta en Tạ Hiện y en un rooftop del lago', 'El viernes por la noche las calles peatonales del lago Hoàn Kiếm y el Old Quarter se llenan: bia hơi en Tạ Hiện, bares y discotecas, y rooftops con vistas al lago (cócteles €5–9). Los locales cierran hacia la 1:00–2:00. Cuidado: el sábado hay que salir a las 6:45 hacia el aeropuerto (si volvéis de Sa Pa, llegáis hacia las 19:30 y la noche será corta).', 'food:15']] } } },
     { id: 'fiesta-sgn', kind: 'add', grp: 'Salir de fiesta', title: 'Última noche en Bùi Viện (Ho Chi Minh)', s: 'La calle de la fiesta de Ho Chi Minh antes del vuelo de madrugada.',
       days: { sab20: { ev: [['20:00', 'Copas y música en Bùi Viện y Phạm Ngũ Lão', 'Calle peatonal con bares, música en directo y comida callejera: la zona de fiesta más animada de la ciudad, con rooftops a 10 min. El vuelo a Madrid sale a las 2:30: salid de la calle hacia las 21:45 para el traslado de las 22:00.', 'food:12']] } } },
 
@@ -2508,7 +2508,7 @@ html { scroll-padding-top: 4.5rem; }
         ['16:30', 'Regreso a Hà Nội', 'Llegada hacia las 19:30.', ''],
         ['19:30', 'Cena en el Old Quarter', '', 'food:10']
       ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'sapa', kind: 'swap', grp: 'Escapadas al norte', title: 'Sa Pa: terrazas y Fansipan (2 días)', s: 'Sustituye el 18 y el 19: autobús a Sa Pa, aldeas de montaña, noche allí y teleférico al Fansipan.', noadd: true,
+    { id: 'sapa', kind: 'swap', grp: 'Escapadas al norte', title: 'Sa Pa: terrazas y Fansipan (2 días)', s: 'Sustituye el 18 y el 19: autobús a Sa Pa, aldeas de montaña, noche allí y teleférico al Fansipan. Se puede combinar con la fiesta del viernes 19 en Hà Nội.', noadd: true, okadd: ['fiesta-hn'],
       days: {
         jue18: { ev: [
           ['7:00', 'Salida de Hà Nội hacia Sa Pa', 'Autobús limousine, 5–6 h por la autopista a Lào Cai. Reservad con antelación: en Tết se llenan.', 'trans:12'],
@@ -2714,7 +2714,7 @@ html { scroll-padding-top: 4.5rem; }
   var blocked = function (a) {
     if (a.kind !== 'add') return '';
     var d = Object.keys(a.days)[0], s = swapFor(d);
-    if (s && s.noadd) return 'No cabe con «' + s.title + '».';
+    if (s && s.noadd && !(s.okadd && s.okadd.indexOf(a.id) >= 0)) return 'No cabe con «' + s.title + '».';
     if (a.req && !a.req.some(function (r) { return sel[r]; })) return 'Elige antes: ' + a.req.map(function (r) { return ALT_BY[r].title; }).join(' o ') + '.';
     return '';
   };
