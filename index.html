@@ -334,8 +334,7 @@ footer { text-align: center; padding-block: 1.5rem; color: var(--muted); font-si
 }
 html { scroll-padding-top: 4.5rem; }
 @media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
-  .day, .budget, .notes, .route { scroll-snap-align: start; }
+  html { scroll-behavior: smooth; }
 }
 .nextday { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin: 0; padding: .9rem 1.5rem; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--a) 8%, var(--surface)); color: var(--fg); text-decoration: none; font-family: var(--display); font-weight: 700; font-size: .84rem; letter-spacing: .06em; text-transform: uppercase; min-height: 3rem; }
 .nextday:hover { background: color-mix(in srgb, var(--a) 16%, var(--surface)); }
