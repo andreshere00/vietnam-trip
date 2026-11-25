@@ -20,6 +20,7 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura
 - **Un mapa por día** dibujado en SVG, con costa, ríos, lagos, carreteras, pagodas y paradas numeradas en el orden de la ruta, más el islote kárstico de Hạ Long.
 - **Leyenda y distancias**: kilómetros y tiempo aproximado de cada tramo, con el total del día y una escala.
 - **Opciones de transporte, entradas, comida, alojamiento y Tết** para cada día, con precios estimados. La pestaña «Tết» explica cierres, tradiciones y reservas.
+- **Alternativas y extras elegibles** (sección «Alternativas» y panel dentro de cada día): compras en Hội An, Hà Nội y Sài Gòn; fiesta en Hội An/Đà Nẵng, Hà Nội y Bùi Viện; Củ Chi (con campo de tiro opcional), Củ Chi y Mekong en un día, Đà Lạt con la pagoda de las botellas (Linh Phước); crucero eco en Lan Hạ y Cát Bà; Mai Châu, Sa Pa y Hà Giang Loop. Cada una indica su efecto en el presupuesto, que se recalcula, y la elección se guarda en el navegador.
 - **Presupuesto** por día y total (entradas, transporte, vuelos internos, comida y alojamiento), por persona.
 - **Fotos y fichas «por qué ir»** de casi cada evento (45 fotos distintas): miniatura en el itinerario y ficha emergente al pasar el ratón, enfocar o tocar un pin del mapa o un evento.
 - **Recorrido día a día**: la navegación fija marca el día visible, muestra el progreso del scroll y cada tarjeta enlaza con el día siguiente.
@@ -60,6 +61,7 @@ No hay dependencias ni paso de compilación. Las únicas peticiones externas son
 | `COAST`, `BORDER`, `RIVERS`, `LAKES`, `ISL`, `ROADS`, `GEO` | Geografía del mapa: costa, frontera, ríos, lagos, islotes de Hạ Long, carreteras y rótulos. |
 | `MAPS` | Mapa de cada día: encuadre, ruta, etiquetas y modo de transporte (`car`, `walk`, `bike`, `boat`). |
 | `OV`, `STAGES` | Mapa y tabla de la ruta general. |
+| `ALTS` | Alternativas y extras: `kind` (`swap` sustituye el plan base de esos días, `add` añade actividades), eventos con hora y coste, gastos sueltos y precio de la habitación. `noadd` impide combinarlas con extras y `req` exige elegir otra antes. |
 
 Las distancias se calculan con la fórmula de Haversine sobre la ruta, multiplicadas por un factor para aproximar el trazado por carretera. Se puede fijar una velocidad media por mapa con `speed` (por ejemplo, en el paso de Hải Vân).
 
@@ -91,5 +93,6 @@ La web se publica desde la rama `main`, carpeta raíz, con GitHub Pages. Cada `g
 - No incluye eSIM, seguro, propinas ni compras personales.
 - El Tết Đinh Mùi cae el sábado 6 de febrero de 2027 y el 20 de febrero es Rằm tháng Giêng. Según el aviso del Ministerio del Interior vietnamita ([Bộ Nội vụ, 2027](https://cafef.vn/bo-noi-vu-thong-bao-chi-tiet-lich-nghi-tet-am-lich-quoc-khanh-2027-188261010120450778.chn)), el descanso oficial va del 4 al 10 de febrero; los horarios reales de museos y restaurantes cambian, así que conviene comprobarlos unos días antes.
 - Los españoles pueden entrar en Vietnam sin visado hasta 45 días (exención vigente hasta marzo de 2028, según [Tuoi Tre News](https://news.tuoitre.vn/vietnam-to-extend-visa-exemption-for-citizens-of-12-countries-until-2028-10385082.htm)). Confírmalo en la web del Ministerio de Exteriores antes de volar.
+- Los precios de las alternativas son estimaciones. El campo de tiro de Củ Chi cobra la bala aparte (unos 60.000 ₫) y la edad mínima varía según el operador; el paquete de Hà Giang con easy rider ronda los US$150–425 según grupo y alojamiento; Bhaya/The Au Co se anuncian como ecológicos, pero conviene confirmarlo con el operador. Fuentes: [Cu Chi Tunnels, shooting range price list](https://www.thisboundlessworld.com/?p=2850), [Bhaya Cruises](https://vietnam.travel/things-to-do/sustainable-cruising-bhaya-cruises), [Linh Phuoc Pagoda](https://vietnamdiscovery.com/dalat/attractions/linh-phuoc-pagoda/).
 - Los mapas son esquemas con trazados aproximados. Sirven para orientarse, no para navegar, y la posición de algunos puntos (el delta, la bahía de Hạ Long y el aeropuerto) es aproximada.
 - Las fotos son de Wikimedia Commons y se acreditan en [CREDITS.md](CREDITS.md).

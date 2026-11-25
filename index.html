@@ -338,6 +338,46 @@ html { scroll-padding-top: 4.5rem; }
 .nextday:hover { background: color-mix(in srgb, var(--a) 16%, var(--surface)); }
 .nextday span:last-child { color: var(--a); font-size: 1.2rem; }
 @media (max-width: 640px) { .nextday { padding-inline: 1rem; } }
+
+/* Alternativas */
+.is-off { display: none !important; }
+.alts { padding-block: 2rem 0; scroll-margin-top: 4.5rem; }
+.alts h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .25rem; }
+.alts .sub { margin: 0 0 .9rem; color: var(--muted); max-width: 52rem; }
+.altbar { display: inline-block; padding: .45rem .8rem; background: color-mix(in srgb, var(--gold) 14%, var(--surface)); border: 1px solid var(--line); border-left: 5px solid var(--gold); font-variant-numeric: tabular-nums; }
+.altreset { margin-left: .6rem; font: inherit; font-size: .85rem; padding: .4rem .8rem; background: none; color: var(--fg); border: 1px solid var(--line); cursor: pointer; min-height: 2.5rem; }
+.altbase { margin: 1rem 0; padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--jade); }
+.altbase h3 { font-family: var(--display); font-size: 1rem; margin: 0 0 .4rem; color: var(--jade); }
+.altbase ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; font-size: .93rem; }
+.altgrp { margin-top: 1.25rem; }
+.altgrp h3 { font-family: var(--display); font-size: 1.05rem; margin: 0 0 .5rem; color: var(--red); }
+.altcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: .75rem; }
+.altcard { display: flex; flex-direction: column; gap: .4rem; min-width: 0; padding: .8rem .9rem; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--muted); }
+.altcard.on { border-color: var(--jade); border-top-color: var(--jade); background: color-mix(in srgb, var(--jade) 10%, var(--surface)); }
+.altcard.dis { opacity: .6; }
+.ac-h { display: flex; flex-wrap: wrap; gap: .25rem .6rem; align-items: baseline; justify-content: space-between; }
+.ac-h b { font-size: 1rem; line-height: 1.3; }
+.ac-k { font-family: var(--display); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: .05rem .35rem; white-space: nowrap; }
+.altcard p { margin: 0; font-size: .9rem; color: var(--muted); }
+.altcard .ac-w { color: var(--red); font-size: .82rem; }
+.ac-m { display: flex; flex-wrap: wrap; gap: .2rem .8rem; font-size: .84rem; font-variant-numeric: tabular-nums; }
+.ac-d { font-weight: 700; color: var(--a, var(--red)); }
+.ac-b { margin-top: auto; align-self: flex-start; font: inherit; font-weight: 700; font-size: .88rem; min-height: 2.5rem; padding: .35rem 1rem; background: var(--red); color: var(--on-red); border: 0; cursor: pointer; }
+.altcard.on .ac-b { background: none; color: var(--fg); border: 1px solid var(--fg); }
+.ac-b:disabled { cursor: not-allowed; background: var(--line); color: var(--muted); }
+.altwrap { padding: .75rem 1.5rem 0; }
+.altd { border: 1px dashed var(--a); background: color-mix(in srgb, var(--a) 5%, var(--surface)); }
+.altd > summary { cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .7rem; padding: .55rem .8rem; min-height: 2.75rem; font-family: var(--display); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--a); font-weight: 700; }
+.altd .altn { background: var(--a); color: var(--bg); border-radius: 999px; min-width: 1.4rem; text-align: center; padding: 0 .35rem; }
+.altd .altsel { text-transform: none; letter-spacing: 0; font-family: var(--body); font-weight: 600; color: var(--jade); }
+.altd .altcards { padding: .2rem .8rem .8rem; }
+.events.altev { border-top: 3px double var(--a); }
+.althead { list-style: none; padding: .2rem 0 .5rem; font-weight: 700; display: flex; flex-wrap: wrap; gap: .1rem .8rem; align-items: baseline; }
+.althead span { font-weight: 400; color: var(--muted); font-size: .88rem; }
+.altag { margin-left: .6rem; font-style: normal; font-family: var(--display); font-weight: 600; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--jade); color: var(--jade); padding: .1rem .35rem; vertical-align: middle; }
+.altnote { margin: .6rem 0 0; font-size: .9rem; color: var(--muted); }
+.daytotal small { color: var(--jade); }
+@media (max-width: 640px) { .altwrap { padding-inline: 1rem; } }
 </style>
 </head>
 <body>
@@ -416,6 +456,7 @@ html { scroll-padding-top: 4.5rem; }
       <li><a href="#dom21" style="--z: var(--muted)"><b>21</b><span>Dom</span></a></li>
       <li class="sep" aria-hidden="true"></li>
       <li><a class="txt" href="#ruta">Ruta</a></li>
+      <li><a class="txt" href="#alternativas">Alternativas</a></li>
       <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
       <li><a class="txt" href="#notas">Notas</a></li>
     </ul>
@@ -659,6 +700,24 @@ html { scroll-padding-top: 4.5rem; }
   </div>
 </main>
 
+<section class="wrap alts" id="alternativas" aria-labelledby="alt-h">
+  <h2 id="alt-h">Alternativas y extras</h2>
+  <p class="sub">Elegid lo que más os apetezca: compras, fiesta, excursiones, cruceros y escapadas al norte. Cada alternativa aparece también dentro de su día, y el presupuesto se recalcula al elegir. Se guardan en este navegador.</p>
+  <div class="altbar" id="altBar" aria-live="polite"></div>
+  <button type="button" class="altreset" id="altReset">Volver al plan base</button>
+  <div class="altbase">
+    <h3>Ya está en el plan base</h3>
+    <ul>
+      <li><strong>Hang Múa (Ninh Bình):</strong> los ~500 escalones hasta el mirador, el 15.</li>
+      <li><strong>Huế, Ninh Bình y Hội An:</strong> Huế el 12–13, Ninh Bình el 15–16 y Hội An del 8 al 12.</li>
+      <li><strong>Delta del Mekong:</strong> excursión de día completo el 7.</li>
+      <li><strong>Compras:</strong> Bến Thành (8 y 20), sastrería y mercado de Hội An (9 y 11) y el Old Quarter (19). Las alternativas añaden tardes de compras más largas.</li>
+      <li><strong>Crucero en Hạ Long:</strong> 16–17. Si lo mantenéis, escoged uno ecológico (sin plásticos de un solo uso, aguas tratadas, flota moderna) y, si es posible, en la bahía de Lan Hạ.</li>
+    </ul>
+  </div>
+  <div id="altList"></div>
+</section>
+
 <section class="wrap budget" id="presupuesto">
   <h2>Presupuesto estimado</h2>
   <p class="sub">Euros por persona. Se supone que los dos viajeros comparten habitación, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
@@ -683,6 +742,7 @@ html { scroll-padding-top: 4.5rem; }
       <tfoot id="budgetFoot"></tfoot>
     </table>
   </div>
+  <p class="altnote" id="budgetAlt"></p>
   <div class="bnotes">
     <div>
       <h3>Qué incluye</h3>
@@ -1092,6 +1152,7 @@ html { scroll-padding-top: 4.5rem; }
         ['Pesca de calamares', 'Opcional', 'Se cocinan en el momento.']
       ],
       sleep: [
+        ['Elegid un crucero eco-friendly', 'Criterio', 'Preguntad por política sin plásticos de un solo uso, depuradora de aguas, motores modernos y respeto a las zonas de fondeo. Bhaya (y su barco The Au Co, en Lan Hạ) se anuncian así; confirmadlo con el operador. La bahía de Lan Hạ y Cát Bà están menos masificadas que la zona central de Hạ Long.'],
         ['Crucero 4–5* con cabina (16)', '€80–150 por persona', 'Bahía de Hạ Long o Lan Hạ (más tranquila). Estimado: €100 por persona.'],
         ['Junco tradicional (económico)', '€50–70', 'Menos lujo.'],
         ['Hotel en Hạ Long ciudad', '€35–60', 'Sin la experiencia en la bahía.']
@@ -1752,7 +1813,7 @@ html { scroll-padding-top: 4.5rem; }
   try { drawOverview(); } catch (e) { if (window.console) console.error(e); }
 
   /* ---------- Montaje de cada día ---------- */
-  var rows = [], grand = { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 };
+  var rows = [], grand = { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 }, DAYREF = {}, ORDER = [];
   document.querySelectorAll('.day').forEach(function (day) {
     (MAPS[day.id] || []).forEach(function (m) { try { drawMap(m, day); } catch (e) { if (window.console) console.error(e); } });
 
@@ -1805,6 +1866,7 @@ html { scroll-padding-top: 4.5rem; }
     var head = day.querySelector('.date'), dt = document.createElement('span');
     dt.className = 'daytotal'; dt.innerHTML = 'Día: <b>~' + eur(total) + '</b> por persona';
     head.appendChild(dt);
+    DAYREF[day.id] = { day: day, t: t, dt: dt, base: day.querySelector('.events') }; ORDER.push(day.id);
 
     var o = OPTS[day.id];
     if (o) {
@@ -1962,46 +2024,325 @@ html { scroll-padding-top: 4.5rem; }
     sync();
   })();
 
-  /* ---------- Presupuesto ---------- */
-  var gt = grand.act + grand.trans + grand.fly + grand.food + grand.lodge;
-  var all = gt + FLIGHT;
-  var tiles = [
-    ['main', 'Total con vuelo internacional', eur(all), 'por persona'],
-    ['', 'Para dos personas', eur(all * 2), 'vuelo internacional incluido'],
-    ['', 'Sin vuelo internacional', eur(gt), 'por persona, vuelos internos incluidos'],
-    ['', 'Media diaria en Vietnam', eur(Math.round(gt / DAYS_VN)), DAYS_VN + ' días']
+  /* ---------- Alternativas y extras (elegibles desde la web) ----------
+     kind: 'swap' sustituye el plan base de esos días; 'add' añade actividades al día.
+     days[día].ev: [hora, título, texto, coste]; ex: gastos sueltos; room: habitación doble por noche (solo en 'swap'). */
+  var ALTS = [
+    { id: 'comp-hoian', kind: 'add', grp: 'Compras', title: 'Compras en Hội An', s: 'Linternas de seda, zapatos de cuero a medida y seda, en una tarde sin prisa.',
+      days: { mar9: { ev: [['16:00', 'Compras en Hội An: linternas, cuero y seda', 'Linternas de seda plegables (€3–10), zapatos y bolsos de cuero a medida (€25–50), seda y cerámica. Regatead con una sonrisa: se baja un 20–30%. Se hace entre el sastre y el atardecer.', 'note:Compras aparte; unos €30–70']] } } },
+    { id: 'comp-hn', kind: 'add', grp: 'Compras', title: 'Compras en el Old Quarter de Hà Nội', s: 'Seda, café, té y lacados en las calles de los gremios.',
+      days: { mie17: { ev: [['16:30', 'Compras: Hàng Gai, Hàng Bông y Đồng Xuân', 'Hàng Gai es la calle de la seda y los bordados; Hàng Bông, de tejidos y ropa; Đồng Xuân, el mercado cubierto mayorista (cierra hacia las 18:00). Café en grano, té y lacados como regalo.', 'note:Compras aparte; unos €30–80']] } } },
+    { id: 'comp-sgn', kind: 'add', grp: 'Compras', title: 'Compras en el Distrito 1 de Sài Gòn', s: 'Centros comerciales y mercados antes de volar.',
+      days: { sab20: { ev: [['17:30', 'Compras: Takashimaya, Saigon Square y Đồng Khởi', 'Saigon Square es de regateo (ropa, bolsos, souvenirs); Takashimaya y Vincom, de precio fijo y con aire acondicionado. Dejad la maleta en la consigna del hotel.', 'trans:3,note:Compras aparte; unos €30–80']] } } },
+
+    { id: 'fiesta-hoian', kind: 'add', grp: 'Salir de fiesta', title: 'Copas en Hội An o salida a Đà Nẵng', s: 'Cócteles junto al río o la noche de la playa de Đà Nẵng.',
+      days: { jue11: { ev: [['21:30', 'Copas junto al río en Hội An o salida a Đà Nẵng', 'Hội An es tranquila de noche: cócteles y cerveza artesanal junto al río, música en directo y bares hasta medianoche. Para fiesta de verdad, Đà Nẵng está a 30 min en Grab, con bares, rooftops y discotecas junto a la playa de Mỹ Khê.', 'food:12,trans:5']] } } },
+    { id: 'fiesta-hn', kind: 'add', grp: 'Salir de fiesta', title: 'Noche de fiesta en el Old Quarter', s: 'Tạ Hiện, calles peatonales y rooftops de Hà Nội.',
+      days: { vie19: { ev: [['21:30', 'Fiesta en Tạ Hiện y en un rooftop del lago', 'El viernes por la noche las calles peatonales del lago Hoàn Kiếm y el Old Quarter se llenan: bia hơi en Tạ Hiện, bares y discotecas, y rooftops con vistas al lago (cócteles €5–9). Los locales cierran hacia la 1:00–2:00. Cuidado: el sábado hay que salir a las 6:45 hacia el aeropuerto.', 'food:15']] } } },
+    { id: 'fiesta-sgn', kind: 'add', grp: 'Salir de fiesta', title: 'Última noche en Bùi Viện (Sài Gòn)', s: 'La calle de la fiesta de Sài Gòn antes del vuelo de madrugada.',
+      days: { sab20: { ev: [['20:00', 'Copas y música en Bùi Viện y Phạm Ngũ Lão', 'Calle peatonal con bares, música en directo y comida callejera: la zona de fiesta más animada de la ciudad, con rooftops a 10 min. El vuelo a Madrid sale a las 2:30: salid de la calle hacia las 21:45 para el traslado de las 22:00.', 'food:12']] } } },
+
+    { id: 'cuchi-mekong', kind: 'swap', grp: 'Excursiones desde Sài Gòn', title: 'Củ Chi y Mekong en un solo día', s: 'Túneles de la guerra por la mañana y río Tiền por la tarde, en una excursión de día completo (11–12 h).',
+      days: { dom7: { ev: [
+        ['7:00', 'Salida hacia Củ Chi', 'Excursión de día completo con recogida en el hotel: ~1 h 15 min hasta los túneles de Bến Dược.', 'act:45'],
+        ['8:30', 'Túneles de Củ Chi', 'Red subterránea de la guerra: se baja a un tramo ensanchado y se ven trampas y cocinas bajo tierra. Reservad 2 h. Junto al recinto hay un campo de tiro opcional (ver «Campo de tiro»).', 'note:Entrada incluida en la excursión'],
+        ['11:30', 'Almuerzo y traslado a Mỹ Tho', 'Comida incluida; ~2 h por autopista.', 'note:Incluido en la excursión'],
+        ['14:00', 'Barco por el río Tiền y la isla Thới Sơn', 'Versión corta del plan base: lancha, caramelo de coco y paseo en sampán.', 'note:Incluido en la excursión'],
+        ['17:30', 'Regreso a Sài Gòn', 'Llegada hacia las 19:30–20:00. Es un día largo.', ''],
+        ['20:30', 'Cena en el Distrito 1', 'Cơm tấm o bún thịt nướng.', 'food:8']
+      ], ex: { food: 5 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
+    { id: 'cuchi', kind: 'swap', grp: 'Excursiones desde Sài Gòn', title: 'Solo Củ Chi, con tarde libre', s: 'Túneles de Củ Chi por la mañana y tarde en el centro. El Mekong queda fuera.',
+      days: { dom7: { ev: [
+        ['8:00', 'Salida hacia Củ Chi', 'Excursión de media jornada (4–5 h) o coche con conductor; 70 km, 1 h 15 min.', 'act:20'],
+        ['9:30', 'Túneles de Củ Chi', 'Recorrido por los túneles, trampas y cocinas subterráneas; se puede bajar al tramo ensanchado. Junto al recinto hay un campo de tiro opcional.', 'note:Entrada incluida en la excursión'],
+        ['12:30', 'Almuerzo en el Distrito 1', 'Vuelta hacia las 13:00.', 'food:8'],
+        ['14:30', 'Tarde libre: Ópera, Đồng Khởi y Bitexco', 'Paseo por la Ópera, el Ayuntamiento y la calle Đồng Khởi; mirador del Bitexco Skydeck.', 'act:12'],
+        ['19:30', 'Cena en el Distrito 1', 'Phở, bánh xèo o cơm tấm.', 'food:10']
+      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
+    { id: 'tiro-cuchi', kind: 'add', grp: 'Excursiones desde Sài Gòn', title: 'Campo de tiro de Củ Chi', s: 'Disparar fusiles de asalto junto a los túneles. Requiere elegir antes una de las excursiones a Củ Chi.', req: ['cuchi', 'cuchi-mekong'],
+      days: { dom7: { ev: [['10:30', 'Campo de tiro de Củ Chi', 'Junto a los túneles hay un campo de tiro con fusiles de asalto (AK-47, M16 y otros, según el día). Las balas se pagan aparte y en efectivo: unos 60.000 ₫ (~€2) cada una, en paquetes de 10. Se dispara con un monitor y protección auditiva. La edad mínima es de 16 a 18 años según el operador. Precios y armas varían: confirmadlo con la excursión.', 'act:20']] } } },
+    { id: 'dalat', kind: 'swap', grp: 'Excursiones desde Sài Gòn', title: 'Đà Lạt y la pagoda de las botellas', s: 'Excursión en avión para ver Linh Phước, la «pagoda de las botellas». Madrugón y dos vuelos, sin cambiar de hotel.',
+      days: { dom7: { ev: [
+        ['5:00', 'Salida al aeropuerto de Tân Sơn Nhất', 'El vuelo sale hacia las 7:00–7:30. Comprobad los horarios de Vietjet, Vietnam Airlines o Bamboo y comprad pronto: en Tết suben.', 'trans:7'],
+        ['7:30', 'Vuelo Sài Gòn → Đà Lạt (Liên Khương)', 'Una hora de vuelo. El aeropuerto está a ~30 km de la ciudad: taxi o bus, unos 40 min.', 'fly:45'],
+        ['9:30', 'Pagoda Linh Phước (la de las botellas)', 'También llamada Ve Chai: fachada y esculturas cubiertas de cristal, porcelana y botellas rotas, con un dragón hecho con unas 12.000 botellas. Está en Trại Mát, a las afueras de Đà Lạt. Dedicadle 1–2 h; abre hacia las 8:00–17:00.', 'trans:10'],
+        ['12:00', 'Almuerzo en Đà Lạt', 'Bánh căn o lẩu gà lá é. La ciudad está a 1.500 m: fresco (12–22 °C).', 'food:8'],
+        ['14:00', 'Cascada de Datanla y paseo por el centro', 'Cascada con toboganes y mirador; después el mercado de Đà Lạt y el lago Xuân Hương.', 'act:6'],
+        ['17:30', 'Vuelo Đà Lạt → Sài Gòn', 'Reservad la vuelta para última hora de la tarde. Llegada hacia las 19:00.', 'fly:45'],
+        ['20:30', 'Cena en el Distrito 1', 'Cenad cerca del hotel.', 'food:8']
+      ], ex: { food: 4 }, room: 55, n: 'Distrito 1, Sài Gòn' } } },
+
+    { id: 'catba', kind: 'swap', grp: 'Cruceros', title: 'Crucero eco en Lan Hạ y Cát Bà', s: 'En vez de Hạ Long: bahía de Lan Hạ, más tranquila y limpia, con un operador ecológico y kayak entre los karst.', noadd: true,
+      days: {
+        mar16: { ev: [
+          ['7:30', 'Salida hacia Hải Phòng y Cát Bà', 'Coche con conductor ~2 h 45 min hasta el puerto de Đình Vũ y ferry rápido a Cát Bà (~45 min), o el shuttle del propio crucero.', 'trans:45'],
+          ['12:30', 'Embarque en un crucero eco', 'Elegid un operador con política sin plásticos de un solo uso, agua tratada y flota moderna (Bhaya y su barco The Au Co se anuncian así; confirmadlo al reservar). Lan Hạ está menos masificada que Hạ Long.', 'note:Incluido en el crucero'],
+          ['14:30', 'Kayak y aldea de Việt Hải', 'Kayak entre karst y paseo por la aldea de Việt Hải, en el parque nacional de Cát Bà.', 'note:Incluido en el crucero'],
+          ['17:30', 'Atardecer y cena a bordo', 'Noche fondeados en Lan Hạ.', 'note:Incluido en el crucero']
+        ], ex: { food: 5 }, room: 220, n: 'cabina doble en crucero eco de Lan Hạ' },
+        mie17: { ev: [
+          ['6:30', 'Tai chi y desayuno a bordo', 'En cubierta, con la bahía entre la bruma.', 'note:Incluido en el crucero'],
+          ['9:30', 'Desembarco en Cát Bà', 'Último paseo en barco y regreso al puerto.', 'note:Incluido en el crucero'],
+          ['11:30', 'Regreso a Hà Nội', 'Ferry y shuttle: ~4 h 30 min; llegada hacia las 16:00.', 'trans:12'],
+          ['16:30', 'Check-in en el Old Quarter', '', ''],
+          ['19:30', 'Cena en el Old Quarter', 'Bún chả o phở.', 'food:10']
+        ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
+
+    { id: 'maichau', kind: 'swap', grp: 'Escapadas al norte', title: 'Valle de Mai Châu', s: 'Excursión de un día desde Hà Nội: arrozales, aldeas thái y bici por el valle.', noadd: true,
+      days: { jue18: { ev: [
+        ['7:30', 'Salida hacia Mai Châu', 'Coche con conductor, ~3 h (135 km). Parada en el paso de Thung Khe, con vistas al valle.', 'trans:45'],
+        ['11:00', 'Aldeas thái de Poom Coong y Lác', 'Casas sobre pilotes, telares y arrozales verdes; tejidos de colores como souvenir.', 'act:3'],
+        ['13:00', 'Almuerzo thái', 'Arroz glutinoso, pollo de la huerta y verduras de la zona.', 'food:8'],
+        ['15:00', 'Bici entre arrozales', 'Alquiler de bici por los caminos del valle.', 'act:2'],
+        ['16:30', 'Regreso a Hà Nội', 'Llegada hacia las 19:30.', ''],
+        ['19:30', 'Cena en el Old Quarter', '', 'food:10']
+      ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
+    { id: 'sapa', kind: 'swap', grp: 'Escapadas al norte', title: 'Sa Pa: terrazas y Fansipan (2 días)', s: 'Sustituye el 18 y el 19: autobús a Sa Pa, aldeas de montaña, noche allí y teleférico al Fansipan.', noadd: true,
+      days: {
+        jue18: { ev: [
+          ['7:00', 'Salida de Hà Nội hacia Sa Pa', 'Autobús limousine, 5–6 h por la autopista a Lào Cai. Reservad con antelación: en Tết se llenan.', 'trans:12'],
+          ['13:00', 'Almuerzo y check-in en Sa Pa', 'Pueblo de montaña a 1.600 m; en febrero hace frío (0–10 °C) y hay niebla.', 'food:8'],
+          ['15:00', 'Aldea de Cát Cát', 'Paseo por terrazas y casas de la etnia H’mông, con cascada y telares.', 'act:3'],
+          ['18:30', 'Cena y mercado nocturno', 'Hotpot, brochetas y vino caliente.', 'food:10']
+        ], ex: { food: 4 }, room: 40, n: 'hotel en Sa Pa' },
+        vie19: { ev: [
+          ['7:30', 'Fansipan en teleférico', 'La cumbre más alta de Indochina (3.143 m); con niebla puede no verse nada. Ropa de abrigo.', 'act:30'],
+          ['11:00', 'Paseo por Lao Chải y Tả Van', 'Sendero ligero entre arrozales y aldeas.', 'act:3'],
+          ['13:30', 'Regreso a Hà Nội', 'Autobús limousine; llegada hacia las 19:30.', 'trans:12'],
+          ['20:00', 'Cena en el Old Quarter', '', 'food:10']
+        ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
+    { id: 'hagiang', kind: 'swap', grp: 'Escapadas al norte', title: 'Hà Giang Loop (3 días en moto)', s: 'Sustituye el crucero de Hạ Long y los días en Hà Nội (16–19): montañas del extremo norte con easy rider. Es lo más duro del viaje.', noadd: true,
+      days: {
+        mar16: { ev: [
+          ['7:30', 'Ninh Bình → Hà Nội', 'Coche con conductor, ~2 h.', 'trans:20'],
+          ['10:30', 'Autobús limousine Hà Nội → Hà Giang', '~6 h por la autopista de Tuyên Quang. Se reserva con un día de antelación.', 'trans:10'],
+          ['17:00', 'Check-in, permiso y reunión con el easy rider', 'El permiso de la zona ronda 260.000 ₫ (~€9) y suele gestionarlo el operador.', 'act:9'],
+          ['19:30', 'Cena en Hà Giang', '', 'food:6']
+        ], ex: { food: 3 }, room: 25, n: 'hotel en Hà Giang' },
+        mie17: { ev: [
+          ['8:00', 'Hà Giang → Quản Bạ (Montañas Gemelas) → Yên Minh', 'Primer día de ruta con un conductor (easy rider): bosque de pinos y curvas. El paquete de 3 días incluye moto con conductor, gasolina y seguro.', 'act:230'],
+          ['12:30', 'Almuerzo en Yên Minh', '', 'food:6'],
+          ['15:00', 'Llegada a Đồng Văn', 'Casco antiguo y mercado; si es Tết, mucho cierra.', ''],
+          ['19:00', 'Cena y noche en un homestay', '', 'food:6']
+        ], ex: { food: 3 }, room: 18, n: 'homestay en Đồng Văn' },
+        jue18: { ev: [
+          ['8:00', 'Đồng Văn → torre de la bandera de Lũng Cú', 'Extremo norte de Vietnam, frontera con China.', ''],
+          ['11:00', 'Mèo Vạc y paso de Mã Pí Lèng', 'Una de las carreteras más espectaculares del país, sobre el cañón del río Nho Quế. Hay paseo en barco opcional.', 'act:8'],
+          ['13:00', 'Almuerzo en Mèo Vạc', '', 'food:6'],
+          ['16:00', 'Llegada a Du Già', 'Valle de arrozales y casas de piedra.', ''],
+          ['19:00', 'Cena y noche en un homestay', '', 'food:6']
+        ], ex: { food: 3 }, room: 18, n: 'homestay en Du Già' },
+        vie19: { ev: [
+          ['8:00', 'Du Già → Bắc Mê → Hà Giang', 'Último tramo en moto por carreteras de montaña.', ''],
+          ['13:00', 'Almuerzo en Hà Giang', '', 'food:6'],
+          ['14:30', 'Autobús limousine Hà Giang → Hà Nội', '~6 h; llegada hacia las 20:30. Mejor no apurar: al día siguiente se sale a las 6:45 hacia el aeropuerto.', 'trans:10'],
+          ['21:00', 'Cena en el Old Quarter', '', 'food:8']
+        ], ex: { food: 3 }, room: 52, n: 'Old Quarter, Hà Nội' } } }
   ];
-  document.getElementById('budgetTiles').innerHTML = tiles.map(function (t) {
-    return '<div class="tile ' + t[0] + '"><small>' + t[1] + '</small><b>' + t[2] + '</b><span>' + t[3] + '</span></div>';
-  }).join('');
 
-  var CAT = [['act', 'Entradas', grand.act], ['trans', 'Transporte', grand.trans], ['fly', 'Vuelos internos', grand.fly], ['food', 'Comida', grand.food], ['lodge', 'Alojamiento', grand.lodge], ['flight', 'Vuelo internacional (est.)', FLIGHT]];
-  var bar = document.getElementById('budgetBar'), leg = document.getElementById('budgetLeg');
-  CAT.forEach(function (c) {
-    var pct = c[2] / all * 100, sp = document.createElement('span');
-    sp.className = c[0]; sp.style.width = pct + '%'; sp.title = c[1] + ': ' + eur(c[2]);
-    bar.appendChild(sp);
-    var li = document.createElement('li');
-    li.className = c[0];
-    li.innerHTML = '<i></i>' + c[1] + '<b>' + eur(c[2]) + '</b><span>' + Math.round(pct) + '%</span>';
-    leg.appendChild(li);
+  /* ---------- Alternativas: estado, tarjetas y recálculo ---------- */
+  var ZERO = function () { return { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 }; };
+  var cp = function (t) { var o = ZERO(); KEYS.forEach(function (k) { o[k] = t[k] || 0; }); return o; };
+  var ALT_BY = {};
+  ALTS.forEach(function (a) {
+    ALT_BY[a.id] = a; a.c = {};
+    Object.keys(a.days).forEach(function (d) {
+      var e = a.days[d], t = ZERO();
+      e.ev.forEach(function (v) {
+        (v[3] || '').split(',').forEach(function (sp) {
+          var p = sp.split(':'); if (p[0] && p[0] !== 'note' && t[p[0]] !== undefined) t[p[0]] += +p[1];
+        });
+      });
+      if (a.kind === 'swap') { t.food += (e.ex && e.ex.food) || 0; t.trans += (e.ex && e.ex.trans) || 0; t.lodge = (e.room || 0) / 2; }
+      a.c[d] = t;
+    });
   });
-
-  var mini = function (t, tot) {
-    return '<div class="mini" aria-hidden="true">' + KEYS.map(function (k) {
-      return t[k] ? '<span class="' + k + '" style="width:' + (t[k] / tot * 100) + '%"></span>' : '';
+  var sel = {}, SK = 'vn-alts';
+  try { (JSON.parse(localStorage.getItem(SK) || '[]') || []).forEach(function (id) { if (ALT_BY[id]) sel[id] = 1; }); } catch (e) {}
+  var swapFor = function (d) {
+    for (var i = 0; i < ALTS.length; i++) if (ALTS[i].kind === 'swap' && sel[ALTS[i].id] && ALTS[i].days[d]) return ALTS[i];
+    return null;
+  };
+  var blocked = function (a) {
+    if (a.kind !== 'add') return '';
+    var d = Object.keys(a.days)[0], s = swapFor(d);
+    if (s && s.noadd) return 'No cabe con «' + s.title + '».';
+    if (a.req && !a.req.some(function (r) { return sel[r]; })) return 'Elige antes: ' + a.req.map(function (r) { return ALT_BY[r].title; }).join(' o ') + '.';
+    return '';
+  };
+  var normalize = function () { for (var n = 0; n < 3; n++) ALTS.forEach(function (a) { if (sel[a.id] && blocked(a)) delete sel[a.id]; }); };
+  normalize();
+  var finalT = function (d) {
+    var sw = swapFor(d), t = cp(sw ? sw.c[d] : DAYREF[d].t);
+    ALTS.forEach(function (a) { if (a.kind === 'add' && sel[a.id] && a.days[d]) KEYS.forEach(function (k) { t[k] += a.c[d][k]; }); });
+    return t;
+  };
+  var sumT = function (t) { return t.act + t.trans + t.fly + t.food + t.lodge; };
+  var delta = function (a) {
+    var x = 0;
+    Object.keys(a.days).forEach(function (d) {
+      if (a.kind === 'swap') x += sumT(a.c[d]) - sumT(DAYREF[d].t); else x += sumT(a.c[d]);
+    });
+    return x;
+  };
+  var sg = function (x) { return (x >= 0 ? '+' : '−') + eur(Math.abs(x)); };
+  var NDAYS = function (a) { var n = Object.keys(a.days).length; return a.kind === 'add' ? 'Añade al día' : (n > 1 ? 'Cambia ' + n + ' días' : 'Cambia el día'); };
+  var cards = [];
+  var makeCard = function (a, dayId) {
+    var c = document.createElement('div'); c.className = 'altcard';
+    var ds = Object.keys(a.days).map(function (d) { return NAMES[d]; }).join(' · ');
+    c.innerHTML = '<div class="ac-h"><b>' + a.title + '</b><span class="ac-k">' + NDAYS(a) + '</span></div><p>' + a.s + '</p>' +
+      '<div class="ac-m">' + (dayId ? '' : '<span>' + ds + '</span>') + '<span class="ac-d"></span></div><p class="ac-w" hidden></p>' +
+      '<button type="button" class="ac-b" aria-pressed="false"></button>';
+    var b = c.querySelector('.ac-b');
+    b.addEventListener('click', function () {
+      if (sel[a.id]) delete sel[a.id];
+      else {
+        if (blocked(a)) return;
+        if (a.kind === 'swap') ALTS.forEach(function (o) {
+          if (o !== a && o.kind === 'swap' && sel[o.id] && Object.keys(o.days).some(function (d) { return a.days[d]; })) delete sel[o.id];
+        });
+        sel[a.id] = 1;
+      }
+      normalize();
+      try { localStorage.setItem(SK, JSON.stringify(Object.keys(sel))); } catch (e) {}
+      render();
+    });
+    cards.push({ a: a, el: c, btn: b });
+    return c;
+  };
+  /* Panel de cada día con alternativas */
+  var altDays = {};
+  ALTS.forEach(function (a) { Object.keys(a.days).forEach(function (d) { (altDays[d] = altDays[d] || []).push(a); }); });
+  Object.keys(altDays).forEach(function (d) {
+    var r = DAYREF[d], day = r.day;
+    var w = document.createElement('div'); w.className = 'altwrap';
+    var dt = document.createElement('details'); dt.className = 'altd';
+    dt.innerHTML = '<summary><span class="altt">Alternativas y extras</span><span class="altn">' + altDays[d].length + '</span><span class="altsel"></span></summary><div class="altcards"></div>';
+    var box = dt.querySelector('.altcards');
+    altDays[d].forEach(function (a) { box.appendChild(makeCard(a, d)); });
+    w.appendChild(dt);
+    day.querySelector('.date').insertAdjacentElement('afterend', w);
+    r.wrap = w; r.sel = dt.querySelector('.altsel'); r.det = dt;
+    var ul = document.createElement('ul'); ul.className = 'events altev'; ul.hidden = true;
+    r.base.insertAdjacentElement('afterend', ul); r.alt = ul;
+  });
+  var chipH = function (spec) {
+    if (!spec) return '';
+    return '<div class="chips">' + spec.split(',').map(function (sp) {
+      var p = sp.split(':');
+      return p[0] === 'note' ? '<span class="chip note">' + p[1] + '</span>' : '<span class="chip ' + p[0] + '">' + CHIP[p[0]] + ' ~' + eur(p[1]) + '</span>';
     }).join('') + '</div>';
   };
-  var tb = document.getElementById('budgetRows');
-  rows.forEach(function (r) {
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<th scope="row">' + r[0] + '</th><td>' + eur(r[1].act) + '</td><td>' + eur(r[1].trans) + '</td><td>' + (r[1].fly ? eur(r[1].fly) : '<span class="dim0">—</span>') + '</td><td>' + eur(r[1].food) + '</td><td>' + (r[1].lodge ? eur(r[1].lodge) : '<span class="dim0">Sin noche</span>') + '</td><td>' + mini(r[1], r[2]) + '</td><td><b>' + eur(r[2]) + '</b></td>';
-    tb.appendChild(tr);
+  var evH = function (v, tag) {
+    return '<li class="ev alt"><span class="time">' + v[0] + '</span><div><h3>' + v[1] + (tag ? '<i class="altag">' + tag + '</i>' : '') + '</h3>' + (v[2] ? '<p>' + v[2] + '</p>' : '') + chipH(v[3]) + '</div></li>';
+  };
+  /* Central: tarjetas por grupo */
+  var list = document.getElementById('altList'), groups = [];
+  ALTS.forEach(function (a) { if (groups.indexOf(a.grp) < 0) groups.push(a.grp); });
+  groups.forEach(function (g) {
+    var s = document.createElement('div'); s.className = 'altgrp';
+    s.innerHTML = '<h3>' + g + '</h3><div class="altcards"></div>';
+    var box = s.querySelector('.altcards');
+    ALTS.forEach(function (a) { if (a.grp === g) box.appendChild(makeCard(a, null)); });
+    list.appendChild(s);
   });
-  document.getElementById('budgetFoot').innerHTML =
-    '<tr class="sub"><th scope="row">Total sin vuelo internacional</th><td>' + eur(grand.act) + '</td><td>' + eur(grand.trans) + '</td><td>' + eur(grand.fly) + '</td><td>' + eur(grand.food) + '</td><td>' + eur(grand.lodge) + '</td><td>' + mini(grand, gt) + '</td><td>~' + eur(gt) + '</td></tr>' +
-    '<tr class="fl2"><th scope="row">Vuelo internacional</th><td colspan="6">Madrid–Sài Gòn, ida y vuelta, por persona (ya comprado)</td><td>' + eur(FLIGHT) + '</td></tr>' +
-    '<tr class="grand"><th scope="row" colspan="7">Total con vuelo internacional</th><td>~' + eur(all) + '</td></tr>';
+  document.getElementById('altReset').addEventListener('click', function () {
+    sel = {}; try { localStorage.removeItem(SK); } catch (e) {} render();
+  });
+
+  var drawBudget = function () {
+    var grand = ZERO(), rows = [];
+    ORDER.forEach(function (d) { var t = finalT(d); rows.push([NAMES[d], t, d]); KEYS.forEach(function (k) { grand[k] += t[k]; }); });
+    var gt = sumT(grand), all = gt + FLIGHT;
+    var tiles = [
+      ['main', 'Total con vuelo internacional', eur(all), 'por persona'],
+      ['', 'Para dos personas', eur(all * 2), 'vuelo internacional incluido'],
+      ['', 'Sin vuelo internacional', eur(gt), 'por persona, vuelos internos incluidos'],
+      ['', 'Media diaria en Vietnam', eur(Math.round(gt / DAYS_VN)), DAYS_VN + ' días']
+    ];
+    document.getElementById('budgetTiles').innerHTML = tiles.map(function (t) {
+      return '<div class="tile ' + t[0] + '"><small>' + t[1] + '</small><b>' + t[2] + '</b><span>' + t[3] + '</span></div>';
+    }).join('');
+    var CAT = [['act', 'Entradas', grand.act], ['trans', 'Transporte', grand.trans], ['fly', 'Vuelos internos', grand.fly], ['food', 'Comida', grand.food], ['lodge', 'Alojamiento', grand.lodge], ['flight', 'Vuelo internacional', FLIGHT]];
+    var bar = document.getElementById('budgetBar'), leg = document.getElementById('budgetLeg');
+    bar.innerHTML = ''; leg.innerHTML = '';
+    CAT.forEach(function (c) {
+      var pct = c[2] / all * 100, sp = document.createElement('span');
+      sp.className = c[0]; sp.style.width = pct + '%'; sp.title = c[1] + ': ' + eur(c[2]);
+      bar.appendChild(sp);
+      var li = document.createElement('li');
+      li.className = c[0];
+      li.innerHTML = '<i></i>' + c[1] + '<b>' + eur(c[2]) + '</b><span>' + Math.round(pct) + '%</span>';
+      leg.appendChild(li);
+    });
+    var mini = function (t, tot) {
+      return '<div class="mini" aria-hidden="true">' + KEYS.map(function (k) {
+        return t[k] ? '<span class="' + k + '" style="width:' + (t[k] / tot * 100) + '%"></span>' : '';
+      }).join('') + '</div>';
+    };
+    var tb = document.getElementById('budgetRows'); tb.innerHTML = '';
+    rows.forEach(function (r) {
+      var t = r[1], tot = sumT(t), tr = document.createElement('tr');
+      var chg = !!swapFor(r[2]) || ALTS.some(function (a) { return a.kind === 'add' && sel[a.id] && a.days[r[2]]; });
+      tr.innerHTML = '<th scope="row">' + r[0] + (chg ? ' <abbr title="Con alternativas elegidas">*</abbr>' : '') + '</th><td>' + eur(t.act) + '</td><td>' + eur(t.trans) + '</td><td>' + (t.fly ? eur(t.fly) : '<span class="dim0">—</span>') + '</td><td>' + eur(t.food) + '</td><td>' + (t.lodge ? eur(t.lodge) : '<span class="dim0">Sin noche</span>') + '</td><td>' + mini(t, tot) + '</td><td>~' + eur(tot) + '</td>';
+      tb.appendChild(tr);
+    });
+    document.getElementById('budgetFoot').innerHTML =
+      '<tr class="sub"><th scope="row">Total sin vuelo internacional</th><td>' + eur(grand.act) + '</td><td>' + eur(grand.trans) + '</td><td>' + eur(grand.fly) + '</td><td>' + eur(grand.food) + '</td><td>' + eur(grand.lodge) + '</td><td>' + mini(grand, gt) + '</td><td>~' + eur(gt) + '</td></tr>' +
+      '<tr class="fl2"><th scope="row">Vuelo internacional</th><td colspan="6">Madrid–Sài Gòn, ida y vuelta, por persona (ya comprado)</td><td>' + eur(FLIGHT) + '</td></tr>' +
+      '<tr class="grand"><th scope="row" colspan="7">Total con vuelo internacional</th><td>~' + eur(all) + '</td></tr>';
+    var chosen = ALTS.filter(function (a) { return sel[a.id]; }), dsum = 0;
+    chosen.forEach(function (a) { dsum += delta(a); });
+    document.getElementById('budgetAlt').innerHTML = chosen.length
+      ? '<b>Alternativas elegidas (' + chosen.length + '):</b> ' + chosen.map(function (a) { return a.title + ' (' + sg(delta(a)) + ')'; }).join(', ') + '. Efecto total: <b>' + sg(dsum) + '</b> por persona. Las filas marcadas con * cambian respecto al plan base.'
+      : 'Ahora mismo se muestra el plan base. Podéis elegir alternativas y extras en cada día o en la sección «Alternativas».';
+    document.getElementById('altBar').innerHTML = chosen.length
+      ? '<b>' + chosen.length + '</b> elegidas · efecto en el presupuesto: <b>' + sg(dsum) + '</b> por persona · total con vuelo: <b>~' + eur(all) + '</b>'
+      : 'Plan base sin cambios · total con vuelo: <b>~' + eur(all) + '</b> por persona';
+  };
+
+  var render = function () {
+    cards.forEach(function (c) {
+      var a = c.a, on = !!sel[a.id], why = on ? '' : blocked(a), dl = delta(a);
+      c.el.classList.toggle('on', on); c.el.classList.toggle('dis', !!why);
+      c.btn.setAttribute('aria-pressed', on ? 'true' : 'false'); c.btn.disabled = !!why;
+      c.btn.textContent = on ? 'Quitar' : 'Elegir';
+      c.el.querySelector('.ac-d').textContent = sg(dl) + ' por persona';
+      var w = c.el.querySelector('.ac-w'); w.hidden = !why; w.textContent = why;
+    });
+    Object.keys(altDays).forEach(function (d) {
+      var r = DAYREF[d], sw = swapFor(d), adds = altDays[d].filter(function (a) { return a.kind === 'add' && sel[a.id]; });
+      var on = !!(sw || adds.length);
+      r.base.classList.toggle('is-off', !!sw);
+      r.day.classList.toggle('swapped', !!sw);
+      var off = !!sw;
+      r.day.querySelectorAll('.mapbox, .opts').forEach(function (el) { el.classList.toggle('is-off', off); });
+      r.alt.hidden = !on;
+      var t = finalT(d), base = sumT(r.t), now = sumT(t);
+      if (on) {
+        var h = '';
+        if (sw) {
+          h += '<li class="althead">Plan elegido: <b>' + sw.title + '</b><span>Sustituye al plan base de este día. Los mapas y las opciones de abajo corresponden al plan base.</span></li>';
+          sw.days[d].ev.forEach(function (v) { h += evH(v); });
+        }
+        adds.forEach(function (a) {
+          if (!sw) h += '';
+          a.days[d].ev.forEach(function (v) { h += evH(v, 'extra'); });
+        });
+        if (!sw) h = '<li class="althead">Extras elegidos<span>Se suman al plan base de este día.</span></li>' + h;
+        h += '<li class="sum altsum">' + KEYS.map(function (k) {
+          return '<div><small>' + LBL[k] + '</small><b>' + (k === 'lodge' && !t.lodge ? 'Sin noche' : '~' + eur(t[k])) + '</b></div>';
+        }).join('') + '<div class="tot"><small>Total día</small><b>~' + eur(now) + '</b></div><p>Plan base: ~' + eur(base) + ' · con lo elegido ' + sg(now - base) + '.' + (sw && sw.days[d].room ? ' Alojamiento: habitación doble a ~' + eur(sw.days[d].room) + ' (' + sw.days[d].n + '), repartida entre dos.' : '') + '</p></li>';
+        r.alt.innerHTML = h;
+      } else r.alt.innerHTML = '';
+      r.sel.textContent = on ? 'Elegido: ' + (sw ? sw.title : '') + (sw && adds.length ? ' + ' : '') + adds.map(function (a) { return a.title; }).join(' + ') : '';
+      r.det.classList.toggle('has', on);
+      r.dt.innerHTML = 'Día: <b>~' + eur(now) + '</b> por persona' + (on ? ' <small>(con alternativas)</small>' : '');
+    });
+    drawBudget();
+  };
+  render();
 })();
 </script>
 </body>
