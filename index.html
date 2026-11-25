@@ -351,27 +351,43 @@ html { scroll-padding-top: 4.5rem; }
 .altbase ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; font-size: .93rem; }
 .altgrp { margin-top: 1.25rem; }
 .altgrp h3 { font-family: var(--display); font-size: 1.05rem; margin: 0 0 .5rem; color: var(--red); }
-.altcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: .75rem; }
-.altcard { display: flex; flex-direction: column; gap: .4rem; min-width: 0; padding: .8rem .9rem; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--muted); }
-.altcard.on { border-color: var(--jade); border-top-color: var(--jade); background: color-mix(in srgb, var(--jade) 10%, var(--surface)); }
-.altcard.dis { opacity: .6; }
-.ac-h { display: flex; flex-wrap: wrap; gap: .25rem .6rem; align-items: baseline; justify-content: space-between; }
-.ac-h b { font-size: 1rem; line-height: 1.3; }
-.ac-k { font-family: var(--display); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: .05rem .35rem; white-space: nowrap; }
-.altcard p { margin: 0; font-size: .9rem; color: var(--muted); }
-.altcard .ac-w { color: var(--red); font-size: .82rem; }
-.ac-m { display: flex; flex-wrap: wrap; gap: .2rem .8rem; font-size: .84rem; font-variant-numeric: tabular-nums; }
-.ac-d { font-weight: 700; color: var(--a, var(--red)); }
-.ac-b { margin-top: auto; align-self: flex-start; font: inherit; font-weight: 700; font-size: .88rem; min-height: 2.5rem; padding: .35rem 1rem; background: var(--red); color: var(--on-red); border: 0; cursor: pointer; }
-.altcard.on .ac-b { background: none; color: var(--fg); border: 1px solid var(--fg); }
-.ac-b:disabled { cursor: not-allowed; background: var(--line); color: var(--muted); }
+.altcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.altcard { --k: var(--muted); position: relative; display: flex; flex-direction: column; gap: .55rem; min-width: 0; padding: 1rem 1.1rem 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent); transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease; }
+.altcard.k-swap { --k: var(--indigo); }
+.altcard.k-add { --k: var(--jade); }
+.altcard::before { content: ""; position: absolute; inset: -1px auto -1px -1px; width: 5px; border-radius: 10px 0 0 10px; background: var(--k); }
+@media (hover: hover) { .altcard:not(.dis):hover { box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 14%, transparent); border-color: color-mix(in srgb, var(--k) 45%, var(--line)); transform: translateY(-1px); } }
+.altcard.on { --k: var(--jade); border-color: var(--jade); background: color-mix(in srgb, var(--jade) 9%, var(--surface)); box-shadow: 0 0 0 1px var(--jade); }
+.altcard.dis { background: color-mix(in srgb, var(--line) 35%, var(--surface)); box-shadow: none; }
+.altcard.dis .ac-t, .altcard.dis .ac-s { color: var(--muted); }
+.ac-top { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; min-height: 1.5rem; }
+.ac-k { font-size: .74rem; font-weight: 700; letter-spacing: .02em; color: var(--k); background: color-mix(in srgb, var(--k) 12%, var(--surface)); border: 1px solid color-mix(in srgb, var(--k) 35%, transparent); padding: .1rem .5rem; border-radius: 999px; white-space: nowrap; }
+.ac-days { font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ac-ok { margin-left: auto; font-size: .76rem; font-weight: 700; color: var(--on-red); background: var(--jade); padding: .1rem .55rem; border-radius: 999px; white-space: nowrap; }
+.ac-t { margin: 0; font-family: var(--body); font-size: 1.06rem; font-weight: 700; line-height: 1.3; color: var(--fg); text-wrap: balance; }
+.altcard .ac-s { margin: 0; font-size: .95rem; line-height: 1.5; color: var(--muted); }
+.altcard .ac-w { margin: 0; display: flex; gap: .4rem; align-items: flex-start; font-size: .86rem; line-height: 1.4; color: var(--fg); background: color-mix(in srgb, var(--gold) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); border-radius: 6px; padding: .4rem .55rem; }
+.altcard .ac-w::before { content: "ⓘ"; color: var(--gold); font-weight: 700; }
+.ac-f { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .7rem 0 .85rem; border-top: 1px solid var(--line); }
+.ac-d { display: grid; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.ac-d b { font-family: var(--display); font-size: 1.2rem; color: var(--fg); }
+.ac-d.pos b { color: var(--red); }
+.ac-d.neg b { color: var(--jade); }
+.ac-d small { font-size: .76rem; color: var(--muted); }
+.ac-b { flex: none; font: inherit; font-weight: 700; font-size: .92rem; min-height: 2.5rem; min-width: 7.5rem; padding: .4rem 1rem; border-radius: 8px; cursor: pointer; background: var(--surface); color: var(--red); border: 1.5px solid var(--red); transition: background .15s ease, color .15s ease; }
+@media (hover: hover) { .ac-b:not(:disabled):hover { background: var(--red); color: var(--on-red); } }
+.ac-b:focus-visible { outline: 3px solid color-mix(in srgb, var(--k) 55%, transparent); outline-offset: 2px; }
+.altcard.on .ac-b { background: var(--jade); color: var(--on-red); border-color: var(--jade); }
+@media (hover: hover) { .altcard.on .ac-b:hover { background: var(--surface); color: var(--red); border-color: var(--red); } }
+.ac-b:disabled { cursor: not-allowed; background: none; color: var(--muted); border: 1.5px dashed var(--line); }
+@media (min-width: 1200px) { .wrap.alts, .wrap.acts { max-width: 1280px; } }
 .altwrap { padding: .75rem 1.5rem 0; }
 .altd { border: 1px dashed var(--a); background: color-mix(in srgb, var(--a) 5%, var(--surface)); }
 .altd > summary::-webkit-details-marker { display: none; }
 .altd > summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .7rem; padding: .55rem .8rem; min-height: 2.75rem; font-family: var(--display); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--a); font-weight: 700; }
 .altd .altn { background: var(--a); color: var(--bg); border-radius: 999px; min-width: 1.4rem; text-align: center; padding: 0 .35rem; }
 .altd .altsel { text-transform: none; letter-spacing: 0; font-family: var(--body); font-weight: 600; color: var(--jade); }
-.altd .altcards { padding: .2rem .8rem .8rem; }
+.altd .altcards { padding: .3rem .9rem 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr)); }
 .events.altev { border-top: 3px double var(--a); }
 .althead { list-style: none; padding: .2rem 0 .5rem; font-weight: 700; display: flex; flex-wrap: wrap; gap: .1rem .8rem; align-items: baseline; }
 .althead span { font-weight: 400; color: var(--muted); font-size: .88rem; }
@@ -387,13 +403,14 @@ html { scroll-padding-top: 4.5rem; }
 .actgrp { margin-top: 1.25rem; }
 .actgrp h3 { font-family: var(--display); font-size: 1.05rem; margin: 0 0 .5rem; color: var(--c, var(--red)); display: flex; gap: .6rem; align-items: baseline; }
 .actgrp h3 small { font-family: var(--body); font-weight: 400; color: var(--muted); font-size: .8rem; }
-.actgrp ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: .5rem; }
-.actrow { display: flex; gap: .6rem; align-items: flex-start; min-width: 0; padding: .55rem .7rem; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--red)); }
+.actgrp ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: .6rem; }
+.actrow { display: flex; gap: .7rem; align-items: flex-start; min-width: 0; padding: .7rem .85rem; background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--c, var(--red)); border-radius: 8px; transition: box-shadow .15s ease; }
+@media (hover: hover) { .actrow:not(.dis):hover { box-shadow: 0 4px 14px color-mix(in srgb, var(--ink) 12%, transparent); } }
 .actrow.on { background: color-mix(in srgb, var(--jade) 10%, var(--surface)); border-left-color: var(--jade); }
 .actrow input { flex: none; width: 1.25rem; height: 1.25rem; margin: .15rem 0 0; accent-color: var(--jade); }
-.actrow label { display: grid; gap: .1rem; min-width: 0; cursor: pointer; font-size: .92rem; }
+.actrow label { display: grid; gap: .15rem; min-width: 0; cursor: pointer; font-size: .96rem; }
 .actrow b { font-weight: 700; line-height: 1.3; }
-.actrow .am { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.actrow .am { color: var(--muted); font-size: .84rem; font-variant-numeric: tabular-nums; }
 .actrow .am a { color: inherit; }
 .actrow.alt .am::before { content: "alternativa · "; }
 .actrow.dis { opacity: .6; }
@@ -2353,11 +2370,12 @@ html { scroll-padding-top: 4.5rem; }
   var NDAYS = function (a) { var n = Object.keys(a.days).length; return a.kind === 'add' ? 'Añade al día' : (n > 1 ? 'Cambia ' + n + ' días' : 'Cambia el día'); };
   var cards = [];
   var makeCard = function (a, dayId) {
-    var c = document.createElement('div'); c.className = 'altcard';
-    var ds = Object.keys(a.days).map(function (d) { return NAMES[d]; }).join(' · ');
-    c.innerHTML = '<div class="ac-h"><b>' + a.title + '</b><span class="ac-k">' + NDAYS(a) + '</span></div><p>' + a.s + '</p>' +
-      '<div class="ac-m">' + (dayId ? '' : '<span>' + ds + '</span>') + '<span class="ac-d"></span></div><p class="ac-w" hidden></p>' +
-      '<button type="button" class="ac-b" aria-pressed="false"></button>';
+    var c = document.createElement('div'); c.className = 'altcard k-' + a.kind;
+    var dk = Object.keys(a.days), ds = dk.length > 1 ? NAMES[dk[0]] + ' – ' + NAMES[dk[dk.length - 1]] : NAMES[dk[0]];
+    var showDays = !dayId || dk.length > 1;
+    c.innerHTML = '<div class="ac-top"><span class="ac-k">' + NDAYS(a) + '</span>' + (showDays ? '<span class="ac-days">' + ds + '</span>' : '') + '<span class="ac-ok" hidden>✓ Elegida</span></div>' +
+      '<h4 class="ac-t">' + a.title + '</h4><p class="ac-s">' + a.s + '</p><p class="ac-w" hidden></p>' +
+      '<div class="ac-f"><div class="ac-d"><b></b><small></small></div><button type="button" class="ac-b" aria-pressed="false"></button></div>';
     var b = c.querySelector('.ac-b');
     b.addEventListener('click', function () {
       if (sel[a.id]) delete sel[a.id];
@@ -2472,8 +2490,13 @@ html { scroll-padding-top: 4.5rem; }
       var a = c.a, on = !!sel[a.id], why = on ? '' : blocked(a), dl = delta(a);
       c.el.classList.toggle('on', on); c.el.classList.toggle('dis', !!why);
       c.btn.setAttribute('aria-pressed', on ? 'true' : 'false'); c.btn.disabled = !!why;
-      c.btn.textContent = on ? 'Quitar' : 'Elegir';
-      c.el.querySelector('.ac-d').textContent = sg(dl) + ' por persona';
+      c.btn.textContent = why ? 'No disponible' : on ? 'Quitar' : 'Elegir';
+      c.btn.setAttribute('aria-label', (on ? 'Quitar: ' : 'Elegir: ') + a.title);
+      c.el.querySelector('.ac-ok').hidden = !on;
+      var dd = c.el.querySelector('.ac-d'), free = a.kind === 'add' && Math.round(dl) === 0;
+      dd.className = 'ac-d' + (free ? '' : dl > 0.5 ? ' pos' : dl < -0.5 ? ' neg' : '');
+      dd.querySelector('b').textContent = free ? 'Sin coste fijo' : sg(dl);
+      dd.querySelector('small').textContent = free ? 'el gasto lo decidís vosotros' : dl < -0.5 ? 'ahorro por persona' : 'por persona';
       var w = c.el.querySelector('.ac-w'); w.hidden = !why; w.textContent = why;
     });
     Object.keys(altDays).forEach(function (d) {
