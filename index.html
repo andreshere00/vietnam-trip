@@ -1,0 +1,1997 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vietnam 4–21 Febrero</title>
+<meta name="description" content="Itinerario de quince noches por Vietnam durante el Tết, con mapas diarios, entradas, transporte, comida, alojamiento y presupuesto.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8201a'/%3E%3Cpolygon points='16,5 19.2,12.6 27.4,13.2 21.1,18.5 23.1,26.5 16,22.2 8.9,26.5 10.9,18.5 4.6,13.2 12.8,12.6' fill='%23ffcd00'/%3E%3C/svg%3E">
+<script>try { var th = localStorage.getItem('theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:wght@600;700;900&display=swap">
+<style>
+/* Layout: cabecera con paisaje; cada día es una tarjeta con la fecha a la izquierda y, a la derecha, mapa de la ruta, itinerario y opciones de transporte, entradas, comida y alojamiento. */
+:root {
+  --cream: #fbf1dc;
+  --paper: #fffaf0;
+  --ink: #2a1610;
+  --muted: #6a5648;
+  --red: #c8201a;
+  --yellow: #ffcd00;
+  --gold: #a87400;
+  --jade: #2f7d4f;
+  --teal: #0f7487;
+  --indigo: #2c4a8f;
+  --lotus: #c43a73;
+  --hue: #7a4a9b;
+  --on-red: #ffffff;
+  --line: #e2cfa3;
+  --bg: var(--cream);
+  --surface: var(--paper);
+  --fg: var(--ink);
+  --sky-top: #ffe39a;
+  --sky-bot: #fbf1dc;
+  --land: #d6e2ad;
+  --neighbor: #e9dec3;
+  --karst: #4f8a6a;
+  --water: #4aa6bb;
+  --roadout: #b79f7a;
+  --roadin: #fff8e8;
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cream: #1b100c; --paper: #2a1913; --ink: #fbeed4; --muted: #cdb7a0; --line: #4c3328;
+    --red: #ff6b5c; --yellow: #ffd84a; --gold: #ffcd3c; --jade: #6fc78c; --teal: #52c5d8; --indigo: #93b3ff; --lotus: #ff8cb6; --hue: #cfa2f0;
+    --on-red: #1b100c;
+    --sky-top: #3a1a14; --sky-bot: #1b100c; --land: #2d3d2c; --neighbor: #2a1d17; --karst: #3f7a5c; --water: #1e6275;
+    --roadout: #8d7a68; --roadin: #3d2b23;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --cream: #1b100c; --paper: #2a1913; --ink: #fbeed4; --muted: #cdb7a0; --line: #4c3328;
+  --red: #ff6b5c; --yellow: #ffd84a; --gold: #ffcd3c; --jade: #6fc78c; --teal: #52c5d8; --indigo: #93b3ff; --lotus: #ff8cb6; --hue: #cfa2f0;
+  --on-red: #1b100c;
+  --sky-top: #3a1a14; --sky-bot: #1b100c; --land: #2d3d2c; --neighbor: #2a1d17; --karst: #3f7a5c; --water: #1e6275;
+  --roadout: #8d7a68; --roadin: #3d2b23;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55; margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1040px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+/* Hero */
+.hero { background: linear-gradient(var(--sky-top), var(--sky-bot)); margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); }
+.hero::after { content: ""; display: block; height: 5px; background: var(--red); border-bottom: 3px solid var(--yellow); box-sizing: content-box; }
+.hero .wrap { padding-block: 2.5rem 0; }
+.eyebrow { font-family: var(--display); letter-spacing: .2em; text-transform: uppercase; font-size: .78rem; font-weight: 700; color: var(--red); margin: 0 0 .5rem; }
+h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.2rem, 7vw, 4rem); line-height: 1.05; margin: 0 0 .75rem; text-wrap: balance; }
+.lede { max-width: 60ch; color: var(--muted); margin: 0 0 1.25rem; }
+.flights { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: .75rem; margin: 0 0 1rem; max-width: 52rem; }
+.fl { background: color-mix(in srgb, var(--surface) 82%, transparent); border: 1px solid var(--line); border-left: 5px solid var(--red); padding: .6rem .9rem; display: grid; gap: .1rem; }
+.fl small { font-family: var(--display); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: .7rem; color: var(--red); }
+.fl b { font-family: var(--display); font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
+.fl span { color: var(--muted); font-size: .88rem; }
+.scene { display: block; width: 100%; height: auto; max-width: 100%; margin-top: .5rem; }
+
+/* Navegación */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--sky-top); }
+.nav .wrap { display: flex; align-items: center; gap: .5rem; }
+.nav ul { flex: 1; min-width: 0; }
+.theme-btn { flex: none; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--fg); cursor: pointer; }
+.theme-btn:hover { border-color: var(--red); }
+.theme-btn .i-sun { display: none; }
+:root[data-theme="dark"] .theme-btn .i-sun { display: block; }
+:root[data-theme="dark"] .theme-btn .i-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-btn .i-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-btn .i-moon { display: none; }
+}
+.nav ul { display: flex; align-items: stretch; gap: .3rem; list-style: none; margin: 0; padding: .45rem 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav li { flex: none; display: flex; }
+.nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .1rem; min-width: 3rem; min-height: 2.75rem; padding: .2rem .55rem; border: 1px solid transparent; border-radius: 6px; text-decoration: none; line-height: 1.05; color: var(--fg); -webkit-tap-highlight-color: transparent; }
+.nav a b { font-family: var(--display); font-size: 1.05rem; }
+.nav a span { font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.nav a:not(.txt)::after { content: ""; width: .5rem; height: .5rem; margin-top: .05rem; background: var(--z); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.nav a.txt { flex-direction: row; font-family: var(--display); font-weight: 700; font-size: .8rem; letter-spacing: .06em; padding-inline: .8rem; }
+.nav a:hover { background: color-mix(in srgb, var(--yellow) 22%, var(--surface)); }
+.nav a[aria-current="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.nav a[aria-current="true"] span { color: inherit; opacity: .85; }
+.nav .sep { width: 1px; margin: .35rem .25rem; background: var(--line); }
+.progress { height: 3px; background: var(--line); }
+.progress span { display: block; height: 100%; width: 0; background: var(--red); }
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; padding-block: 1.5rem .25rem; font-size: .92rem; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: .85rem; height: .85rem; margin-right: .4rem; background: var(--c); vertical-align: -.1rem; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.intro { color: var(--muted); font-size: .95rem; margin: .25rem 0 0; max-width: 70ch; }
+.tetbox { margin: 1.25rem 0 0; padding: .9rem 1.1rem; background: color-mix(in srgb, var(--red) 8%, var(--surface)); border: 1px solid var(--line); border-left: 5px solid var(--red); }
+.tetbox h2 { font-family: var(--display); font-size: 1.15rem; margin: 0 0 .3rem; color: var(--red); }
+.tetbox p { margin: 0; font-size: .95rem; color: var(--fg); }
+.tetbox p + p { margin-top: .4rem; color: var(--muted); }
+
+/* Ruta general */
+.route { padding-block: 2rem 0; scroll-margin-top: 4.5rem; }
+.route h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .25rem; }
+.routegrid { display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); gap: 1.5rem; align-items: start; margin-top: 1rem; }
+.ovmap { margin: 0; border: 1px solid var(--line); background: var(--bg); }
+.ovmap figcaption { font-family: var(--display); font-weight: 700; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--red); padding: .55rem .8rem; border-bottom: 1px solid var(--line); background: var(--surface); }
+.ovmap .mnote { padding: .6rem .8rem; background: var(--surface); border-top: 1px solid var(--line); font-size: .82rem; }
+.stops { list-style: none; margin: 0 0 1.25rem; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .5rem; }
+.stops li { display: flex; align-items: center; gap: .6rem; border: 1px solid var(--line); border-left: 4px solid var(--c); background: var(--surface); padding: .45rem .7rem; }
+.stops .nb { flex: none; }
+.stops small { display: block; color: var(--muted); font-size: .8rem; line-height: 1.2; }
+.stops b { font-weight: 700; }
+.stages { width: 100%; border-collapse: collapse; font-size: .9rem; background: var(--surface); border: 1px solid var(--line); }
+.stages th, .stages td { padding: .4rem .6rem; text-align: left; border-bottom: 1px dashed var(--line); vertical-align: top; }
+.stages th { font-family: var(--display); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.stages td:nth-child(1) { white-space: nowrap; font-weight: 700; }
+.stages td:nth-child(3), .stages th:nth-child(3) { white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+.stages tr:last-child td { border-bottom: 0; }
+.mode { display: inline-block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; padding: 0 .4rem; border: 1px solid var(--k); color: var(--k); margin-right: .3rem; white-space: nowrap; }
+.mode.air { --k: var(--hue); } .mode.car { --k: var(--red); } .mode.intl { --k: var(--indigo); }
+@media (max-width: 760px) { .routegrid { grid-template-columns: minmax(0, 1fr); } .ovmap { max-width: 24rem; } }
+
+/* Días */
+.days { display: grid; gap: 2rem; padding-block: 1.5rem 2.5rem; }
+.day { --a: var(--red); display: block; background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--a); border-radius: 4px; overflow: hidden; scroll-margin-top: 4.5rem; box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent), 0 8px 24px -12px color-mix(in srgb, var(--ink) 25%, transparent); }
+.day.trip { --a: var(--muted); }
+.day.sgn { --a: var(--red); }
+.day.mekong { --a: var(--jade); }
+.day.hoian { --a: var(--gold); }
+.day.hue { --a: var(--hue); }
+.day.hanoi { --a: var(--indigo); }
+.day.ninh { --a: var(--lotus); }
+.day.halong { --a: var(--teal); }
+.date { display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem 1rem; padding: 1rem 1.5rem; background: color-mix(in srgb, var(--a) 12%, var(--surface)); border-bottom: 1px solid var(--line); }
+.dow { order: 2; font-family: var(--display); letter-spacing: .16em; text-transform: uppercase; font-size: .78rem; color: var(--a); font-weight: 700; }
+.num { order: 1; font-family: var(--display); font-weight: 900; font-size: 2.8rem; line-height: 1; }
+.place { order: 3; font-size: .95rem; color: var(--muted); }
+.badge { order: 4; font-family: var(--display); font-weight: 700; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; background: var(--red); color: var(--on-red); padding: .2rem .5rem; align-self: center; }
+.badge.lunar { background: none; color: var(--red); border: 1px solid var(--red); }
+.daytotal { order: 5; margin-left: auto; align-self: center; font-variant-numeric: tabular-nums; font-size: .88rem; color: var(--muted); border: 1px solid var(--line); background: var(--surface); padding: .15rem .6rem; border-radius: 999px; white-space: nowrap; }
+.daytotal b { font-family: var(--display); color: var(--a); }
+.events { list-style: none; margin: 0; padding: 1rem 1.5rem 1.25rem; display: grid; }
+.ev { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 1rem; padding-block: .85rem; border-bottom: 1px dashed var(--line); }
+.ev:last-child { border-bottom: 0; }
+.time { font-family: var(--display); font-weight: 700; color: var(--a); font-variant-numeric: tabular-nums; font-size: 1rem; padding-top: .15rem; }
+.ev h3 { font-family: var(--body); font-weight: 700; font-size: 1.08rem; margin: 0 0 .15rem; line-height: 1.3; }
+.ev p { margin: 0; color: var(--muted); font-size: .96rem; }
+.ev.opt h3::after { content: "opcional"; margin-left: .6rem; font-family: var(--display); font-weight: 600; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--muted); color: var(--muted); padding: .1rem .35rem; vertical-align: middle; }
+.ev.tet h3::after { content: "Tết"; margin-left: .6rem; font-family: var(--display); font-weight: 600; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); padding: .1rem .35rem; vertical-align: middle; }
+.ev.opt.tet h3::after { content: "opcional · Tết"; }
+
+/* Mapas */
+.mapbox { padding: 1rem 1.5rem 0; }
+.mapbox figure { margin: 0; border: 1px solid var(--line); background: var(--bg); }
+.mapbox figcaption { font-family: var(--display); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--a); font-weight: 700; padding: .6rem .8rem; border-bottom: 1px solid var(--line); background: var(--surface); }
+.msvg { display: block; width: 100%; height: auto; max-width: 100%; color: var(--a); }
+.msvg text { font-family: var(--body); font-size: 16px; fill: var(--fg); paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
+.msvg text.num { fill: var(--bg); stroke: none; font-weight: 700; font-size: 14px; text-anchor: middle; }
+.msvg text.geo { fill: var(--muted); font-style: italic; font-size: 15px; }
+.msvg text.rl { fill: var(--muted); font-size: 13px; }
+.msvg text.leg { fill: var(--a); font-weight: 700; font-size: 14px; text-anchor: middle; }
+.msvg text.cty { font-weight: 700; font-size: 15px; }
+.msvg text.ctr { fill: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.mleg { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; padding: .8rem; background: var(--surface); border-top: 1px solid var(--line); font-size: .9rem; }
+.mleg h4 { font-family: var(--display); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+.sw { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .35rem 1rem; }
+.sw li { display: flex; align-items: center; gap: .5rem; }
+.symleg summary { cursor: pointer; font-family: var(--display); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); min-height: 2.5rem; display: flex; align-items: center; }
+.symleg[open] summary { margin-bottom: .4rem; }
+.sw svg { flex: none; width: 30px; height: 16px; overflow: visible; }
+.dist { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.dist td { padding: .25rem .4rem; border-bottom: 1px dashed var(--line); vertical-align: top; }
+.dist td:nth-child(n+2) { white-space: nowrap; text-align: right; }
+.dist tr:last-child td { border-bottom: 0; }
+.dist tfoot td, .dist .tot td { font-weight: 700; color: var(--a); }
+.nb { display: inline-block; min-width: 1.3rem; height: 1.3rem; line-height: 1.3rem; border-radius: 50%; text-align: center; background: var(--a); color: var(--bg); font-size: .76rem; font-weight: 700; margin-inline: .1rem; }
+.mnote { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: .84rem; }
+
+/* Costes y opciones */
+.chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .4rem; }
+.chip { font-size: .84rem; font-variant-numeric: tabular-nums; padding: .05rem .5rem; border: 1px solid var(--k); color: var(--fg); background: color-mix(in srgb, var(--k) 12%, var(--surface)); }
+.chip.act { --k: var(--gold); }
+.chip.trans { --k: var(--indigo); }
+.chip.fly { --k: var(--hue); }
+.chip.food { --k: var(--jade); }
+.chip.note { --k: var(--muted); font-style: italic; }
+.sum { margin-top: .5rem; padding: .75rem 1rem; background: color-mix(in srgb, var(--a) 10%, var(--surface)); border: 1px solid var(--line); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem 1rem; font-variant-numeric: tabular-nums; }
+.sum div { display: grid; }
+.sum small { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; }
+.sum b { font-family: var(--display); font-size: 1.05rem; }
+.sum .tot b { color: var(--a); }
+.sum p { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: .84rem; }
+.opts { padding: .25rem 1.5rem 1.25rem; }
+.tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: none; min-height: 2.75rem; padding: .5rem .9rem; font-family: var(--display); font-weight: 700; font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; cursor: pointer; }
+.tab:hover { color: var(--fg); }
+.tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--k); }
+.tab.trans { --k: var(--indigo); } .tab.tick { --k: var(--gold); } .tab.food { --k: var(--jade); } .tab.sleep { --k: var(--teal); } .tab.tet { --k: var(--red); }
+.opt { padding: 1rem 0 0; min-width: 0; }
+.opt.trans { --k: var(--indigo); } .opt.tick { --k: var(--gold); } .opt.food { --k: var(--jade); } .opt.sleep { --k: var(--teal); } .opt.tet { --k: var(--red); }
+.opt ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .75rem; }
+.opt li { font-size: .93rem; line-height: 1.45; border: 1px solid var(--line); border-left: 4px solid var(--k); background: var(--bg); padding: .65rem .8rem; min-width: 0; }
+.opt li b { font-weight: 700; }
+.opt .pr { display: inline-block; font-variant-numeric: tabular-nums; font-size: .8rem; border: 1px solid var(--k); padding: 0 .4rem; margin-left: .3rem; white-space: nowrap; }
+.opt li span.t { display: block; color: var(--muted); }
+
+/* Presupuesto */
+.budget { padding-block: 1rem 2.5rem; scroll-margin-top: 4.5rem; }
+.budget h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .25rem; }
+.sub { color: var(--muted); margin: 0 0 1rem; max-width: 62ch; }
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); }
+.budget table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 46rem; }
+.budget th, .budget td { padding: .55rem .9rem; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.budget th:first-child, .budget td:first-child { text-align: left; }
+.budget th { font-family: var(--display); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.budget .bh { font-family: var(--display); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 1.75rem 0 .6rem; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .75rem; }
+.tile { background: var(--surface); border: 1px solid var(--line); padding: .8rem 1rem; display: grid; gap: .1rem; min-width: 0; }
+.tile small { font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tile b { font-family: var(--display); font-size: 1.7rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.tile span { color: var(--muted); font-size: .85rem; }
+.tile.main { border-top: 4px solid var(--red); }
+.bar { display: flex; height: 1.5rem; margin: 0 0 .9rem; border: 1px solid var(--line); }
+.bar span { display: block; min-width: 0; }
+.bar .act, .bleg .act i, .mini .act { background: var(--gold); }
+.bar .trans, .bleg .trans i, .mini .trans { background: var(--indigo); }
+.bar .fly, .bleg .fly i, .mini .fly { background: var(--hue); }
+.bar .food, .bleg .food i, .mini .food { background: var(--jade); }
+.bar .lodge, .bleg .lodge i, .mini .lodge { background: var(--teal); }
+.bar .flight, .bleg .flight i { background: var(--red); }
+.bleg { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .4rem 1.5rem; font-variant-numeric: tabular-nums; }
+.bleg li { display: flex; align-items: baseline; gap: .5rem; }
+.bleg i { flex: none; width: .8rem; height: .8rem; align-self: center; }
+.bleg b { margin-left: auto; }
+.bleg span { color: var(--muted); font-size: .9rem; min-width: 2.6rem; text-align: right; }
+.budget thead th[data-k]::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-right: .4rem; background: var(--kc); }
+.budget th[data-k="act"] { --kc: var(--gold); } .budget th[data-k="trans"] { --kc: var(--indigo); } .budget th[data-k="fly"] { --kc: var(--hue); } .budget th[data-k="food"] { --kc: var(--jade); } .budget th[data-k="lodge"] { --kc: var(--teal); }
+.budget tbody th, .budget tfoot th { font-family: var(--body); font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--fg); font-weight: 500; text-align: left; position: sticky; left: 0; background: var(--surface); }
+.budget tbody tr:nth-child(even) td, .budget tbody tr:nth-child(even) th { background: color-mix(in srgb, var(--yellow) 8%, var(--surface)); }
+.budget td b { font-family: var(--display); }
+.budget .dim0 { color: var(--muted); font-size: .9rem; }
+.mini { display: flex; height: .7rem; width: 7rem; margin-left: auto; background: var(--line); }
+.mini span { display: block; }
+.budget tfoot td, .budget tfoot th { font-family: var(--display); font-weight: 700; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--yellow) 18%, var(--surface)); }
+.budget tfoot th { font-family: var(--display); }
+.budget tfoot .fl2 td, .budget tfoot .fl2 th { background: var(--surface); font-weight: 500; }
+.budget tfoot .fl2 td:nth-child(2) { text-align: left; color: var(--muted); font-family: var(--body); font-weight: 400; }
+.budget tfoot .grand td, .budget tfoot .grand th { background: var(--ink); color: var(--bg); font-size: 1.05rem; border-bottom: 0; }
+.budget td:last-child, .budget thead th:last-child { position: sticky; right: 0; background: var(--surface); box-shadow: -1px 0 0 var(--line); }
+.budget tbody tr:nth-child(even) td:last-child { background: color-mix(in srgb, var(--yellow) 8%, var(--surface)); }
+.budget tfoot .sub td:last-child { background: color-mix(in srgb, var(--yellow) 18%, var(--surface)); }
+.budget tfoot .fl2 td:last-child { background: var(--surface); }
+.budget tfoot .grand td:last-child { background: var(--ink); color: var(--bg); }
+.budget tfoot .grand th { position: static; }
+.bnotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.bnotes > div { background: var(--surface); border: 1px solid var(--line); padding: 1rem 1.25rem; min-width: 0; }
+.bnotes h3 { font-family: var(--display); font-size: 1rem; margin: 0 0 .5rem; color: var(--red); }
+.bnotes ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .45rem; color: var(--muted); font-size: .95rem; }
+.bnotes li::marker { color: var(--gold); }
+@media (max-width: 640px) { .tile b { font-size: 1.4rem; } .mini { width: 5rem; } }
+
+/* Lugares: miniaturas y ficha emergente */
+.ev { grid-template-columns: 5rem minmax(0, 1fr) auto; align-items: start; }
+.evimg { width: 6rem; height: 4.5rem; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); background: var(--line); }
+.whyrow { margin-top: .35rem; }
+.why { font: inherit; font-size: .85rem; color: var(--a); background: none; border: 0; padding: .25rem 0; min-height: 2rem; cursor: pointer; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
+.why:hover { text-decoration-style: solid; }
+.ev[data-place] { cursor: pointer; }
+.pin { cursor: pointer; outline: none; }
+.pin:hover circle, .pin:hover rect, .pin:hover polygon, .pin:focus-visible circle, .pin:focus-visible rect, .pin:focus-visible polygon { stroke: var(--fg); stroke-width: 3.5; }
+.pop { position: fixed; z-index: 30; width: 18rem; max-width: calc(100vw - 16px); background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 12px 32px -8px color-mix(in srgb, var(--ink) 45%, transparent); overflow: hidden; pointer-events: none; }
+.pop.pinned { pointer-events: auto; }
+.pop img { display: block; width: 100%; height: 10rem; object-fit: cover; background: var(--line); }
+.pop .pb { padding: .75rem .9rem .9rem; position: relative; }
+.pop h5 { margin: 0 1.6rem .3rem 0; font-family: var(--display); font-size: .95rem; line-height: 1.25; }
+.pop p { margin: 0; font-size: .93rem; line-height: 1.45; color: var(--fg); }
+.pop small { display: block; margin-top: .5rem; color: var(--muted); font-size: .72rem; line-height: 1.3; }
+.pclose { display: none; position: absolute; top: .35rem; right: .35rem; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: transparent; color: var(--fg); font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.pop.pinned .pclose { display: block; }
+@media (max-width: 640px) {
+  .ev { grid-template-columns: 3.6rem minmax(0, 1fr) 4.5rem; gap: .6rem; }
+  .evimg { width: 4.5rem; height: 3.5rem; }
+  .pop { left: 12px !important; right: 12px; top: auto !important; bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); width: auto; max-width: none; max-height: 70vh; overflow-y: auto; }
+  .pop img { height: 9rem; }
+}
+
+/* Notas */
+.notes { background: var(--surface); border-top: 5px solid var(--red); }
+.notes .wrap { padding-block: 2.5rem; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.notes h2 { font-family: var(--display); font-size: 1.3rem; margin: 0 0 .75rem; color: var(--red); }
+.notes ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .6rem; }
+.notes li { min-width: 0; font-size: .96rem; }
+.notes li::marker { color: var(--gold); }
+.notes .full { grid-column: 1 / -1; }
+.warn { border-left: 5px solid var(--red); padding: .75rem 1rem; background: color-mix(in srgb, var(--red) 9%, var(--surface)); }
+footer { text-align: center; padding-block: 1.5rem; color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .sum { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .date { padding: .8rem 1rem; gap: .1rem .75rem; }
+  .num { font-size: 2.3rem; }
+  .daytotal { margin-left: 0; }
+  .mapbox { padding: .75rem 1rem 0; }
+  .events { padding: .5rem 1rem 1rem; }
+  .opts { padding: .25rem 1rem 1.25rem; }
+}
+html { scroll-padding-top: 4.5rem; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+  .day, .budget, .notes, .route { scroll-snap-align: start; }
+}
+.nextday { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin: 0; padding: .9rem 1.5rem; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--a) 8%, var(--surface)); color: var(--fg); text-decoration: none; font-family: var(--display); font-weight: 700; font-size: .84rem; letter-spacing: .06em; text-transform: uppercase; min-height: 3rem; }
+.nextday:hover { background: color-mix(in srgb, var(--a) 16%, var(--surface)); }
+.nextday span:last-child { color: var(--a); font-size: 1.2rem; }
+@media (max-width: 640px) { .nextday { padding-inline: 1rem; } }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Jueves 4 – Domingo 21 de febrero · Tết Đinh Mùi 2027</p>
+    <h1>Vietnam: de Sài Gòn a la bahía de Hạ Long</h1>
+    <p class="lede">Quince noches de sur a norte: Sài Gòn, el delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y Hạ Long. El viaje coincide con el Tết, el Año Nuevo lunar (el día 1 es el sábado 6 de febrero): ciudades más tranquilas los primeros días, templos y flores por todas partes, y mucho que reservar con tiempo.</p>
+    <div class="flights">
+      <div class="fl"><small>Ida</small><b>Jue 4 feb · 21:45 Madrid → Vie 5 feb · 19:35 Ciudad Ho Chi Minh</b><span>Madrid (MAD) → Tân Sơn Nhất (SGN), con escala</span></div>
+      <div class="fl"><small>Vuelta</small><b>Sáb 20 feb · 21:45 Ciudad Ho Chi Minh → Dom 21 feb · 12:40 Madrid</b><span>SGN → MAD, con escala. Horas locales: Vietnam va 6 h por delante de Madrid</span></div>
+    </div>
+    <svg class="scene" viewBox="0 0 900 200" role="img" aria-label="Farolillos rojos, islotes kársticos y un junco al atardecer en la bahía de Hạ Long" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <g id="ln">
+          <line x1="0" y1="-40" x2="0" y2="0" stroke="var(--gold)" stroke-width="1.5"/>
+          <rect x="-6" y="0" width="12" height="5" rx="1.5" fill="var(--yellow)"/>
+          <ellipse cx="0" cy="23" rx="16" ry="19" fill="var(--red)"/>
+          <path d="M0 5Q-9 23 0 41M0 5Q9 23 0 41" fill="none" stroke="var(--yellow)" stroke-opacity=".6" stroke-width="1.2"/>
+          <rect x="-6" y="40" width="12" height="5" rx="1.5" fill="var(--yellow)"/>
+          <path d="M-3 45v12M0 45v15M3 45v12" stroke="var(--yellow)" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+      </defs>
+      <use href="#ln" transform="translate(64 42)"/>
+      <use href="#ln" transform="translate(150 30) scale(.85)"/>
+      <use href="#ln" transform="translate(238 46)"/>
+      <use href="#ln" transform="translate(330 34) scale(.9)"/>
+      <use href="#ln" transform="translate(742 38)"/>
+      <use href="#ln" transform="translate(826 48) scale(.85)"/>
+      <circle cx="590" cy="92" r="42" fill="var(--red)"/>
+      <polygon transform="translate(590 92)" fill="var(--yellow)" points="0,-25 5.6,-7.7 23.8,-7.7 9.1,3 14.7,20.2 0,9.6 -14.7,20.2 -9.1,3 -23.8,-7.7 -5.6,-7.7"/>
+      <g fill="var(--teal)" opacity=".38">
+        <path d="M20 172C30 140 44 104 70 100C98 96 110 140 122 172Z"/>
+        <path d="M170 172C180 136 194 92 224 88C254 84 266 136 276 172Z"/>
+        <path d="M430 172C440 144 454 116 478 114C504 112 514 146 522 172Z"/>
+        <path d="M690 172C700 140 714 104 742 100C770 96 784 140 792 172Z"/>
+        <path d="M800 172C812 150 826 126 846 124C868 122 880 154 888 172Z"/>
+      </g>
+      <g fill="var(--karst)" opacity=".85">
+        <path d="M110 176C120 134 140 84 176 78C214 72 232 134 242 176Z"/>
+        <path d="M330 176C342 150 358 112 388 108C420 104 432 150 440 176Z"/>
+        <path d="M545 176C557 146 575 116 605 112C636 108 650 150 658 176Z"/>
+        <path d="M650 176C662 142 682 104 714 98C748 92 764 144 774 176Z"/>
+      </g>
+      <path d="M0 172H900V200H0Z" fill="var(--water)"/>
+      <path d="M0 184Q30 178 60 184T120 184T180 184T240 184T300 184T360 184T420 184T480 184T540 184T600 184T660 184T720 184T780 184T840 184T900 184" fill="none" stroke="var(--roadin)" stroke-opacity=".35" stroke-width="2"/>
+      <path d="M0 193Q30 187 60 193T120 193T180 193T240 193T300 193T360 193T420 193T480 193T540 193T600 193T660 193T720 193T780 193T840 193T900 193" fill="none" stroke="var(--roadin)" stroke-opacity=".25" stroke-width="2"/>
+      <path d="M452 176H540L528 190H464Z" fill="var(--ink)"/>
+      <path d="M492 176V120L530 172Z" fill="var(--red)"/>
+      <path d="M482 176V138L458 172Z" fill="color-mix(in srgb, var(--red) 65%, var(--ink))"/>
+      <path d="M492 120V176" stroke="var(--ink)" stroke-width="2"/>
+    </svg>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Días del viaje">
+  <div class="wrap">
+    <ul id="navList">
+      <li><a href="#jue4" style="--z: var(--muted)"><b>4</b><span>Jue</span></a></li>
+      <li><a href="#vie5" style="--z: var(--red)"><b>5</b><span>Vie</span></a></li>
+      <li><a href="#sab6" style="--z: var(--red)"><b>6</b><span>Sáb</span></a></li>
+      <li><a href="#dom7" style="--z: var(--jade)"><b>7</b><span>Dom</span></a></li>
+      <li><a href="#lun8" style="--z: var(--gold)"><b>8</b><span>Lun</span></a></li>
+      <li><a href="#mar9" style="--z: var(--gold)"><b>9</b><span>Mar</span></a></li>
+      <li><a href="#mie10" style="--z: var(--gold)"><b>10</b><span>Mié</span></a></li>
+      <li><a href="#jue11" style="--z: var(--gold)"><b>11</b><span>Jue</span></a></li>
+      <li><a href="#vie12" style="--z: var(--hue)"><b>12</b><span>Vie</span></a></li>
+      <li><a href="#sab13" style="--z: var(--hue)"><b>13</b><span>Sáb</span></a></li>
+      <li><a href="#dom14" style="--z: var(--indigo)"><b>14</b><span>Dom</span></a></li>
+      <li><a href="#lun15" style="--z: var(--lotus)"><b>15</b><span>Lun</span></a></li>
+      <li><a href="#mar16" style="--z: var(--teal)"><b>16</b><span>Mar</span></a></li>
+      <li><a href="#mie17" style="--z: var(--teal)"><b>17</b><span>Mié</span></a></li>
+      <li><a href="#jue18" style="--z: var(--indigo)"><b>18</b><span>Jue</span></a></li>
+      <li><a href="#vie19" style="--z: var(--indigo)"><b>19</b><span>Vie</span></a></li>
+      <li><a href="#sab20" style="--z: var(--red)"><b>20</b><span>Sáb</span></a></li>
+      <li><a href="#dom21" style="--z: var(--muted)"><b>21</b><span>Dom</span></a></li>
+      <li class="sep" aria-hidden="true"></li>
+      <li><a class="txt" href="#ruta">Ruta</a></li>
+      <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
+      <li><a class="txt" href="#notas">Notas</a></li>
+    </ul>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Cambiar a modo nocturno" title="Cambiar a modo nocturno">
+      <svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="navProg"></span></div>
+</nav>
+
+<main class="wrap">
+  <div class="legend" aria-label="Leyenda de colores">
+    <span style="--c: var(--red)">Sài Gòn</span>
+    <span style="--c: var(--jade)">Delta del Mekong</span>
+    <span style="--c: var(--gold)">Hội An</span>
+    <span style="--c: var(--hue)">Huế</span>
+    <span style="--c: var(--indigo)">Hà Nội</span>
+    <span style="--c: var(--lotus)">Ninh Bình</span>
+    <span style="--c: var(--teal)">Bahía de Hạ Long</span>
+    <span style="--c: var(--muted)">Vuelos desde y hacia Madrid</span>
+  </div>
+  <p class="intro">Cada día empieza con su mapa: carreteras, ríos, templos y paradas numeradas en el orden de la ruta, con las distancias entre ellas. Los mapas son esquemas con trazados aproximados: sirven para orientarse, no para navegar. Precios y tiempos son estimaciones.</p>
+  <div class="tetbox">
+    <h2>Viajar durante el Tết</h2>
+    <p>El Tết Đinh Mùi (año de la Cabra) cae el <strong>sábado 6 de febrero de 2027</strong>: llegáis el viernes 5, Giao thừa, la noche de fin de año. El Ministerio del Interior vietnamita fija el descanso oficial del 4 al 10 de febrero; muchos negocios cierran entre 3 y 7 días y los vuelos, trenes y hoteles se encarecen. Hội An, los templos, los parques y los hoteles siguen abiertos.</p>
+    <p>Cada día lleva una pestaña «Tết» con lo que cambia: cierres, tradiciones y reservas. El 20 de febrero es el 15.º día del año, Rằm tháng Giêng, la primera luna llena.</p>
+  </div>
+
+  <section class="route" id="ruta" aria-labelledby="ruta-h">
+    <h2 id="ruta-h">La ruta de un vistazo</h2>
+    <p class="sub">Cinco bases y un crucero, con tres vuelos internos para no perder días en carretera. Los vuelos desde y hacia Madrid se suman aparte.</p>
+    <div class="routegrid">
+      <figure class="ovmap" id="ovMap"><figcaption>Vietnam, de sur a norte</figcaption></figure>
+      <div>
+        <ol class="stops" id="ovStops"></ol>
+        <table class="stages">
+          <thead><tr><th scope="col">Día</th><th scope="col">Tramo</th><th scope="col">Tiempo</th></tr></thead>
+          <tbody id="ovStages"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="days">
+
+    <section class="day trip" id="jue4">
+      <div class="date"><span class="dow">Jueves</span><span class="num">4</span><span class="place">Madrid</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">19:00</span><div><h3>Salida hacia el aeropuerto de Madrid-Barajas</h3><p>Facturación abierta unas 3 h antes. Llevad el pasaporte (con 6 meses de validez) y los datos del vuelo de vuelta.</p></div></li>
+        <li class="ev"><span class="time">21:45</span><div><h3>Vuelo Madrid → Ciudad Ho Chi Minh</h3><p>Aterrizáis el viernes 5 a las 19:35 hora de Vietnam: unas 16 h de viaje con escala. Poneos el horario vietnamita desde el despegue y dormid en el avión.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day sgn" id="vie5">
+      <div class="date"><span class="dow">Viernes</span><span class="num">5</span><span class="place">Sài Gòn</span><span class="badge lunar">Giao thừa</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">19:35</span><div><h3>Aterrizaje en Tân Sơn Nhất (SGN)</h3><p>Inmigración y equipaje, cerca de 1 h. Con la exención de visado os sellan 45 días. Sacad dongs del cajero y activad la eSIM. Grab o taxi al Distrito 1 (25–40 min).</p></div></li>
+        <li class="ev"><span class="time">22:00</span><div><h3>Cena ligera cerca del hotel</h3><p>Phở o bánh mì. Es víspera de Tết y muchos locales cierran pronto: comprad agua y algo de comer.</p></div></li>
+        <li class="ev opt tet"><span class="time">23:30</span><div><h3>Giao thừa en Nguyễn Huệ</h3><p>A medianoche se despide el año: las familias salen a la calle Nguyễn Huệ y al río. Si estáis despiertos, merece un paseo; si no, dormid.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day sgn" id="sab6">
+      <div class="date"><span class="dow">Sábado</span><span class="num">6</span><span class="place">Sài Gòn</span><span class="badge lunar">Mùng 1 · Tết</span></div>
+      <ul class="events">
+        <li class="ev tet"><span class="time">8:30</span><div><h3>Templo de Thiên Hậu (Chợ Lớn)</h3><p>Templo chino dedicado a la diosa del mar, con espirales de incienso colgando del techo. En mùng 1 las familias vienen a rezar por el año nuevo: id con respeto, hombros cubiertos.</p></div></li>
+        <li class="ev"><span class="time">10:30</span><div><h3>Pagoda del Emperador de Jade</h3><p>Templo taoísta con figuras del Emperador de Jade, guardianes y un estanque de tortugas. Poco tráfico y calles vacías: el mejor día para ir en coche.</p></div></li>
+        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo</h3><p>Muchos restaurantes cierran en mùng 1. Buscad hoteles, centros comerciales o puestos de calle que abren al mediodía.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Catedral de Notre-Dame y Oficina de Correos</h3><p>Ladrillo rojo colonial francés frente a la estación de Correos de 1891, aún en servicio, con mapas antiguos de la ciudad. Pasead entre ambas.</p></div></li>
+        <li class="ev tet"><span class="time">17:30</span><div><h3>Calle de las flores de Nguyễn Huệ</h3><p>Cada Tết el paseo peatonal se convierte en un jardín temporal: flores de mai amarilla, bonsáis y la mascota del año. Id al atardecer, cuando se enciende.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena y paseo junto al río Sài Gòn</h3><p>Muelle de Bạch Đằng y terrazas del Distrito 1.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day mekong" id="dom7">
+      <div class="date"><span class="dow">Domingo</span><span class="num">7</span><span class="place">Delta del Mekong</span><span class="badge lunar">Mùng 2</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">7:30</span><div><h3>Salida hacia Mỹ Tho</h3><p>Excursión de día completo con recogida en el hotel, o coche con conductor. 70 km por autopista, unas 2 h.</p></div></li>
+        <li class="ev"><span class="time">10:00</span><div><h3>Barco por el río Tiền y la isla Thới Sơn</h3><p>Lancha entre islas, talleres de caramelo de coco y miel, y paseo en sampán por canales cubiertos de palmeras nipa.</p></div></li>
+        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en una finca</h3><p>Pescado oreja de elefante frito (cá tai tượng), rollitos y fruta tropical.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Huertos de cocoteros en Bến Tre</h3><p>Carro de caballos, bici entre cocoteros y música tradicional (đờn ca tài tử) en una casa.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Regreso a Sài Gòn</h3><p>Llegada hacia las 19:30.</p></div></li>
+        <li class="ev"><span class="time">20:00</span><div><h3>Cena en el Distrito 1</h3><p>Cơm tấm (arroz con cerdo) o bún thịt nướng.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hoian" id="lun8">
+      <div class="date"><span class="dow">Lunes</span><span class="num">8</span><span class="place">Sài Gòn → Hội An</span><span class="badge lunar">Mùng 3</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:30</span><div><h3>Museo de los Vestigios de la Guerra</h3><p>Uno de los museos más visitados del país, sobre la guerra desde la mirada vietnamita. Duro pero imprescindible; reservad 1,5 h y confirmad el horario de Tết.</p></div></li>
+        <li class="ev"><span class="time">10:30</span><div><h3>Mercado de Bến Thành</h3><p>Café, fruta y souvenirs, con regateo. Si está cerrado por Tết, tomad un café en la calle Đồng Khởi.</p></div></li>
+        <li class="ev"><span class="time">12:00</span><div><h3>Traslado al aeropuerto</h3><p>Salid con margen: son mùng 3 y los aeropuertos están llenos.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Vuelo Sài Gòn → Đà Nẵng</h3><p>1 h 20 min. Facturad el equipaje con 2 h de antelación.</p></div></li>
+        <li class="ev"><span class="time">17:00</span><div><h3>Llegada a Đà Nẵng y traslado a Hội An</h3><p>30 km por la carretera de la costa, unos 45 min.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Primer paseo y cena en Hội An</h3><p>El casco antiguo se ilumina con farolillos de seda y, en Tết, con flores y ramas de melocotonero.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hoian" id="mar9">
+      <div class="date"><span class="dow">Martes</span><span class="num">9</span><span class="place">Hội An</span><span class="badge lunar">Mùng 4</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:00</span><div><h3>Desayuno en el mercado</h3><p>Bánh mì, cao lầu temprano o un café de coco antes de que llegue la gente.</p></div></li>
+        <li class="ev"><span class="time">9:30</span><div><h3>Casco antiguo de Hội An</h3><p>Patrimonio UNESCO: casas de comerciantes, salas de asamblea chinas y el Puente Cubierto japonés (siglo XVII). La entrada incluye 5 sitios.</p></div></li>
+        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo</h3><p>Mì Quảng, bánh xèo y nem lụi.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Sastrería y artesanía</h3><p>Tomad medidas para un traje o un áo dài y recogedlo en 24–48 h. En Tết hay mucha cola: encargadlo hoy.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Atardecer en el río Hoài</h3><p>Paseo en barca con farolillos de papel flotando en el agua.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena junto al río</h3><p>Reservad mesa en terraza: en Tết se llenan.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hoian" id="mie10">
+      <div class="date"><span class="dow">Miércoles</span><span class="num">10</span><span class="place">Mỹ Sơn y Đà Nẵng</span><span class="badge lunar">Mùng 5</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">7:00</span><div><h3>Salida a Mỹ Sơn</h3><p>40 km, algo más de 1 h con conductor. Id a primera hora: poca gente y menos calor.</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Santuario de Mỹ Sơn</h3><p>Templos hindúes del reino de Champa (siglos IV–XIII), Patrimonio UNESCO, entre la selva. Coche eléctrico dentro y espectáculo de danza.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo en Đà Nẵng</h3><p>Mì Quảng o bánh tráng cuốn thịt heo.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Montañas de Mármol</h3><p>Cinco colinas de piedra caliza con cuevas-templo, pagodas y miradores. Hay ascensor.</p></div></li>
+        <li class="ev opt"><span class="time">15:30</span><div><h3>Playa de Mỹ Khê</h3><p>Arena larga y fina para un paseo antes de volver.</p></div></li>
+        <li class="ev"><span class="time">19:00</span><div><h3>Cena en Hội An</h3><p>Probad el bánh xèo o el mì Quảng si aún no.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hoian" id="jue11">
+      <div class="date"><span class="dow">Jueves</span><span class="num">11</span><span class="place">Hội An</span><span class="badge lunar">Mùng 6</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:30</span><div><h3>Bici entre arrozales hasta Trà Quế</h3><p>Aldea de hortalizas a 4 km: cultivan hierbas aromáticas con algas del río. Paseo corto con el agricultor.</p></div></li>
+        <li class="ev"><span class="time">10:00</span><div><h3>Clase de cocina</h3><p>Visita al mercado y clase para preparar cao lầu, bánh xèo y rollitos. Se come lo que se cocina.</p></div></li>
+        <li class="ev"><span class="time">14:00</span><div><h3>Playa de An Bàng</h3><p>Hamacas, cócteles y arena fina junto al mar de China Meridional.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Recoger el sastre y compras</h3><p>Últimos ajustes antes de salir mañana.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena de despedida de Hội An</h3><p>Una terraza con vistas al río.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hue" id="vie12">
+      <div class="date"><span class="dow">Viernes</span><span class="num">12</span><span class="place">Hội An → Huế</span><span class="badge lunar">Mùng 7</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:30</span><div><h3>Salida de Hội An</h3><p>Coche con conductor, unos 125 km: 4 h con paradas. Se rodea Đà Nẵng por la costa.</p></div></li>
+        <li class="ev"><span class="time">10:00</span><div><h3>Paso de Hải Vân</h3><p>Puerto de montaña de 21 km, a 496 m, antigua frontera entre Champa y Đại Việt. Vistas de la bahía y fortines. Bajad en la cumbre 30 min.</p></div></li>
+        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en Lăng Cô</h3><p>Marisco junto a la laguna: ostras, almejas y pescado a la parrilla.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Llegada a Huế y check-in</h3><p>Orilla sur del río Perfume, cerca del puente Trường Tiền.</p></div></li>
+        <li class="ev"><span class="time">16:30</span><div><h3>Pagoda de Thiên Mụ</h3><p>Torre de siete pisos (1844) a orillas del río Perfume: el símbolo de Huế. Se puede subir en barca desde la ciudad.</p></div></li>
+        <li class="ev"><span class="time">19:00</span><div><h3>Cena de cocina de Huế</h3><p>Bún bò Huế, bánh bèo y nem lụi.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hue" id="sab13">
+      <div class="date"><span class="dow">Sábado</span><span class="num">13</span><span class="place">Huế → Hà Nội</span><span class="badge lunar">Mùng 8</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:00</span><div><h3>Ciudadela Imperial (Đại Nội)</h3><p>Recinto amurallado de los emperadores Nguyễn (1802–1945): puerta del Mediodía, salas del trono y jardines. Reservad 2,5–3 h.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo</h3><p>Cơm hến (arroz con almejas) o bún bò.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Tumba de Khải Định</h3><p>Mausoleo de 1920–1931 con mosaicos de porcelana y vidrio roto: mezcla de estilos vietnamita y europeo. A 10 km del centro.</p></div></li>
+        <li class="ev"><span class="time">16:30</span><div><h3>Traslado al aeropuerto de Phú Bài</h3><p>Unos 30 min desde el centro de Huế.</p></div></li>
+        <li class="ev"><span class="time">19:00</span><div><h3>Vuelo Huế → Hà Nội</h3><p>1 h 15 min. Sábado mùng 8: las familias vuelven a las ciudades y los vuelos van llenos.</p></div></li>
+        <li class="ev"><span class="time">20:45</span><div><h3>Llegada a Hà Nội y traslado al Old Quarter</h3><p>28 km desde Nội Bài, 45–60 min. Cena tardía de phở o bún chả.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hanoi" id="dom14">
+      <div class="date"><span class="dow">Domingo</span><span class="num">14</span><span class="place">Hà Nội</span><span class="badge lunar">Mùng 9</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:00</span><div><h3>Lago Hoàn Kiếm y templo Ngọc Sơn</h3><p>Paseo por el lago a primera hora, con la ciudad aún tranquila. Un puente rojo lleva al templo en la isla.</p></div></li>
+        <li class="ev tet"><span class="time">9:30</span><div><h3>Templo de la Literatura</h3><p>Primera universidad de Vietnam (1076): patios con estanques y estelas de doctores sobre tortugas de piedra. En Tết hay feria de caligrafía.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo</h3><p>Phở o bún chả, si el local abre.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Mausoleo de Hồ Chí Minh y plaza Ba Đình</h3><p>Plaza donde se declaró la independencia en 1945, con el Mausoleo, la Pagoda del Pilar Único y la casa sobre pilotes. Hombros y rodillas cubiertos; el interior tiene horario limitado.</p></div></li>
+        <li class="ev"><span class="time">15:30</span><div><h3>Café de huevo</h3><p>El cà phê trứng, café con crema de yema y leche condensada.</p></div></li>
+        <li class="ev"><span class="time">18:30</span><div><h3>Marionetas sobre el agua</h3><p>Función en el teatro Thăng Long, un arte de hace mil años nacido en los arrozales del delta del Río Rojo.</p></div></li>
+        <li class="ev"><span class="time">20:00</span><div><h3>Cena en el Old Quarter</h3><p>Chả cá o bún chả y una cerveza fresca (bia hơi).</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day ninh" id="lun15">
+      <div class="date"><span class="dow">Lunes</span><span class="num">15</span><span class="place">Hà Nội → Ninh Bình</span><span class="badge lunar">Mùng 10</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:00</span><div><h3>Salida hacia Ninh Bình</h3><p>95 km por autopista, unas 2 h. Coche con conductor o minibús limusina.</p></div></li>
+        <li class="ev"><span class="time">10:30</span><div><h3>Tràng An en barca</h3><p>Paseo de 2–3 h remando entre grutas y montañas kársticas, Patrimonio UNESCO. Hay varias rutas.</p></div></li>
+        <li class="ev"><span class="time">13:30</span><div><h3>Almuerzo</h3><p>Cabra de montaña (dê) y arroz crujiente (cơm cháy), el plato típico de Ninh Bình.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Hang Múa</h3><p>500 escalones hasta el mirador del dragón, con vistas a Tam Cốc. Mejor al final de la tarde.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Check-in en el homestay y paseo en bici</h3><p>Arrozales y karst al atardecer.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena casera</h3><p>Platos con verduras del huerto del homestay.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day halong" id="mar16">
+      <div class="date"><span class="dow">Martes</span><span class="num">16</span><span class="place">Ninh Bình → bahía de Hạ Long</span><span class="badge lunar">Mùng 11</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:00</span><div><h3>Salida hacia Hạ Long</h3><p>Unos 190 km por Nam Định, Thái Bình y Hải Phòng: 3 h 30 min en coche con conductor.</p></div></li>
+        <li class="ev"><span class="time">12:00</span><div><h3>Embarque en el crucero</h3><p>Bienvenida, almuerzo de marisco a bordo y salida entre los karst de la bahía.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Cuevas y kayak</h3><p>Visita a una cueva (Sửng Sốt) y kayak o barca de bambú por una bahía tranquila.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Atardecer y cena a bordo</h3><p>Clase de rollitos y cena de pescado en cubierta, fondeados entre los islotes.</p></div></li>
+        <li class="ev opt"><span class="time">21:00</span><div><h3>Pesca de calamares</h3><p>Si el tiempo lo permite, con luz y caña desde cubierta.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day halong" id="mie17">
+      <div class="date"><span class="dow">Miércoles</span><span class="num">17</span><span class="place">Hạ Long → Hà Nội</span><span class="badge lunar">Mùng 12</span></div>
+      <ul class="events">
+        <li class="ev opt"><span class="time">6:30</span><div><h3>Tai chi al amanecer</h3><p>En cubierta, con la bahía entre la bruma.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Brunch y última visita</h3><p>Isla de Ti Tốp o una cueva, según el crucero. Desembarque hacia las 11:30.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Regreso a Hà Nội</h3><p>160 km por la autopista, unas 3 h. Shuttle del crucero o coche privado.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Check-in en el Old Quarter</h3><p>Tarde libre: paseo por el barrio y compras de última hora.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena en el Old Quarter</h3><p>Nem rán, bún đậu o phở cuốn.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hanoi" id="jue18">
+      <div class="date"><span class="dow">Jueves</span><span class="num">18</span><span class="place">Hà Nội</span><span class="badge lunar">Mùng 13</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">9:00</span><div><h3>Museo de Etnología</h3><p>Las 54 etnias de Vietnam, con casas tradicionales reconstruidas en el jardín.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Pagoda de Trấn Quốc y lago del Oeste</h3><p>La pagoda más antigua de Hà Nội, en una isla del lago. Almuerzo de bánh tôm junto al agua.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Prisión de Hỏa Lò</h3><p>Prisión colonial francesa y después el «Hanoi Hilton». Museo sobre la lucha por la independencia.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Café con vistas en el Old Quarter</h3><p>Una azotea o un café de patio interior.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena y cerveza en Tạ Hiện</h3><p>Bia hơi en taburetes de plástico: el ambiente nocturno de Hà Nội.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day hanoi" id="vie19">
+      <div class="date"><span class="dow">Viernes</span><span class="num">19</span><span class="place">Hà Nội</span><span class="badge lunar">Mùng 14</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">8:30</span><div><h3>Pueblo de cerámica de Bát Tràng</h3><p>A 13 km del centro: talleres donde se moldea y pinta la cerámica. Podéis hacer vuestra propia pieza.</p></div></li>
+        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en el pueblo</h3><p>Pollo de colina o bánh cuốn.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Compras en el Old Quarter</h3><p>Seda, café, té, lacas y cerámica. Los comercios ya han reabierto.</p></div></li>
+        <li class="ev opt"><span class="time">17:00</span><div><h3>Masaje o spa</h3><p>Una hora para descansar antes de la despedida.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena de despedida del norte</h3><p>Chả cá Lã Vọng: pescado con eneldo y cúrcuma, el clásico de Hà Nội.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day sgn" id="sab20">
+      <div class="date"><span class="dow">Sábado</span><span class="num">20</span><span class="place">Hà Nội → Sài Gòn → Madrid</span><span class="badge lunar">Rằm tháng Giêng</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">6:45</span><div><h3>Salida al aeropuerto de Nội Bài</h3><p>Grab, unos 45 min. Facturad 2 h antes del vuelo.</p></div></li>
+        <li class="ev"><span class="time">9:00</span><div><h3>Vuelo Hà Nội → Sài Gòn</h3><p>2 h 10 min. Es el vuelo de más margen: salid lo más pronto posible, porque el internacional a Madrid sale a las 21:45.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Llegada a Sài Gòn y traslado al centro</h3><p>Consigna de equipaje en el aeropuerto o en un hotel del Distrito 1.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Última comida y compras</h3><p>Cơm tấm y café de Trung Nguyên y regalos en Bến Thành.</p></div></li>
+        <li class="ev tet"><span class="time">15:30</span><div><h3>Pagoda y luna llena: Rằm tháng Giêng</h3><p>El 15.º día del año es la primera luna llena y los templos se llenan de fieles con flores, frutas e incienso. Una despedida a la luz de la tradición.</p></div></li>
+        <li class="ev"><span class="time">18:30</span><div><h3>Traslado al aeropuerto de SGN</h3><p>Llegad 3 h antes del vuelo intercontinental.</p></div></li>
+        <li class="ev"><span class="time">21:45</span><div><h3>Vuelo Ciudad Ho Chi Minh → Madrid</h3><p>Aterrizaje el domingo 21 a las 12:40, tras unas 21 h con escala.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="day trip" id="dom21">
+      <div class="date"><span class="dow">Domingo</span><span class="num">21</span><span class="place">Madrid</span></div>
+      <ul class="events">
+        <li class="ev"><span class="time">12:40</span><div><h3>Llegada a Madrid-Barajas</h3><p>Seis horas de diferencia con Vietnam: el cambio de hora hacia el oeste se lleva mejor. Metro o Cercanías a casa.</p></div></li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<section class="wrap budget" id="presupuesto">
+  <h2>Presupuesto estimado</h2>
+  <p class="sub">Euros por persona. Se supone que los dos viajeros comparten habitación, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
+  <div class="tiles" id="budgetTiles"></div>
+  <h3 class="bh">En qué se va el dinero</h3>
+  <div class="bar" id="budgetBar" role="img" aria-label="Reparto del presupuesto por categoría"></div>
+  <ul class="bleg" id="budgetLeg"></ul>
+  <h3 class="bh">Día a día</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th scope="col">Día</th>
+        <th scope="col" data-k="act">Entradas</th>
+        <th scope="col" data-k="trans">Transporte</th>
+        <th scope="col" data-k="fly">Vuelos int.</th>
+        <th scope="col" data-k="food">Comida</th>
+        <th scope="col" data-k="lodge">Alojamiento</th>
+        <th scope="col">Reparto</th>
+        <th scope="col">Total</th>
+      </tr></thead>
+      <tbody id="budgetRows"></tbody>
+      <tfoot id="budgetFoot"></tfoot>
+    </table>
+  </div>
+  <div class="bnotes">
+    <div>
+      <h3>Qué incluye</h3>
+      <ul>
+        <li>Dos viajeros que comparten habitación, taxi y coche; las cifras son por persona.</li>
+        <li>Vuelo Madrid–Sài Gòn ida y vuelta: estimación de €850 por persona. Cámbiala en <code>FLIGHT</code> por el precio real del billete.</li>
+        <li>Tres vuelos internos: Sài Gòn → Đà Nẵng, Huế → Hà Nội y Hà Nội → Sài Gòn (de €55 a €65 por tramo).</li>
+        <li>Alojamiento: 15 noches. 3 en Sài Gòn y 4 en Hội An a ~€55, 1 en Huế a ~€45, 5 en Hà Nội a ~€52, 1 en Ninh Bình a ~€50 y 1 de crucero (cabina para dos, con comidas) a €200. Las noches del Tết llevan recargo.</li>
+        <li>El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 21:45.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Qué no incluye</h3>
+      <ul>
+        <li>eSIM (~€8), seguro de viaje, propinas y compras personales (un traje o áo dài a medida cuesta de €40 a €100).</li>
+        <li>Bebidas a bordo del crucero, Bà Nà Hills (~€30) y masajes (~€15 incluido el del 19).</li>
+        <li>Tarifas de Tết: los precios de hoteles, vuelos y cruceros pueden subir otro 20–50% respecto a la temporada normal. Confirma todo en las webs oficiales.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="notes" id="notas">
+  <div class="wrap">
+    <div>
+      <h2>Por qué este orden</h2>
+      <ul>
+        <li><strong>Sài Gòn (5–7):</strong> aterrizáis en Giao thừa. Tres noches en el Distrito 1 aprovechan los días de calles más tranquilas, con el delta del Mekong como excursión de día.</li>
+        <li><strong>Hội An (8–11):</strong> cuatro noches en el mismo hotel dan tiempo para Mỹ Sơn, las Montañas de Mármol, la cocina local y un día sin prisas. Es la base más cómoda en Tết: el casco antiguo sigue abierto y con farolillos.</li>
+        <li><strong>Huế (12–13):</strong> una noche tras cruzar el paso de Hải Vân y un día completo para la Ciudadela, antes de volar al norte.</li>
+        <li><strong>Hà Nội (13–14 y 17–19):</strong> la base se parte en dos para ir a Ninh Bình y a Hạ Long sin cargar con las maletas. Cuando volvéis, el 17, la ciudad ya ha reabierto.</li>
+        <li><strong>Hạ Long (16–17):</strong> la bahía va al final del norte porque con niebla se cancelan salidas; si falla, el 18 y el 19 sirven de colchón.</li>
+        <li><strong>El 20:</strong> vuelo de mañana de Hà Nội a Sài Gòn para enlazar con el internacional de las 21:45, con una tarde para despediros.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Clima y qué llevar</h2>
+      <ul>
+        <li><strong>Sur (Sài Gòn, delta):</strong> estación seca, de 24 a 33 °C. Ropa ligera, gorra y crema solar.</li>
+        <li><strong>Centro (Hội An, Huế):</strong> de 18 a 25 °C con chubascos posibles, sobre todo en Huế. Paraguas o impermeable ligero.</li>
+        <li><strong>Norte (Hà Nội, Ninh Bình, Hạ Long):</strong> de 12 a 19 °C, con bruma y llovizna. Una chaqueta de abrigo y capas.</li>
+        <li><strong>Templos:</strong> hombros y rodillas cubiertos; descalzaos donde se indique.</li>
+        <li><strong>Pagos y apps:</strong> Grab para taxis y motos, Google Maps y algo de efectivo en dongs; las tarjetas se aceptan en hoteles y restaurantes grandes. Los enchufes tipo C de España suelen valer en Vietnam (220 V).</li>
+        <li><strong>Saludo de Tết:</strong> «Chúc mừng năm mới». Es costumbre regalar sobres rojos (lì xì) a los niños.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Ideas extra si sobra energía</h2>
+      <ul>
+        <li>Túneles de Củ Chi, a 70 km de Sài Gòn, si abren en Tết (medio día).</li>
+        <li>Bà Nà Hills y el Puente Dorado, cerca de Đà Nẵng: muy concurrido en Tết.</li>
+        <li>Puente del Dragón de Đà Nẵng: escupe fuego y agua los sábados y domingos a las 21:00.</li>
+        <li>Chùa Hương desde Hà Nội, con su festival de primavera (todo el día).</li>
+        <li>Isla de Cát Bà, desde el crucero o en un día extra de Hạ Long.</li>
+      </ul>
+    </div>
+    <div class="full warn">
+      <strong>Aviso:</strong> el Tết es temporada alta. Reservad ya los vuelos internos, el crucero y los hoteles; muchos restaurantes y museos cierran los primeros días, así que comprobad horarios en Google Maps o por teléfono unos días antes. Como España y Vietnam no exigen visado hasta 45 días, solo hace falta pasaporte con 6 meses de validez; verificad el requisito en la web del Ministerio de Exteriores antes de volar.
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">Buen viaje · Chúc mừng năm mới<br>Fotos de Wikimedia Commons. <a href="https://github.com/andreshere00/vietnam-trip/blob/main/CREDITS.md">Ver créditos y licencias</a></footer>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var LBL = { act: 'Entradas', trans: 'Transporte', fly: 'Vuelos int.', food: 'Comida', lodge: 'Alojamiento' };
+  var CHIP = { act: 'Entradas', trans: 'Transporte', fly: 'Vuelo', food: 'Comida' };
+  var KEYS = ['act', 'trans', 'fly', 'food', 'lodge'];
+  /* Habitación doble por noche (€), repartida entre dos personas. El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 21:45. */
+  var LODGE = {
+    vie5: { room: 55, n: 'Distrito 1, Sài Gòn' }, sab6: { room: 55, n: 'Distrito 1, Sài Gòn' }, dom7: { room: 55, n: 'Distrito 1, Sài Gòn' },
+    lun8: { room: 55, n: 'Hội An' }, mar9: { room: 55, n: 'Hội An' }, mie10: { room: 55, n: 'Hội An' }, jue11: { room: 55, n: 'Hội An' },
+    vie12: { room: 45, n: 'Huế' }, sab13: { room: 52, n: 'Old Quarter, Hà Nội' }, dom14: { room: 52, n: 'Old Quarter, Hà Nội' },
+    lun15: { room: 50, n: 'homestay en Tam Cốc, Ninh Bình' }, mar16: { room: 200, n: 'cabina doble de crucero con todas las comidas, Hạ Long' },
+    mie17: { room: 52, n: 'Old Quarter, Hà Nội' }, jue18: { room: 52, n: 'Old Quarter, Hà Nội' }, vie19: { room: 52, n: 'Old Quarter, Hà Nội' }
+  };
+  var NOLODGE = { jue4: 'Sin alojamiento: noche en el avión.', sab20: 'Sin alojamiento: el vuelo a Madrid sale a las 21:45.', dom21: 'Sin alojamiento: de vuelta en casa.' };
+  var eur = function (n) { return '€' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var FLIGHT = 850; /* € por persona, ida y vuelta Madrid–Sài Gòn (estimación: sustituir por el precio real) */
+
+  /* ---------- Costes por evento (orden en cada día), € por persona ---------- */
+  var COST = {
+    jue4: ['trans:5', 'note:El billete va en el presupuesto'],
+    vie5: ['trans:8', 'food:8', ''],
+    sab6: ['trans:3', 'act:1,trans:3', 'food:10', 'trans:2', '', 'food:15'],
+    dom7: ['act:30', '', 'note:Incluido en la excursión', '', '', 'food:10'],
+    lun8: ['act:2,trans:2', 'food:6', 'trans:7', 'fly:60', 'trans:7', 'food:12'],
+    mar9: ['food:4', 'act:4', 'food:8', 'note:Compras aparte', 'act:4', 'food:12'],
+    mie10: ['trans:25', 'act:6', 'food:8', 'act:2', 'food:3', 'food:12'],
+    jue11: ['act:3', 'act:25', 'food:8', 'note:Compras aparte', 'food:15'],
+    vie12: ['trans:30', '', 'food:12', '', 'trans:3', 'food:10'],
+    sab13: ['act:7', 'food:8', 'act:5,trans:6', 'trans:7', 'fly:55', 'trans:7,food:6'],
+    dom14: ['act:2', 'act:3,trans:3', 'food:5', 'trans:3', 'food:3', 'act:7', 'food:9'],
+    lun15: ['trans:20', 'act:9', 'food:9', 'act:4', 'trans:2', 'food:8'],
+    mar16: ['trans:42', 'note:Incluido en el crucero', 'note:Incluido en el crucero', 'note:Incluido en el crucero', ''],
+    mie17: ['', 'note:Incluido en el crucero', 'trans:8', '', 'food:10'],
+    jue18: ['act:2,trans:4', 'food:8,trans:3', 'act:4', 'food:3', 'food:10'],
+    vie19: ['act:6,trans:6', 'food:6', 'note:Compras aparte', 'act:15', 'food:15'],
+    sab20: ['trans:7', 'fly:65', 'trans:7,act:3', 'food:8', '', 'trans:7', 'note:El billete va en el presupuesto'],
+    dom21: ['trans:5']
+  };
+  var EXTRA = {
+    jue4: {}, vie5: {}, sab6: { food: 8, n: 'desayuno y cafés' }, dom7: { food: 6, n: 'desayuno y bebidas' },
+    lun8: { food: 6, n: 'desayuno y bebidas' }, mar9: { food: 6, n: 'cafés y bebidas' }, mie10: { food: 5, n: 'desayuno y bebidas' },
+    jue11: { food: 6, n: 'desayuno y cafés' }, vie12: { food: 5, n: 'desayuno y café' }, sab13: { food: 5, n: 'desayuno y café' },
+    dom14: { food: 5, n: 'desayuno y café' }, lun15: { food: 5, n: 'desayuno y café' }, mar16: { food: 5, n: 'desayuno y bebidas' },
+    mie17: { food: 4, n: 'bebidas' }, jue18: { food: 5, n: 'desayuno y café' }, vie19: { food: 5, n: 'desayuno y café' },
+    sab20: { food: 6, n: 'desayuno y café' }, dom21: {}
+  };
+  var NAMES = { jue4: 'Jue 4', vie5: 'Vie 5', sab6: 'Sáb 6', dom7: 'Dom 7', lun8: 'Lun 8', mar9: 'Mar 9', mie10: 'Mié 10', jue11: 'Jue 11', vie12: 'Vie 12', sab13: 'Sáb 13', dom14: 'Dom 14', lun15: 'Lun 15', mar16: 'Mar 16', mie17: 'Mié 17', jue18: 'Jue 18', vie19: 'Vie 19', sab20: 'Sáb 20', dom21: 'Dom 21' };
+  var DAYS_VN = 16;
+
+  /* ---------- Opciones de transporte, entradas, comida, alojamiento y Tết por día ---------- */
+  var OPTS = {
+    jue4: {
+      trans: [
+        ['Metro o Cercanías al aeropuerto', '€2–5', 'Metro línea 8 a las terminales 1, 2 y 3 (con suplemento de aeropuerto) o Cercanías C-1 a la T4. Comprobad la terminal de vuestra aerolínea.'],
+        ['Taxi o VTC', '€25–35', 'Tarifa fija desde el centro de Madrid. Útil si salís con equipaje pesado.']
+      ],
+      tick: [
+        ['Pasaporte y exención de visado', 'Gratis (45 días)', 'Los españoles entran sin visado hasta 45 días (exención vigente hasta marzo de 2028). Pasaporte con 6 meses de validez y billete de salida. Confirmad en la web del Ministerio de Exteriores antes de volar.'],
+        ['eSIM de Vietnam', '~€8', 'Comprarla antes de salir da datos al aterrizar para Grab y mapas.'],
+        ['Seguro de viaje', '€30–60', 'No incluido en el presupuesto.']
+      ],
+      tet: [
+        ['Qué es el Tết', '', 'El Año Nuevo lunar vietnamita, la fiesta más importante del año. En 2027 el día 1 es el sábado 6 de febrero, año de la Cabra (Đinh Mùi). El viernes 5 es Giao thừa, la noche de fin de año.'],
+        ['Vacaciones oficiales', '4–10 feb', 'Según el Ministerio del Interior, los funcionarios descansan del 4 al 10 de febrero. Muchas empresas y tiendas cierran entre 3 y 7 días.'],
+        ['Reservas', '', 'Vuelos internos, trenes, hoteles y cruceros se llenan y suben de precio. Reservadlos cuanto antes.']
+      ]
+    },
+    vie5: {
+      trans: [
+        ['Grab (coche)', '€7–10 por coche', 'Se pide en la app con tarjeta o efectivo; el punto de recogida está en la zona de llegadas. Unos 25–40 min al Distrito 1, con recargo nocturno y de Tết.'],
+        ['Taxi Vinasun o Mai Linh', '€8–12', 'Usad la cola oficial de la terminal y exigid el taxímetro.'],
+        ['Autobús 109 o 152', '€0,5–1', 'Barato pero lento y con maletas, incómodo. Solo de día.']
+      ],
+      tick: [
+        ['Sellado de entrada (exención de visado)', 'Gratis', '45 días para españoles. Si preferís el e-visa, cuesta unos US$25 en evisa.gov.vn.'],
+        ['Efectivo en dongs', '—', 'Sacad 2–3 millones de ₫ en un cajero de la zona de llegadas (comisión ~€3–5). Guardad billetes pequeños para propinas y mercados.']
+      ],
+      food: [
+        ['Phở o bánh mì', '€2–5', 'Locales abiertos casi 24 h en Phạm Ngũ Lão y Bùi Viện (zona de mochileros).'],
+        ['Cena en el hotel', '€8–15', 'La opción más segura en la víspera de Tết, cuando muchos restaurantes cierran pronto.'],
+        ['Cà phê sữa đá', '€1', 'Café con leche condensada y hielo. Probadlo desde la primera noche.']
+      ],
+      sleep: [
+        ['Hotel 3–4* en el Distrito 1 (5, 6 y 7)', '€45–80 por habitación', 'Zona de Nguyễn Huệ, Bến Thành o Phạm Ngũ Lão. Con el Tết suben los precios entre un 20 y un 50%. Estimado: €55 la noche, 3 noches.'],
+        ['Hotel boutique en el Distrito 3', '€40–70', 'Más tranquilo y local; a 10–15 min del centro en coche.'],
+        ['Hotel de lujo junto al río', '€150 o más', 'Fuera de este presupuesto.']
+      ],
+      tet: [
+        ['Giao thừa', '', 'La medianoche del 5 al 6 se celebra el cambio de año. En Sài Gòn la gente se concentra en Nguyễn Huệ y junto al río; suele haber fuegos artificiales en algún punto, que se anuncian días antes.'],
+        ['Tiendas cerradas', '', 'Desde la tarde del 5 muchos comercios y restaurantes cierran hasta mùng 3–5. Comprad agua y algo de comer al llegar.'],
+        ['Precios y transporte', '', 'Taxis y Grab cobran recargo; las tarifas desde el aeropuerto suben.']
+      ]
+    },
+    sab6: {
+      trans: [
+        ['Grab coche o moto', '€1,5–4 por trayecto', 'Los trayectos del Distrito 1 a Chợ Lớn y al Distrito 3 cuestan poco, aunque hay recargo y menos coches en Tết.'],
+        ['Paseo a pie por el centro', 'Gratis', 'Notre-Dame, Correos y Nguyễn Huệ están a 10 min a pie entre sí.'],
+        ['Autobús turístico hop-on hop-off', '€10–15', 'Alternativa si falta Grab; circuito de 1,5 h por el centro.']
+      ],
+      tick: [
+        ['Templo de Thiên Hậu', 'Gratis', 'Se entra sin tarifa; donativo opcional.'],
+        ['Pagoda del Emperador de Jade', '~€1', 'Gratis o con una entrada simbólica, según el día.'],
+        ['Catedral de Notre-Dame', 'Gratis', 'Suele verse solo por fuera, y puede tener andamios por la restauración.'],
+        ['Oficina Central de Correos', 'Gratis', 'Suele abrir en festivos; comprobad el horario de Tết.']
+      ],
+      food: [
+        ['Bánh mì de puesto callejero', '€2–3', 'Algunos locales famosos cierran en Tết: tirad de un puesto abierto.'],
+        ['Hotel o centro comercial', '€8–15', 'En mùng 1 es lo más seguro: restaurantes de hotel o centros como Vincom o Saigon Centre.'],
+        ['Café y trà sữa', '€1–2', 'Los cafés pequeños suelen abrir desde la tarde.']
+      ],
+      tet: [
+        ['Mùng 1: el día más tranquilo', '', 'Las familias se quedan en casa o van a los templos. Poco tráfico y calles vacías, ideales para pasear.'],
+        ['Templos llenos', '', 'Se reza por el año nuevo. Vestid con respeto y evitad fotografiar a los fieles.'],
+        ['Flores y frutas', '', 'Mercadillos de mai amarilla y de melocotonero rosa (hoa đào), y bandejas de cinco frutas (mâm ngũ quả) por toda la ciudad.']
+      ]
+    },
+    dom7: {
+      trans: [
+        ['Excursión organizada', '€25–35 por persona', 'Minibús desde el hotel, guía en español o inglés y comida incluida en la mayoría. Reservad con antelación: en Tết hay menos salidas.'],
+        ['Coche privado con conductor', '€70–100 por coche', 'Más flexible. Salida temprana y regreso hacia las 17:30.'],
+        ['Autobús + barco por libre', '€6–10', 'Autobús desde la estación de Miền Tây hasta Mỹ Tho y lancha en el muelle. Hay menos servicios en Tết.']
+      ],
+      tick: [
+        ['Barco, islas y degustaciones', 'Incluido', 'El precio de la excursión cubre barco, sampán y visitas a talleres (caramelo de coco, miel, fruta).'],
+        ['Carro de caballos y bici', '€1–3', 'Paseos cortos de 15–30 min por huertos; suelen ser extras.'],
+        ['Mercado flotante de Cái Bè (opcional)', '€10–15', 'Alternativa más lejana, con salida muy temprana. En Tết suele estar parado.']
+      ],
+      food: [
+        ['Almuerzo en finca', 'Incluido', 'Pescado oreja de elefante, rollitos de arroz y fruta.'],
+        ['Cena en el Distrito 1', '€8–12', 'Bún thịt nướng, cơm tấm o hủ tiếu.'],
+        ['Agua y fruta', '€1–2', 'Comprad agua fría y un coco recién abierto.']
+      ],
+      tet: [
+        ['Menos salidas', '', 'Muchos operadores reducen o cierran las salidas en mùng 1–3. Reservad con días de antelación y confirmad por WhatsApp.'],
+        ['Pueblos animados', '', 'En el delta se ven jardines de mai amarilla, mercados de flores y música en las casas.'],
+        ['Operador abierto', '', 'Elegid uno con reseñas recientes de Tết.']
+      ]
+    },
+    lun8: {
+      trans: [
+        ['Grab al aeropuerto', '€6–9 por coche', '25–35 min. Saliendo a las 12:00 llegáis con 2 h de margen.'],
+        ['Vuelo SGN → DAD', '€45–90 por persona', 'Vietnam Airlines y Vietjet salen varias veces al día; en Tết las tarifas suben, comprad ya. Equipaje facturado aparte en low-cost. Estimado: €60.'],
+        ['Aeropuerto de Đà Nẵng → Hội An', '€12–16 por coche', 'Grab o taxi, unos 45 min. Que el hotel os organice el traslado evita buscar.']
+      ],
+      tick: [
+        ['Museo de los Vestigios de la Guerra', '~€1,5', '40.000 ₫. Abre de 7:30 a 18:00; confirmad el horario de Tết.'],
+        ['Entrada al casco antiguo de Hội An', '~€4', '120.000 ₫ por persona, con cupones para 5 sitios. Se compra en las taquillas de las entradas al casco antiguo.']
+      ],
+      food: [
+        ['Cao lầu', '€2–4', 'El plato de Hội An: fideos gruesos con cerdo y hierbas. Probadlo la primera noche.'],
+        ['Bánh mì Phượng', '€1,5–2', 'El bocadillo más famoso de la ciudad; abre hasta la noche.'],
+        ['Cena junto al río', '€10–15', 'Terrazas en la calle Bạch Đằng.']
+      ],
+      sleep: [
+        ['Hotel boutique en Hội An (8–11)', '€45–80 por habitación', 'Cerca del casco antiguo, con bici y desayuno incluidos. Estimado: €55 la noche, 4 noches.'],
+        ['Homestay entre arrozales', '€30–50', 'Más tranquilo, a 10–15 min en bici del centro.'],
+        ['Resort junto a la playa de An Bàng', '€90–150', 'Más caro; fuera de este presupuesto.']
+      ],
+      tet: [
+        ['Vuelos y trenes llenos', '', 'El 8 es mùng 3: muchos vietnamitas viajan. Reservad con antelación y llegad con tiempo extra al aeropuerto.'],
+        ['Hội An con farolillos', '', 'El casco antiguo sigue abierto en Tết y se decora con flores y farolillos; algunos comercios cierran los primeros días.'],
+        ['Museos', '', 'Comprobad horarios de Tết: algunos cierran uno o dos días.']
+      ]
+    },
+    mar9: {
+      trans: [
+        ['Bici del hotel', 'Gratis–€1', 'La bici es la mejor opción: el casco antiguo es peatonal en ciertas horas.'],
+        ['A pie', 'Gratis', 'Todo el casco cabe en 2 km².'],
+        ['Barca por el río', '€3–5', 'Barquero en el muelle; negociad antes de subir.']
+      ],
+      tick: [
+        ['Entrada al casco antiguo', '~€4', '120.000 ₫; cupones para 5 sitios (casas, salas de asamblea, Puente Cubierto japonés, museo...).'],
+        ['Barca de farolillos', '€3–5 por persona', 'Un clásico; en Tết hay más barcas y colas.'],
+        ['Taller de linternas o caligrafía', '€5–10', 'Talleres cortos en el casco antiguo.']
+      ],
+      food: [
+        ['Cao lầu y mì Quảng', '€2–4', 'Fideos locales; probad ambos.'],
+        ['Bánh xèo y nem lụi', '€4–6', 'Crepes crujientes y brochetas de cerdo.'],
+        ['Cena con vistas al río', '€10–15', 'Reservad mesa en terraza.'],
+        ['Café de coco', '€1,5', 'Cà phê cốt dừa, helado y cremoso.']
+      ],
+      tet: [
+        ['Faroles y flores', '', 'El casco antiguo se llena de farolillos rojos, ramas de melocotonero y mai amarilla.'],
+        ['Sastres a tope', '', 'Muchos talleres cierran mùng 1–3 y reabren con cola; encargadlo pronto.'],
+        ['Horario reducido', '', 'Comprobad antes de ir a cenar: algunos locales cierran a las 20:00.']
+      ]
+    },
+    mie10: {
+      trans: [
+        ['Coche con conductor (día completo)', '€45–55 por coche', 'Hội An–Mỹ Sơn–Montañas de Mármol–Hội An, unas 5 h con esperas. Lo organiza el hotel. Estimado: €50 por coche.'],
+        ['Grab ida y vuelta', '€25–35 por coche', 'Más barato, pero a Mỹ Sơn cuesta encontrar vuelta: acordad la espera.'],
+        ['Excursión organizada a Mỹ Sơn', '€10–20 por persona', 'Autobús compartido con salida a las 8:30 y vuelta antes de comer.']
+      ],
+      tick: [
+        ['Santuario de Mỹ Sơn', '~€5', '150.000 ₫; incluye coche eléctrico y espectáculo de danza (varios pases).'],
+        ['Montañas de Mármol', '~€2', '40.000 ₫ más ascensor, 15.000 ₫.'],
+        ['Bà Nà Hills (opcional)', '~€30', 'Funicular, Puente Dorado y parque de atracciones; muy concurrido en Tết.']
+      ],
+      food: [
+        ['Mì Quảng en Đà Nẵng', '€2–4', 'Fideos con cerdo, gambas y cacahuete; el plato de la región.'],
+        ['Bánh tráng cuốn thịt heo', '€4–6', 'Rollitos de cerdo con hojas de arroz y hierbas.'],
+        ['Café frente al mar', '€2–4', 'En Mỹ Khê o en la avenida Võ Nguyên Giáp.']
+      ],
+      tet: [
+        ['Mỹ Sơn abierto', '', 'Suele abrir en Tết con menos visitas guiadas. Id temprano.'],
+        ['Montañas de Mármol', '', 'Muchas familias suben a rezar a las pagodas; tráfico denso a última hora.'],
+        ['Conductor', '', 'Confirmad el precio de Tết con el conductor antes de salir.']
+      ]
+    },
+    jue11: {
+      trans: [
+        ['Bici del hotel', 'Gratis–€1', 'A Trà Quế hay 4 km por caminos entre arrozales.'],
+        ['Taxi Grab a An Bàng', '€2–3', '10 min desde el casco antiguo.'],
+        ['Moto-taxi', '€1–2', 'Para ir y volver de Trà Quế si no queréis pedalear.']
+      ],
+      tick: [
+        ['Aldea de Trà Quế', 'Gratis–€2', 'Entrada libre; se paga el paseo con un agricultor (€2–4).'],
+        ['Clase de cocina', '€20–30 por persona', 'Incluye visita al mercado; reservad con días de antelación.'],
+        ['Playa de An Bàng', 'Gratis', 'Las tumbonas son gratis si consumís en los chiringuitos.']
+      ],
+      food: [
+        ['Almuerzo de la clase', 'Incluido', 'Los platos que cocináis vosotros.'],
+        ['Chiringuito en An Bàng', '€8–15', 'Cócteles, mariscos y pizza (muy turístico).'],
+        ['Cena en Hội An', '€10–18', 'Elegid una casa de la calle Phan Chu Trinh o junto al río.']
+      ],
+      tet: [
+        ['Clases de cocina', '', 'Algunas escuelas cierran mùng 1–5; confirmad la reserva.'],
+        ['Playa con calma', '', 'La playa se llena de familias vietnamitas en Tết; reservad tumbonas en un chiringuito si queréis sitio.'],
+        ['Última noche', '', 'Las tiendas reabren: buen día para compras.']
+      ]
+    },
+    vie12: {
+      trans: [
+        ['Coche con conductor', '€55–75 por coche', 'Hội An → Huế con paradas en Hải Vân y Lăng Cô, unas 4 h. Lo organiza el hotel. Estimado: €60 por coche.'],
+        ['Tren Đà Nẵng → Huế', '€4–8', 'Se sube en Đà Nẵng: 2,5–3 h con vistas al mar. Hay menos plazas en Tết.'],
+        ['Autobús limusina', '€8–12', 'Directo; sale hacia las 8:00 del centro de Hội An.'],
+        ['Grab en Huế', '€1–3', 'Trayectos cortos entre hotel, pagoda y cenas.']
+      ],
+      tick: [
+        ['Pagoda de Thiên Mụ', 'Gratis', 'Abre todo el día; en Tết se llena de peregrinos.'],
+        ['Paso de Hải Vân', 'Gratis', 'La cumbre tiene un puesto de souvenirs. En moto es lo clásico; en coche basta.'],
+        ['Paseo en barco dragón por el río Perfume', '€5–10 por persona', 'Opcional; sale del muelle de Tòa Khâm al atardecer.']
+      ],
+      food: [
+        ['Bún bò Huế', '€2–4', 'Sopa picante de ternera y cerdo, el plato de Huế.'],
+        ['Bánh bèo, bánh nậm, bánh lọc', '€3–6', 'Pastelitos de arroz al vapor: las «tapas» de Huế.'],
+        ['Cena imperial (opcional)', '€20–35', 'Menú de platos de la corte con música; reservad y confirmad que abre en Tết.']
+      ],
+      sleep: [
+        ['Hotel 3–4* en Huế (12)', '€35–60 por habitación', 'Zona de Lê Lợi o junto al río. Estimado: €45 la noche.'],
+        ['Boutique junto a la ciudadela', '€45–75', 'Más ambiente, menos transporte.'],
+        ['Hotel clásico con jardín', '€80–120', 'Fuera de este presupuesto.']
+      ],
+      tet: [
+        ['Coche con conductor', '', 'Confirmad disponibilidad y tarifa de Tết: los conductores locales tienen vacaciones.'],
+        ['Huế en Tết', '', 'Hay canto de ca Huế en el río y ofrendas en pagodas; muchos restaurantes siguen cerrados.'],
+        ['Mùng 7', '', 'Se retira el árbol de Tết (cây nêu) en muchas casas y los negocios empiezan a reabrir.']
+      ]
+    },
+    sab13: {
+      trans: [
+        ['Vuelo Huế → Hà Nội', '€40–75 por persona', 'Vietnam Airlines y Vietjet; 1 h 15 min. En Tết las tarifas suben: reservad con meses de antelación. Estimado: €55.'],
+        ['Tren nocturno Huế → Hà Nội', '€25–40', 'Cabina cama de 12–14 h; sale por la tarde. Poco práctico para este plan.'],
+        ['Grab a Phú Bài', '€10–14 por coche', 'Unos 30 min desde el centro; reservad con tiempo.'],
+        ['Nội Bài → Old Quarter', '€10–15 por coche', 'Grab o taxi, unos 45 min con tráfico. También el autobús 86 (€1,5) hasta el lago Hoàn Kiếm.']
+      ],
+      tick: [
+        ['Ciudadela Imperial (Đại Nội)', '~€7', '200.000 ₫. El combo de 2 días con tres tumbas cuesta unos €18 (530.000 ₫).'],
+        ['Tumba de Khải Định', '~€5', '150.000 ₫ (precio sin combo).'],
+        ['Audioguía en español', '€3–5', 'Se alquila en la Ciudadela; vale la pena.']
+      ],
+      food: [
+        ['Bún bò Huế o cơm hến', '€2–4', 'Desayuno o almuerzo en cualquier puesto local.'],
+        ['Cà phê muối', '€1', 'Café con crema salada: especialidad de Huế.'],
+        ['Cena tardía en Hà Nội', '€4–8', 'Bún chả o phở en el Old Quarter tras aterrizar.']
+      ],
+      sleep: [
+        ['Hotel 3–4* en el Old Quarter (13 y 14)', '€40–70 por habitación', 'Calles Hàng Bạc o Tạ Hiện; hay ruido de noche. Estimado: €52 la noche.'],
+        ['Hotel junto a la catedral de San José', '€45–75', 'Más tranquilo, con cafés y tiendas cerca.'],
+        ['Boutique en Tây Hồ', '€60–90', 'Barrio de expatriados junto al lago; menos ambiente local.']
+      ],
+      tet: [
+        ['Vuelos y aeropuertos', '', 'El sábado 13 es mùng 8: las familias regresan a las ciudades. Vuelos llenos; llegad con 2 h de margen.'],
+        ['Ciudadela Imperial', '', 'Abre en Tết con fiesta tradicional (juegos, música de corte), con cola en las entradas.'],
+        ['Llegada a Hà Nội', '', 'La ciudad seguirá tranquila: muchos restaurantes cerrados hasta mùng 10.']
+      ]
+    },
+    dom14: {
+      trans: [
+        ['A pie por el Old Quarter y el lago', 'Gratis', 'El centro es compacto: del lago al Templo de la Literatura hay 2,5 km.'],
+        ['Grab coche o moto', '€1–3 por trayecto', 'La mejor opción para el Templo de la Literatura y el mausoleo.'],
+        ['Cyclo (triciclo)', '€10–15 por 1 h', 'Negociad precio y tiempo; es muy turístico.']
+      ],
+      tick: [
+        ['Templo Ngọc Sơn', '~€2', '50.000 ₫; se cruza el puente Thê Húc.'],
+        ['Templo de la Literatura', '~€2,5', '70.000 ₫.'],
+        ['Mausoleo de Hồ Chí Minh', 'Gratis', 'Cola controlada; abierto por la mañana de martes a jueves y los fines de semana, y cerrado lunes y viernes. Revisad horarios de Tết y cierres por mantenimiento.'],
+        ['Marionetas sobre el agua', '€5–10', '100.000–200.000 ₫ según el asiento; varias funciones al día (confirmad en Tết y reservad).']
+      ],
+      food: [
+        ['Phở Thìn o Phở Bát Đàn', '€2–3', 'Phở de ternera; id temprano porque cierran al agotarse.'],
+        ['Bún chả Hương Liên', '€3–5', 'Cerdo a la parrilla con fideos de arroz, el plato de Hà Nội.'],
+        ['Cà phê trứng (Giảng o Đinh)', '€1,5–2', 'Café con crema de huevo.'],
+        ['Cena en el Old Quarter', '€6–12', 'Chả cá Thăng Long o bia hơi en Tạ Hiện.']
+      ],
+      tet: [
+        ['Calles tranquilas', '', 'El Old Quarter está muy tranquilo hasta mùng 10: muchas tiendas cerradas, pero el lago y los templos tienen vida.'],
+        ['Văn Miếu', '', 'Hay feria de caligrafía de Tết (ông đồ): los vietnamitas piden deseos por escrito.'],
+        ['Mausoleo', '', 'En Tết puede cambiar de horario o tener colas de más de 1 h.']
+      ]
+    },
+    lun15: {
+      trans: [
+        ['Coche privado con conductor', '€40–70 por coche', 'Dos horas hasta Ninh Bình. Pedid que espere o que os lleve al homestay. Estimado: €40 por coche (€20 por persona).'],
+        ['Limusina (van)', '€8–12 por persona', 'Sale de varias paradas del Old Quarter; confirmad que opere en Tết.'],
+        ['Tren Hà Nội → Ninh Bình', '€5–10', 'Unas 2 h desde la estación de Hà Nội; en Tết puede estar completo.'],
+        ['Bici o moto eléctrica local', '€1–3', 'Para moverse entre Tràng An, Hang Múa y el homestay.']
+      ],
+      tick: [
+        ['Tràng An (barca)', '~€9', '250.000 ₫ por persona; 2–3 h. Elegid la ruta 1, 2 o 3.'],
+        ['Hang Múa', '~€3,5', '100.000 ₫ por 500 escalones; no hay sombra, llevad agua.'],
+        ['Tam Cốc (alternativa)', '~€10', 'Barca de 2 h por el río Ngô Đồng; más sencilla.'],
+        ['Pagoda de Bái Đính (opcional)', '~€1', 'Gran complejo budista; se llega en tren eléctrico.']
+      ],
+      food: [
+        ['Cơm cháy y dê núi', '€8–12', 'Arroz crujiente y cabra de montaña, el plato típico de Ninh Bình.'],
+        ['Cena en el homestay', '€5–10', 'Platos caseros con huerta propia.'],
+        ['Café con vistas', '€2–3', 'Cafés frente a los karst.']
+      ],
+      sleep: [
+        ['Homestay o bungalow en Tam Cốc (15)', '€35–60 por habitación', 'Entre arrozales y karst, con desayuno. Estimado: €50.'],
+        ['Hotel en la ciudad de Ninh Bình', '€25–40', 'Cómodo, sin ambiente.'],
+        ['Boutique con piscina', '€80–130', 'Fuera de este presupuesto.']
+      ],
+      tet: [
+        ['Peregrinación', '', 'Los primeros días del año se visita mucho Bái Đính: su festival de primavera llena el complejo de familias.'],
+        ['Reservas', '', 'Reservad el homestay con días de antelación; en Tết algunos cierran.'],
+        ['Tràng An', '', 'Hay colas para las barcas; llegad antes de las 9:00.']
+      ]
+    },
+    mar16: {
+      trans: [
+        ['Coche privado Ninh Bình → Hạ Long', '€80–100 por coche', '3,5–4 h con paradas. Pedid que os deje en Tuần Châu. Estimado: €84 por coche (€42 por persona).'],
+        ['Alternativa: volver a Hà Nội y salir con el shuttle del crucero', '€0–10 por persona', 'Suma 2 h; los shuttles de los cruceros salen de Hà Nội a las 8:00.'],
+        ['Barco del crucero', 'Incluido', 'Tender de embarque y barco entre los fondeaderos.']
+      ],
+      tick: [
+        ['Crucero de 2 días y 1 noche (4*)', '€90–120 por persona', 'Cabina doble con balcón, comidas, kayak, cuevas y clase de cocina. En Tết cuesta más. Estimado: €100 por persona (€200 por cabina).'],
+        ['Entrada a la bahía y cuevas', '€7–10', 'Por persona; normalmente incluida en el precio del crucero.'],
+        ['Bebidas aparte', '€3–6 por bebida', 'Se pagan a bordo al final.']
+      ],
+      food: [
+        ['Almuerzo y cena a bordo', 'Incluido', 'Marisco, pescado, rollitos y fruta. Hay menús vegetarianos si se avisa.'],
+        ['Desayuno o brunch', 'Incluido', 'Brunch al volver al puerto.'],
+        ['Pesca de calamares', 'Opcional', 'Se cocinan en el momento.']
+      ],
+      sleep: [
+        ['Crucero 4–5* con cabina (16)', '€80–150 por persona', 'Bahía de Hạ Long o Lan Hạ (más tranquila). Estimado: €100 por persona.'],
+        ['Junco tradicional (económico)', '€50–70', 'Menos lujo.'],
+        ['Hotel en Hạ Long ciudad', '€35–60', 'Sin la experiencia en la bahía.']
+      ],
+      tet: [
+        ['Tiempo en la bahía', '', 'En febrero hay bruma y de 15 a 20 °C; con niebla se cancelan salidas. Dejad un día de margen.'],
+        ['Cruceros llenos', '', 'Reservad ya: en Tết suben el precio y el cupo.'],
+        ['Cierre por temporal', '', 'Si cierran el puerto, el crucero se pospone o se sustituye por un día en Hà Nội.']
+      ]
+    },
+    mie17: {
+      trans: [
+        ['Shuttle del crucero a Hà Nội', '€8–15 por persona', 'Suele ofrecerlo el crucero; 3 h con una parada. Confirmadlo al reservar. Estimado: €8.'],
+        ['Coche privado', '€70–90 por coche', 'Más flexible; sin paradas turísticas.'],
+        ['Grab en Hà Nội', '€1–3', 'Para ir del hotel a la cena.']
+      ],
+      tick: [
+        ['Entradas del día', 'Incluido', 'Cuevas y bahía incluidas en el crucero.']
+      ],
+      food: [
+        ['Cena en el Old Quarter', '€6–12', 'Bún đậu mắm tôm, nem rán o chả cá.'],
+        ['Phở cuốn', '€3–5', 'Rollitos frescos de phở con ternera.'],
+        ['Cerveza fresca (bia hơi)', '€0,5–1', 'En la esquina de Tạ Hiện; ambiente animado de noche.']
+      ],
+      sleep: [
+        ['Hotel 3–4* en el Old Quarter (17, 18 y 19)', '€40–70 por habitación', 'Mismo barrio u otro cerca del lago. Estimado: €52 la noche.'],
+        ['Apartamento junto a Tây Hồ', '€50–80', 'Más tranquilo.'],
+        ['Hotel de lujo histórico', '€150 o más', 'Fuera de este presupuesto.']
+      ],
+      tet: [
+        ['Tiempo de vuelta', '', 'Si el crucero se retrasa por niebla, avisad al hotel de Hà Nội.'],
+        ['Hà Nội reabierto', '', 'Desde mùng 10–12 los comercios reabren.'],
+        ['Cena', '', 'Reservad mesa en los sitios populares.']
+      ]
+    },
+    jue18: {
+      trans: [
+        ['Grab coche', '€2–4', 'El Museo de Etnología está a 8 km del centro; ida y vuelta en coche.'],
+        ['Bici o bici eléctrica en Hồ Tây', '€2–3', 'Se puede rodear el lago (17 km) en bici eléctrica.'],
+        ['A pie por el Old Quarter', 'Gratis', 'Las 36 calles de los gremios.']
+      ],
+      tick: [
+        ['Museo de Etnología', '~€1,5', '40.000 ₫; cierra los lunes.'],
+        ['Prisión de Hỏa Lò', '~€3,5', '100.000 ₫; abierto de 8:00 a 17:00.'],
+        ['Pagoda de Trấn Quốc', 'Gratis', 'Entrada libre; ofrendas opcionales.']
+      ],
+      food: [
+        ['Bánh tôm Hồ Tây', '€3–5', 'Buñuelos de gambas con batata, junto al lago.'],
+        ['Bún đậu mắm tôm', '€4–6', 'Tofu frito con fideos y salsa de gambas fermentada (valiente).'],
+        ['Cà phê trứng o cà phê sữa', '€1,5–2', 'Hà Nội es la ciudad del café.'],
+        ['Cena', '€8–12', 'Bún chả o nem rán.']
+      ],
+      tet: [
+        ['Museos', '', 'El Museo de Etnología y Hỏa Lò suelen abrir a partir de mùng 5; confirmad el horario de Tết.'],
+        ['Pagodas', '', 'En mùng 13 hay colas más cortas que los primeros días.'],
+        ['Frío', '', 'En febrero Hà Nội está entre 12 y 18 °C con llovizna: llevad impermeable.']
+      ]
+    },
+    vie19: {
+      trans: [
+        ['Grab coche a Bát Tràng', '€5–7 por trayecto', 'Unos 30 min; pedid ida y vuelta.'],
+        ['Autobús 47', '€0,5', 'Desde el lago Hoàn Kiếm; 45 min, a veces pasa lleno.'],
+        ['Grab moto', '€2–4', 'Más rápido con el tráfico.']
+      ],
+      tick: [
+        ['Bát Tràng', 'Gratis', 'El pueblo es libre; los talleres cobran €5–8.'],
+        ['Taller de cerámica', '€5–8', 'Una hora moldeando una pieza propia.'],
+        ['Masaje de 1 h', '€10–15', 'Sala con licencia y reseñas recientes.']
+      ],
+      food: [
+        ['Almuerzo en el pueblo', '€5–8', 'Pollo de colina o bánh cuốn.'],
+        ['Chả cá Lã Vọng', '€12–18', 'Pescado con eneldo y cúrcuma, un clásico de Hà Nội.'],
+        ['Café en una azotea', '€2–4', 'Cafés del casco antiguo con vistas.']
+      ],
+      tet: [
+        ['Compras', '', 'Muchas tiendas reabren; negociad.'],
+        ['Pagodas', '', 'El 14 se prepara la Rằm del día siguiente: ofrendas de flores y frutas.'],
+        ['Chùa Hương (opcional)', '', 'Su festival de primavera llena de peregrinos; se tarda un día entero.']
+      ]
+    },
+    sab20: {
+      trans: [
+        ['Grab a Nội Bài', '€10–15 por coche', '45–60 min; reservad con un día de antelación.'],
+        ['Vuelo HAN → SGN', '€50–90 por persona', 'Vietnam Airlines o Vietjet; los vuelos de mañana (7–10 h) dan margen. Equipaje facturado aparte en low-cost. Estimado: €65.'],
+        ['Grab SGN → centro', '€7–10 por coche', '25–35 min; el tráfico de Tết sigue denso.'],
+        ['Consigna de equipaje', '€3–5', 'En el aeropuerto o en un hotel del centro.']
+      ],
+      tick: [
+        ['Pagoda del Emperador de Jade', '~€1', 'En Rằm hay muchas ofrendas.'],
+        ['Mercado de Bến Thành', 'Gratis', 'Último regateo; abre de 6:00 a 18:00.']
+      ],
+      food: [
+        ['Comida de despedida', '€6–12', 'Cơm tấm, bún thịt nướng o bò lá lốt.'],
+        ['Café de Sài Gòn', '€1–2', 'Cà phê sữa đá con leche condensada.'],
+        ['Cena en el aeropuerto', '€8–15', 'Más cara; mejor comer en la ciudad antes.']
+      ],
+      tet: [
+        ['Rằm tháng Giêng', '', 'El 20 de febrero es el día 15 del año lunar, la primera luna llena: las pagodas se llenan de fieles.'],
+        ['Margen de seguridad', '', 'Un vuelo interno el mismo día de la salida internacional es arriesgado: coged el más temprano.'],
+        ['Fin de Tết', '', 'Las calles recuperan el ritmo normal.']
+      ]
+    },
+    dom21: {
+      trans: [
+        ['Metro o Cercanías a casa', '€2–5', 'Desde la terminal de llegada.']
+      ]
+    }
+  };
+
+  /* ---------- Geografía (lon, lat) ---------- */
+  var P = {
+    sgn: { lon: 106.652, lat: 10.8188, l: 'Aeropuerto SGN', full: 'Aeropuerto de Tân Sơn Nhất (SGN)', t: 'hub' },
+    hsg: { lon: 106.694, lat: 10.7675, l: 'Hotel Sài Gòn', full: 'Hotel en el Distrito 1 (zona Bến Thành)', t: 'hotel' },
+    nguyenhue: { lon: 106.7032, lat: 10.7743, l: 'Nguyễn Huệ', full: 'Calle Nguyễn Huệ (calle de las flores)', t: 'mkt' },
+    ducba: { lon: 106.6995, lat: 10.7799, l: 'Notre-Dame', full: 'Catedral de Notre-Dame y Oficina de Correos', t: 'mon' },
+    ngochoang: { lon: 106.6985, lat: 10.7922, l: 'Emperador de Jade', full: 'Pagoda del Emperador de Jade (Phước Hải)', t: 'mon' },
+    thienhau: { lon: 106.6603, lat: 10.7527, l: 'Thiên Hậu', full: 'Templo de Thiên Hậu (Chợ Lớn)', t: 'mon' },
+    benthanh: { lon: 106.698, lat: 10.7725, l: 'Bến Thành', full: 'Mercado de Bến Thành', t: 'mkt' },
+    chungtich: { lon: 106.6921, lat: 10.7795, l: 'Museo de la Guerra', full: 'Museo de los Vestigios de la Guerra', t: 'mus' },
+    myt: { lon: 106.36, lat: 10.358, l: 'Mỹ Tho', full: 'Mỹ Tho (puerta del delta del Mekong)', t: 'hub' },
+    ton: { lon: 106.375, lat: 10.33, l: 'Isla Thới Sơn', full: 'Isla Thới Sơn en el río Tiền (punto aproximado)', t: 'nat' },
+    bt: { lon: 106.375, lat: 10.243, l: 'Bến Tre', full: 'Bến Tre: huertos de cocoteros (punto aproximado)', t: 'nat' },
+    dad: { lon: 108.1992, lat: 16.0439, l: 'Aeropuerto DAD', full: 'Aeropuerto de Đà Nẵng (DAD)', t: 'hub' },
+    hh: { lon: 108.3305, lat: 15.8845, l: 'Hotel Hội An', full: 'Hotel en Hội An, cerca del casco antiguo', t: 'hotel' },
+    hoian: { lon: 108.3285, lat: 15.8786, l: 'Casco antiguo', full: 'Casco antiguo de Hội An', t: 'mon' },
+    chuacau: { lon: 108.3258, lat: 15.8776, l: 'Puente japonés', full: 'Puente Cubierto japonés (Chùa Cầu)', t: 'mon' },
+    cho: { lon: 108.3318, lat: 15.877, l: 'Mercado', full: 'Mercado central de Hội An', t: 'mkt' },
+    ben: { lon: 108.328, lat: 15.8761, l: 'Muelle', full: 'Muelle del río Hoài (barcas con farolillos)', t: 'hub' },
+    myson: { lon: 108.1245, lat: 15.7645, l: 'Mỹ Sơn', full: 'Santuario de Mỹ Sơn (UNESCO)', t: 'mon' },
+    nguhanhson: { lon: 108.2634, lat: 16.0042, l: 'Montañas de Mármol', full: 'Montañas de Mármol (Ngũ Hành Sơn)', t: 'nat' },
+    traque: { lon: 108.337, lat: 15.9065, l: 'Trà Quế', full: 'Aldea de hortalizas de Trà Quế', t: 'nat' },
+    anbang: { lon: 108.357, lat: 15.9, l: 'Playa An Bàng', full: 'Playa de An Bàng', t: 'nat' },
+    haivan: { lon: 108.128, lat: 16.2005, l: 'Paso de Hải Vân', full: 'Paso de Hải Vân (cumbre, 496 m)', t: 'nat' },
+    langco: { lon: 108.045, lat: 16.235, l: 'Lăng Cô', full: 'Playa y laguna de Lăng Cô', t: 'nat' },
+    hhue: { lon: 107.589, lat: 16.458, l: 'Hotel Huế', full: 'Hotel en Huế (orilla sur del río Perfume)', t: 'hotel' },
+    thienmu: { lon: 107.5453, lat: 16.4531, l: 'Thiên Mụ', full: 'Pagoda de Thiên Mụ', t: 'mon' },
+    daino: { lon: 107.5795, lat: 16.465, l: 'Ciudadela Imperial', full: 'Ciudadela Imperial de Huế (Đại Nội)', t: 'mon' },
+    khaidinh: { lon: 107.5905, lat: 16.3995, l: 'Tumba de Khải Định', full: 'Tumba del emperador Khải Định', t: 'mon' },
+    hui: { lon: 107.7033, lat: 16.4015, l: 'Aeropuerto HUI', full: 'Aeropuerto de Phú Bài (HUI)', t: 'hub' },
+    hh2: { lon: 105.851, lat: 21.034, l: 'Hotel Hà Nội', full: 'Hotel en el Old Quarter de Hà Nội', t: 'hotel' },
+    hoankiem: { lon: 105.8524, lat: 21.03, l: 'Lago Hoàn Kiếm', full: 'Lago Hoàn Kiếm y templo Ngọc Sơn', t: 'mon' },
+    vanmieu: { lon: 105.8355, lat: 21.0275, l: 'Văn Miếu', full: 'Templo de la Literatura (Văn Miếu)', t: 'mon' },
+    lang: { lon: 105.8347, lat: 21.0368, l: 'Mausoleo y Ba Đình', full: 'Mausoleo de Hồ Chí Minh y plaza Ba Đình', t: 'mon' },
+    roi: { lon: 105.8543, lat: 21.0322, l: 'Marionetas', full: 'Teatro de marionetas sobre el agua Thăng Long', t: 'mus' },
+    dantoc: { lon: 105.7992, lat: 21.0405, l: 'Etnología', full: 'Museo de Etnología de Vietnam', t: 'mus' },
+    tranquoc: { lon: 105.8369, lat: 21.0484, l: 'Trấn Quốc', full: 'Pagoda de Trấn Quốc (lago del Oeste)', t: 'mon' },
+    hoalo: { lon: 105.8467, lat: 21.0253, l: 'Hỏa Lò', full: 'Prisión de Hỏa Lò', t: 'mus' },
+    battrang: { lon: 105.9125, lat: 20.9785, l: 'Bát Tràng', full: 'Pueblo de cerámica de Bát Tràng', t: 'mkt' },
+    hnb: { lon: 105.93, lat: 20.223, l: 'Homestay Tam Cốc', full: 'Homestay en Tam Cốc, entre arrozales', t: 'hotel' },
+    trangan: { lon: 105.9025, lat: 20.2545, l: 'Tràng An', full: 'Complejo paisajístico de Tràng An (UNESCO)', t: 'nat' },
+    hangmua: { lon: 105.9237, lat: 20.2146, l: 'Hang Múa', full: 'Hang Múa (mirador del dragón)', t: 'nat' },
+    hp: { lon: 106.688, lat: 20.845, l: 'Hải Phòng', full: 'Hải Phòng', t: 'sm' },
+    hl: { lon: 106.9886, lat: 20.9367, l: 'Tuần Châu', full: 'Puerto de Tuần Châu (embarque del crucero)', t: 'hub' },
+    hsung: { lon: 107.0933, lat: 20.8939, l: 'Cueva Sửng Sốt', full: 'Cueva Sửng Sốt (punto aproximado)', t: 'nat' },
+    titop: { lon: 107.083, lat: 20.87, l: 'Isla Ti Tốp', full: 'Isla de Ti Tốp (punto aproximado)', t: 'nat' },
+    ancla: { lon: 107.17, lat: 20.81, l: 'Fondeo nocturno', full: 'Fondeo nocturno del crucero (punto aproximado)', t: 'hotel' }
+  };
+
+  /* Costa de sur a norte; el mar queda a la derecha del recorrido. */
+  var COAST = [[104.72, 8.62], [104.9, 8.58], [105.1, 8.62], [105.35, 8.75], [105.55, 9.0], [105.8, 9.2], [106.05, 9.45], [106.35, 9.65], [106.6, 9.85], [106.78, 10.05], [106.85, 10.25], [106.95, 10.38], [107.05, 10.35], [107.08, 10.4], [107.2, 10.42], [107.45, 10.5], [107.8, 10.65], [108.1, 10.88], [108.3, 10.93], [108.55, 11.15], [108.85, 11.3], [109.0, 11.6], [109.2, 11.8], [109.22, 12.05], [109.3, 12.3], [109.42, 12.65], [109.45, 12.9], [109.3, 13.4], [109.25, 13.78], [109.2, 14.2], [108.95, 14.6], [108.9, 15.0], [108.78, 15.25], [108.65, 15.45], [108.5, 15.7], [108.4, 15.84], [108.38, 15.88], [108.355, 15.905], [108.31, 15.94], [108.285, 15.985], [108.265, 16.03], [108.28, 16.065], [108.34, 16.085], [108.36, 16.12], [108.33, 16.15], [108.27, 16.14], [108.22, 16.115], [108.19, 16.1], [108.14, 16.115], [108.14, 16.13], [108.17, 16.17], [108.16, 16.21], [108.11, 16.24], [108.05, 16.255], [107.99, 16.29], [107.9, 16.37], [107.78, 16.48], [107.66, 16.58], [107.45, 16.75], [107.2, 16.92], [106.95, 17.2], [106.7, 17.48], [106.52, 17.75], [106.4, 18.0], [106.25, 18.3], [105.95, 18.55], [105.75, 18.8], [105.7, 19.05], [105.72, 19.35], [105.8, 19.6], [105.9, 19.8], [105.98, 20.0], [106.12, 20.1], [106.3, 20.2], [106.5, 20.3], [106.65, 20.42], [106.8, 20.68], [106.82, 20.82], [106.9, 20.88], [106.99, 20.95], [107.1, 20.97], [107.3, 21.0], [107.45, 21.05], [107.7, 21.3], [107.97, 21.53], [115, 21.53], [115, 8.62]];
+  /* Frontera terrestre aproximada, de norte a sur, hasta cerrar con la costa del golfo de Tailandia. */
+  var BORDER = [[107.55, 21.62], [107.0, 21.95], [106.7, 22.45], [106.6, 22.85], [105.95, 22.95], [105.4, 23.25], [104.7, 22.85], [104.3, 22.78], [103.95, 22.52], [103.4, 22.7], [102.95, 22.55], [102.2, 22.4], [102.45, 21.85], [102.15, 21.45], [102.85, 21.15], [103.55, 20.7], [104.35, 20.35], [104.15, 19.8], [104.75, 19.25], [105.15, 18.65], [105.55, 18.05], [106.1, 17.55], [106.55, 17.0], [107.15, 16.45], [107.35, 16.1], [107.55, 15.65], [107.6, 15.15], [107.55, 14.7], [107.55, 14.4], [107.5, 13.9], [107.5, 13.35], [107.6, 12.85], [107.45, 12.35], [107.05, 11.95], [106.5, 11.5], [106.1, 11.3], [105.85, 11.1], [105.5, 10.95], [105.1, 10.9], [105.0, 10.7], [104.85, 10.55], [104.5, 10.38], [104.6, 10.12], [104.78, 9.8], [104.9, 9.45], [104.85, 9.0], [104.76, 8.75]];
+  /* Ríos: w = ancho aproximado en km. */
+  var RIVERS = [
+    { n: 'Río Rojo', w: 1.2, minS: 3, p: [[105.3, 21.3], [105.45, 21.22], [105.6, 21.17], [105.72, 21.15], [105.79, 21.12], [105.825, 21.09], [105.845, 21.06], [105.862, 21.04], [105.868, 21.02], [105.88, 21.0], [105.89, 20.98], [105.91, 20.96], [105.94, 20.93], [105.97, 20.9], [106.05, 20.8], [106.15, 20.7], [106.28, 20.55], [106.45, 20.4], [106.58, 20.3]] },
+    { n: 'Río Đáy', w: .25, minS: 6, p: [[105.76, 20.8], [105.82, 20.6], [105.88, 20.48], [105.92, 20.38], [105.95, 20.31], [105.98, 20.26], [106.05, 20.22], [106.15, 20.16], [106.25, 20.1]] },
+    { n: 'Río Tiền', w: 2.2, minS: 3, maxS: 40, p: [[105.3, 10.6], [105.55, 10.45], [105.8, 10.39], [105.95, 10.37], [106.05, 10.36], [106.2, 10.345], [106.32, 10.335], [106.4, 10.32], [106.5, 10.27], [106.6, 10.21], [106.72, 10.14], [106.85, 10.05]] },
+    { n: 'Río Sài Gòn', w: .35, minS: 6, p: [[106.745, 10.905], [106.74, 10.87], [106.735, 10.84], [106.7285, 10.822], [106.7225, 10.805], [106.7185, 10.793], [106.7105, 10.784], [106.706, 10.775], [106.7075, 10.762], [106.714, 10.748], [106.721, 10.735], [106.735, 10.715], [106.75, 10.69]] },
+    { n: 'Canal Tàu Hũ', w: .07, minS: 30, p: [[106.7045, 10.7655], [106.696, 10.757], [106.683, 10.75], [106.67, 10.7455], [106.656, 10.742]] },
+    { n: 'Río Perfume', w: .22, minS: 6, p: [[107.45, 16.38], [107.51, 16.4], [107.535, 16.42], [107.552, 16.445], [107.5555, 16.4525], [107.564, 16.456], [107.574, 16.458], [107.585, 16.46], [107.596, 16.465], [107.61, 16.473], [107.63, 16.49], [107.65, 16.508], [107.67, 16.53], [107.68, 16.545]] },
+    { n: 'Río Thu Bồn', w: .2, minS: 10, p: [[108.2, 15.83], [108.26, 15.85], [108.3, 15.865], [108.315, 15.8738], [108.324, 15.8752], [108.33, 15.8755], [108.336, 15.875], [108.342, 15.8745], [108.355, 15.873], [108.379, 15.877], [108.395, 15.88]] },
+    { n: 'Río Hàn', w: .25, minS: 12, p: [[108.225, 16.11], [108.223, 16.08], [108.218, 16.06], [108.208, 16.04], [108.19, 16.01]] }
+  ];
+  var LAKES = {
+    westlake: [[105.812, 21.083], [105.828, 21.081], [105.838, 21.07], [105.84, 21.055], [105.832, 21.04], [105.815, 21.037], [105.805, 21.047], [105.8, 21.062], [105.803, 21.076]],
+    hoankiem: [[105.8508, 21.0318], [105.8536, 21.0312], [105.8542, 21.0275], [105.8522, 21.0252], [105.8505, 21.0272]],
+    catba: [[106.95, 20.76], [106.98, 20.81], [107.03, 20.82], [107.07, 20.8], [107.06, 20.75], [107.02, 20.72], [106.98, 20.72]]
+  };
+  /* Islotes kársticos de la bahía de Hạ Long: lon, lat y radio en km, generados con una semilla fija. */
+  var ISL = [];
+  (function () {
+    var a = 7, r = function () { a = (a * 9301 + 49297) % 233280; return a / 233280; };
+    for (var i = 0; i < 52; i++) ISL.push([107.0 + r() * .42, 20.7 + r() * .28, .35 + r() * .9]);
+  })();
+  /* t: hw autopista, main vía principal, st calle. */
+  var ROADS = [
+    { n: 'Autopista Hà Nội – Ninh Bình', t: 'hw', minS: 3, maxS: 40, p: [[105.855, 20.97], [105.88, 20.85], [105.9, 20.72], [105.915, 20.55], [105.95, 20.4], [105.975, 20.28]], lbl: [105.905, 20.62, 12, 0, 'start'] },
+    { n: 'Autopista Hà Nội – Hải Phòng – Hạ Long', t: 'hw', minS: 3, maxS: 40, p: [[105.9, 21.0], [106.05, 21.0], [106.3, 20.93], [106.5, 20.9], [106.69, 20.84], [106.84, 20.89], [106.99, 20.94]], lbl: [106.3, 20.93, 0, 24] },
+    { n: 'Carretera 10', t: 'main', minS: 3, maxS: 40, p: [[105.975, 20.25], [106.1, 20.34], [106.17, 20.42], [106.34, 20.45], [106.52, 20.62], [106.69, 20.84]], lbl: [106.17, 20.42, -10, 18, 'end'] },
+    { n: 'Cao tốc Trung Lương', t: 'hw', minS: 5, maxS: 30, p: [[106.64, 10.75], [106.58, 10.7], [106.5, 10.62], [106.45, 10.53], [106.4, 10.42], [106.37, 10.38]], lbl: [106.5, 10.62, 12, -4, 'start'] },
+    { n: 'QL1 (Hải Vân y Huế)', t: 'main', minS: 4, maxS: 20, p: [[108.14, 16.115], [108.1385, 16.15], [108.15, 16.18], [108.1285, 16.2005], [108.095, 16.225], [108.045, 16.235], [107.95, 16.3], [107.85, 16.375], [107.7, 16.4], [107.62, 16.445]], lbl: [107.78, 16.345, 0, 22] },
+    { n: 'Costera Hội An – Đà Nẵng', t: 'main', minS: 8, maxS: 80, p: [[108.2275, 16.062], [108.248, 16.068], [108.264, 16.02], [108.274, 15.98], [108.295, 15.94], [108.32, 15.905], [108.333, 15.892]], lbl: [108.274, 15.98, 12, 0, 'start'] },
+    { n: 'QL1A', t: 'hw', minS: 8, maxS: 30, p: [[108.19, 16.1], [108.18, 16.03], [108.2, 15.96], [108.233, 15.9], [108.26, 15.83]], lbl: [108.2, 15.96, -10, 0, 'end'] },
+    { n: 'Carretera a Mỹ Sơn', t: 'main', minS: 8, maxS: 30, p: [[108.325, 15.875], [108.29, 15.84], [108.25, 15.81], [108.2, 15.79], [108.15, 15.77], [108.1245, 15.7645]], lbl: [108.2, 15.79, 0, 22] },
+    { n: 'Hoàng Văn Thụ – Nam Kỳ Khởi Nghĩa', t: 'main', minS: 30, p: [[106.653, 10.813], [106.666, 10.799], [106.678, 10.7885], [106.69, 10.7815], [106.6975, 10.779]], lbl: [106.666, 10.799, -10, -8, 'end'] },
+    { n: 'Nguyễn Trãi', t: 'main', minS: 30, p: [[106.6935, 10.7665], [106.68, 10.759], [106.668, 10.7535], [106.66, 10.7525]], lbl: [106.678, 10.7575, 0, 20] },
+    { n: 'Võ Văn Kiệt', t: 'main', minS: 30, p: [[106.656, 10.745], [106.672, 10.748], [106.689, 10.755], [106.704, 10.764], [106.709, 10.7665]], lbl: [106.688, 10.7545, 0, 22] },
+    { n: 'Cầu Sài Gòn – Xa lộ Hà Nội', t: 'hw', minS: 20, maxS: 80, p: [[106.716, 10.799], [106.73, 10.812], [106.76, 10.835]], lbl: null },
+    { n: 'Hùng Vương – Điện Biên Phủ', t: 'main', minS: 60, p: [[105.832, 21.0345], [105.8385, 21.0335], [105.846, 21.033]], lbl: [105.8385, 21.0335, 0, 20] },
+    { n: 'Bạch Đằng', t: 'st', minS: 120, p: [[108.3215, 15.876], [108.3262, 15.8765], [108.33, 15.8768], [108.3345, 15.8772]], lbl: [108.3345, 15.8772, 4, 22, 'end'] },
+    { n: 'Trần Phú', t: 'st', minS: 120, p: [[108.3238, 15.8775], [108.3282, 15.8783], [108.3325, 15.879]], lbl: [108.3238, 15.8775, 0, -14, 'start'] },
+    { n: 'Camino a An Bàng', t: 'main', minS: 20, maxS: 80, p: [[108.334, 15.88], [108.345, 15.892], [108.356, 15.8995]], lbl: null },
+    { n: 'Camino a Trà Quế', t: 'main', minS: 20, maxS: 80, p: [[108.335, 15.886], [108.337, 15.9065]], lbl: null }
+  ];
+  var GEO = [
+    { t: 'Mar de China', p: [109.8, 11.0], maxS: 2 },
+    { t: 'Laos', p: [103.95, 18.9], maxS: 2, c: 'ctr' },
+    { t: 'Camboya', p: [105.1, 11.9], maxS: 2, c: 'ctr' },
+    { t: 'China', p: [105.6, 23.35], maxS: 2, c: 'ctr' },
+    { t: 'Golfo de Tonkín', p: [107.1, 20.4], minS: 2, maxS: 12 },
+    { t: 'Mar de China Meridional', p: [108.7, 16.05], minS: 2, maxS: 40 },
+    { t: 'Río Tiền (Mekong)', p: [106.58, 10.235], minS: 3, maxS: 40 },
+    { t: 'Río Rojo (Sông Hồng)', p: [105.915, 20.9], minS: 8, maxS: 40 },
+    { t: 'Lago del Oeste', p: [105.82, 21.058], minS: 50 },
+    { t: 'Río Perfume', p: [107.64, 16.47], minS: 18, maxS: 60 },
+    { t: 'Río Thu Bồn', p: [108.372, 15.8695], minS: 20, maxS: 100 },
+    { t: 'Isla de Cát Bà', p: [107.005, 20.765], minS: 8, maxS: 40 },
+    { t: 'Bahía de Hạ Long', p: [107.24, 20.955], minS: 8, maxS: 40 }
+  ];
+
+  /* ---------- Mapas por día ---------- */
+  var MAPS = {
+    vie5: [{ title: 'Del aeropuerto al Distrito 1', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
+      route: ['sgn', [106.662, 10.807], [106.677, 10.7925], [106.689, 10.7835], [106.696, 10.7765], 'hsg', 'nguyenhue'],
+      lab: { sgn: [18, 6, 'start'], hsg: [-16, 18, 'end'], nguyenhue: [16, 5, 'start'] } }],
+    sab6: [{ title: 'Templos, catedral y calle de las flores', box: [106.65, 106.722, 10.805, 10.745], mode: 'car',
+      route: ['hsg', [106.685, 10.762], [106.67, 10.7545], 'thienhau', [106.67, 10.76], [106.686, 10.776], [106.693, 10.786], 'ngochoang', [106.699, 10.785], 'ducba', 'nguyenhue', 'hsg'],
+      lab: { hsg: [-14, 24, 'end'], thienhau: [16, 24, 'start'], ngochoang: [-16, 5, 'end'], ducba: [-16, 20, 'end'], nguyenhue: [16, 5, 'start'] } }],
+    dom7: [
+      { title: 'De Sài Gòn a Mỹ Tho', box: [106.2, 106.85, 10.88, 10.28], mode: 'car', speed: 40,
+        route: ['hsg', [106.64, 10.75], [106.58, 10.7], [106.5, 10.62], [106.45, 10.53], [106.4, 10.42], 'myt'],
+        lab: { hsg: [16, 5, 'start'], myt: [-16, 5, 'end'] },
+        note: 'El regreso repite el mismo camino: otros ~70 km y 1 h 45 min.' },
+      { title: 'Islas del río Tiền y Bến Tre', box: [106.22, 106.52, 10.42, 10.18], mode: 'boat',
+        route: ['myt', 'ton', 'bt', 'myt'],
+        lab: { myt: [16, -10, 'start'], ton: [16, 22, 'start'], bt: [16, 5, 'start'] },
+        note: 'Los puntos del delta son aproximados; el itinerario exacto depende del operador.' }
+    ],
+    lun8: [
+      { title: 'Museo, mercado y aeropuerto', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
+        route: ['hsg', 'chungtich', 'benthanh', [106.69, 10.78], [106.67, 10.8], 'sgn'],
+        lab: { hsg: [-16, 14, 'end'], chungtich: [-16, -10, 'end'], benthanh: [16, 18, 'start'], sgn: [18, 6, 'start'] } },
+      { title: 'Del aeropuerto de Đà Nẵng a Hội An', box: [108.15, 108.4, 16.08, 15.84], mode: 'car',
+        route: ['dad', [108.215, 16.03], [108.245, 15.99], [108.285, 15.94], [108.315, 15.9], 'hh'],
+        lab: { dad: [-16, 6, 'end'], hh: [-16, 5, 'end'] } }
+    ],
+    mar9: [{ title: 'Casco antiguo de Hội An', box: [108.3185, 108.3425, 15.8862, 15.8728], mode: 'walk',
+      route: ['hh', [108.3305, 15.8815], 'hoian', 'chuacau', 'cho', 'ben', 'hoian'],
+      lab: { hh: [-16, 5, 'end'], hoian: [16, -8, 'start'], chuacau: [-16, 24, 'end'], cho: [16, 22, 'start'], ben: [-14, 22, 'end'] } }],
+    mie10: [{ title: 'Mỹ Sơn y las Montañas de Mármol', box: [108.08, 108.4, 16.08, 15.74], mode: 'car',
+      route: ['hh', [108.29, 15.84], [108.25, 15.81], [108.2, 15.79], [108.15, 15.77], 'myson', [108.13, 15.81], [108.17, 15.86], [108.22, 15.92], [108.25, 15.97], 'nguhanhson', [108.28, 15.965], [108.305, 15.93], [108.325, 15.895], 'hh'],
+      lab: { hh: [14, 24, 'start'], myson: [16, 5, 'start'], nguhanhson: [-16, 5, 'end'] } }],
+    jue11: [{ title: 'Bici por Trà Quế y playa de An Bàng', box: [108.295, 108.395, 15.925, 15.86], mode: 'bike',
+      route: ['hh', [108.3345, 15.89], 'traque', [108.345, 15.903], 'anbang', [108.347, 15.886], 'hoian', 'hh'],
+      lab: { hh: [-16, 5, 'end'], traque: [-16, 5, 'end'], anbang: [14, 5, 'start'], hoian: [-16, 20, 'end'] } }],
+    vie12: [{ title: 'De Hội An a Huế por el paso de Hải Vân', box: [107.38, 108.45, 16.55, 15.82], mode: 'car', speed: 38,
+      route: ['hh', [108.325, 15.895], [108.28, 15.97], [108.25, 16.03], [108.225, 16.065], [108.19, 16.1], [108.14, 16.115], [108.1385, 16.15], [108.15, 16.18], 'haivan', [108.095, 16.225], 'langco', [107.95, 16.3], [107.85, 16.375], [107.7, 16.4], [107.62, 16.445], 'hhue', 'thienmu'],
+      lab: { hh: [-14, 5, 'end'], haivan: [22, -14, 'start'], langco: [-16, 26, 'end'], hhue: [16, 26, 'start'], thienmu: [-16, 5, 'end'] },
+      note: 'Con la parada de Hải Vân y el almuerzo, el viaje real ronda las 4 h.' }],
+    sab13: [{ title: 'Ciudadela Imperial y tumba de Khải Định', box: [107.52, 107.63, 16.49, 16.385], mode: 'car',
+      route: ['hhue', 'daino', [107.58, 16.44], [107.585, 16.42], 'khaidinh'],
+      lab: { hhue: [16, 22, 'start'], daino: [-16, -10, 'end'], khaidinh: [16, 5, 'start'] },
+      note: 'El aeropuerto de Phú Bài (HUI) está a unos 15 km al sureste de la tumba de Khải Định: unos 25 min en coche.' }],
+    dom14: [{ title: 'Lago Hoàn Kiếm, Văn Miếu y Ba Đình', box: [105.828, 105.866, 21.043, 21.018], mode: 'walk',
+      route: ['hh2', 'hoankiem', [105.848, 21.0285], [105.84, 21.0275], 'vanmieu', [105.836, 21.032], 'lang', [105.84, 21.035], [105.848, 21.033], 'roi', 'hh2'],
+      lab: { hh2: [0, -20, 'middle'], hoankiem: [14, 24, 'start'], vanmieu: [16, 22, 'start'], lang: [16, -8, 'start'], roi: [14, 4, 'start'] } }],
+    lun15: [
+      { title: 'De Hà Nội a Ninh Bình', box: [105.45, 106.25, 21.08, 20.17], mode: 'car',
+        route: ['hh2', [105.865, 20.97], [105.88, 20.85], [105.9, 20.72], [105.915, 20.55], [105.95, 20.4], [105.975, 20.275], 'hnb'],
+        lab: { hh2: [-14, -8, 'end'], hnb: [-16, 22, 'end'] } },
+      { title: 'Tràng An, Hang Múa y Tam Cốc', box: [105.86, 105.99, 20.3, 20.18], mode: 'car',
+        route: ['trangan', [105.9, 20.23], 'hangmua', 'hnb'],
+        lab: { trangan: [16, -10, 'start'], hangmua: [-16, 8, 'end'], hnb: [16, 5, 'start'] } }
+    ],
+    mar16: [
+      { title: 'De Ninh Bình a la bahía de Hạ Long', box: [105.8, 107.3, 21.1, 20.15], mode: 'car', speed: 55,
+        route: ['hnb', [105.975, 20.265], [106.1, 20.34], [106.17, 20.42], [106.34, 20.45], [106.52, 20.62], 'hp', [106.84, 20.89], 'hl'],
+        lab: { hnb: [-14, 5, 'end'], hp: [-14, -10, 'end'], hl: [-14, -12, 'end'] } },
+      { title: 'Crucero por la bahía de Hạ Long', box: [106.9, 107.35, 21.0, 20.7], mode: 'boat',
+        route: ['hl', 'hsung', 'titop', 'ancla'],
+        lab: { hl: [14, -10, 'start'], hsung: [16, -6, 'start'], titop: [-16, 20, 'end'], ancla: [-16, 5, 'end'] },
+        note: 'La ruta de los cruceros cambia con el tiempo y el operador; los puntos son aproximados.' }
+    ],
+    mie17: [{ title: 'De Hạ Long a Hà Nội', box: [105.75, 107.1, 21.2, 20.75], mode: 'car', speed: 55,
+      route: ['hl', [106.84, 20.89], 'hp', [106.3, 20.93], [106.0, 21.0], 'hh2'],
+      lab: { hl: [-14, -12, 'end'], hp: [0, 22, 'middle'], hh2: [16, -8, 'start'] } }],
+    jue18: [{ title: 'Museo de Etnología, lago del Oeste y Hỏa Lò', box: [105.78, 105.89, 21.07, 21.0], mode: 'car',
+      route: ['hh2', [105.84, 21.03], [105.81, 21.037], 'dantoc', [105.82, 21.045], 'tranquoc', [105.845, 21.042], 'hoalo', 'hh2'],
+      lab: { hh2: [16, -10, 'start'], dantoc: [16, 22, 'start'], tranquoc: [16, -8, 'start'], hoalo: [-14, 22, 'end'] } }],
+    vie19: [{ title: 'Pueblo de cerámica de Bát Tràng', box: [105.8, 105.95, 21.06, 20.95], mode: 'car',
+      route: ['hh2', [105.857, 21.02], [105.872, 21.005], [105.895, 20.99], 'battrang', [105.895, 20.99], [105.872, 21.005], [105.857, 21.02], 'hh2'],
+      lab: { hh2: [-14, -10, 'end'], battrang: [-16, 24, 'end'] } }],
+    sab20: [{ title: 'Última tarde en Sài Gòn', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
+      route: ['sgn', [106.662, 10.807], [106.677, 10.7925], [106.689, 10.7835], 'benthanh', [106.693, 10.785], 'ngochoang', [106.67, 10.805], 'sgn'],
+      lab: { sgn: [18, 6, 'start'], benthanh: [16, 22, 'start'], ngochoang: [16, 5, 'start'] } }]
+  };
+
+  /* ---------- Lugares: foto y por qué ir ---------- */
+  var PLACE = {
+    sgn: { img: null, why: 'Es la puerta de entrada: llegáis a las 19:35 en plena víspera de Tết. Con el efectivo y la eSIM resueltos, os vais pronto al hotel.' },
+    hsg: { img: null, why: 'El Distrito 1 reúne el centro histórico, el río y los restaurantes en un radio de 2 km. Es la base más cómoda para tres noches.' },
+    nguyenhue: { img: 'nguyenhue', why: 'Paseo peatonal que cada Tết se convierte en un jardín temporal con flores, bonsáis y la mascota del año. Es el corazón de la fiesta en Sài Gòn.' },
+    ducba: { img: 'ducba', why: 'Basílica de ladrillo rojo de 1880, junto a la Oficina Central de Correos (1891): dos joyas coloniales francesas a un paseo una de la otra.' },
+    ngochoang: { img: 'ngochoang', why: 'Templo taoísta de 1909 lleno de humo de incienso y figuras de madera. Los primeros días de Tết se llena de fieles pidiendo suerte.' },
+    thienhau: { img: 'thienhau', why: 'Templo chino de 1760 dedicado a la diosa del mar, con espirales de incienso que cuelgan del techo y un interior ornamentado, en el barrio de Chợ Lớn.' },
+    benthanh: { img: 'benthanh', why: 'Mercado de 1914, símbolo de la ciudad: souvenirs, café, especias y puestos de comida. Ideal para el regateo.' },
+    chungtich: { img: 'chungtich', why: 'Museo sobre la guerra de Vietnam vista por los vietnamitas. Es uno de los más visitados del país y deja huella.' },
+    myt: { img: 'mekong', why: 'Ciudad a orillas del río Tiền y puerta de entrada al delta: desde su muelle salen las lanchas hacia las islas.' },
+    ton: { img: 'mekong', why: 'Isla frutal entre canales: talleres de caramelo de coco, miel y paseos en sampán bajo las palmeras.' },
+    bt: { img: 'mekong', why: 'Provincia del coco, con huertos, canales y casas que cocinan para los visitantes. Una de las zonas más auténticas del delta.' },
+    dad: { img: null, why: 'Aeropuerto de la ciudad de Đà Nẵng, a unos 30 km de Hội An. En unos 45 min llegáis al hotel.' },
+    hh: { img: 'hoian', why: 'Dormir cerca del casco antiguo permite pasear de noche, cuando se encienden los farolillos, y volver a pie.' },
+    hoian: { img: 'hoian', why: 'Antiguo puerto comercial (siglos XV–XIX), Patrimonio UNESCO, con casas de madera, farolillos de seda y calles peatonales. Es la parada más bonita del centro.' },
+    chuacau: { img: 'chuacau', why: 'Puente cubierto del siglo XVII construido por la comunidad japonesa, el emblema de Hội An.' },
+    cho: { img: null, why: 'Mercado cubierto con fruta, hierbas, comida de calle y puestos de café. Lo mejor es ir por la mañana.' },
+    ben: { img: 'hoian', why: 'Desde aquí salen las barcas con farolillos de papel: la imagen más típica de Hội An al caer la tarde.' },
+    myson: { img: 'myson', why: 'Santuario hindú del reino de Champa (siglos IV–XIII), Patrimonio UNESCO, entre la selva. Es la mayor concentración de templos de la cultura Cham.' },
+    nguhanhson: { img: 'nguhanhson', why: 'Cinco colinas de mármol y piedra caliza con cuevas-templo, pagodas y miradores sobre la costa de Đà Nẵng.' },
+    traque: { img: 'traque', why: 'Aldea hortícola entre arrozales donde cultivan hierbas con algas del río. Se visita en bici y se aprende a plantar.' },
+    anbang: { img: null, why: 'Playa tranquila a 5 km del casco antiguo, con chiringuitos, hamacas y buen ambiente de tarde.' },
+    haivan: { img: 'haivan', why: 'Puerto de montaña de 21 km, a 496 m, entre Đà Nẵng y Huế. Fue frontera entre dos reinos y ofrece unas vistas espectaculares de la bahía.' },
+    langco: { img: 'haivan', why: 'Playa larga y laguna al pie del paso, famosa por sus ostras y su marisco a la parrilla.' },
+    hhue: { img: null, why: 'La orilla sur del río Perfume concentra hoteles, cafés y restaurantes, a un corto paseo del puente Trường Tiền.' },
+    thienmu: { img: 'thienmu', why: 'Pagoda de 1601 con una torre de siete pisos de 1844 sobre el río Perfume. Es el símbolo de la ciudad.' },
+    daino: { img: 'daino', why: 'Recinto amurallado de los emperadores Nguyễn (1802–1945), Patrimonio UNESCO. Se entra por la puerta del Mediodía y se recorren salas, patios y jardines.' },
+    khaidinh: { img: 'khaidinh', why: 'Mausoleo de 1920–1931 donde los mosaicos de porcelana y vidrio roto mezclan estilos vietnamita y europeo. Es el más original de los de Huế.' },
+    hui: { img: null, why: 'Aeropuerto de Huế, a unos 15 km del centro. Los vuelos a Hà Nội salen cada día.' },
+    hh2: { img: 'hanoi', why: 'El Old Quarter reúne las 36 calles de los gremios, cafés y restaurantes a pie. Es el mejor punto de partida para recorrer Hà Nội.' },
+    hoankiem: { img: 'hoankiem', why: 'El corazón de Hà Nội: un lago con un templo en una isla (Ngọc Sơn) al que se llega por el puente rojo Thê Húc.' },
+    vanmieu: { img: 'vanmieu', why: 'Templo confuciano y primera universidad de Vietnam (1076). Sus patios, estanques y estelas de doctores sobre tortugas de piedra son un oasis.' },
+    lang: { img: 'lang', why: 'Plaza donde Hồ Chí Minh declaró la independencia en 1945. Junto al mausoleo están la Pagoda del Pilar Único y su casa sobre pilotes.' },
+    roi: { img: 'roi', why: 'Teatro con una tradición de mil años: marionetas de madera lacada que se mueven sobre el agua con música tradicional en directo.' },
+    dantoc: { img: null, why: 'Museo con casas reales de las 54 etnias de Vietnam, desmontadas y reconstruidas en el jardín.' },
+    tranquoc: { img: null, why: 'La pagoda más antigua de Hà Nội, de más de 1.400 años, en una isla del lago del Oeste.' },
+    hoalo: { img: 'hoalo', why: 'Prisión colonial francesa y después el «Hanoi Hilton». Un museo sobre la lucha por la independencia y los presos políticos.' },
+    battrang: { img: 'battrang', why: 'Pueblo de cerámica de más de 500 años a 13 km de Hà Nội: talleres, tiendas y la posibilidad de hacer vuestra propia pieza.' },
+    hnb: { img: null, why: 'Dormir en Tam Cốc permite ver los arrozales y los karst al amanecer, lejos de los autobuses de excursión.' },
+    trangan: { img: 'trangan', why: 'Paisaje de karst, ríos y grutas, Patrimonio UNESCO mixto. Se recorre en barca remada, a veces bajo cuevas bajas, durante 2–3 h.' },
+    hangmua: { img: 'hangmua', why: 'Mirador al que se sube por 500 escalones y desde el que se ve el río, los arrozales y los karst de Tam Cốc.' },
+    hp: { img: null, why: 'Gran puerto del norte; la autopista pasa a las afueras camino de Hạ Long.' },
+    hl: { img: 'halong', why: 'Puerto de embarque de los cruceros, a las afueras de la ciudad de Hạ Long. Desde aquí se entra en la bahía.' },
+    hsung: { img: 'halong', why: 'Cueva enorme en la isla de Bồ Hòn, de las más visitadas de la bahía, con formaciones iluminadas.' },
+    titop: { img: 'halong', why: 'Isla con una pequeña playa y un mirador de 400 escalones que domina toda la bahía.' },
+    ancla: { img: 'halong', why: 'Noche a bordo, fondeados entre islotes kársticos: sin luces de ciudad y con bruma al amanecer.' }
+  };
+  var PH = {
+    nguyenhue: { by: 'Timback', lic: 'CC BY-SA 4.0' },
+    ngochoang: { by: 'Gary Todd', lic: 'CC0' },
+    thienhau: { by: 'Alexander Synaptic', lic: 'CC BY-SA 2.0' },
+    ducba: { by: 'Maksim Sokolov', lic: 'CC BY-SA 4.0' },
+    benthanh: { by: 'Bahnfrend', lic: 'CC BY-SA 4.0' },
+    chungtich: { by: 'Prenn', lic: 'CC BY-SA 3.0' },
+    mekong: { by: 'Balon Greyjoy', lic: 'CC0' },
+    hoian: { by: 'Steffen Schmitz', lic: 'CC BY-SA 4.0' },
+    chuacau: { by: 'Steffen Schmitz', lic: 'CC BY-SA 4.0' },
+    myson: { by: 'Philip Nalangan', lic: 'CC BY 4.0' },
+    nguhanhson: { by: 'Kuroczynski', lic: 'CC BY-SA 4.0' },
+    traque: { by: 'Andre Hospers', lic: 'CC BY 4.0' },
+    haivan: { by: 'Steffen Schmitz', lic: 'CC BY-SA 4.0' },
+    thienmu: { by: 'CEphoto, Uwe Aranas', lic: 'CC BY-SA 3.0' },
+    daino: { by: 'Chainwit', lic: 'CC BY 4.0' },
+    khaidinh: { by: 'Chainwit', lic: 'CC BY 4.0' },
+    hanoi: { by: 'Jakub Hałun', lic: 'CC BY 4.0' },
+    hoankiem: { by: 'Gary Todd', lic: 'CC0' },
+    vanmieu: { by: 'Jakub Hałun', lic: 'CC BY 4.0' },
+    lang: { by: 'CEphoto, Uwe Aranas', lic: 'CC BY-SA 3.0' },
+    roi: { by: 'CEphoto, Uwe Aranas', lic: 'CC BY-SA 3.0' },
+    hoalo: { by: 'David McKelvey', lic: 'CC BY 2.0' },
+    battrang: { by: 'Steven C. Price', lic: 'CC BY-SA 4.0' },
+    trangan: { by: 'Jakub Hałun', lic: 'CC BY 4.0' },
+    hangmua: { by: 'Shyamal', lic: 'CC BY-SA 4.0' },
+    halong: { by: 'Jakub Hałun', lic: 'CC BY 4.0' }
+  };
+  var EVP = {
+    jue4: [null, null],
+    vie5: ['sgn', 'hsg', 'nguyenhue'],
+    sab6: ['thienhau', 'ngochoang', null, 'ducba', 'nguyenhue', null],
+    dom7: ['myt', 'ton', null, 'bt', null, null],
+    lun8: ['chungtich', 'benthanh', 'sgn', null, 'dad', 'hoian'],
+    mar9: [null, 'hoian', null, null, 'ben', null],
+    mie10: [null, 'myson', null, 'nguhanhson', null, null],
+    jue11: ['traque', null, 'anbang', null, null],
+    vie12: [null, 'haivan', 'langco', 'hhue', 'thienmu', null],
+    sab13: ['daino', null, 'khaidinh', 'hui', null, 'hh2'],
+    dom14: ['hoankiem', 'vanmieu', null, 'lang', null, 'roi', null],
+    lun15: [null, 'trangan', null, 'hangmua', 'hnb', null],
+    mar16: [null, 'hl', 'hsung', 'ancla', null],
+    mie17: [null, 'titop', null, 'hh2', null],
+    jue18: ['dantoc', 'tranquoc', 'hoalo', null, null],
+    vie19: ['battrang', null, null, null, null],
+    sab20: [null, null, null, 'benthanh', 'ngochoang', 'sgn', null],
+    dom21: [null]
+  };
+
+  /* ---------- Ruta general ---------- */
+  var OV = {
+    box: [103.5, 110.6, 23.6, 8.5], W: 450,
+    stops: [
+      { n: 'Sài Gòn', lon: 106.7, lat: 10.78, c: 'var(--red)', lab: [14, 5, 'start'], sub: '5–8 feb · 3 noches' },
+      { n: 'Hội An', lon: 108.33, lat: 15.88, c: 'var(--gold)', lab: [14, 5, 'start'], sub: '8–12 feb · 4 noches' },
+      { n: 'Huế', lon: 107.58, lat: 16.46, c: 'var(--hue)', lab: [-14, 5, 'end'], sub: '12–13 feb · 1 noche' },
+      { n: 'Hà Nội', lon: 105.85, lat: 21.03, c: 'var(--indigo)', lab: [-14, 5, 'end'], sub: '13–15 feb · 2 noches, y 17–20 feb · 3 noches' },
+      { n: 'Ninh Bình', lon: 105.97, lat: 20.25, c: 'var(--lotus)', lab: [-14, 5, 'end'], sub: '15–16 feb · 1 noche' },
+      { n: 'Bahía de Hạ Long', lon: 107.05, lat: 20.93, c: 'var(--teal)', lab: [12, 22, 'start'], sub: '16–17 feb · 1 noche en crucero' }
+    ],
+    legs: [[0, 1, 'air', 30], [1, 2, 'car', 0], [2, 3, 'air', 24], [3, 4, 'car', 0], [4, 5, 'car', 0], [5, 3, 'car', 0], [3, 0, 'air', 46]]
+  };
+  var STAGES = [
+    ['4–5 feb', 'Madrid → Sài Gòn', 'intl', 'Vuelo', '16 h'],
+    ['8 feb', 'Sài Gòn → Đà Nẵng → Hội An', 'air', 'Vuelo y coche', '1 h 20 + 45 min'],
+    ['12 feb', 'Hội An → Huế por Hải Vân', 'car', 'Coche', '~4 h'],
+    ['13 feb', 'Huế → Hà Nội', 'air', 'Vuelo', '1 h 15'],
+    ['15 feb', 'Hà Nội → Ninh Bình', 'car', 'Coche', '~2 h'],
+    ['16 feb', 'Ninh Bình → bahía de Hạ Long', 'car', 'Coche', '~3 h 30'],
+    ['17 feb', 'Hạ Long → Hà Nội', 'car', 'Shuttle', '~3 h'],
+    ['20 feb', 'Hà Nội → Sài Gòn', 'air', 'Vuelo', '2 h 10'],
+    ['20–21 feb', 'Sài Gòn → Madrid', 'intl', 'Vuelo', '21 h']
+  ];
+
+  /* ---------- Utilidades ---------- */
+  function S(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function hv(a, b) {
+    var t = Math.PI / 180, dLa = (b[1] - a[1]) * t, dLo = (b[0] - a[0]) * t;
+    var h = Math.pow(Math.sin(dLa / 2), 2) + Math.cos(a[1] * t) * Math.cos(b[1] * t) * Math.pow(Math.sin(dLo / 2), 2);
+    return 2 * 6371 * Math.asin(Math.sqrt(h));
+  }
+  function fmtT(m) {
+    m = Math.max(1, Math.round(m / 5) * 5 || 1);
+    if (m < 60) return m + ' min';
+    var h = Math.floor(m / 60), r = m % 60;
+    return h + ' h' + (r ? ' ' + (r < 10 ? '0' : '') + r + ' min' : '');
+  }
+  function fmtK(k) { return k < 1 ? '~' + Math.round(k * 10) / 10 + ' km' : k < 10 ? '~' + (Math.round(k * 2) / 2) + ' km' : '~' + Math.round(k) + ' km'; }
+  var MODE = { car: 'en coche', walk: 'a pie', bike: 'en bici', boat: 'en barco' };
+
+  /* Proyección común de los mapas: caja [lon0, lon1, latSup, latInf] en un ancho de W unidades. */
+  function proj(box, W) {
+    var lon0 = box[0], lon1 = box[1], latT = box[2], latB = box[3];
+    var cs = Math.cos(((latT + latB) / 2) * Math.PI / 180), kx = W / (lon1 - lon0), ky = kx / cs;
+    var p = { W: W, H: Math.round((latT - latB) * ky), s: kx / (111.32 * cs) };
+    p.X = function (lo) { return (lo - lon0) * kx; };
+    p.Y = function (la) { return (latT - la) * ky; };
+    p.D = function (pts, close) { return pts.map(function (q, i) { return (i ? 'L' : 'M') + p.X(q[0]).toFixed(1) + ' ' + p.Y(q[1]).toFixed(1); }).join('') + (close ? 'Z' : ''); };
+    return p;
+  }
+  /* Base del mapa: tierra, mar y accidentes, comunes al mapa de ruta y a los de cada día. */
+  function base(svg, pj, overview) {
+    var s = pj.s;
+    S('rect', { width: pj.W, height: pj.H, fill: overview ? 'var(--neighbor)' : 'var(--land)' }, svg);
+    if (overview) S('path', { d: pj.D(COAST.slice(0, -2).concat(BORDER), true), fill: 'var(--land)' }, svg);
+    S('path', { d: pj.D(COAST, true), fill: 'var(--water)', opacity: .55 }, svg);
+    if (overview) S('path', { d: pj.D(BORDER), fill: 'none', stroke: 'var(--muted)', 'stroke-width': 1.2, 'stroke-dasharray': '4 4', opacity: .6 }, svg);
+    if (s >= 8) {
+      S('path', { d: pj.D(LAKES.catba, true), fill: 'var(--land)', stroke: 'var(--karst)', 'stroke-width': 2 }, svg);
+      ISL.forEach(function (it) {
+        var x = pj.X(it[0]), y = pj.Y(it[1]);
+        if (x < -20 || x > pj.W + 20 || y < -20 || y > pj.H + 20) return;
+        S('ellipse', { cx: x, cy: y, rx: Math.max(4, it[2] * s * .8), ry: Math.max(5, it[2] * s * 1.1), fill: 'var(--karst)', opacity: .75 }, svg);
+      });
+    }
+    if (s >= 40) {
+      S('path', { d: pj.D(LAKES.westlake, true), fill: 'var(--water)', opacity: .7 }, svg);
+      S('path', { d: pj.D(LAKES.hoankiem, true), fill: 'var(--water)', opacity: .8 }, svg);
+    }
+    RIVERS.forEach(function (r) {
+      if (s < (r.minS || 0) || s > (r.maxS || 1e9)) return;
+      var wpx = Math.max(2.5, Math.min(60, r.w * s));
+      S('path', { d: pj.D(r.p), fill: 'none', stroke: 'var(--water)', 'stroke-width': wpx, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: .9 }, svg);
+    });
+  }
+
+  function drawMap(cfg, day) {
+    var pj = proj(cfg.box, 600), W = pj.W, H = pj.H, s = pj.s, X = pj.X, Y = pj.Y, D = pj.D;
+    var fig = document.createElement('figure');
+    var cap = document.createElement('figcaption'); cap.textContent = cfg.title; fig.appendChild(cap);
+    var svg = S('svg', { viewBox: '0 0 ' + W + ' ' + H, 'class': 'msvg', role: 'img', 'aria-label': 'Mapa: ' + cfg.title }, fig);
+    base(svg, pj, false);
+
+    var vis = ROADS.filter(function (r) { return s >= (r.minS || 0) && s <= (r.maxS || 1e9); });
+    var W3 = { hw: [9, 6], main: [7, 4.5], st: [5, 3] };
+    ['st', 'main', 'hw'].forEach(function (t) {
+      vis.filter(function (r) { return r.t === t; }).forEach(function (r) {
+        S('path', { d: D(r.p), fill: 'none', stroke: 'var(--roadout)', 'stroke-width': W3[t][0], 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+        S('path', { d: D(r.p), fill: 'none', stroke: 'var(--roadin)', 'stroke-width': W3[t][1], 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+      });
+    });
+    function inside(x, y) { return x > 20 && x < W - 20 && y > 16 && y < H - 16; }
+    function label(txt, lo, la, dx, dy, a, cls) {
+      var x = X(lo) + (dx || 0), y = Y(la) + (dy || 0);
+      if (!inside(x, y)) return;
+      var t = S('text', { x: x, y: y, 'text-anchor': a || 'middle', 'class': cls }, svg); t.textContent = txt;
+    }
+    GEO.forEach(function (g) { if (s >= (g.minS || 0) && s <= (g.maxS || 1e9)) label(g.t, g.p[0], g.p[1], 0, 0, 'middle', g.c || 'geo'); });
+    vis.forEach(function (r) { if (r.lbl) label(r.n, r.lbl[0], r.lbl[1], r.lbl[2], r.lbl[3], r.lbl[4], 'rl'); });
+
+    /* Ruta, tramos y numeración */
+    var path = [], pins = [], order = [];
+    cfg.route.forEach(function (it) {
+      if (typeof it === 'string') {
+        var q = P[it]; path.push([q.lon, q.lat]); pins.push([path.length - 1, it]);
+        if (order.indexOf(it) < 0) order.push(it);
+      } else path.push(it);
+    });
+    S('path', { d: D(path), fill: 'none', stroke: 'currentColor', 'stroke-width': 4, 'stroke-dasharray': '11 7', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+    var legs = [], total = 0, totalMin = 0;
+    for (var k = 0; k < pins.length - 1; k++) {
+      var i0 = pins[k][0], i1 = pins[k + 1][0], len = 0;
+      for (var j = i0; j < i1; j++) len += hv(path[j], path[j + 1]);
+      var f = cfg.mode === 'walk' ? 1.25 : cfg.mode === 'bike' ? 1.2 : cfg.mode === 'boat' ? 1.2 : (i1 - i0 > 1 ? 1.15 : 1.35);
+      var km = len * f;
+      var sp = cfg.speed || (cfg.mode === 'walk' ? 4 : cfg.mode === 'bike' ? 12 : cfg.mode === 'boat' ? 14 : km < 8 ? 18 : km < 40 ? 32 : km < 100 ? 48 : 55);
+      var min = km / sp * 60; total += km; totalMin += min;
+      legs.push({ a: order.indexOf(pins[k][1]) + 1, b: order.indexOf(pins[k + 1][1]) + 1, km: km, min: min });
+      /* etiqueta de distancia en el punto medio */
+      var half = len / 2, acc = 0, mp = path[i0];
+      for (var m = i0; m < i1; m++) { var sg = hv(path[m], path[m + 1]); if (acc + sg >= half) { var u = sg ? (half - acc) / sg : 0; mp = [path[m][0] + (path[m + 1][0] - path[m][0]) * u, path[m][1] + (path[m + 1][1] - path[m][1]) * u]; break; } acc += sg; }
+      if (km >= 1.5) label(fmtK(km), mp[0], mp[1], 0, -9, 'middle', 'leg');
+    }
+
+    /* Pines */
+    var COL = { nat: 'var(--jade)', mus: 'var(--indigo)', mon: 'var(--gold)', hotel: 'var(--teal)', hub: 'var(--fg)', mkt: 'var(--lotus)', sm: 'var(--muted)' };
+    order.forEach(function (id, n) {
+      var q = P[id], x = X(q.lon), y = Y(q.lat), c = COL[q.t] || 'var(--fg)', g = S('g', { 'class': 'pin', tabindex: 0, role: 'button', 'aria-label': 'Por qué ir: ' + q.full, 'data-place': id }, svg);
+      var sh;
+      if (q.t === 'nat') sh = S('polygon', { points: x + ',' + (y - 15) + ' ' + (x + 15) + ',' + (y + 11) + ' ' + (x - 15) + ',' + (y + 11) }, g);
+      else if (q.t === 'mus') sh = S('rect', { x: x - 12, y: y - 12, width: 24, height: 24, rx: 3 }, g);
+      else if (q.t === 'mon') sh = S('polygon', { points: x + ',' + (y - 15) + ' ' + (x + 15) + ',' + y + ' ' + x + ',' + (y + 15) + ' ' + (x - 15) + ',' + y }, g);
+      else sh = S('circle', { cx: x, cy: y, r: q.t === 'sm' ? 8 : 12 }, g);
+      sh.setAttribute('fill', c); sh.setAttribute('stroke', 'var(--bg)'); sh.setAttribute('stroke-width', 2.5);
+      var num = S('text', { x: x, y: y + (q.t === 'nat' ? 8 : 5), 'class': 'num' }, g); num.textContent = n + 1;
+      var lb = (cfg.lab && cfg.lab[id]) || [18, 5, 'start'];
+      var tx = x + lb[0], anchor = lb[2], w = q.l.length * 8.2;
+      if (anchor === 'start' && tx + w > W - 4) { anchor = 'end'; tx = x - Math.abs(lb[0]); }
+      else if (anchor === 'end' && tx - w < 4) { anchor = 'start'; tx = x + Math.abs(lb[0]); }
+      var t = S('text', { x: tx, y: y + lb[1], 'text-anchor': anchor }, g); t.textContent = q.l;
+    });
+
+    /* Escala y norte */
+    var nice = [0.2, 0.5, 1, 2, 5, 10, 20, 50, 100], kmS = 5;
+    for (var z = 0; z < nice.length; z++) if (nice[z] * s >= 70 && nice[z] * s <= 220) { kmS = nice[z]; break; }
+    var bl = kmS * s, bx = W - 16 - bl, by = H - 14;
+    S('path', { d: 'M' + bx + ' ' + (by - 6) + 'V' + by + 'H' + (bx + bl) + 'V' + (by - 6), fill: 'none', stroke: 'var(--fg)', 'stroke-width': 2 }, svg);
+    var st = S('text', { x: bx + bl / 2, y: by - 9, 'text-anchor': 'middle', 'class': 'rl' }, svg); st.textContent = kmS + ' km';
+    S('path', { d: 'M' + (W - 24) + ' 40V14M' + (W - 24) + ' 14l-6 10M' + (W - 24) + ' 14l6 10', fill: 'none', stroke: 'var(--fg)', 'stroke-width': 2 }, svg);
+    var nt = S('text', { x: W - 24, y: 58, 'text-anchor': 'middle', 'class': 'rl' }, svg); nt.textContent = 'N';
+
+    /* Leyenda */
+    var leg = document.createElement('div'); leg.className = 'mleg';
+    var ro = 'stroke="var(--roadout)"', ri = 'stroke="var(--roadin)"', sw = function (inner) { return '<svg viewBox="0 0 30 16" aria-hidden="true">' + inner + '</svg>'; };
+    var roadSw = function (w1, w2) { return sw('<path d="M1 8H29" ' + ro + ' stroke-width="' + w1 + '" stroke-linecap="round"/><path d="M1 8H29" ' + ri + ' stroke-width="' + w2 + '" stroke-linecap="round"/>'); };
+    var sym = '<div><h4>Leyenda</h4><ul class="sw">' +
+      '<li>' + sw('<path d="M1 8H29" stroke="currentColor" stroke-width="4" stroke-dasharray="8 5"/>') + 'Ruta del día</li>' +
+      '<li>' + roadSw(9, 6) + 'Autopista</li>' +
+      '<li>' + roadSw(7, 4.5) + 'Vía principal</li>' +
+      '<li>' + roadSw(5, 3) + 'Calle</li>' +
+      '<li>' + sw('<path d="M1 8H29" stroke="var(--water)" stroke-width="6" stroke-linecap="round"/>') + 'Río o canal</li>' +
+      '<li>' + sw('<polygon points="15,1 24,14 6,14" fill="var(--jade)"/>') + 'Naturaleza y paisajes</li>' +
+      '<li>' + sw('<rect x="8" y="2" width="14" height="12" rx="2" fill="var(--indigo)"/>') + 'Museos y teatros</li>' +
+      '<li>' + sw('<polygon points="15,0 23,8 15,16 7,8" fill="var(--gold)"/>') + 'Templos, pagodas y ciudadelas</li>' +
+      '<li>' + sw('<circle cx="15" cy="8" r="6" fill="var(--lotus)"/>') + 'Mercados y calles</li>' +
+      '<li>' + sw('<circle cx="15" cy="8" r="6" fill="var(--teal)"/>') + 'Hotel o fondeo</li>' +
+      '<li>' + sw('<circle cx="15" cy="8" r="6" fill="var(--fg)"/>') + 'Aeropuerto, puerto y paradas</li></ul></div>';
+    var rows = legs.map(function (l) {
+      return '<tr><td><span class="nb">' + l.a + '</span>→<span class="nb">' + l.b + '</span> ' + P[order[l.a - 1]].l + ' → ' + P[order[l.b - 1]].l + '</td><td>' + fmtK(l.km) + '</td><td>' + fmtT(l.min) + '</td></tr>';
+    }).join('');
+    var names = order.map(function (id, n) { return '<span class="nb">' + (n + 1) + '</span> ' + P[id].full; }).join(' · ');
+    var dist = '<div><h4>Distancias (' + MODE[cfg.mode] + ')</h4><table class="dist"><tbody>' + rows + '<tr class="tot"><td>Total</td><td>' + fmtK(total) + '</td><td>' + fmtT(totalMin) + '</td></tr></tbody></table></div>';
+    leg.innerHTML = dist + '<details class="symleg"><summary>Leyenda de símbolos y calles</summary>' + sym + '</details><p class="mnote">' + names + '. Distancias por carretera aproximadas; el tiempo supone tráfico normal, en Tết puede variar.' + (cfg.note ? ' ' + cfg.note : '') + '</p>';
+    fig.appendChild(leg);
+
+    var box = document.createElement('div'); box.className = 'mapbox'; box.appendChild(fig);
+    day.insertBefore(box, day.querySelector('.events'));
+  }
+
+  /* Mapa de la ruta completa */
+  function drawOverview() {
+    var fig = document.getElementById('ovMap');
+    var pj = proj(OV.box, OV.W);
+    var svg = S('svg', { viewBox: '0 0 ' + pj.W + ' ' + pj.H, 'class': 'msvg', role: 'img', 'aria-label': 'Mapa de Vietnam con la ruta del viaje de sur a norte' }, fig);
+    fig.insertBefore(svg, null);
+    base(svg, pj, true);
+    var pt = OV.stops.map(function (q) { return [pj.X(q.lon), pj.Y(q.lat)]; });
+    OV.legs.forEach(function (lg) {
+      var a = pt[lg[0]], b = pt[lg[1]];
+      if (lg[2] === 'air') {
+        var dx = b[0] - a[0], dy = b[1] - a[1], len = Math.sqrt(dx * dx + dy * dy) || 1;
+        var cx = (a[0] + b[0]) / 2 + (-dy / len) * lg[3], cy = (a[1] + b[1]) / 2 + (dx / len) * lg[3];
+        S('path', { d: 'M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + 'Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + b[0].toFixed(1) + ' ' + b[1].toFixed(1), fill: 'none', stroke: 'var(--hue)', 'stroke-width': 3, 'stroke-dasharray': '2 6', 'stroke-linecap': 'round' }, svg);
+      } else {
+        var key = lg[0] + '-' + lg[1];
+        var pts = [[OV.stops[lg[0]].lon, OV.stops[lg[0]].lat]];
+        if (key === '4-5') pts.push([106.17, 20.42], [106.69, 20.85]);
+        if (key === '1-2') pts.push([108.13, 16.2]);
+        pts.push([OV.stops[lg[1]].lon, OV.stops[lg[1]].lat]);
+        S('path', { d: pj.D(pts), fill: 'none', stroke: 'var(--red)', 'stroke-width': 3.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+      }
+    });
+    OV.stops.forEach(function (q, i) {
+      var x = pt[i][0], y = pt[i][1];
+      var g = S('g', {}, svg);
+      var c = S('circle', { cx: x, cy: y, r: 12, fill: q.c, stroke: 'var(--bg)', 'stroke-width': 2.5 }, g);
+      var num = S('text', { x: x, y: y + 5, 'class': 'num' }, g); num.textContent = i + 1;
+      var t = S('text', { x: x + q.lab[0], y: y + q.lab[1], 'text-anchor': q.lab[2], 'class': 'cty' }, g); t.textContent = q.n;
+    });
+    GEO.forEach(function (g) { if (pj.s >= (g.minS || 0) && pj.s <= (g.maxS || 1e9)) { var t = S('text', { x: pj.X(g.p[0]), y: pj.Y(g.p[1]), 'text-anchor': 'middle', 'class': g.c || 'geo' }, svg); t.textContent = g.t; } });
+    var kmS = 200, bl = kmS * pj.s, bx = pj.W - 16 - bl, by = pj.H - 14;
+    S('path', { d: 'M' + bx + ' ' + (by - 6) + 'V' + by + 'H' + (bx + bl) + 'V' + (by - 6), fill: 'none', stroke: 'var(--fg)', 'stroke-width': 2 }, svg);
+    var st = S('text', { x: bx + bl / 2, y: by - 9, 'text-anchor': 'middle', 'class': 'rl' }, svg); st.textContent = kmS + ' km';
+    S('path', { d: 'M' + (pj.W - 24) + ' 40V14M' + (pj.W - 24) + ' 14l-6 10M' + (pj.W - 24) + ' 14l6 10', fill: 'none', stroke: 'var(--fg)', 'stroke-width': 2 }, svg);
+    var nt = S('text', { x: pj.W - 24, y: 58, 'text-anchor': 'middle', 'class': 'rl' }, svg); nt.textContent = 'N';
+    var note = document.createElement('p'); note.className = 'mnote';
+    note.innerHTML = '<span class="mode car">Carretera</span><span class="mode air">Vuelo</span> Esquema aproximado: las costas y fronteras no son exactas.';
+    fig.appendChild(note);
+    document.getElementById('ovStops').innerHTML = OV.stops.map(function (q, i) {
+      return '<li style="--c:' + q.c + '"><span class="nb" style="--a:' + q.c + '">' + (i + 1) + '</span><div><b>' + q.n + '</b><small>' + q.sub + '</small></div></li>';
+    }).join('');
+    document.getElementById('ovStages').innerHTML = STAGES.map(function (r) {
+      return '<tr><td>' + r[0] + '</td><td><span class="mode ' + r[2] + '">' + r[3] + '</span> ' + r[1] + '</td><td>' + r[4] + '</td></tr>';
+    }).join('');
+  }
+  try { drawOverview(); } catch (e) { if (window.console) console.error(e); }
+
+  /* ---------- Montaje de cada día ---------- */
+  var rows = [], grand = { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 };
+  document.querySelectorAll('.day').forEach(function (day) {
+    (MAPS[day.id] || []).forEach(function (m) { try { drawMap(m, day); } catch (e) { if (window.console) console.error(e); } });
+
+    var t = { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 };
+    var costs = COST[day.id] || [];
+    day.querySelectorAll('.ev').forEach(function (ev, i) {
+      var spec = costs[i];
+      if (!spec) return;
+      var box = document.createElement('div'); box.className = 'chips';
+      spec.split(',').forEach(function (sp) {
+        var p = sp.split(':'), chip = document.createElement('span');
+        if (p[0] === 'note') { chip.className = 'chip note'; chip.textContent = p[1]; }
+        else { t[p[0]] += +p[1]; chip.className = 'chip ' + p[0]; chip.textContent = CHIP[p[0]] + ' ~' + eur(p[1]); }
+        box.appendChild(chip);
+      });
+      ev.children[1].appendChild(box);
+    });
+    var ep = EVP[day.id] || [];
+    day.querySelectorAll('.ev').forEach(function (ev, i) {
+      var id = ep[i], pl = id && PLACE[id];
+      if (!pl) return;
+      ev.dataset.place = id;
+      var body = ev.children[1], row = document.createElement('div');
+      row.className = 'whyrow';
+      row.innerHTML = '<button type="button" class="why" aria-label="Por qué ir: ' + P[id].full + '">¿Por qué ir?</button>';
+      body.appendChild(row);
+      if (pl.img) {
+        var im = document.createElement('img');
+        im.className = 'evimg'; im.src = 'assets/img/' + pl.img + '.jpg'; im.alt = P[id].full;
+        im.width = 96; im.height = 72; im.loading = 'lazy'; im.decoding = 'async';
+        ev.appendChild(im);
+      }
+    });
+
+    var ex = EXTRA[day.id] || {};
+    t.food += ex.food || 0; t.trans += ex.trans || 0;
+    var lg = LODGE[day.id];
+    if (lg) t.lodge = lg.room / 2;
+    var total = t.act + t.trans + t.fly + t.food + t.lodge;
+    var sum = document.createElement('li'); sum.className = 'sum';
+    sum.innerHTML = KEYS.map(function (k) {
+      return '<div><small>' + LBL[k] + '</small><b>' + (k === 'lodge' && !lg ? 'Sin noche' : '~' + eur(t[k])) + '</b></div>';
+    }).join('') + '<div class="tot"><small>Total día</small><b>~' + eur(total) + '</b></div>' +
+      (ex.n ? '<p>Incluye ' + eur((ex.food || 0) + (ex.trans || 0)) + ' en ' + ex.n + ' que no figuran arriba.</p>' : '') +
+      (lg ? '<p>Alojamiento: habitación doble a ~' + eur(lg.room) + ' la noche (' + lg.n + '), repartida entre dos.</p>' : '<p>' + (NOLODGE[day.id] || 'Sin alojamiento.') + '</p>');
+    day.querySelector('.events').appendChild(sum);
+    rows.push([NAMES[day.id], t, total]);
+    KEYS.forEach(function (k) { grand[k] += t[k]; });
+
+    var head = day.querySelector('.date'), dt = document.createElement('span');
+    dt.className = 'daytotal'; dt.innerHTML = 'Día: <b>~' + eur(total) + '</b> por persona';
+    head.appendChild(dt);
+
+    var o = OPTS[day.id];
+    if (o) {
+      var wrap = document.createElement('div'); wrap.className = 'opts';
+      var tabs = document.createElement('div'); tabs.className = 'tabs'; tabs.setAttribute('role', 'tablist');
+      tabs.setAttribute('aria-label', 'Opciones del día');
+      wrap.appendChild(tabs);
+      var panels = [], btns = [];
+      [['trans', 'Cómo moverse', o.trans], ['tick', 'Entradas', o.tick], ['food', 'Dónde comer', o.food], ['sleep', 'Dónde dormir', o.sleep], ['tet', 'Tết', o.tet]].forEach(function (g) {
+        if (!g[2]) return;
+        var key = day.id + '-' + g[0];
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'tab ' + g[0]; b.id = 'tab-' + key; b.textContent = g[1];
+        b.setAttribute('role', 'tab'); b.setAttribute('aria-controls', 'panel-' + key);
+        tabs.appendChild(b); btns.push(b);
+        var d = document.createElement('div'); d.className = 'opt ' + g[0]; d.id = 'panel-' + key;
+        d.setAttribute('role', 'tabpanel'); d.setAttribute('aria-labelledby', b.id);
+        d.innerHTML = '<ul>' + g[2].map(function (it) {
+          return '<li><b>' + it[0] + '</b>' + (it[1] ? '<span class="pr">' + it[1] + '</span>' : '') + '<span class="t">' + it[2] + '</span></li>';
+        }).join('') + '</ul>';
+        wrap.appendChild(d); panels.push(d);
+      });
+      var show = function (i, focus) {
+        btns.forEach(function (b, k) {
+          b.setAttribute('aria-selected', k === i ? 'true' : 'false');
+          b.tabIndex = k === i ? 0 : -1;
+          panels[k].hidden = k !== i;
+        });
+        if (focus) btns[i].focus();
+      };
+      btns.forEach(function (b, i) {
+        b.addEventListener('click', function () { show(i); });
+        b.addEventListener('keydown', function (e) {
+          var n = btns.length, k = e.key === 'ArrowRight' ? (i + 1) % n : e.key === 'ArrowLeft' ? (i + n - 1) % n : e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : -1;
+          if (k > -1) { e.preventDefault(); show(k, true); }
+        });
+      });
+      show(0);
+      day.appendChild(wrap);
+    }
+    var nx = day.nextElementSibling;
+    var link = document.createElement('a');
+    link.className = 'nextday';
+    link.href = nx ? '#' + nx.id : '#presupuesto';
+    link.innerHTML = '<span>' + (nx ? 'Siguiente día: ' + NAMES[nx.id] : 'Ver el presupuesto') + '</span><span aria-hidden="true">↓</span>';
+    day.appendChild(link);
+  });
+
+  /* ---------- Ficha emergente de cada lugar ---------- */
+  (function () {
+    var pop = document.createElement('div');
+    pop.className = 'pop'; pop.id = 'pop'; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-live', 'polite'); pop.hidden = true;
+    document.body.appendChild(pop);
+    var current = null, pinned = false;
+    var hide = function () { pop.hidden = true; pop.classList.remove('pinned'); current = null; pinned = false; };
+    var place = function (t) {
+      var r = t.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+      var left = Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2));
+      var top = r.top - h - 10;
+      if (top < 8) top = Math.min(window.innerHeight - h - 8, r.bottom + 10);
+      pop.style.left = left + 'px'; pop.style.top = Math.max(8, top) + 'px';
+    };
+    var show = function (t, pin) {
+      var id = t.getAttribute('data-place'), pl = PLACE[id], q = P[id];
+      if (!pl || !q) return;
+      var ph = pl.img && PH[pl.img];
+      pop.innerHTML = (pl.img ? '<img src="assets/img/' + pl.img + '.jpg" alt="' + q.full.replace(/"/g, '&quot;') + '" width="320" height="200">' : '') +
+        '<div class="pb"><button type="button" class="pclose" aria-label="Cerrar">×</button><h5>' + q.full + '</h5><p>' + pl.why + '</p>' +
+        (ph ? '<small>Foto: ' + ph.by + ' · ' + ph.lic + ' (Wikimedia Commons)</small>' : '') + '</div>';
+      current = t; pinned = !!pin;
+      pop.classList.toggle('pinned', pinned);
+      pop.hidden = false;
+      place(t);
+    };
+    document.addEventListener('pointerover', function (e) {
+      if (e.pointerType !== 'mouse' || pinned) return;
+      var t = e.target.closest && e.target.closest('[data-place]');
+      if (t && t !== current) show(t, false);
+    });
+    document.addEventListener('pointerout', function (e) {
+      if (e.pointerType !== 'mouse' || pinned) return;
+      var t = e.target.closest && e.target.closest('[data-place]');
+      if (t && !(e.relatedTarget && t.contains(e.relatedTarget))) hide();
+    });
+    document.addEventListener('focusin', function (e) {
+      if (pinned) return;
+      var t = e.target.closest && e.target.closest('[data-place]');
+      if (t) show(t, false);
+    });
+    document.addEventListener('focusout', function (e) {
+      if (pinned) return;
+      var t = e.target.closest && e.target.closest('[data-place]');
+      if (t && !(e.relatedTarget && t.contains(e.relatedTarget))) hide();
+    });
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('.pclose')) { hide(); return; }
+      if (e.target.closest && e.target.closest('#pop')) return;
+      var t = e.target.closest && e.target.closest('[data-place]');
+      if (t) { if (pinned && current === t) hide(); else show(t, true); }
+      else hide();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { hide(); return; }
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('pin')) {
+        e.preventDefault(); if (pinned && current === e.target) hide(); else show(e.target, true);
+      }
+    });
+    window.addEventListener('scroll', function () { if (!pop.hidden && current) { if (pinned) place(current); else hide(); } }, { passive: true });
+    window.addEventListener('resize', function () { if (!pop.hidden && current) place(current); });
+  })();
+
+  /* ---------- Navegación: día activo y progreso ---------- */
+  (function () {
+    var list = document.getElementById('navList'), prog = document.getElementById('navProg');
+    var links = {}, ids = [];
+    list.querySelectorAll('a').forEach(function (a) { var id = a.getAttribute('href').slice(1); links[id] = a; ids.push(id); });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var setActive = function (id) {
+      Object.keys(links).forEach(function (k) { if (k === id) links[k].setAttribute('aria-current', 'true'); else links[k].removeAttribute('aria-current'); });
+      var a = links[id];
+      if (a) list.scrollTo({ left: a.offsetLeft - (list.clientWidth - a.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    }
+    var tick = false;
+    var upd = function () {
+      tick = false;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (h > 0 ? Math.min(100, Math.max(0, window.scrollY / h * 100)) : 0) + '%';
+    };
+    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  })();
+
+  /* ---------- Modo nocturno ---------- */
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('themeBtn');
+    var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    var isDark = function () { var t = root.getAttribute('data-theme'); return t ? t === 'dark' : !!(mq && mq.matches); };
+    var sync = function () {
+      var label = isDark() ? 'Cambiar a modo diurno' : 'Cambiar a modo nocturno';
+      btn.setAttribute('aria-label', label); btn.setAttribute('title', label);
+    };
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      sync();
+    });
+    if (mq && mq.addEventListener) mq.addEventListener('change', sync);
+    sync();
+  })();
+
+  /* ---------- Presupuesto ---------- */
+  var gt = grand.act + grand.trans + grand.fly + grand.food + grand.lodge;
+  var all = gt + FLIGHT;
+  var tiles = [
+    ['main', 'Total con vuelo internacional', eur(all), 'por persona'],
+    ['', 'Para dos personas', eur(all * 2), 'vuelo internacional incluido'],
+    ['', 'Sin vuelo internacional', eur(gt), 'por persona, vuelos internos incluidos'],
+    ['', 'Media diaria en Vietnam', eur(Math.round(gt / DAYS_VN)), DAYS_VN + ' días']
+  ];
+  document.getElementById('budgetTiles').innerHTML = tiles.map(function (t) {
+    return '<div class="tile ' + t[0] + '"><small>' + t[1] + '</small><b>' + t[2] + '</b><span>' + t[3] + '</span></div>';
+  }).join('');
+
+  var CAT = [['act', 'Entradas', grand.act], ['trans', 'Transporte', grand.trans], ['fly', 'Vuelos internos', grand.fly], ['food', 'Comida', grand.food], ['lodge', 'Alojamiento', grand.lodge], ['flight', 'Vuelo internacional (est.)', FLIGHT]];
+  var bar = document.getElementById('budgetBar'), leg = document.getElementById('budgetLeg');
+  CAT.forEach(function (c) {
+    var pct = c[2] / all * 100, sp = document.createElement('span');
+    sp.className = c[0]; sp.style.width = pct + '%'; sp.title = c[1] + ': ' + eur(c[2]);
+    bar.appendChild(sp);
+    var li = document.createElement('li');
+    li.className = c[0];
+    li.innerHTML = '<i></i>' + c[1] + '<b>' + eur(c[2]) + '</b><span>' + Math.round(pct) + '%</span>';
+    leg.appendChild(li);
+  });
+
+  var mini = function (t, tot) {
+    return '<div class="mini" aria-hidden="true">' + KEYS.map(function (k) {
+      return t[k] ? '<span class="' + k + '" style="width:' + (t[k] / tot * 100) + '%"></span>' : '';
+    }).join('') + '</div>';
+  };
+  var tb = document.getElementById('budgetRows');
+  rows.forEach(function (r) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<th scope="row">' + r[0] + '</th><td>' + eur(r[1].act) + '</td><td>' + eur(r[1].trans) + '</td><td>' + (r[1].fly ? eur(r[1].fly) : '<span class="dim0">—</span>') + '</td><td>' + eur(r[1].food) + '</td><td>' + (r[1].lodge ? eur(r[1].lodge) : '<span class="dim0">Sin noche</span>') + '</td><td>' + mini(r[1], r[2]) + '</td><td><b>' + eur(r[2]) + '</b></td>';
+    tb.appendChild(tr);
+  });
+  document.getElementById('budgetFoot').innerHTML =
+    '<tr class="sub"><th scope="row">Total sin vuelo internacional</th><td>' + eur(grand.act) + '</td><td>' + eur(grand.trans) + '</td><td>' + eur(grand.fly) + '</td><td>' + eur(grand.food) + '</td><td>' + eur(grand.lodge) + '</td><td>' + mini(grand, gt) + '</td><td>~' + eur(gt) + '</td></tr>' +
+    '<tr class="fl2"><th scope="row">Vuelo internacional</th><td colspan="6">Madrid–Sài Gòn, ida y vuelta, por persona (estimación)</td><td>' + eur(FLIGHT) + '</td></tr>' +
+    '<tr class="grand"><th scope="row" colspan="7">Total con vuelo internacional</th><td>~' + eur(all) + '</td></tr>';
+})();
+</script>
+</body>
+</html>
