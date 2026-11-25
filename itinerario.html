@@ -135,6 +135,10 @@ ol.tl { list-style: none; margin: 0; padding: 4px 14px 10px; }
 .tev.hot .bd { background: color-mix(in srgb, var(--z) 14%, transparent); }
 .tev.tet h3::after { content: "Tết"; margin-left: 8px; font: 700 .68rem/1 var(--body); color: var(--red); border: 1px solid var(--red); border-radius: 8px; padding: 1px 5px; vertical-align: 2px; }
 .tev .tag { font: 700 .66rem/1 var(--body); text-transform: uppercase; letter-spacing: .04em; padding: 2px 6px; border-radius: 8px; background: color-mix(in srgb, var(--z) 18%, transparent); color: var(--fg); margin-left: 6px; vertical-align: 2px; }
+.tev .evimg { flex: none; width: 84px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); background: var(--line); margin-left: 2px; transition: width .15s, height .15s; }
+.tev.open .evimg { width: 150px; height: 104px; }
+.tev .cr { display: none; margin: 0 0 4px; font-size: .72rem; color: var(--muted); }
+.tev.open .cr, .showall .tev .cr { display: block; }
 .tev p { margin: 2px 0 4px; font-size: .9rem; color: var(--muted); }
 .tev p, .tev .chips { display: none; }
 .tev.open p { display: block; }
@@ -212,6 +216,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
   .back { padding: 0 8px; }
   .tev { grid-template-columns: 44px 28px minmax(0, 1fr); column-gap: 6px; }
   .tev::before { left: calc(44px + 6px + 13px); }
+  .tev .evimg { width: 64px; height: 48px; }
+  .tev.open .evimg { width: 104px; height: 76px; }
 }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
@@ -249,7 +255,7 @@ details.dl > summary::-webkit-details-marker { display: none; }
     </aside>
   </div>
 </main>
-<footer class="wrap f">Mapa © colaboradores de OpenStreetMap. Los puntos marcados como aproximados son orientativos. Precios y horas son estimaciones. <a href="index.html#presupuesto">Ver presupuesto</a> · <a href="index.html#alternativas">Elegir alternativas</a></footer>
+<footer class="wrap f">Mapa © colaboradores de OpenStreetMap. Fotos de Wikimedia Commons (<a href="https://github.com/andreshere00/vietnam-trip/blob/main/CREDITS.md">créditos y licencias</a>). Los puntos marcados como aproximados son orientativos. Precios y horas son estimaciones. <a href="index.html#presupuesto">Ver presupuesto</a> · <a href="index.html#alternativas">Elegir alternativas</a></footer>
 
 <noscript><p class="wrap msg">Esta página necesita JavaScript.</p></noscript>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -492,12 +498,17 @@ details.dl > summary::-webkit-details-marker { display: none; }
   };
 
   /* ---------- Dibujo de la línea de tiempo ---------- */
+  /* Foto del lugar del evento: las del plan base (PLACE) o las de los puntos de alternativas (XIMG) */
+  var photoOf = function (it) {
+    var k = it.pt && it.pt.k, pl = k && VN.PLACE[k], im = (pl && pl.img) || (k && VN.XIMG[k]);
+    return im ? { f: im, alt: it.pt.full, ph: VN.PH[im] } : null;
+  };
   var evH = function (it, nVisible, inOpt) {
     var num = it.n ? '<button type="button" class="nd has" aria-label="Ver la parada ' + it.n + ' en el mapa" data-pin="' + it.n + '">' + it.n + '</button>' : '<span class="nd dot" aria-hidden="true"></span>';
-    var pr = priceOf(it.spec), body = it.text ? '<p>' + esc(it.text) + '</p>' : '';
+    var ph = photoOf(it), pr = priceOf(it.spec), body = it.text ? '<p>' + esc(it.text) + '</p>' : '';
     var tag = it.alt && !inOpt ? '<i class="tag">' + (it.alt.kind === 'swap' ? 'Alternativa' : 'Extra') + '</i>' : '';
     return '<li class="tev' + (it.alt ? ' alt' : '') + (it.tet ? ' tet' : '') + (inOpt ? ' in-opt' : '') + '"' + (it.n ? ' data-n="' + it.n + '"' : '') + '><span class="tm">' + esc(it.time) + '</span>' + num +
-      '<div class="bd"><button type="button" class="hd" aria-expanded="false"><h3>' + esc(it.title) + tag + '</h3>' + (pr ? '<span class="price">~' + eur(pr) + '</span>' : '') + (it.text || it.spec ? '<span class="mi chv" aria-hidden="true">expand_more</span>' : '') + '</button>' + body + chipsH(it.spec) + '</div></li>';
+      '<div class="bd"><button type="button" class="hd" aria-expanded="false"><h3>' + esc(it.title) + tag + '</h3>' + (pr ? '<span class="price">~' + eur(pr) + '</span>' : '') + (it.text || it.spec ? '<span class="mi chv" aria-hidden="true">expand_more</span>' : '') + (ph ? '<img class="evimg" src="assets/img/' + ph.f + '.jpg" alt="' + esc(ph.alt) + '" width="84" height="60" loading="lazy" decoding="async">' : '') + '</button>' + body + (ph && ph.ph ? '<small class="cr">Foto: ' + esc(ph.ph.by) + ' · ' + esc(ph.ph.lic) + ' (Wikimedia Commons)</small>' : '') + chipsH(it.spec) + '</div></li>';
   };
   var optH = function (a, d) {
     var on = !!sel[a.id] && mode === 'mine', ev = dayItems(d, a), hasGeo = ev.some(function (i) { return i.pt; });
