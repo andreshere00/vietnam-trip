@@ -44,7 +44,8 @@ La paleta sale de la bandera de Vietnam —rojo y amarillo de la estrella— sob
 
 ```
 .
-├── index.html   # toda la web: HTML, CSS y JavaScript en un solo archivo
+├── index.html   # la web principal: HTML, CSS y JavaScript
+├── assets/js/data.js  # datos compartidos del viaje (lugares, mapas, alternativas, costes)
 ├── assets/img/  # fotos de los lugares (Wikimedia Commons, ≤ 800 px)
 ├── CREDITS.md   # autores y licencias de las fotos
 ├── .nojekyll    # evita el procesado con Jekyll en GitHub Pages
@@ -56,7 +57,7 @@ No hay paso de compilación. Las peticiones externas son las fuentes de Google F
 
 ## Cómo está construida
 
-`index.html` contiene el contenido de cada día como HTML y genera mapas, costes y presupuesto con JavaScript a partir de unos bloques de datos al inicio del `<script>`:
+`index.html` contiene el contenido de cada día como HTML y genera mapas, costes y presupuesto con JavaScript a partir de unos bloques de datos. Los bloques `NAMES`, `COST`, `P`, `MAPS`, `PLACE`, `EVP` y `ALTS` viven en `assets/js/data.js` (los comparte con la página de la línea de tiempo); el resto, al inicio del `<script>` de `index.html`:
 
 | Bloque | Qué define |
 | --- | --- |

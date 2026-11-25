@@ -1068,6 +1068,7 @@ html { scroll-padding-top: 4.5rem; }
 <footer class="wrap">Buen viaje · Chúc mừng năm mới<br>Fotos de Wikimedia Commons. <a href="https://github.com/andreshere00/vietnam-trip/blob/main/CREDITS.md">Ver créditos y licencias</a></footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="assets/js/data.js"></script>
 <script>
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
@@ -1092,25 +1093,7 @@ html { scroll-padding-top: 4.5rem; }
   var FLIGHT = 460; /* € por persona, ida y vuelta Madrid–Ho Chi Minh (billetes ya comprados) */
 
   /* ---------- Costes por evento (orden en cada día), € por persona ---------- */
-  var COST = {
-    vie5: ['trans:5', 'note:El billete va en el presupuesto'],
-    sab6: ['trans:8', '', 'trans:3', 'act:1,trans:3', 'food:10', 'trans:2', '', 'food:15'],
-    dom7: ['act:45', 'note:Entrada incluida en la excursión', 'act:20,note:Balas aparte', 'note:Incluido en la excursión', 'note:Incluido en la excursión', '', 'food:10'],
-    lun8: ['act:2,trans:2', 'food:6', 'trans:7', 'fly:60', 'trans:7', 'food:12'],
-    mar9: ['food:4', 'act:4', 'food:8', 'note:Compras aparte', 'act:4', 'food:12'],
-    mie10: ['trans:25', 'act:6', 'food:8', 'act:2', 'food:3', 'food:12'],
-    jue11: ['act:3', 'act:25', 'food:8', 'note:Compras aparte', 'food:15'],
-    vie12: ['trans:30', '', 'food:12', '', 'trans:3', 'food:10'],
-    sab13: ['act:7', 'food:8', 'act:5,trans:6', 'trans:7', 'fly:55', 'trans:7,food:6'],
-    dom14: ['act:2', 'act:3,trans:3', 'food:5', 'trans:3', 'food:3', 'act:7', 'food:9'],
-    lun15: ['trans:20', 'act:9', 'food:9', 'act:4', 'trans:2', 'food:8'],
-    mar16: ['trans:42', 'note:Incluido en el crucero', 'note:Incluido en el crucero', 'note:Incluido en el crucero', ''],
-    mie17: ['', 'note:Incluido en el crucero', 'trans:8', '', 'food:10'],
-    jue18: ['act:2,trans:4', 'food:8,trans:3', 'act:4', 'food:3', 'food:10', 'food:18'],
-    vie19: ['act:6,trans:6', 'food:6', 'note:Compras aparte', 'act:15', 'food:15'],
-    sab20: ['trans:7', 'fly:65', 'trans:7,act:3', 'food:8', '', 'trans:7'],
-    dom21: ['note:El billete va en el presupuesto', 'trans:5']
-  };
+  var COST = VN.COST;
   var EXTRA = {
     vie5: {}, sab6: { food: 8, n: 'desayuno y cafés' }, dom7: { food: 6, n: 'desayuno y bebidas' },
     lun8: { food: 6, n: 'desayuno y bebidas' }, mar9: { food: 6, n: 'cafés y bebidas' }, mie10: { food: 5, n: 'desayuno y bebidas' },
@@ -1119,7 +1102,7 @@ html { scroll-padding-top: 4.5rem; }
     mie17: { food: 4, n: 'bebidas' }, jue18: { food: 5, n: 'desayuno y café' }, vie19: { food: 5, n: 'desayuno y café' },
     sab20: { food: 6, n: 'desayuno y café' }, dom21: {}
   };
-  var NAMES = { vie5: 'Vie 5', sab6: 'Sáb 6', dom7: 'Dom 7', lun8: 'Lun 8', mar9: 'Mar 9', mie10: 'Mié 10', jue11: 'Jue 11', vie12: 'Vie 12', sab13: 'Sáb 13', dom14: 'Dom 14', lun15: 'Lun 15', mar16: 'Mar 16', mie17: 'Mié 17', jue18: 'Jue 18', vie19: 'Vie 19', sab20: 'Sáb 20', dom21: 'Dom 21' };
+  var NAMES = VN.NAMES;
   var DAYS_VN = 16;
 
   /* ---------- Opciones de transporte, entradas, comida, alojamiento y Tết por día ---------- */
@@ -1531,61 +1514,7 @@ html { scroll-padding-top: 4.5rem; }
   };
 
   /* ---------- Geografía (lon, lat) ---------- */
-  var P = {
-    sgn: { lon: 106.652, lat: 10.8188, l: 'Aeropuerto SGN', full: 'Aeropuerto de Tân Sơn Nhất (SGN)', t: 'hub' },
-    hsg: { lon: 106.694, lat: 10.7675, l: 'Hotel Ho Chi Minh', full: 'Hotel en el Distrito 1 (zona Bến Thành)', t: 'hotel' },
-    nguyenhue: { lon: 106.7032, lat: 10.7743, l: 'Nguyễn Huệ', full: 'Calle Nguyễn Huệ (calle de las flores)', t: 'mkt' },
-    ducba: { lon: 106.6995, lat: 10.7799, l: 'Notre-Dame', full: 'Catedral de Notre-Dame y Oficina de Correos', t: 'mon' },
-    ngochoang: { lon: 106.6985, lat: 10.7922, l: 'Emperador de Jade', full: 'Pagoda del Emperador de Jade (Phước Hải)', t: 'mon' },
-    thienhau: { lon: 106.6603, lat: 10.7527, l: 'Thiên Hậu', full: 'Templo de Thiên Hậu (Chợ Lớn)', t: 'mon' },
-    benthanh: { lon: 106.698, lat: 10.7725, l: 'Bến Thành', full: 'Mercado de Bến Thành', t: 'mkt' },
-    chungtich: { lon: 106.6921, lat: 10.7795, l: 'Museo de la Guerra', full: 'Museo de los Vestigios de la Guerra', t: 'mus' },
-    rio: { lon: 106.7065, lat: 10.77, l: 'Río Sài Gòn', full: 'Paseo junto al río Sài Gòn', t: 'nat' },
-    sastre: { lon: 108.329, lat: 15.878, l: 'Sastrería', full: 'Sastrería de Hội An', t: 'mkt' },
-    cocina: { lon: 108.3365, lat: 15.9095, l: 'Clase de cocina', full: 'Clase de cocina en Hội An', t: 'mkt' },
-    mykhe: { lon: 108.248, lat: 16.04, l: 'Mỹ Khê', full: 'Playa de Mỹ Khê (Đà Nẵng)', t: 'nat' },
-    huevo: { lon: 105.8528, lat: 21.0345, l: 'Café de huevo', full: 'Café de huevo en el Old Quarter', t: 'mkt' },
-    tahien: { lon: 105.853, lat: 21.0348, l: 'Calle Tạ Hiện', full: 'Calle Tạ Hiện (Old Quarter)', t: 'mkt' },
-    bunbo: { lon: 107.5885, lat: 16.4605, l: 'Bún bò Huế', full: 'Cena de cocina de Huế', t: 'mkt' },
-    cuchi: { lon: 106.4617, lat: 11.1427, l: 'Túneles de Củ Chi', full: 'Túneles de Củ Chi (Bến Dược) y campo de tiro', t: 'mus' },
-    myt: { lon: 106.36, lat: 10.358, l: 'Mỹ Tho', full: 'Mỹ Tho (puerta del delta del Mekong)', t: 'hub' },
-    ton: { lon: 106.375, lat: 10.33, l: 'Isla Thới Sơn', full: 'Isla Thới Sơn en el río Tiền (punto aproximado)', t: 'nat' },
-    bt: { lon: 106.375, lat: 10.243, l: 'Bến Tre', full: 'Bến Tre: huertos de cocoteros (punto aproximado)', t: 'nat' },
-    dad: { lon: 108.1992, lat: 16.0439, l: 'Aeropuerto DAD', full: 'Aeropuerto de Đà Nẵng (DAD)', t: 'hub' },
-    hh: { lon: 108.3305, lat: 15.8845, l: 'Hotel Hội An', full: 'Hotel en Hội An, cerca del casco antiguo', t: 'hotel' },
-    hoian: { lon: 108.3285, lat: 15.8786, l: 'Casco antiguo', full: 'Casco antiguo de Hội An', t: 'mon' },
-    chuacau: { lon: 108.3258, lat: 15.8776, l: 'Puente japonés', full: 'Puente Cubierto japonés (Chùa Cầu)', t: 'mon' },
-    cho: { lon: 108.3318, lat: 15.877, l: 'Mercado', full: 'Mercado central de Hội An', t: 'mkt' },
-    ben: { lon: 108.328, lat: 15.8761, l: 'Muelle', full: 'Muelle del río Hoài (barcas con farolillos)', t: 'hub' },
-    myson: { lon: 108.1245, lat: 15.7645, l: 'Mỹ Sơn', full: 'Santuario de Mỹ Sơn (UNESCO)', t: 'mon' },
-    nguhanhson: { lon: 108.2634, lat: 16.0042, l: 'Montañas de Mármol', full: 'Montañas de Mármol (Ngũ Hành Sơn)', t: 'nat' },
-    traque: { lon: 108.337, lat: 15.9065, l: 'Trà Quế', full: 'Aldea de hortalizas de Trà Quế', t: 'nat' },
-    anbang: { lon: 108.357, lat: 15.9, l: 'Playa An Bàng', full: 'Playa de An Bàng', t: 'nat' },
-    haivan: { lon: 108.128, lat: 16.2005, l: 'Paso de Hải Vân', full: 'Paso de Hải Vân (cumbre, 496 m)', t: 'nat' },
-    langco: { lon: 108.045, lat: 16.235, l: 'Lăng Cô', full: 'Playa y laguna de Lăng Cô', t: 'nat' },
-    hhue: { lon: 107.589, lat: 16.458, l: 'Hotel Huế', full: 'Hotel en Huế (orilla sur del río Perfume)', t: 'hotel' },
-    thienmu: { lon: 107.5453, lat: 16.4531, l: 'Thiên Mụ', full: 'Pagoda de Thiên Mụ', t: 'mon' },
-    daino: { lon: 107.5795, lat: 16.465, l: 'Ciudadela Imperial', full: 'Ciudadela Imperial de Huế (Đại Nội)', t: 'mon' },
-    khaidinh: { lon: 107.5905, lat: 16.3995, l: 'Tumba de Khải Định', full: 'Tumba del emperador Khải Định', t: 'mon' },
-    hui: { lon: 107.7033, lat: 16.4015, l: 'Aeropuerto HUI', full: 'Aeropuerto de Phú Bài (HUI)', t: 'hub' },
-    hh2: { lon: 105.851, lat: 21.034, l: 'Hotel Hà Nội', full: 'Hotel en el Old Quarter de Hà Nội', t: 'hotel' },
-    hoankiem: { lon: 105.8524, lat: 21.03, l: 'Lago Hoàn Kiếm', full: 'Lago Hoàn Kiếm y templo Ngọc Sơn', t: 'mon' },
-    vanmieu: { lon: 105.8355, lat: 21.0275, l: 'Văn Miếu', full: 'Templo de la Literatura (Văn Miếu)', t: 'mon' },
-    lang: { lon: 105.8347, lat: 21.0368, l: 'Mausoleo y Ba Đình', full: 'Mausoleo de Hồ Chí Minh y plaza Ba Đình', t: 'mon' },
-    roi: { lon: 105.8543, lat: 21.0322, l: 'Marionetas', full: 'Teatro de marionetas sobre el agua Thăng Long', t: 'mus' },
-    dantoc: { lon: 105.7992, lat: 21.0405, l: 'Etnología', full: 'Museo de Etnología de Vietnam', t: 'mus' },
-    tranquoc: { lon: 105.8369, lat: 21.0484, l: 'Trấn Quốc', full: 'Pagoda de Trấn Quốc (lago del Oeste)', t: 'mon' },
-    hoalo: { lon: 105.8467, lat: 21.0253, l: 'Hỏa Lò', full: 'Prisión de Hỏa Lò', t: 'mus' },
-    battrang: { lon: 105.9125, lat: 20.9785, l: 'Bát Tràng', full: 'Pueblo de cerámica de Bát Tràng', t: 'mkt' },
-    hnb: { lon: 105.93, lat: 20.223, l: 'Homestay Tam Cốc', full: 'Homestay en Tam Cốc, entre arrozales', t: 'hotel' },
-    trangan: { lon: 105.9025, lat: 20.2545, l: 'Tràng An', full: 'Complejo paisajístico de Tràng An (UNESCO)', t: 'nat' },
-    hangmua: { lon: 105.9237, lat: 20.2146, l: 'Hang Múa', full: 'Hang Múa (mirador del dragón)', t: 'nat' },
-    hp: { lon: 106.688, lat: 20.845, l: 'Hải Phòng', full: 'Hải Phòng', t: 'sm' },
-    hl: { lon: 106.9886, lat: 20.9367, l: 'Tuần Châu', full: 'Puerto de Tuần Châu (embarque del crucero)', t: 'hub' },
-    hsung: { lon: 107.0933, lat: 20.8939, l: 'Cueva Sửng Sốt', full: 'Cueva Sửng Sốt (punto aproximado)', t: 'nat' },
-    titop: { lon: 107.083, lat: 20.87, l: 'Isla Ti Tốp', full: 'Isla de Ti Tốp (punto aproximado)', t: 'nat' },
-    ancla: { lon: 107.17, lat: 20.81, l: 'Fondeo nocturno', full: 'Fondeo nocturno del crucero (punto aproximado)', t: 'hotel' }
-  };
+  var P = VN.P;
 
   /* Costa de sur a norte; el mar queda a la derecha del recorrido. */
   var COAST = [[104.72, 8.62], [104.9, 8.58], [105.1, 8.62], [105.35, 8.75], [105.55, 9.0], [105.8, 9.2], [106.05, 9.45], [106.35, 9.65], [106.6, 9.85], [106.78, 10.05], [106.85, 10.25], [106.95, 10.38], [107.05, 10.35], [107.08, 10.4], [107.2, 10.42], [107.45, 10.5], [107.8, 10.65], [108.1, 10.88], [108.3, 10.93], [108.55, 11.15], [108.85, 11.3], [109.0, 11.6], [109.2, 11.8], [109.22, 12.05], [109.3, 12.3], [109.42, 12.65], [109.45, 12.9], [109.3, 13.4], [109.25, 13.78], [109.2, 14.2], [108.95, 14.6], [108.9, 15.0], [108.78, 15.25], [108.65, 15.45], [108.5, 15.7], [108.4, 15.84], [108.38, 15.88], [108.355, 15.905], [108.31, 15.94], [108.285, 15.985], [108.265, 16.03], [108.28, 16.065], [108.34, 16.085], [108.36, 16.12], [108.33, 16.15], [108.27, 16.14], [108.22, 16.115], [108.19, 16.1], [108.14, 16.115], [108.14, 16.13], [108.17, 16.17], [108.16, 16.21], [108.11, 16.24], [108.05, 16.255], [107.99, 16.29], [107.9, 16.37], [107.78, 16.48], [107.66, 16.58], [107.45, 16.75], [107.2, 16.92], [106.95, 17.2], [106.7, 17.48], [106.52, 17.75], [106.4, 18.0], [106.25, 18.3], [105.95, 18.55], [105.75, 18.8], [105.7, 19.05], [105.72, 19.35], [105.8, 19.6], [105.9, 19.8], [105.98, 20.0], [106.12, 20.1], [106.3, 20.2], [106.5, 20.3], [106.65, 20.42], [106.8, 20.68], [106.82, 20.82], [106.9, 20.88], [106.99, 20.95], [107.1, 20.97], [107.3, 21.0], [107.45, 21.05], [107.7, 21.3], [107.97, 21.53], [115, 21.53], [115, 8.62]];
@@ -1650,137 +1579,10 @@ html { scroll-padding-top: 4.5rem; }
   ];
 
   /* ---------- Mapas por día ---------- */
-  var MAPS = {
-    sab6: [{ title: 'Del aeropuerto al Distrito 1', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
-      route: ['sgn', [106.662, 10.807], [106.677, 10.7925], [106.689, 10.7835], [106.696, 10.7765], 'hsg', 'nguyenhue'],
-      lab: { sgn: [18, 6, 'start'], hsg: [-16, 18, 'end'], nguyenhue: [16, 5, 'start'] } }, { title: 'Templos, catedral y calle de las flores', box: [106.65, 106.722, 10.805, 10.745], mode: 'car',
-      route: ['hsg', [106.685, 10.762], [106.67, 10.7545], 'thienhau', [106.67, 10.76], [106.686, 10.776], [106.693, 10.786], 'ngochoang', [106.699, 10.785], 'ducba', 'nguyenhue', 'hsg'],
-      lab: { hsg: [-14, 24, 'end'], thienhau: [16, 24, 'start'], ngochoang: [-16, 5, 'end'], ducba: [-16, 20, 'end'], nguyenhue: [16, 5, 'start'] } }],
-    dom7: [
-      { title: 'Củ Chi y Mỹ Tho', box: [106.2, 106.85, 11.25, 10.28], mode: 'car', speed: 40,
-        route: ['hsg', [106.63, 10.85], [106.55, 10.98], 'cuchi', [106.5, 10.95], [106.47, 10.8], [106.45, 10.6], [106.4, 10.42], 'myt', [106.45, 10.53], [106.58, 10.7], 'hsg'],
-        lab: { hsg: [16, 5, 'start'], cuchi: [16, 5, 'start'], myt: [-16, 5, 'end'] },
-        note: 'Trazado aproximado; la excursión puede hacer el orden inverso.' },
-      { title: 'Barco por el río Tiền', box: [106.22, 106.52, 10.42, 10.18], mode: 'boat',
-        route: ['myt', 'ton', 'myt'],
-        lab: { myt: [16, -10, 'start'], ton: [16, 22, 'start'] },
-        note: 'Los puntos del delta son aproximados; el itinerario exacto depende del operador.' }
-    ],
-    lun8: [
-      { title: 'Museo, mercado y aeropuerto', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
-        route: ['hsg', 'chungtich', 'benthanh', [106.69, 10.78], [106.67, 10.8], 'sgn'],
-        lab: { hsg: [-16, 14, 'end'], chungtich: [-16, -10, 'end'], benthanh: [16, 18, 'start'], sgn: [18, 6, 'start'] } },
-      { title: 'Del aeropuerto de Đà Nẵng a Hội An', box: [108.15, 108.4, 16.08, 15.84], mode: 'car',
-        route: ['dad', [108.215, 16.03], [108.245, 15.99], [108.285, 15.94], [108.315, 15.9], 'hh'],
-        lab: { dad: [-16, 6, 'end'], hh: [-16, 5, 'end'] } }
-    ],
-    mar9: [{ title: 'Casco antiguo de Hội An', box: [108.3185, 108.3425, 15.8862, 15.8728], mode: 'walk',
-      route: ['hh', [108.3305, 15.8815], 'hoian', 'chuacau', 'cho', 'ben', 'hoian'],
-      lab: { hh: [-16, 5, 'end'], hoian: [16, -8, 'start'], chuacau: [-16, 24, 'end'], cho: [16, 22, 'start'], ben: [-14, 22, 'end'] } }],
-    mie10: [{ title: 'Mỹ Sơn y las Montañas de Mármol', box: [108.08, 108.4, 16.08, 15.74], mode: 'car',
-      route: ['hh', [108.29, 15.84], [108.25, 15.81], [108.2, 15.79], [108.15, 15.77], 'myson', [108.13, 15.81], [108.17, 15.86], [108.22, 15.92], [108.25, 15.97], 'nguhanhson', [108.28, 15.965], [108.305, 15.93], [108.325, 15.895], 'hh'],
-      lab: { hh: [14, 24, 'start'], myson: [16, 5, 'start'], nguhanhson: [-16, 5, 'end'] } }],
-    jue11: [{ title: 'Bici por Trà Quế y playa de An Bàng', box: [108.295, 108.395, 15.925, 15.86], mode: 'bike',
-      route: ['hh', [108.3345, 15.89], 'traque', [108.345, 15.903], 'anbang', [108.347, 15.886], 'hoian', 'hh'],
-      lab: { hh: [-16, 5, 'end'], traque: [-16, 5, 'end'], anbang: [14, 5, 'start'], hoian: [-16, 20, 'end'] } }],
-    vie12: [{ title: 'De Hội An a Huế por el paso de Hải Vân', box: [107.38, 108.45, 16.55, 15.82], mode: 'car', speed: 38,
-      route: ['hh', [108.325, 15.895], [108.28, 15.97], [108.25, 16.03], [108.225, 16.065], [108.19, 16.1], [108.14, 16.115], [108.1385, 16.15], [108.15, 16.18], 'haivan', [108.095, 16.225], 'langco', [107.95, 16.3], [107.85, 16.375], [107.7, 16.4], [107.62, 16.445], 'hhue', 'thienmu'],
-      lab: { hh: [-14, 5, 'end'], haivan: [22, -14, 'start'], langco: [-16, 26, 'end'], hhue: [16, 26, 'start'], thienmu: [-16, 5, 'end'] },
-      note: 'Con la parada de Hải Vân y el almuerzo, el viaje real ronda las 4 h.' }],
-    sab13: [{ title: 'Ciudadela Imperial y tumba de Khải Định', box: [107.52, 107.63, 16.49, 16.385], mode: 'car',
-      route: ['hhue', 'daino', [107.58, 16.44], [107.585, 16.42], 'khaidinh'],
-      lab: { hhue: [16, 22, 'start'], daino: [-16, -10, 'end'], khaidinh: [16, 5, 'start'] },
-      note: 'El aeropuerto de Phú Bài (HUI) está a unos 15 km al sureste de la tumba de Khải Định: unos 25 min en coche.' }],
-    dom14: [{ title: 'Lago Hoàn Kiếm, Văn Miếu y Ba Đình', box: [105.828, 105.866, 21.043, 21.018], mode: 'walk',
-      route: ['hh2', 'hoankiem', [105.848, 21.0285], [105.84, 21.0275], 'vanmieu', [105.836, 21.032], 'lang', [105.84, 21.035], [105.848, 21.033], 'roi', 'hh2'],
-      lab: { hh2: [0, -20, 'middle'], hoankiem: [14, 24, 'start'], vanmieu: [16, 22, 'start'], lang: [16, -8, 'start'], roi: [14, 4, 'start'] } }],
-    lun15: [
-      { title: 'De Hà Nội a Ninh Bình', box: [105.45, 106.25, 21.08, 20.17], mode: 'car',
-        route: ['hh2', [105.865, 20.97], [105.88, 20.85], [105.9, 20.72], [105.915, 20.55], [105.95, 20.4], [105.975, 20.275], 'hnb'],
-        lab: { hh2: [-14, -8, 'end'], hnb: [-16, 22, 'end'] } },
-      { title: 'Tràng An, Hang Múa y Tam Cốc', box: [105.86, 105.99, 20.3, 20.18], mode: 'car',
-        route: ['trangan', [105.9, 20.23], 'hangmua', 'hnb'],
-        lab: { trangan: [16, -10, 'start'], hangmua: [-16, 8, 'end'], hnb: [16, 5, 'start'] } }
-    ],
-    mar16: [
-      { title: 'De Ninh Bình a la bahía de Hạ Long', box: [105.8, 107.3, 21.1, 20.15], mode: 'car', speed: 55,
-        route: ['hnb', [105.975, 20.265], [106.1, 20.34], [106.17, 20.42], [106.34, 20.45], [106.52, 20.62], 'hp', [106.84, 20.89], 'hl'],
-        lab: { hnb: [-14, 5, 'end'], hp: [-14, -10, 'end'], hl: [-14, -12, 'end'] } },
-      { title: 'Crucero por la bahía de Hạ Long', box: [106.9, 107.35, 21.0, 20.7], mode: 'boat',
-        route: ['hl', 'hsung', 'titop', 'ancla'],
-        lab: { hl: [14, -10, 'start'], hsung: [16, -6, 'start'], titop: [-16, 20, 'end'], ancla: [-16, 5, 'end'] },
-        note: 'La ruta de los cruceros cambia con el tiempo y el operador; los puntos son aproximados.' }
-    ],
-    mie17: [{ title: 'De Hạ Long a Hà Nội', box: [105.75, 107.1, 21.2, 20.75], mode: 'car', speed: 55,
-      route: ['hl', [106.84, 20.89], 'hp', [106.3, 20.93], [106.0, 21.0], 'hh2'],
-      lab: { hl: [-14, -12, 'end'], hp: [0, 22, 'middle'], hh2: [16, -8, 'start'] } }],
-    jue18: [{ title: 'Museo de Etnología, lago del Oeste y Hỏa Lò', box: [105.78, 105.89, 21.07, 21.0], mode: 'car',
-      route: ['hh2', [105.84, 21.03], [105.81, 21.037], 'dantoc', [105.82, 21.045], 'tranquoc', [105.845, 21.042], 'hoalo', 'hh2'],
-      lab: { hh2: [16, -10, 'start'], dantoc: [16, 22, 'start'], tranquoc: [16, -8, 'start'], hoalo: [-14, 22, 'end'] } }],
-    vie19: [{ title: 'Pueblo de cerámica de Bát Tràng', box: [105.8, 105.95, 21.06, 20.95], mode: 'car',
-      route: ['hh2', [105.857, 21.02], [105.872, 21.005], [105.895, 20.99], 'battrang', [105.895, 20.99], [105.872, 21.005], [105.857, 21.02], 'hh2'],
-      lab: { hh2: [-14, -10, 'end'], battrang: [-16, 24, 'end'] } }],
-    sab20: [{ title: 'Última tarde en Ho Chi Minh', box: [106.63, 106.725, 10.83, 10.76], mode: 'car',
-      route: ['sgn', [106.662, 10.807], [106.677, 10.7925], [106.689, 10.7835], 'benthanh', [106.693, 10.785], 'ngochoang', [106.67, 10.805], 'sgn'],
-      lab: { sgn: [18, 6, 'start'], benthanh: [16, 22, 'start'], ngochoang: [16, 5, 'start'] } }]
-  };
+  var MAPS = VN.MAPS;
 
   /* ---------- Lugares: foto y por qué ir ---------- */
-  var PLACE = {
-    sgn: { img: null, why: 'Es la puerta de entrada: aterrizáis a la 1:10 de la madrugada de mùng 1. Con el efectivo y la eSIM resueltos, os vais directos al hotel a dormir.' },
-    hsg: { img: null, why: 'El Distrito 1 reúne el centro histórico, el río y los restaurantes en un radio de 2 km. Es la base más cómoda para tres noches.' },
-    nguyenhue: { img: 'nguyenhue', why: 'Paseo peatonal que cada Tết se convierte en un jardín temporal con flores, bonsáis y la mascota del año. Es el corazón de la fiesta en Ho Chi Minh.' },
-    ducba: { img: 'ducba', why: 'Basílica de ladrillo rojo de 1880, junto a la Oficina Central de Correos (1891): dos joyas coloniales francesas a un paseo una de la otra.' },
-    ngochoang: { img: 'ngochoang', why: 'Templo taoísta de 1909 lleno de humo de incienso y figuras de madera. Los primeros días de Tết se llena de fieles pidiendo suerte.' },
-    thienhau: { img: 'thienhau', why: 'Templo chino de 1760 dedicado a la diosa del mar, con espirales de incienso que cuelgan del techo y un interior ornamentado, en el barrio de Chợ Lớn.' },
-    benthanh: { img: 'benthanh', why: 'Mercado de 1914, símbolo de la ciudad: souvenirs, café, especias y puestos de comida. Ideal para el regateo.' },
-    chungtich: { img: 'chungtich', why: 'Museo sobre la guerra de Vietnam vista por los vietnamitas. Es uno de los más visitados del país y deja huella.' },
-    cuchi: { img: null, why: 'Unos 250 km de túneles excavados a mano durante la guerra, con cocinas, hospitales y trampas. Es la visita bélica más famosa del país, y junto al recinto hay un campo de tiro.' },
-    myt: { img: 'mytho', why: 'Ciudad a orillas del río Tiền y puerta de entrada al delta: desde su muelle salen las lanchas hacia las islas.' },
-    ton: { img: 'thoison', why: 'Isla frutal entre canales: talleres de caramelo de coco, miel y paseos en sampán bajo las palmeras.' },
-    bt: { img: 'mekong', why: 'Provincia del coco, con huertos, canales y casas que cocinan para los visitantes. Una de las zonas más auténticas del delta.' },
-    dad: { img: null, why: 'Aeropuerto de la ciudad de Đà Nẵng, a unos 30 km de Hội An. En unos 45 min llegáis al hotel.' },
-    hh: { img: 'hoian', why: 'Dormir cerca del casco antiguo permite pasear de noche, cuando se encienden los farolillos, y volver a pie.' },
-    hoian: { img: 'hoian', why: 'Antiguo puerto comercial (siglos XV–XIX), Patrimonio UNESCO, con casas de madera, farolillos de seda y calles peatonales. Es la parada más bonita del centro.' },
-    chuacau: { img: 'chuacau', why: 'Puente cubierto del siglo XVII construido por la comunidad japonesa, el emblema de Hội An.' },
-    cho: { img: 'hoaicho', why: 'Mercado cubierto con fruta, hierbas, comida de calle y puestos de café. Lo mejor es ir por la mañana.' },
-    ben: { img: 'hoaiboat', why: 'Desde aquí salen las barcas con farolillos de papel: la imagen más típica de Hội An al caer la tarde.' },
-    myson: { img: 'myson', why: 'Santuario hindú del reino de Champa (siglos IV–XIII), Patrimonio UNESCO, entre la selva. Es la mayor concentración de templos de la cultura Cham.' },
-    nguhanhson: { img: 'nguhanhson', why: 'Cinco colinas de mármol y piedra caliza con cuevas-templo, pagodas y miradores sobre la costa de Đà Nẵng.' },
-    traque: { img: 'traque', why: 'Aldea hortícola entre arrozales donde cultivan hierbas con algas del río. Se visita en bici y se aprende a plantar.' },
-    anbang: { img: 'anbang', why: 'Playa tranquila a 5 km del casco antiguo, con chiringuitos, hamacas y buen ambiente de tarde.' },
-    haivan: { img: 'haivan', why: 'Puerto de montaña de 21 km, a 496 m, entre Đà Nẵng y Huế. Fue frontera entre dos reinos y ofrece unas vistas espectaculares de la bahía.' },
-    langco: { img: 'langco', why: 'Playa larga y laguna al pie del paso, famosa por sus ostras y su marisco a la parrilla.' },
-    hhue: { img: 'hueriver', why: 'La orilla sur del río Perfume concentra hoteles, cafés y restaurantes, a un corto paseo del puente Trường Tiền.' },
-    thienmu: { img: 'thienmu', why: 'Pagoda de 1601 con una torre de siete pisos de 1844 sobre el río Perfume. Es el símbolo de la ciudad.' },
-    daino: { img: 'daino', why: 'Recinto amurallado de los emperadores Nguyễn (1802–1945), Patrimonio UNESCO. Se entra por la puerta del Mediodía y se recorren salas, patios y jardines.' },
-    khaidinh: { img: 'khaidinh', why: 'Mausoleo de 1920–1931 donde los mosaicos de porcelana y vidrio roto mezclan estilos vietnamita y europeo. Es el más original de los de Huế.' },
-    hui: { img: null, why: 'Aeropuerto de Huế, a unos 15 km del centro. Los vuelos a Hà Nội salen cada día.' },
-    hh2: { img: 'hanoi', why: 'El Old Quarter reúne las 36 calles de los gremios, cafés y restaurantes a pie. Es el mejor punto de partida para recorrer Hà Nội.' },
-    hoankiem: { img: 'hoankiem', why: 'El corazón de Hà Nội: un lago con un templo en una isla (Ngọc Sơn) al que se llega por el puente rojo Thê Húc.' },
-    vanmieu: { img: 'vanmieu', why: 'Templo confuciano y primera universidad de Vietnam (1076). Sus patios, estanques y estelas de doctores sobre tortugas de piedra son un oasis.' },
-    lang: { img: 'lang', why: 'Plaza donde Hồ Chí Minh declaró la independencia en 1945. Junto al mausoleo están la Pagoda del Pilar Único y su casa sobre pilotes.' },
-    roi: { img: 'roi', why: 'Teatro con una tradición de mil años: marionetas de madera lacada que se mueven sobre el agua con música tradicional en directo.' },
-    dantoc: { img: 'dantoc', why: 'Museo con casas reales de las 54 etnias de Vietnam, desmontadas y reconstruidas en el jardín.' },
-    tranquoc: { img: 'tranquoc', why: 'La pagoda más antigua de Hà Nội, de más de 1.400 años, en una isla del lago del Oeste.' },
-    hoalo: { img: 'hoalo', why: 'Prisión colonial francesa y después el «Hanoi Hilton». Un museo sobre la lucha por la independencia y los presos políticos.' },
-    battrang: { img: 'battrang', why: 'Pueblo de cerámica de más de 500 años a 13 km de Hà Nội: talleres, tiendas y la posibilidad de hacer vuestra propia pieza.' },
-    hnb: { img: 'tamcoc', why: 'Dormir en Tam Cốc permite ver los arrozales y los karst al amanecer, lejos de los autobuses de excursión.' },
-    trangan: { img: 'trangan', why: 'Paisaje de karst, ríos y grutas, Patrimonio UNESCO mixto. Se recorre en barca remada, a veces bajo cuevas bajas, durante 2–3 h.' },
-    hangmua: { img: 'hangmua', why: 'Mirador al que se sube por 500 escalones y desde el que se ve el río, los arrozales y los karst de Tam Cốc.' },
-    hp: { img: null, why: 'Gran puerto del norte; la autopista pasa a las afueras camino de Hạ Long.' },
-    hl: { img: 'crucero', why: 'Puerto de embarque de los cruceros, a las afueras de la ciudad de Hạ Long. Desde aquí se entra en la bahía.' },
-    hsung: { img: 'sungsot', why: 'Cueva enorme en la isla de Bồ Hòn, de las más visitadas de la bahía, con formaciones iluminadas.' },
-    titop: { img: 'titop', why: 'Isla con una pequeña playa y un mirador de 400 escalones que domina toda la bahía.' },
-    rio: { img: 'saigonriver', why: 'El río Sài Gòn al atardecer: rascacielos iluminados en la orilla y restaurantes con terraza. En Tết la ribera se llena de familias.' },
-    sastre: { img: 'sastre', why: 'Hội An es famosa por sus sastres: en 24–48 h hacen camisas, vestidos o trajes a medida con seda y lino locales.' },
-    cocina: { img: 'cocina', why: 'Se compra en el mercado, se cocina en una casa de campo y se come lo preparado: cao lầu, bánh xèo y rollitos frescos.' },
-    mykhe: { img: 'mykhe', why: 'Larga playa de arena fina entre Đà Nẵng y Hội An, de las mejores del país, con olas suaves por la mañana.' },
-    huevo: { img: 'huevo', why: 'Invento hanoiense de 1946: yema batida con azúcar y leche condensada sobre un café fuerte, casi un postre.' },
-    tahien: { img: 'tahien', why: 'La calle de la cerveza fresca del Old Quarter: taburetes de plástico, bia hơi y vida nocturna hasta tarde.' },
-    bunbo: { img: 'bunbo', why: 'Sopa de fideos picante con ternera y caña de limón, el plato más famoso de la cocina imperial de Huế.' },
-    ancla: { img: 'halong', why: 'Noche a bordo, fondeados entre islotes kársticos: sin luces de ciudad y con bruma al amanecer.' }
-  };
+  var PLACE = VN.PLACE;
   var PH = {
     nguyenhue: { by: 'Timback', lic: 'CC BY-SA 4.0' },
     ngochoang: { by: 'Gary Todd', lic: 'CC0' },
@@ -1829,25 +1631,7 @@ html { scroll-padding-top: 4.5rem; }
     titop: { by: 'David Stanley', lic: 'CC BY 4.0' },
     crucero: { by: 'Arianos', lic: 'Dominio público' }
   };
-  var EVP = {
-    vie5: [null, null],
-    sab6: ['sgn', 'hsg', 'thienhau', 'ngochoang', null, 'ducba', 'nguyenhue', 'rio'],
-    dom7: [null, 'cuchi', 'cuchi', 'myt', 'ton', null, null],
-    lun8: ['chungtich', 'benthanh', 'sgn', null, 'dad', 'hoian'],
-    mar9: ['cho', 'hoian', null, 'sastre', 'ben', null],
-    mie10: [null, 'myson', null, 'nguhanhson', 'mykhe', null],
-    jue11: ['traque', 'cocina', 'anbang', null, null],
-    vie12: [null, 'haivan', 'langco', 'hhue', 'thienmu', 'bunbo'],
-    sab13: ['daino', null, 'khaidinh', 'hui', null, 'hh2'],
-    dom14: ['hoankiem', 'vanmieu', null, 'lang', 'huevo', 'roi', null],
-    lun15: [null, 'trangan', null, 'hangmua', 'hnb', null],
-    mar16: [null, 'hl', 'hsung', 'ancla', null],
-    mie17: [null, 'titop', null, 'hh2', null],
-    jue18: ['dantoc', 'tranquoc', 'hoalo', null, 'tahien', 'tahien'],
-    vie19: ['battrang', null, null, null, null],
-    sab20: [null, null, null, 'benthanh', 'ngochoang', 'sgn'],
-    dom21: [null, null]
-  };
+  var EVP = VN.EVP;
 
   /* ---------- Ruta general ---------- */
   var OV = {
@@ -2477,254 +2261,7 @@ html { scroll-padding-top: 4.5rem; }
   /* ---------- Alternativas y extras (elegibles desde la web) ----------
      kind: 'swap' sustituye el plan base de esos días; 'add' añade actividades al día.
      days[día].ev: [hora, título, texto, coste]; ex: gastos sueltos; room: habitación doble por noche (solo en 'swap'). */
-  var ALTS = [
-    { id: 'comp-hoian', kind: 'add', grp: 'Compras', title: 'Compras en Hội An', s: 'Linternas de seda, zapatos de cuero a medida y seda, en una tarde sin prisa.',
-      days: { mar9: { ev: [['16:00', 'Compras en Hội An: linternas, cuero y seda', 'Linternas de seda plegables (€3–10), zapatos y bolsos de cuero a medida (€25–50), seda y cerámica. Regatead con una sonrisa: se baja un 20–30%. Se hace entre el sastre y el atardecer.', 'note:Compras aparte; unos €30–70']] } } },
-    { id: 'comp-hn', kind: 'add', grp: 'Compras', title: 'Compras en el Old Quarter de Hà Nội', s: 'Seda, café, té y lacados en las calles de los gremios.',
-      days: { mie17: { ev: [['16:30', 'Compras: Hàng Gai, Hàng Bông y Đồng Xuân', 'Hàng Gai es la calle de la seda y los bordados; Hàng Bông, de tejidos y ropa; Đồng Xuân, el mercado cubierto mayorista (cierra hacia las 18:00). Café en grano, té y lacados como regalo.', 'note:Compras aparte; unos €30–80']] } } },
-    { id: 'comp-sgn', kind: 'add', grp: 'Compras', title: 'Compras en el Distrito 1 de Ho Chi Minh', s: 'Centros comerciales y mercados antes de volar.',
-      days: { sab20: { ev: [['17:30', 'Compras: Takashimaya, Saigon Square y Đồng Khởi', 'Saigon Square es de regateo (ropa, bolsos, souvenirs); Takashimaya y Vincom, de precio fijo y con aire acondicionado. Dejad la maleta en la consigna del hotel.', 'trans:3,note:Compras aparte; unos €30–80']] } } },
-
-    { id: 'fiesta-hoian', pref: true, kind: 'add', grp: 'Salir de fiesta', title: 'Copas en Hội An o salida a Đà Nẵng', s: 'Cócteles junto al río o la noche de la playa de Đà Nẵng.',
-      days: { jue11: { ev: [['21:30', 'Copas junto al río en Hội An o salida a Đà Nẵng', 'Hội An es tranquila de noche: cócteles y cerveza artesanal junto al río, música en directo y bares hasta medianoche. Para fiesta de verdad, Đà Nẵng está a 30 min en Grab, con bares, rooftops y discotecas junto a la playa de Mỹ Khê.', 'food:12,trans:5']] } } },
-    { id: 'fiesta-hn', kind: 'add', grp: 'Salir de fiesta', title: 'Noche de fiesta en el Old Quarter', s: 'Tạ Hiện, calles peatonales y rooftops de Hà Nội.',
-      days: { vie19: { ev: [['21:30', 'Fiesta en Tạ Hiện y en un rooftop del lago', 'El viernes por la noche las calles peatonales del lago Hoàn Kiếm y el Old Quarter se llenan: bia hơi en Tạ Hiện, bares y discotecas, y rooftops con vistas al lago (cócteles €5–9). Los locales cierran hacia la 1:00–2:00. Cuidado: el sábado hay que salir a las 6:45 hacia el aeropuerto (si volvéis de Sa Pa, llegáis hacia las 19:30 y la noche será corta).', 'food:15']] } } },
-    { id: 'fiesta-sgn', kind: 'add', grp: 'Salir de fiesta', title: 'Última noche en Bùi Viện (Ho Chi Minh)', s: 'La calle de la fiesta de Ho Chi Minh antes del vuelo de madrugada.',
-      days: { sab20: { ev: [['20:00', 'Copas y música en Bùi Viện y Phạm Ngũ Lão', 'Calle peatonal con bares, música en directo y comida callejera: la zona de fiesta más animada de la ciudad, con rooftops a 10 min. El vuelo a Madrid sale a las 2:30: salid de la calle hacia las 21:45 para el traslado de las 22:00.', 'food:12']] } } },
-
-    { id: 'mekong-full', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Solo el delta del Mekong (día completo)', s: 'Sin Củ Chi ni campo de tiro: día entero en el delta, con Thới Sơn, finca y huertos de cocoteros de Bến Tre.',
-      days: { dom7: { ev: [
-        ['7:30', 'Salida hacia Mỹ Tho', 'Excursión de día completo con recogida en el hotel; 70 km por autopista, unas 2 h.', 'act:30'],
-        ['10:00', 'Barco por el río Tiền y la isla Thới Sơn', 'Lancha entre islas, talleres de caramelo de coco y miel, y paseo en sampán.', ''],
-        ['12:30', 'Almuerzo en una finca', 'Pescado oreja de elefante frito, rollitos y fruta tropical.', 'note:Incluido en la excursión'],
-        ['14:30', 'Huertos de cocoteros en Bến Tre', 'Carro de caballos, bici entre cocoteros y música tradicional.', ''],
-        ['17:30', 'Regreso a Ho Chi Minh', 'Llegada hacia las 19:30.', ''],
-        ['20:00', 'Cena en el Distrito 1', 'Cơm tấm o bún thịt nướng.', 'food:10']
-      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'cuchi', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Solo Củ Chi y tiro, con tarde libre', s: 'Túneles y campo de tiro por la mañana, y tarde en el centro. El Mekong queda fuera.',
-      days: { dom7: { ev: [
-        ['8:00', 'Salida hacia Củ Chi', 'Excursión de media jornada (4–5 h) o coche con conductor; 70 km, 1 h 15 min.', 'act:20'],
-        ['9:30', 'Túneles de Củ Chi', 'Recorrido por los túneles, trampas y cocinas subterráneas; se puede bajar al tramo ensanchado.', 'note:Entrada incluida en la excursión'],
-        ['11:00', 'Campo de tiro de Củ Chi', 'Balas a ~€2, en paquetes de 10, en efectivo.', 'act:20'],
-        ['12:30', 'Almuerzo en el Distrito 1', 'Vuelta hacia las 13:00.', 'food:8'],
-        ['14:30', 'Tarde libre: Ópera, Đồng Khởi y Bitexco', 'Paseo por la Ópera, el Ayuntamiento y la calle Đồng Khởi; mirador del Bitexco Skydeck.', 'act:12'],
-        ['19:30', 'Cena en el Distrito 1', 'Phở, bánh xèo o cơm tấm.', 'food:10']
-      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'dalat', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Đà Lạt y la pagoda de las botellas', s: 'Excursión en avión para ver Linh Phước, la «pagoda de las botellas». Madrugón y dos vuelos, sin cambiar de hotel.',
-      days: { dom7: { ev: [
-        ['5:00', 'Salida al aeropuerto de Tân Sơn Nhất', 'El vuelo sale hacia las 7:00–7:30. Comprobad los horarios de Vietjet, Vietnam Airlines o Bamboo y comprad pronto: en Tết suben.', 'trans:7'],
-        ['7:30', 'Vuelo Ho Chi Minh → Đà Lạt (Liên Khương)', 'Una hora de vuelo. El aeropuerto está a ~30 km de la ciudad: taxi o bus, unos 40 min.', 'fly:45'],
-        ['9:30', 'Pagoda Linh Phước (la de las botellas)', 'También llamada Ve Chai: fachada y esculturas cubiertas de cristal, porcelana y botellas rotas, con un dragón hecho con unas 12.000 botellas. Está en Trại Mát, a las afueras de Đà Lạt. Dedicadle 1–2 h; abre hacia las 8:00–17:00.', 'trans:10'],
-        ['12:00', 'Almuerzo en Đà Lạt', 'Bánh căn o lẩu gà lá é. La ciudad está a 1.500 m: fresco (12–22 °C).', 'food:8'],
-        ['14:00', 'Cascada de Datanla y paseo por el centro', 'Cascada con toboganes y mirador; después el mercado de Đà Lạt y el lago Xuân Hương.', 'act:6'],
-        ['17:30', 'Vuelo Đà Lạt → Ho Chi Minh', 'Reservad la vuelta para última hora de la tarde. Llegada hacia las 19:00.', 'fly:45'],
-        ['20:30', 'Cena en el Distrito 1', 'Cenad cerca del hotel.', 'food:8']
-      ], ex: { food: 4 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-
-    { id: 'catba', kind: 'swap', grp: 'Cruceros', title: 'Crucero eco en Lan Hạ y Cát Bà', s: 'En vez de Hạ Long: bahía de Lan Hạ, más tranquila y limpia, con un operador ecológico y kayak entre los karst.', noadd: true,
-      days: {
-        mar16: { ev: [
-          ['7:30', 'Salida hacia Hải Phòng y Cát Bà', 'Coche con conductor ~2 h 45 min hasta el puerto de Đình Vũ y ferry rápido a Cát Bà (~45 min), o el shuttle del propio crucero.', 'trans:45'],
-          ['12:30', 'Embarque en un crucero eco', 'Elegid un operador con política sin plásticos de un solo uso, agua tratada y flota moderna (Bhaya y su barco The Au Co se anuncian así; confirmadlo al reservar). Lan Hạ está menos masificada que Hạ Long.', 'note:Incluido en el crucero'],
-          ['14:30', 'Kayak y aldea de Việt Hải', 'Kayak entre karst y paseo por la aldea de Việt Hải, en el parque nacional de Cát Bà.', 'note:Incluido en el crucero'],
-          ['17:30', 'Atardecer y cena a bordo', 'Noche fondeados en Lan Hạ.', 'note:Incluido en el crucero']
-        ], ex: { food: 5 }, room: 220, n: 'cabina doble en crucero eco de Lan Hạ' },
-        mie17: { ev: [
-          ['6:30', 'Tai chi y desayuno a bordo', 'En cubierta, con la bahía entre la bruma.', 'note:Incluido en el crucero'],
-          ['9:30', 'Desembarco en Cát Bà', 'Último paseo en barco y regreso al puerto.', 'note:Incluido en el crucero'],
-          ['11:30', 'Regreso a Hà Nội', 'Ferry y shuttle: ~4 h 30 min; llegada hacia las 16:00.', 'trans:12'],
-          ['16:30', 'Check-in en el Old Quarter', '', ''],
-          ['19:30', 'Cena en el Old Quarter', 'Bún chả o phở.', 'food:10']
-        ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-
-    { id: 'maichau', kind: 'swap', grp: 'Escapadas al norte', title: 'Valle de Mai Châu', s: 'Excursión de un día desde Hà Nội: arrozales, aldeas thái y bici por el valle.', noadd: true,
-      days: { jue18: { ev: [
-        ['7:30', 'Salida hacia Mai Châu', 'Coche con conductor, ~3 h (135 km). Parada en el paso de Thung Khe, con vistas al valle.', 'trans:45'],
-        ['11:00', 'Aldeas thái de Poom Coong y Lác', 'Casas sobre pilotes, telares y arrozales verdes; tejidos de colores como souvenir.', 'act:3'],
-        ['13:00', 'Almuerzo thái', 'Arroz glutinoso, pollo de la huerta y verduras de la zona.', 'food:8'],
-        ['15:00', 'Bici entre arrozales', 'Alquiler de bici por los caminos del valle.', 'act:2'],
-        ['16:30', 'Regreso a Hà Nội', 'Llegada hacia las 19:30.', ''],
-        ['19:30', 'Cena en el Old Quarter', '', 'food:10']
-      ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'sapa', pref: true, kind: 'swap', grp: 'Escapadas al norte', title: 'Sa Pa: terrazas y Fansipan (2 días)', s: 'Sustituye el 18 y el 19: autobús a Sa Pa, aldeas de montaña, noche allí y teleférico al Fansipan. Se puede combinar con la fiesta del viernes 19 en Hà Nội.', noadd: true, okadd: ['fiesta-hn'],
-      days: {
-        jue18: { ev: [
-          ['7:00', 'Salida de Hà Nội hacia Sa Pa', 'Autobús limousine, 5–6 h por la autopista a Lào Cai. Reservad con antelación: en Tết se llenan.', 'trans:12'],
-          ['13:00', 'Almuerzo y check-in en Sa Pa', 'Pueblo de montaña a 1.600 m; en febrero hace frío (0–10 °C) y hay niebla.', 'food:8'],
-          ['15:00', 'Aldea de Cát Cát', 'Paseo por terrazas y casas de la etnia H’mông, con cascada y telares.', 'act:3'],
-          ['18:30', 'Cena y mercado nocturno', 'Hotpot, brochetas y vino caliente.', 'food:10']
-        ], ex: { food: 4 }, room: 40, n: 'hotel en Sa Pa' },
-        vie19: { ev: [
-          ['7:30', 'Fansipan en teleférico', 'La cumbre más alta de Indochina (3.143 m); con niebla puede no verse nada. Ropa de abrigo.', 'act:30'],
-          ['11:00', 'Paseo por Lao Chải y Tả Van', 'Sendero ligero entre arrozales y aldeas.', 'act:3'],
-          ['13:30', 'Regreso a Hà Nội', 'Autobús limousine; llegada hacia las 19:30.', 'trans:12'],
-          ['20:00', 'Cena en el Old Quarter', '', 'food:10']
-        ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'hagiang', kind: 'swap', grp: 'Escapadas al norte', title: 'Hà Giang Loop (3 días en moto)', s: 'Sustituye el crucero de Hạ Long y los días en Hà Nội (16–19): montañas del extremo norte con easy rider. Es lo más duro del viaje.', noadd: true,
-      days: {
-        mar16: { ev: [
-          ['7:30', 'Ninh Bình → Hà Nội', 'Coche con conductor, ~2 h.', 'trans:20'],
-          ['10:30', 'Autobús limousine Hà Nội → Hà Giang', '~6 h por la autopista de Tuyên Quang. Se reserva con un día de antelación.', 'trans:10'],
-          ['17:00', 'Check-in, permiso y reunión con el easy rider', 'El permiso de la zona ronda 260.000 ₫ (~€9) y suele gestionarlo el operador.', 'act:9'],
-          ['19:30', 'Cena en Hà Giang', '', 'food:6']
-        ], ex: { food: 3 }, room: 25, n: 'hotel en Hà Giang' },
-        mie17: { ev: [
-          ['8:00', 'Hà Giang → Quản Bạ (Montañas Gemelas) → Yên Minh', 'Primer día de ruta con un conductor (easy rider): bosque de pinos y curvas. El paquete de 3 días incluye moto con conductor, gasolina y seguro.', 'act:230'],
-          ['12:30', 'Almuerzo en Yên Minh', '', 'food:6'],
-          ['15:00', 'Llegada a Đồng Văn', 'Casco antiguo y mercado; si es Tết, mucho cierra.', ''],
-          ['19:00', 'Cena y noche en un homestay', '', 'food:6']
-        ], ex: { food: 3 }, room: 18, n: 'homestay en Đồng Văn' },
-        jue18: { ev: [
-          ['8:00', 'Đồng Văn → torre de la bandera de Lũng Cú', 'Extremo norte de Vietnam, frontera con China.', ''],
-          ['11:00', 'Mèo Vạc y paso de Mã Pí Lèng', 'Una de las carreteras más espectaculares del país, sobre el cañón del río Nho Quế. Hay paseo en barco opcional.', 'act:8'],
-          ['13:00', 'Almuerzo en Mèo Vạc', '', 'food:6'],
-          ['16:00', 'Llegada a Du Già', 'Valle de arrozales y casas de piedra.', ''],
-          ['19:00', 'Cena y noche en un homestay', '', 'food:6']
-        ], ex: { food: 3 }, room: 18, n: 'homestay en Du Già' },
-        vie19: { ev: [
-          ['8:00', 'Du Già → Bắc Mê → Hà Giang', 'Último tramo en moto por carreteras de montaña.', ''],
-          ['13:00', 'Almuerzo en Hà Giang', '', 'food:6'],
-          ['14:30', 'Autobús limousine Hà Giang → Hà Nội', '~6 h; llegada hacia las 20:30. Mejor no apurar: al día siguiente se sale a las 6:45 hacia el aeropuerto.', 'trans:10'],
-          ['21:00', 'Cena en el Old Quarter', '', 'food:8']
-        ], ex: { food: 3 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'vie5-esim', kind: 'add', grp: 'Antes y después del vuelo', title: 'Comprar la eSIM antes de salir', s: 'Datos nada más aterrizar, sin colas de madrugada.',
-      days: { vie5: { ev: [['19:00', 'Comprar la eSIM de Vietnam', 'Se compra y se instala en casa (Airalo, Holafly u operadores locales); se activa al aterrizar. Os servirá para Grab y mapas a la 1:10 de la madrugada.', 'act:8']] } } },
-    { id: 'dom21-sala', kind: 'add', grp: 'Antes y después del vuelo', title: 'Sala VIP o ducha en SGN', s: 'Descansar y ducharse antes de 24 h de viaje.',
-      days: { dom21: { ev: [['0:30', 'Sala VIP o ducha en el aeropuerto de SGN', 'Muchas salas aceptan pase de día (~€20–30) con buffet, ducha y sillones. Útil tras la noche en Ho Chi Minh.', 'act:25']] } } },
-
-    { id: 'sab6-masaje', kind: 'add', grp: 'Ho Chi Minh', title: 'Masaje tras el viaje', s: 'Una hora de masaje para soltar el jet lag, en mùng 1.',
-      days: { sab6: { ev: [['16:00', 'Masaje de una hora', 'Muchos spas abren en Tết (con recargo). Reservad por teléfono o por la app del hotel.', 'act:15']] } } },
-    { id: 'sab6-barco', kind: 'add', grp: 'Ho Chi Minh', title: 'Cena en barco por el río Sài Gòn', s: 'Cena con vistas a la ciudad iluminada, en vez de la terraza.',
-      days: { sab6: { ev: [['19:00', 'Cena en barco por el río Sài Gòn', 'Barcos desde el muelle de Bạch Đằng, 1 h 30 min de paseo con buffet y música en directo. Reservad: en Tết se llenan.', 'food:25']] } } },
-    { id: 'sab6-relax', kind: 'swap', grp: 'Ho Chi Minh', title: 'Día de descanso por el jet lag', s: 'Plan tranquilo: desayuno tardío, spa y paseo, en vez de los templos de Chợ Lớn.',
-      days: { sab6: { ev: [
-        ['10:30', 'Desayuno tardío y café', 'Ya habéis dormido poco: phở o bánh mì sin prisa en el hotel o en un café abierto.', 'food:8'],
-        ['12:30', 'Spa o masaje', 'Una hora de masaje o un baño en la piscina del hotel.', 'act:15'],
-        ['15:30', 'Paseo por Nguyễn Huệ y la calle de las flores', 'Flores de mai amarilla y bonsáis; id al atardecer.', ''],
-        ['19:30', 'Cena junto al río Sài Gòn', 'Muelle de Bạch Đằng y terrazas del Distrito 1.', 'food:15']
-      ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-
-    { id: 'lun8-desayuno', kind: 'add', grp: 'Ho Chi Minh', title: 'Desayuno de phở y café vietnamita', s: 'Empezar el día como un local antes del museo.',
-      days: { lun8: { ev: [['7:30', 'Desayuno de phở y cà phê sữa đá', 'Un cuenco de phở bò y café con leche condensada en una calle del Distrito 1, antes de abrir el museo.', 'food:4']] } } },
-
-    { id: 'mie10-banahills', kind: 'swap', grp: 'Hội An y Đà Nẵng', title: 'Bà Nà Hills y el Puente Dorado', s: 'En vez de Mỹ Sơn: teleférico a la montaña, jardines franceses y el Puente Dorado. Muy turístico, pero espectacular.', noadd: true,
-      days: { mie10: { ev: [
-        ['8:30', 'Salida hacia Bà Nà Hills', 'Coche con conductor o Grab, ~1 h 15 min desde Hội An (~45 km).', 'trans:20'],
-        ['10:00', 'Teleférico y Puente Dorado', 'Teleférico de unos 5 km con vistas a la selva, y el puente de las manos gigantes. Madrugad: a mediodía hay colas.', 'act:30'],
-        ['13:00', 'Almuerzo en Bà Nà', 'Buffets y restaurantes en el parque.', 'food:12'],
-        ['15:30', 'Jardines franceses y capilla', 'Jardines de flores y arquitectura colonial de recreo.', ''],
-        ['17:30', 'Regreso a Hội An', 'Llegada hacia las 19:00.', ''],
-        ['19:30', 'Cena en Hội An', 'Cao lầu o bánh xèo.', 'food:12']
-      ], ex: { food: 5 }, room: 55, n: 'Hội An' } } },
-    { id: 'mie10-thung', kind: 'add', grp: 'Hội An y Đà Nẵng', title: 'Barca de cestas en Cẩm Thanh', s: 'Remar entre cocoteros de agua en una barca de cesta (thúng).',
-      days: { mie10: { ev: [['16:30', 'Barca de cestas en el bosque de cocoteros de agua', 'Un barquero os lleva en una barca redonda de bambú entre cocoteros; hay espectáculo de canto y baile. A 6 km de Hội An.', 'act:8,trans:4']] } } },
-    { id: 'jue11-champan', kind: 'swap', grp: 'Hội An y Đà Nẵng', title: 'Isla Cù Lao Chàm: snorkel', s: 'Día de lancha y snorkel en una reserva marina frente a Hội An.',
-      days: { jue11: { ev: [
-        ['8:00', 'Lancha rápida a Cù Lao Chàm', 'Salida desde el muelle de Cửa Đại, ~30 min. Estado del mar variable en febrero: se cancela si hay oleaje.', 'act:30'],
-        ['10:00', 'Snorkel y playa', 'Aguas claras en una reserva de la biosfera; equipo incluido.', 'note:Incluido en la excursión'],
-        ['12:30', 'Almuerzo de marisco en la isla', '', 'food:10'],
-        ['15:30', 'Regreso a Hội An', '', ''],
-        ['19:30', 'Cena de despedida de Hội An', '', 'food:15']
-      ], ex: { food: 5 }, room: 55, n: 'Hội An' } } },
-
-    { id: 'vie12-tren', kind: 'swap', grp: 'Huế', title: 'Tren de Đà Nẵng a Huế', s: 'Cambia el coche con paradas por el tren panorámico, más barato.',
-      days: { vie12: { ev: [
-        ['8:30', 'Salida hacia la estación de Đà Nẵng', 'Taxi o Grab, ~45 min desde Hội An. Comprad el billete con antelación: en Tết hay menos plazas.', 'trans:8'],
-        ['10:30', 'Tren Đà Nẵng → Huế', '2 h 30–3 h con vistas al mar y al paso de Hải Vân. Asiento blando, ~€6.', 'trans:6'],
-        ['13:30', 'Almuerzo y check-in en Huế', '', 'food:10'],
-        ['16:30', 'Pagoda de Thiên Mụ', 'La torre de siete pisos sobre el río Perfume.', 'trans:3'],
-        ['19:00', 'Cena de cocina de Huế', 'Bún bò Huế, bánh bèo y nem lụi.', 'food:10']
-      ], ex: { food: 5 }, room: 45, n: 'Huế' } } },
-    { id: 'vie12-dragon', kind: 'add', grp: 'Huế', title: 'Barco dragón en el río Perfume', s: 'Paseo al atardecer por el río, con música tradicional.',
-      days: { vie12: { ev: [['17:45', 'Paseo en barco dragón por el río Perfume', 'Sale del muelle de Tòa Khâm; 1 h de paseo, a veces con música de cámara de Huế. Acordad el precio antes.', 'act:7']] } } },
-
-    { id: 'sab13-tuduc', kind: 'add', grp: 'Huế', title: 'Tumba de Tự Đức', s: 'La tumba más serena de Huế, entre pinos y un lago.',
-      days: { sab13: { ev: [['15:00', 'Tumba de Tự Đức', 'Conjunto de pabellones y lago donde el emperador Tự Đức escribió poesía; a ~7 km de la ciudad. Dedicadle 1 h.', 'act:5,trans:4']] } } },
-
-    { id: 'dom14-comida', kind: 'add', grp: 'Hà Nội', title: 'Tour de comida callejera', s: 'Probar bún chả, phở cuốn y bánh cuốn con un guía local.',
-      days: { dom14: { ev: [['11:30', 'Tour de comida callejera por el Old Quarter', 'Tres horas con guía y 5–6 paradas: bún chả, phở cuốn, bánh cuốn y cà phê trứng. Sustituye al almuerzo.', 'act:25']] } } },
-    { id: 'dom14-tranvia', kind: 'add', grp: 'Hà Nội', title: 'Paseo en ciclo por el Old Quarter', s: 'Recorrer las 36 calles en triciclo con conductor.',
-      days: { dom14: { ev: [['15:30', 'Paseo en cyclo por el Old Quarter', '45–60 min en triciclo. Fijad el precio de antemano (€10–15 por vehículo).', 'trans:7']] } } },
-
-    { id: 'lun15-tamcoc', kind: 'swap', grp: 'Ninh Bình', title: 'Tam Cốc en barca (en vez de Tràng An)', s: 'Barca remada con los pies entre arrozales y cuevas bajas.',
-      days: { lun15: { ev: [
-        ['8:00', 'Salida hacia Ninh Bình', 'Coche con conductor, ~2 h.', 'trans:20'],
-        ['10:30', 'Tam Cốc en barca', '2 h entre arrozales y tres cuevas bajas; los barqueros reman con los pies.', 'act:9'],
-        ['13:30', 'Almuerzo', 'Cabra de montaña o pescado de río.', 'food:9'],
-        ['15:00', 'Hang Múa', '500 escalones hasta el mirador.', 'act:4'],
-        ['17:30', 'Check-in en el homestay y paseo en bici', '', 'trans:2'],
-        ['19:30', 'Cena casera', '', 'food:8']
-      ], ex: { food: 5 }, room: 50, n: 'homestay en Tam Cốc, Ninh Bình' } } },
-    { id: 'lun15-baidinh', kind: 'add', grp: 'Ninh Bình', title: 'Pagoda de Bái Đính', s: 'El complejo budista más grande del sudeste asiático.',
-      days: { lun15: { ev: [['16:30', 'Pagoda de Bái Đính', 'Complejo con corredores de arhats y budas gigantes; a 10 min de Tràng An. Dedicadle 1–1,5 h.', 'act:3,trans:4']] } } }
-,
-    { id: 'sab6-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 1 con los templos cerrados: miradores y centros comerciales', s: 'Si Chợ Lớn y las pagodas están cerrados o abarrotados: Ópera, Landmark 81 y centros comerciales abiertos, con la calle de las flores al atardecer.',
-      days: { sab6: { ev: [
-        ['10:30', 'Desayuno tardío en el hotel', 'Muchos cafés y restaurantes cierran en mùng 1: el desayuno del hotel es lo más seguro.', 'food:8'],
-        ['12:00', 'Paseo exterior: Ópera, Ayuntamiento, Correos y Notre-Dame', 'Se ven por fuera aunque estén cerrados por dentro; con calles casi vacías, es el día ideal para pasear por el Distrito 1.', ''],
-        ['14:00', 'Almuerzo en un centro comercial', 'Vincom y Saigon Centre suelen abrir; comprobadlo la víspera.', 'food:12'],
-        ['15:30', 'Mirador del Landmark 81 (SkyView) o del Bitexco', 'Vistas de la ciudad y del río Sài Gòn; confirmad el horario de Tết antes de ir.', 'act:15,trans:5'],
-        ['17:30', 'Calle de las flores de Nguyễn Huệ', 'Es la gran fiesta del Tết y está abierta al público.', ''],
-        ['19:30', 'Cena en el hotel o en un restaurante reservado', 'Reservad desde ya: en mùng 1 casi todo está cerrado.', 'food:20']
-      ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'sab6-cena', kind: 'add', grp: 'Plan B por el Tết', title: 'Cena reservada en el hotel', s: 'Cena segura en mùng 1, cuando casi todo cierra.',
-      days: { sab6: { ev: [['20:00', 'Cena reservada en el restaurante del hotel', 'Reservad antes de viajar. Menús de Tết con bánh chưng, carne estofada y sopa de melón amargo.', 'food:20']] } } },
-    { id: 'dom7-privado', kind: 'swap', grp: 'Plan B por el Tết', title: 'Delta del Mekong en coche privado', s: 'Si las excursiones en grupo no salen en mùng 2: coche con conductor a Mỹ Tho y Bến Tre, a vuestro ritmo.',
-      days: { dom7: { ev: [
-        ['7:30', 'Salida en coche privado hacia Mỹ Tho', 'Coche con conductor (€70–100 por coche; el precio sube en Tết). Reservad con antelación y confirmad que el barquero trabaja.', 'trans:40'],
-        ['10:00', 'Barco por el río Tiền y la isla Thới Sơn', 'Pagad la lancha en el muelle: la excursión organizada no hace falta.', 'act:10'],
-        ['12:30', 'Almuerzo en una finca', 'Si está cerrada, comida en Mỹ Tho; llevad efectivo.', 'food:10'],
-        ['14:30', 'Huertos de cocoteros en Bến Tre', 'Paseo y canales; en Tết algunas casas están cerradas.', 'act:4'],
-        ['17:30', 'Regreso a Ho Chi Minh', 'Llegada hacia las 19:30.', ''],
-        ['20:00', 'Cena en el Distrito 1', 'Reservad: muchos locales siguen cerrados.', 'food:12']
-      ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'dom7-ciudad', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 2 en la ciudad: Thảo Điền, spa y río', s: 'Si no hay excursiones al delta: día tranquilo en Ho Chi Minh, con spa y un paseo en barco por el río.',
-      days: { dom7: { ev: [
-        ['9:30', 'Desayuno y café en Thảo Điền', 'Barrio de cafés internacionales y tiendas, con más locales abiertos que el centro.', 'food:10,trans:4'],
-        ['12:00', 'Spa o masaje', 'Una hora de masaje (€15–20); reservad.', 'act:18'],
-        ['15:00', 'Paseo en barco por el río Sài Gòn', 'Barco turístico desde Bạch Đằng, 1 h 30 min.', 'act:12'],
-        ['19:00', 'Cena en el Distrito 1', 'Reservada con antelación.', 'food:15']
-      ], ex: { food: 5 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'lun8-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 3: miradores en vez de museo y mercado', s: 'Si el Museo de la Guerra y Bến Thành están cerrados: paseo, Skydeck y traslado al vuelo.',
-      days: { lun8: { ev: [
-        ['8:30', 'Paseo por el Distrito 1', 'Ópera, Ayuntamiento y Correos por fuera, y café en la calle Đồng Khởi.', 'food:4'],
-        ['10:00', 'Bitexco Skydeck', 'Mirador a 178 m con vistas del río; ~€12.', 'act:12'],
-        ['12:00', 'Traslado al aeropuerto', '', 'trans:7'],
-        ['14:30', 'Vuelo Ho Chi Minh → Đà Nẵng', '1 h 20 min.', 'fly:60'],
-        ['17:00', 'Llegada a Đà Nẵng y traslado a Hội An', '~45 min.', 'trans:7'],
-        ['19:30', 'Primer paseo y cena en Hội An', '', 'food:12']
-      ], ex: { food: 6 }, room: 55, n: 'Hội An' } } },
-    { id: 'mar9-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Hội An sin tiendas: bici, playa y linternas', s: 'Si el sastre y muchos locales siguen cerrados: bici entre arrozales, playa y paseo por el casco al caer la tarde.',
-      days: { mar9: { ev: [
-        ['8:30', 'Desayuno en el hotel', '', 'food:5'],
-        ['9:30', 'Casco antiguo de Hội An', 'Las calles siguen abiertas; algunas casas históricas y tiendas cierran.', 'act:4'],
-        ['12:30', 'Almuerzo en un restaurante abierto', 'Mirad las valoraciones recientes: en Tết abren pocos.', 'food:10'],
-        ['14:30', 'Bici hasta la playa de An Bàng', 'Paseo de 5 km entre arrozales y chiringuitos.', 'trans:2'],
-        ['17:30', 'Atardecer en el río Hoài', 'Barcas con farolillos.', 'act:4'],
-        ['19:30', 'Cena junto al río', '', 'food:12']
-      ], ex: { food: 5 }, room: 55, n: 'Hội An' } } },
-    { id: 'hue-diario', kind: 'swap', grp: 'Huế', title: 'Huế en un día desde Hội An, sin mover las maletas', s: 'Os quedáis una noche más en el mismo hotel de Hội An y vais a Huế y a Hải Vân solo con mochila. El 13 voláis de Đà Nẵng a Hà Nội, no de Huế. Hay más horas de coche (7–8 h).', noadd: true,
-      days: {
-        vie12: { ev: [
-          ['6:30', 'Salida de Hội An hacia Huế por Hải Vân', 'Coche privado con conductor, ~3 h 30 min. Las maletas se quedan en el hotel de Hội An: solo mochila de día.', 'trans:55'],
-          ['9:00', 'Paso de Hải Vân y Lăng Cô', 'Parada en el mirador del paso y en la laguna.', ''],
-          ['10:45', 'Ciudadela Imperial (Đại Nội)', 'Puerta del Mediodía, salas del trono y jardines. Reservad 2–2,5 h; confirmad el horario de Tết.', 'act:7'],
-          ['13:00', 'Almuerzo en Huế', 'Bún bò Huế o bánh bèo.', 'food:12'],
-          ['14:30', 'Pagoda de Thiên Mụ', 'La torre de siete pisos sobre el río Perfume.', ''],
-          ['15:30', 'Tumba de Khải Định', 'Mosaicos de porcelana y vidrio.', 'act:5'],
-          ['16:30', 'Regreso a Hội An', 'Llegada hacia las 20:00.', ''],
-          ['20:30', 'Cena en Hội An', 'Cao lầu o bánh xèo.', 'food:12']
-        ], ex: { food: 5 }, room: 55, n: 'Hội An (misma habitación, sin cambiar de hotel)' },
-        sab13: { ev: [
-          ['9:00', 'Mañana libre en Hội An', 'Último paseo y desayuno sin prisa; pedid late check-out.', ''],
-          ['11:00', 'Traslado al aeropuerto de Đà Nẵng', 'Unos 45 min en coche o Grab.', 'trans:7'],
-          ['13:30', 'Vuelo Đà Nẵng → Hà Nội', '1 h 20 min; hay vuelos casi cada hora. Comprad pronto: en Tết suben.', 'fly:55'],
-          ['15:30', 'Llegada a Hà Nội y traslado al Old Quarter', '28 km desde Nội Bài, 45–60 min.', 'trans:7'],
-          ['19:00', 'Cena en el Old Quarter', 'Bún chả o phở.', 'food:10']
-        ], ex: { food: 5 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'vie12-equipaje', kind: 'add', grp: 'Huế', title: 'Enviar las maletas por delante a Huế', s: 'Viajáis con mochila y las maletas llegan al hotel de Huế en otro vehículo.',
-      days: { vie12: { ev: [['8:00', 'Maletas enviadas al hotel de Huế', 'Pedid al hotel de Hội An que las mande con un taxi o furgoneta (€10–20 en total) o contratad el servicio de envío de equipaje; llegan a Huế antes que vosotros. Confirmad nombre y dirección del hotel y pagad solo al recibirlas.', 'trans:8']] } } }
-  ];
+  var ALTS = VN.ALTS;
 
   /* ---------- Alternativas: estado, tarjetas y recálculo ---------- */
   var ZERO = function () { return { act: 0, trans: 0, fly: 0, food: 0, lodge: 0 }; };
