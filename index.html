@@ -665,6 +665,54 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   .chap-ic .mi { font-size: 1.7rem; }
   header.chap::after { font-size: 4.5rem; bottom: -.8rem; }
 }
+
+/* Crear itinerario (asistente) */
+.altwiz { margin-left: .6rem; font: inherit; font-size: .85rem; font-weight: 700; padding: .4rem .9rem; background: var(--red); color: var(--on-red); border: 1px solid var(--red); cursor: pointer; min-height: 2.5rem; display: inline-flex; align-items: center; gap: .35rem; }
+.altwiz:hover { filter: brightness(1.08); }
+.altwiz .mi { font-size: 1.25rem; }
+.wizdlg { border: 0; padding: 0; border-radius: 18px; width: min(40rem, calc(100vw - 1.5rem)); max-height: calc(100vh - 1.5rem); background: var(--surface); color: var(--fg); box-shadow: 0 24px 60px rgba(0,0,0,.4); overflow: hidden; }
+.wizdlg[open] { display: flex; flex-direction: column; }
+.wizdlg::backdrop { background: rgba(20,10,6,.6); backdrop-filter: blur(2px); }
+.wizdlg > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem .6rem; }
+.wizdlg h2 { margin: 0; font-family: var(--display); font-size: 1.35rem; line-height: 1.2; }
+.wizdlg .mclose { width: 2.5rem; height: 2.5rem; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.wz-k { display: block; font: 700 .7rem/1.2 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--red); margin-bottom: .2rem; }
+.wz-prog { height: 6px; background: var(--line); margin: 0 1.25rem; border-radius: 3px; overflow: hidden; }
+.wz-prog span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--red), var(--yellow)); transition: width .25s; }
+.wz-body { padding: 1rem 1.25rem; overflow-y: auto; flex: 1; min-height: 0; }
+.wz-body fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.wz-n { margin: 0 0 .2rem; font-size: .8rem; color: var(--muted); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.wz-body legend { padding: 0; font-family: var(--display); font-size: 1.3rem; font-weight: 700; line-height: 1.25; }
+.wz-h { margin: .3rem 0 .9rem; color: var(--muted); font-size: .92rem; }
+.wz-opts { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.wz-opt { position: relative; display: grid; grid-template-columns: 2.6rem 1fr; column-gap: .75rem; align-items: center; padding: .7rem .8rem; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); cursor: pointer; min-height: 4rem; }
+.wz-opt:hover { border-color: var(--gold); }
+.wz-opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.wz-opt:focus-within { outline: 3px solid var(--gold); outline-offset: 2px; }
+.wz-opt .mi { grid-row: span 2; width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center; font-size: 1.5rem; background: color-mix(in srgb, var(--red) 10%, var(--surface)); color: var(--red); }
+.wz-opt b { font-size: .98rem; line-height: 1.25; }
+.wz-opt small { color: var(--muted); font-size: .8rem; line-height: 1.3; }
+.wz-opt.on { border-color: var(--red); background: color-mix(in srgb, var(--red) 9%, var(--surface)); box-shadow: 0 0 0 2px color-mix(in srgb, var(--red) 35%, transparent); }
+.wz-opt.on .mi { background: var(--red); color: var(--on-red); }
+.wizdlg > footer { display: flex; justify-content: space-between; gap: .6rem; padding: .75rem 1.25rem 1rem; border-top: 1px solid var(--line); }
+.wz-btn { font: inherit; font-weight: 700; font-size: .92rem; min-height: 2.75rem; padding: 0 1.1rem; border-radius: 1.4rem; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; }
+.wz-btn:hover:not(:disabled) { border-color: var(--gold); }
+.wz-btn.primary { background: var(--red); border-color: var(--red); color: var(--on-red); }
+.wz-btn:disabled { opacity: .45; cursor: not-allowed; }
+.wz-btn[hidden] { display: none; }
+.wz-res h3 { margin: 1rem 0 .4rem; font-family: var(--display); font-size: 1.05rem; }
+.wz-pace { display: flex; gap: .75rem; align-items: flex-start; padding: .75rem .9rem; border: 1px solid var(--jade); border-radius: 12px; background: color-mix(in srgb, var(--jade) 9%, var(--surface)); }
+.wz-pace .mi { font-size: 1.8rem; color: var(--jade); }
+.wz-pace p { margin: .1rem 0 0; font-size: .9rem; color: var(--muted); }
+.wz-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.wz-list li { display: flex; gap: .6rem; align-items: baseline; justify-content: space-between; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); font-size: .9rem; }
+.wz-list li b { font-weight: 600; }
+.wz-list li small { color: var(--muted); display: block; font-size: .78rem; }
+.wz-list li em { font-style: normal; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.wz-list.skip li { opacity: .8; }
+.wz-tot { margin: .8rem 0 0; font-weight: 700; }
+.wz-note { margin: .6rem 0 0; color: var(--muted); font-size: .85rem; }
+@media (max-width: 560px) { .wizdlg { width: 100vw; max-width: 100vw; max-height: 100vh; border-radius: 0; height: 100vh; } .wz-opts { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -681,6 +729,13 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <a class="mopt" href="#presupuesto"><span class="mi" aria-hidden="true">payments</span><b>Presupuesto</b><small data-k="bud">Total y por día</small></a>
     <a class="mopt" href="#notas"><span class="mi" aria-hidden="true">sticky_note_2</span><b>Notas</b><small>Clima, qué llevar y por qué este orden</small></a>
   </nav>
+</dialog>
+
+<dialog class="wizdlg" id="wizDlg" aria-labelledby="wizT">
+  <header><div><span class="wz-k">Crear itinerario</span><h2 id="wizT">Cuéntanos cómo viajáis</h2></div><button type="button" class="mclose" id="wizClose" aria-label="Cerrar"><span class="mi" aria-hidden="true">close</span></button></header>
+  <div class="wz-prog" aria-hidden="true"><span id="wizBar"></span></div>
+  <div class="wz-body" id="wizBody"></div>
+  <footer><button type="button" class="wz-btn" id="wizBack"><span class="mi" aria-hidden="true">arrow_back</span>Atrás</button><button type="button" class="wz-btn primary" id="wizNext">Siguiente<span class="mi" aria-hidden="true">arrow_forward</span></button></footer>
 </dialog>
 
 <header class="hero" id="top">
@@ -1040,6 +1095,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   </header>
   <div class="altbar" id="altBar" aria-live="polite"></div>
   <button type="button" class="altreset" id="altReset">Restaurar elección recomendada</button>
+  <button type="button" class="altwiz" id="wizBtn" aria-haspopup="dialog"><span class="mi" aria-hidden="true">auto_fix_high</span>Crear itinerario</button>
   <div class="altbase">
     <h3>Ya está en el plan base</h3>
     <ul>
@@ -2451,6 +2507,133 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   document.getElementById('altReset').addEventListener('click', function () {
     setDefaults(); try { localStorage.removeItem(SK); } catch (e) {} render();
   });
+
+
+  /* ---------- Crear itinerario: asistente de preguntas que elige alternativas ---------- */
+  (function () {
+    var dlg = document.getElementById('wizDlg'), btn = document.getElementById('wizBtn');
+    if (!dlg || !dlg.showModal) { btn.hidden = true; return; }
+    var WK = 'vn-wiz', A = {}, step = 0;
+    try { A = JSON.parse(localStorage.getItem(WK) || '{}') || {}; } catch (e) { A = {}; }
+    var Q = [
+      { k: 'age', t: '¿Qué edad tiene la persona mayor del grupo?', h: 'Ajustamos el ritmo: a más edad, menos madrugones, menos traslados largos y más comodidad.', o: [
+        ['u30', 'Hasta 30 años', 'Aguanta madrugones y días largos', 'bolt'], ['30-50', '31–50 años', 'Ritmo normal', 'directions_walk'],
+        ['51-65', '51–65 años', 'Más pausas y menos traslados', 'self_improvement'], ['65+', 'Más de 65 años', 'Plan tranquilo y cómodo', 'weekend']] },
+      { k: 'pace', t: '¿Qué ritmo os apetece?', h: 'Se combina con la edad: el resultado puede ser tranquilo, equilibrado o intenso.', o: [
+        ['calm', 'Tranquilo', 'Pocas cosas al día y tiempo libre', 'spa'], ['bal', 'Equilibrado', 'Lo importante, sin correr', 'balance'], ['full', 'A tope', 'Quiero verlo todo', 'rocket_launch']] },
+      { k: 'party', t: 'Fiesta', h: 'Elegimos noches de copas según lo que os pida el cuerpo.', o: [
+        ['full', 'Jangueo, jangueo', 'Salir todas las noches que se pueda', 'celebration'], ['some', 'Unas cervezas y lo que surja', 'Alguna noche, sin planearla mucho', 'sports_bar'], ['none', 'No me gusta la fiesta', 'Noches tranquilas', 'bedtime']] },
+      { k: 'nature', t: 'Playa, montaña o ambos', h: 'Decide las escapadas: mar y snorkel, o Sa Pa, Mai Châu y los valles del norte.', o: [
+        ['beach', 'Playa y mar', 'Snorkel, islas y bahías', 'beach_access'], ['mountain', 'Montaña', 'Terrazas, valles y aldeas', 'landscape'],
+        ['both', 'Ambos', 'Un poco de cada', 'terrain'], ['city', 'Mejor ciudades y cultura', 'Sin escapadas extra', 'location_city']] },
+      { k: 'extras', multi: 1, t: 'Eventos y planes extra', h: 'Marcad los que os gusten (podéis elegir varios o ninguno).', o: [
+        ['food', 'Gastronomía', 'Tour de comida, desayuno local', 'ramen_dining'], ['culture', 'Historia y templos', 'Tumbas, pagodas y museos', 'temple_buddhist'],
+        ['nature', 'Naturaleza y aventura', 'Barca de cestas, snorkel', 'kayaking'], ['show', 'Espectáculos y paseos', 'Cena en barco, barco dragón, ciclo', 'theater_comedy'],
+        ['well', 'Bienestar', 'Masaje y descanso', 'self_care']] },
+      { k: 'shop', t: 'Compras', h: 'Añade tardes de compras en Hội An, Hà Nội y Ho Chi Minh.', o: [
+        ['fan', 'Soy súper fan', 'Las tres ciudades', 'shopping_bag'], ['ok', 'Está bien', 'Una tarde en Hội An', 'local_mall'], ['none', 'No me gustan', 'Sin compras', 'do_not_disturb_on']] },
+      { k: 'tet', t: 'El Tết (6–10 de febrero)', h: 'Muchos sitios cierran en los primeros días. ¿Queréis plan B?', o: [
+        ['safe', 'Sí, asegurar', 'Miradores, cena reservada y excursiones en coche privado', 'shield'], ['base', 'Plan base y ya veremos', 'Sin cambios por el Tết', 'casino']] },
+      { k: 'budget', t: 'Presupuesto para extras', h: 'Descartamos lo que se pase de coste por persona respecto al plan base.', o: [
+        ['tight', 'Ajustado', 'Solo extras baratos (hasta ~€30)', 'savings'], ['normal', 'Normal', 'Hasta ~€120 por extra', 'payments'], ['free', 'Sin límite', 'Lo mejor, cueste lo que cueste', 'diamond']] }
+    ];
+    var PACE = {
+      relax: ['self_improvement', 'Ritmo tranquilo', 'Pocas cosas por día, sin escapadas duras y con comodidades: maletas por delante, masaje y descanso.'],
+      bal: ['balance', 'Ritmo equilibrado', 'Lo importante de cada zona, con margen para pasear y comer sin prisas.'],
+      full: ['rocket_launch', 'Ritmo intenso', 'Días largos y escapadas ambiciosas. Aprovecha cada hora.']
+    };
+    var simulate = function () {
+      var score = ({ u30: 1, '30-50': 0, '51-65': -1, '65+': -2 }[A.age] || 0) + ({ calm: -1, bal: 0, full: 1 }[A.pace] || 0);
+      var lvl = score <= -1 ? 'relax' : score === 0 ? 'bal' : 'full';
+      var cap = ({ tight: 30, normal: 120, free: 1e9 })[A.budget] || 120, maxDay = lvl === 'relax' ? 1 : lvl === 'bal' ? 2 : 3;
+      var ex = A.extras || [], has = function (x) { return ex.indexOf(x) >= 0; }, want = [];
+      var w = function (id) { if (ALT_BY[id] && want.indexOf(id) < 0) want.push(id); };
+      if (A.tet === 'safe') { w('sab6-tet'); w('dom7-privado'); w('lun8-tet'); w('sab6-cena'); if (A.shop === 'none') w('mar9-tet'); }
+      if (A.nature === 'beach' || A.nature === 'both') w('jue11-champan');
+      if (A.nature === 'beach') w('catba');
+      if (A.nature === 'mountain' || A.nature === 'both') {
+        if (lvl === 'relax') w('maichau');
+        else if (lvl === 'full' && A.nature === 'mountain') { w('hagiang'); w('sapa'); } else w('sapa');
+        if (lvl === 'full') w('dalat');
+      }
+      if (A.party === 'full') { w('fiesta-hoian'); w('fiesta-hn'); w('fiesta-sgn'); } else if (A.party === 'some') { w('fiesta-hoian'); w('fiesta-hn'); }
+      if (A.shop === 'fan') { w('comp-hoian'); w('comp-hn'); w('comp-sgn'); } else if (A.shop === 'ok') w('comp-hoian');
+      if (has('well') || lvl === 'relax') { w('sab6-masaje'); w('dom21-sala'); }
+      if (lvl === 'relax') { if (A.tet !== 'safe') w('sab6-relax'); w('vie12-equipaje'); }
+      if (has('food')) { w('dom14-comida'); w('lun8-desayuno'); }
+      if (has('culture')) { w('sab13-tuduc'); w('lun15-baidinh'); w('vie12-dragon'); }
+      if (has('nature')) { w('mie10-thung'); w('jue11-champan'); }
+      if (has('show')) { w('sab6-barco'); w('dom14-tranvia'); w('vie12-dragon'); }
+      w('vie5-esim');
+      var HARD = { hagiang: 1, dalat: 1, 'hue-diario': 1 };
+      want.sort(function (a, b) { return (ALT_BY[a].kind === 'swap' ? 0 : 1) - (ALT_BY[b].kind === 'swap' ? 0 : 1); });
+      var old = sel, res = { sel: null, lvl: lvl, picks: [], skipped: [], total: 0 }, perDay = {};
+      sel = {};
+      try {
+        want.forEach(function (id) {
+          var a = ALT_BY[id], days = Object.keys(a.days), why = '';
+          if (lvl === 'relax' && HARD[id]) why = 'demasiado duro para un ritmo tranquilo';
+          else if (delta(a) > cap) why = 'supera el presupuesto elegido (' + sg(delta(a)) + ')';
+          else if (a.kind === 'swap' && ALTS.some(function (o) { return o.kind === 'swap' && sel[o.id] && Object.keys(o.days).some(function (d) { return a.days[d]; }); })) why = 'ya hay otra opción esos días';
+          else if (a.kind === 'add' && blocked(a)) why = 'no cabe con la escapada elegida';
+          else if (a.kind === 'add' && days.some(function (d) { return (perDay[d] || 0) >= maxDay; }) && id !== 'vie5-esim' && id !== 'dom21-sala' && id !== 'vie12-equipaje') why = 'ya hay otros planes ese día';
+          if (why) { res.skipped.push({ a: a, why: why }); return; }
+          sel[id] = 1; res.picks.push(a);
+          if (a.kind === 'add') days.forEach(function (d) { perDay[d] = (perDay[d] || 0) + 1; });
+        });
+        normalize();
+        res.picks = res.picks.filter(function (a) { return sel[a.id]; });
+        res.sel = sel;
+        res.picks.forEach(function (a) { res.total += delta(a); });
+      } finally { sel = old; }
+      return res;
+    };
+    var body = document.getElementById('wizBody'), bar = document.getElementById('wizBar'), back = document.getElementById('wizBack'), next = document.getElementById('wizNext'), result = null;
+    var save = function () { try { localStorage.setItem(WK, JSON.stringify(A)); } catch (e) {} };
+    var drawQ = function () {
+      var q = Q[step];
+      body.innerHTML = '<fieldset><p class="wz-n">Pregunta ' + (step + 1) + ' de ' + Q.length + '</p><legend>' + q.t + '</legend><p class="wz-h">' + q.h + '</p><div class="wz-opts">' + q.o.map(function (o) {
+        var on = q.multi ? (A[q.k] || []).indexOf(o[0]) >= 0 : A[q.k] === o[0];
+        return '<label class="wz-opt' + (on ? ' on' : '') + '"><input type="' + (q.multi ? 'checkbox' : 'radio') + '" name="' + q.k + '" value="' + o[0] + '"' + (on ? ' checked' : '') + '><span class="mi" aria-hidden="true">' + o[3] + '</span><b>' + o[1] + '</b><small>' + o[2] + '</small></label>';
+      }).join('') + '</div></fieldset>';
+      bar.style.width = (step / Q.length * 100) + '%';
+      back.hidden = step === 0; next.hidden = false; next.disabled = !q.multi && !A[q.k];
+      next.innerHTML = (step === Q.length - 1 ? 'Ver resultado' : 'Siguiente') + '<span class="mi" aria-hidden="true">arrow_forward</span>';
+    };
+    var drawRes = function () {
+      result = simulate();
+      var P = PACE[result.lvl], r = result;
+      body.innerHTML = '<div class="wz-res"><p class="wz-n">Resultado</p><div class="wz-pace"><span class="mi" aria-hidden="true">' + P[0] + '</span><div><b>' + P[1] + '</b><p>' + P[2] + '</p></div></div>' +
+        '<h3>Se elige para vuestro itinerario</h3>' + (r.picks.length ? '<ul class="wz-list">' + r.picks.map(function (a) {
+          var dk = Object.keys(a.days), ds = dk.length > 1 ? NAMES[dk[0]] + ' – ' + NAMES[dk[dk.length - 1]] : NAMES[dk[0]], dl = delta(a), free = a.kind === 'add' && Math.round(dl) === 0;
+          return '<li><span><b>' + a.title + '</b><small>' + (a.kind === 'add' ? 'Se añade' : 'Cambia') + ' · ' + ds + '</small></span><em>' + (free ? 'sin coste fijo' : sg(dl)) + '</em></li>';
+        }).join('') + '</ul>' : '<p class="wz-note">Con estas respuestas, se queda el plan base.</p>') +
+        '<p class="wz-tot">Coste de lo elegido: ' + sg(r.total) + ' por persona respecto al plan base.</p>' +
+        (r.skipped.length ? '<h3>Descartado</h3><ul class="wz-list skip">' + r.skipped.map(function (x) { return '<li><span><b>' + x.a.title + '</b><small>' + x.why + '</small></span></li>'; }).join('') + '</ul>' : '') +
+        '<p class="wz-note">Al aplicar, esta propuesta sustituye vuestra elección actual de alternativas. Después podéis ajustarla con las tarjetas de «Alternativas» o restaurar la elección recomendada.</p></div>';
+      bar.style.width = '100%'; back.hidden = false; next.hidden = false; next.disabled = false;
+      next.innerHTML = '<span class="mi" aria-hidden="true">check</span>Aplicar a mi itinerario';
+    };
+    var show = function () { if (step >= Q.length) drawRes(); else drawQ(); };
+    body.addEventListener('change', function (e) {
+      var q = Q[step], i = e.target; if (!q || !i || i.type === undefined) return;
+      if (q.multi) { A[q.k] = [].map.call(body.querySelectorAll('input:checked'), function (x) { return x.value; }); }
+      else A[q.k] = i.value;
+      body.querySelectorAll('.wz-opt').forEach(function (l) { l.classList.toggle('on', l.querySelector('input').checked); });
+      next.disabled = !q.multi && !A[q.k]; save();
+    });
+    back.addEventListener('click', function () { if (step > 0) { step--; show(); } });
+    next.addEventListener('click', function () {
+      if (step < Q.length) { step++; show(); body.scrollTop = 0; return; }
+      sel = result.sel;
+      try { localStorage.setItem(SK, JSON.stringify(Object.keys(sel))); } catch (e) {}
+      render(); dlg.close();
+      var alts = document.getElementById('alternativas'); if (alts) alts.scrollIntoView();
+    });
+    btn.addEventListener('click', function () { step = 0; show(); dlg.showModal(); });
+    document.getElementById('wizClose').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  })();
 
   var drawBudget = function () {
     var grand = ZERO(), rows = [];
