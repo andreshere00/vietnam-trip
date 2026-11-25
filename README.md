@@ -1,4 +1,4 @@
-# Vietnam 4–21 de febrero de 2027
+# Vietnam 5–21 de febrero de 2027
 
 Itinerario interactivo de quince noches por Vietnam (Sài Gòn, delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y bahía de Hạ Long), pensado para el Tết, el Año Nuevo lunar, y publicado como página estática en GitHub Pages.
 
@@ -8,10 +8,10 @@ Itinerario interactivo de quince noches por Vietnam (Sài Gòn, delta del Mekong
 
 | Tramo | Salida | Llegada |
 | --- | --- | --- |
-| Madrid → Ciudad Ho Chi Minh (SGN) | jueves 4 feb · 21:45 | viernes 5 feb · 19:35 |
-| Ciudad Ho Chi Minh (SGN) → Madrid | sábado 20 feb · 21:45 | domingo 21 feb · 12:40 |
+| Madrid → Ciudad Ho Chi Minh (SGN) | viernes 5 feb · 00:40 | sábado 6 feb · 01:10 |
+| Ciudad Ho Chi Minh (SGN) → Madrid | domingo 21 feb · 02:30 | domingo 21 feb · 20:30 |
 
-Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). Entre medias hay tres vuelos internos: Sài Gòn → Đà Nẵng (8 feb), Huế → Hà Nội (13 feb) y Hà Nội → Sài Gòn (20 feb).
+Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura 18 h 30 min y la vuelta 24 h; se sale de casa la noche del jueves 4 y se aterriza en Vietnam ya en mùng 1, tras la medianoche del Tết. Entre medias hay tres vuelos internos: Sài Gòn → Đà Nẵng (8 feb), Huế → Hà Nội (13 feb) y Hà Nội → Sài Gòn (20 feb).
 
 ## Qué incluye
 
@@ -53,7 +53,7 @@ No hay dependencias ni paso de compilación. Las únicas peticiones externas son
 | `COST` | Costes por evento de cada día (`act`, `trans`, `fly`, `food`), en euros por persona. Se asocian por orden de aparición. |
 | `EXTRA` | Gastos del día que no pertenecen a un evento (desayunos, cafés, taxis). |
 | `LODGE` y `NOLODGE` | Precio de la habitación doble por noche (se reparte entre dos personas) y días sin noche. |
-| `FLIGHT` | Precio del billete Madrid–Sài Gòn por persona, ida y vuelta. Es una estimación: cámbiala por el precio real. |
+| `FLIGHT` | Precio del billete Madrid–Sài Gòn por persona, ida y vuelta (€460, ya comprado). |
 | `OPTS` | Opciones de transporte, entradas, comida, alojamiento y Tết de cada día. |
 | `P` | Puntos del mapa con longitud y latitud. |
 | `PLACE`, `PH`, `EVP` | Foto y texto «por qué ir» de cada lugar, créditos de las fotos y lugar asociado a cada evento. |
@@ -87,7 +87,7 @@ La web se publica desde la rama `main`, carpeta raíz, con GitHub Pages. Cada `g
 ## Supuestos y límites
 
 - Precios en euros por persona, suponiendo dos viajeros que comparten taxi, coche y habitación, y un cambio de 1 € ≈ 30.000 ₫. Son estimaciones y conviene confirmarlos en las webs oficiales antes de viajar.
-- El billete de avión a Vietnam (€850) es una estimación. El presupuesto incluye además tres vuelos internos y 15 noches de alojamiento, con recargo por el Tết.
+- El billete de avión a Vietnam (€460 por persona, ya comprado) va aparte del total diario. El presupuesto incluye además tres vuelos internos y 15 noches de alojamiento, con recargo por el Tết.
 - No incluye eSIM, seguro, propinas ni compras personales.
 - El Tết Đinh Mùi cae el sábado 6 de febrero de 2027 y el 20 de febrero es Rằm tháng Giêng. Según el aviso del Ministerio del Interior vietnamita ([Bộ Nội vụ, 2027](https://cafef.vn/bo-noi-vu-thong-bao-chi-tiet-lich-nghi-tet-am-lich-quoc-khanh-2027-188261010120450778.chn)), el descanso oficial va del 4 al 10 de febrero; los horarios reales de museos y restaurantes cambian, así que conviene comprobarlos unos días antes.
 - Los españoles pueden entrar en Vietnam sin visado hasta 45 días (exención vigente hasta marzo de 2028, según [Tuoi Tre News](https://news.tuoitre.vn/vietnam-to-extend-visa-exemption-for-citizens-of-12-countries-until-2028-10385082.htm)). Confírmalo en la web del Ministerio de Exteriores antes de volar.
