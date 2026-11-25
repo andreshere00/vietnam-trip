@@ -16,7 +16,8 @@ Horas locales de cada ciudad (Vietnam va 6 h por delante de Madrid). La ida dura
 ## Qué incluye
 
 - **Noche de fiesta** en el plan base (jueves 18, Old Quarter de Hà Nội) y **Củ Chi + campo de tiro + Mekong** el domingo 7.
-- **Iconografía**: símbolos (✈️ vuelos, 🍜 comida, 🛕 templos, 🏛️ museos, 🛍️ compras, 🍹 fiesta, 🎯 tiro, 🚗 traslados…) en eventos, costes, pestañas, opciones y secciones, para leer el itinerario de un vistazo. Se asignan por palabras clave del título en `index.html` (bloque «Iconografía»).
+- **Iconografía con Material Symbols** (Google Fonts) en eventos, costes, pestañas, opciones, flechas y secciones, para leer el itinerario de un vistazo. Se asignan por palabras clave del título en `index.html` (bloque «Iconografía»).
+- **Menú modal de secciones** (botón de cuadrícula en la barra superior): Ruta, Actividades, Alternativas, Presupuesto y Notas, cada una con su icono y un dato en vivo (marcadas, elegidas, total).
 - **Plegar y desplegar**: los días empiezan plegados con un resumen de horas y actividades; se despliegan pulsando la cabecera, desde la barra de días o con «Desplegar todos / Plegar todos». Hay vista «Detallado» o «Compacto» (solo hora y título), y las secciones Ruta, Actividades, Alternativas y Presupuesto también se pliegan. El estado se guarda en el navegador.
 - **Itinerario día a día**, con horarios y notas de cada actividad y una etiqueta con el día del calendario lunar (Giao thừa, Mùng 1… Rằm tháng Giêng).
 - **Ruta general** con un mapa de Vietnam, las bases con sus noches y la tabla de etapas (vuelos, coche y tiempo).
@@ -48,7 +49,7 @@ La paleta sale de la bandera de Vietnam —rojo y amarillo de la estrella— sob
 └── README.md
 ```
 
-No hay paso de compilación. Las peticiones externas son las fuentes de Google Fonts (Playfair Display y Be Vietnam Pro), Leaflet 1.9.4 desde unpkg (con integridad SRI) y las teselas de OpenStreetMap; sin conexión, el navegador usa fuentes de respaldo y los mapas SVG.
+No hay paso de compilación. Las peticiones externas son las fuentes de Google Fonts (Playfair Display, Be Vietnam Pro y los iconos Material Symbols), Leaflet 1.9.4 desde unpkg (con integridad SRI) y las teselas de OpenStreetMap; sin conexión, el navegador usa fuentes de respaldo y los mapas SVG.
 
 ## Cómo está construida
 

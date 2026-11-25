@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="preconnect" href="https://tile.openstreetmap.org">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:wght@600;700;900&display=swap">
 <style>
 /* Layout: cabecera con paisaje; cada día es una tarjeta con la fecha a la izquierda y, a la derecha, mapa de la ruta, itinerario y opciones de transporte, entradas, comida y alojamiento. */
@@ -369,7 +370,7 @@ html { scroll-padding-top: 4.5rem; }
 .ac-t { margin: 0; font-family: var(--body); font-size: 1.06rem; font-weight: 700; line-height: 1.3; color: var(--fg); text-wrap: balance; }
 .altcard .ac-s { margin: 0; font-size: .95rem; line-height: 1.5; color: var(--muted); }
 .altcard .ac-w { margin: 0; display: flex; gap: .4rem; align-items: flex-start; font-size: .86rem; line-height: 1.4; color: var(--fg); background: color-mix(in srgb, var(--gold) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); border-radius: 6px; padding: .4rem .55rem; }
-.altcard .ac-w::before { content: "ⓘ"; color: var(--gold); font-weight: 700; }
+.altcard .ac-w::before { content: "info"; font-family: "Material Symbols Outlined"; font-size: 1.15em; line-height: 1; color: var(--gold); flex: none; }
 .ac-f { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .7rem 0 .85rem; border-top: 1px solid var(--line); }
 .ac-d { display: grid; line-height: 1.15; font-variant-numeric: tabular-nums; }
 .ac-d b { font-family: var(--display); font-size: 1.2rem; color: var(--fg); }
@@ -503,8 +504,6 @@ html { scroll-padding-top: 4.5rem; }
 .seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
 .date { cursor: pointer; }
 .dtog { order: 6; margin-left: .5rem; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--a); cursor: pointer; display: grid; place-items: center; font-size: 1.1rem; line-height: 1; align-self: center; }
-.dtog span { transition: transform .15s ease; display: block; transform: translateY(-2px) rotate(180deg); }
-.dtog[aria-expanded="false"] span { transform: translateY(-3px); }
 .day.collapsed > :not(.date):not(.dprev) { display: none !important; }
 .dprev { display: none; margin: 0; }
 .day.collapsed .dprev { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding: .55rem 1.5rem 0; margin-bottom: .7rem; font-size: .88rem; color: var(--muted); line-height: 1.55; max-height: calc(.55rem + 3.1em); }
@@ -512,18 +511,19 @@ html { scroll-padding-top: 4.5rem; }
 .dprev i { font-style: normal; font-weight: 700; color: var(--a); font-variant-numeric: tabular-nums; }
 .day.collapsed .date { border-bottom: 1px dashed var(--line); }
 .days { gap: 1rem; }
-.dotog { width: 100%; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: inherit; text-align: left; min-height: 2rem; }
+.dotog { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: .2rem .6rem; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: inherit; text-align: left; min-height: 2rem; }
 .dot-t { font-family: var(--display); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--a); font-weight: 700; }
 .dosum { font-size: .88rem; font-weight: 700; color: var(--jade); text-transform: none; letter-spacing: 0; }
 .dot-n { margin-left: auto; font-size: .8rem; color: var(--muted); }
-.dotog i { font-style: normal; color: var(--a); transition: transform .15s ease; }
-.dotog[aria-expanded="true"] i { transform: rotate(180deg); }
+.dotog .chv { color: var(--a); transition: transform .15s ease; }
+.dotog[aria-expanded="true"] .chv { transform: rotate(180deg); }
 .dopts { padding: .55rem .9rem; }
 .dopts h3 { margin: 0; }
 .dobody { padding-top: .35rem; }
 .stog { display: flex; align-items: center; gap: .6rem; width: 100%; background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; }
-.stog .chev { margin-left: auto; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-size: 1.1rem; color: var(--red); transition: transform .15s ease; flex: none; }
-.stog[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.stog .chev { margin-left: auto; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--red); flex: none; }
+.stog .chev .chv { transition: transform .15s ease; }
+.stog[aria-expanded="true"] .chev .chv { transform: rotate(180deg); }
 .sec-off .secbody { display: none; }
 .sec-off h2 { margin-bottom: 0; }
 /* Vista compacta: solo hora y título */
@@ -552,9 +552,60 @@ html { scroll-padding-top: 4.5rem; }
 .nav a.txt .ic { display: none; }
 @media (min-width: 900px) { .nav a.txt .ic { display: inline-block; } }
 .compact .ev h3 .ic { font-size: 1em; }
+
+/* Iconos Material */
+.mi { font-family: "Material Symbols Outlined"; font-weight: 400; font-style: normal; font-size: 1.25em; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; width: 1em; height: 1em; overflow: hidden; direction: ltr; font-feature-settings: "liga"; -webkit-font-smoothing: antialiased; vertical-align: middle; flex: none; user-select: none; }
+.ic.mi { margin-right: .35em; vertical-align: -.2em; color: var(--a, var(--red)); }
+.ev h3 .ic.mi { font-size: 1.2em; margin-right: .4em; }
+.chip .ic.mi, .sum small .ic.mi { font-size: 1.1em; margin-right: .25em; color: inherit; vertical-align: -.2em; }
+.date .ic.mi, .daytotal .ic.mi, .badge .ic.mi { color: inherit; font-size: 1.1em; }
+.fl small .ic.mi { color: var(--red); font-size: 1.2em; }
+.dtog, .stog .chev { display: inline-grid; place-items: center; padding: 0; }
+.dtog .chv { font-size: 1.5rem; transition: transform .15s ease; color: var(--a); }
+.dtog[aria-expanded="true"] .chv { transform: rotate(180deg); }
+.stog .chev .chv { font-size: 1.5rem; }
+.dotog .chv { font-size: 1.5rem; margin-left: .2rem; }
+.dot-n { margin-left: auto; }
+.dot-n { display: inline-flex; align-items: center; }
+.ac-ok { display: inline-flex; align-items: center; gap: .15rem; }
+.ac-ok .mi { font-size: 1rem; }
+.gmaps { display: inline-flex; align-items: center; gap: .3rem; }
+.gmaps .mi { font-size: 1rem; }
+.nextday .mi { font-size: 1.3rem; }
+.nextday { align-items: center; }
+.nav a.txt { display: inline-flex; align-items: center; gap: .25rem; }
+.nav a.txt .ic.mi { margin: 0; color: inherit; }
+.stog .st-t { display: inline-flex; align-items: center; }
+/* Menú modal */
+.menu-btn { margin-left: auto; }
+.menu-btn + .theme-btn { margin-left: .4rem; }
+.menudlg { border: 0; padding: 0; border-radius: 16px; width: min(34rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); background: var(--surface); color: var(--fg); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+.menudlg::backdrop { background: rgba(20,10,6,.55); backdrop-filter: blur(2px); }
+.menudlg header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem .5rem; }
+.menudlg h2 { margin: 0; font-family: var(--display); font-size: 1.2rem; }
+.menudlg .mclose { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.mgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; padding: .5rem 1.25rem 1.25rem; }
+.mopt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .2rem .75rem; align-items: center; padding: .9rem; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: inherit; background: var(--bg); min-height: 4.5rem; }
+.mopt:hover, .mopt:focus-visible { border-color: var(--red); box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 20%, transparent); outline: none; }
+.mopt .mi { grid-row: 1 / 3; font-size: 1.9rem; color: var(--red); background: color-mix(in srgb, var(--red) 10%, var(--surface)); width: 2.75rem; height: 2.75rem; border-radius: 50%; display: grid; place-items: center; }
+.mopt b { font-size: 1rem; line-height: 1.2; }
+.mopt small { color: var(--muted); font-size: .82rem; line-height: 1.3; }
+.mopt:last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (max-width: 460px) { .mgrid { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body>
+
+<dialog class="menudlg" id="menuDlg" aria-labelledby="menuT">
+  <header><h2 id="menuT">Ir a…</h2><button type="button" class="mclose" aria-label="Cerrar"><span class="mi" aria-hidden="true">close</span></button></header>
+  <nav class="mgrid" aria-label="Secciones">
+    <a class="mopt" href="#ruta"><span class="mi" aria-hidden="true">map</span><b>Ruta</b><small>Mapa de Vietnam y etapas</small></a>
+    <a class="mopt" href="#actividades"><span class="mi" aria-hidden="true">checklist</span><b>Actividades</b><small data-k="act">Lista para marcar</small></a>
+    <a class="mopt" href="#alternativas"><span class="mi" aria-hidden="true">alt_route</span><b>Alternativas</b><small data-k="alt">Cambiar o añadir</small></a>
+    <a class="mopt" href="#presupuesto"><span class="mi" aria-hidden="true">payments</span><b>Presupuesto</b><small data-k="bud">Total y por día</small></a>
+    <a class="mopt" href="#notas"><span class="mi" aria-hidden="true">sticky_note_2</span><b>Notas</b><small>Clima, qué llevar y por qué este orden</small></a>
+  </nav>
+</dialog>
 
 <header class="hero" id="top">
   <div class="wrap">
@@ -635,6 +686,7 @@ html { scroll-padding-top: 4.5rem; }
       <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
       <li><a class="txt" href="#notas">Notas</a></li>
     </ul>
+    <button type="button" class="theme-btn menu-btn" id="menuBtn" aria-label="Abrir el menú de secciones" title="Secciones"><span class="mi" style="font-size:1.6rem" aria-hidden="true">apps</span></button>
     <button type="button" class="theme-btn" id="themeBtn" aria-label="Cambiar a modo nocturno" title="Cambiar a modo nocturno">
       <svg class="i-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
       <svg class="i-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></svg>
@@ -2066,7 +2118,7 @@ html { scroll-padding-top: 4.5rem; }
     }
     var fig = document.createElement('figure');
     var cap = document.createElement('figcaption');
-    cap.innerHTML = '<span>' + cfg.title + '</span><a class="gmaps" target="_blank" rel="noopener" href="' + gmapsUrl(cfg, pins.map(function (p) { return p[1]; })) + '">Abrir en Google Maps <span aria-hidden="true">↗</span></a>';
+    cap.innerHTML = '<span>' + cfg.title + '</span><a class="gmaps" target="_blank" rel="noopener" href="' + gmapsUrl(cfg, pins.map(function (p) { return p[1]; })) + '">Abrir en Google Maps <span class="mi" aria-hidden="true">open_in_new</span></a>';
     fig.appendChild(cap);
     var el = document.createElement('div'); el.className = 'lmap'; el.setAttribute('role', 'region'); el.setAttribute('aria-label', 'Mapa: ' + cfg.title);
     fig.appendChild(el);
@@ -2271,7 +2323,7 @@ html { scroll-padding-top: 4.5rem; }
     var link = document.createElement('a');
     link.className = 'nextday';
     link.href = nx ? '#' + nx.id : '#presupuesto';
-    link.innerHTML = '<span>' + (nx ? 'Siguiente día: ' + NAMES[nx.id] : 'Ver el presupuesto') + '</span><span aria-hidden="true">↓</span>';
+    link.innerHTML = '<span>' + (nx ? 'Siguiente día: ' + NAMES[nx.id] : 'Ver el presupuesto') + '</span><span class="mi" aria-hidden="true">arrow_downward</span>';
     day.appendChild(link);
   });
 
@@ -2701,7 +2753,7 @@ html { scroll-padding-top: 4.5rem; }
     var c = document.createElement('div'); c.className = 'altcard k-' + a.kind;
     var dk = Object.keys(a.days), ds = dk.length > 1 ? NAMES[dk[0]] + ' – ' + NAMES[dk[dk.length - 1]] : NAMES[dk[0]];
     var showDays = !dayId || dk.length > 1;
-    c.innerHTML = '<div class="ac-top"><span class="ac-k">' + NDAYS(a) + '</span>' + (showDays ? '<span class="ac-days">' + ds + '</span>' : '') + '<span class="ac-ok" hidden>✓ Elegida</span></div>' +
+    c.innerHTML = '<div class="ac-top"><span class="ac-k">' + NDAYS(a) + '</span>' + (showDays ? '<span class="ac-days">' + ds + '</span>' : '') + '<span class="ac-ok" hidden><span class="mi" aria-hidden="true">check</span>Elegida</span></div>' +
       '<h4 class="ac-t">' + a.title + '</h4><p class="ac-s">' + a.s + '</p><p class="ac-w" hidden></p>' +
       '<div class="ac-f"><div class="ac-d"><b></b><small></small></div><button type="button" class="ac-b" aria-pressed="false"></button></div>';
     var b = c.querySelector('.ac-b');
@@ -2716,7 +2768,7 @@ html { scroll-padding-top: 4.5rem; }
   Object.keys(altDays).forEach(function (d) {
     var r = DAYREF[d], day = r.day, swaps = altDays[d].filter(function (a) { return a.kind === 'swap'; }), adds = altDays[d].filter(function (a) { return a.kind === 'add'; });
     var w = document.createElement('section'); w.className = 'dopts'; w.setAttribute('aria-label', 'Opciones del día');
-    var h = '<h3><button type="button" class="dotog" aria-expanded="false"><span class="dot-t">Opciones del día</span><small class="dosum"></small><span class="dot-n">' + altDays[d].length + ' opciones</span><i aria-hidden="true">⌄</i></button></h3><div class="dobody" hidden>';
+    var h = '<h3><button type="button" class="dotog" aria-expanded="false"><span class="dot-t">Opciones del día</span><small class="dosum"></small><span class="dot-n">' + altDays[d].length + ' opciones</span><span class="mi chv" aria-hidden="true">expand_more</span></button></h3><div class="dobody" hidden>';
     var row = function (a, type) {
       var id = 'o-' + d + '-' + (a ? a.id : 'base'), sp = a ? spanTxt(a) : '';
       return '<label class="dopt" for="' + id + '"><input type="' + type + '" id="' + id + '" name="plan-' + d + '" value="' + (a ? a.id : '') + '">' +
@@ -2960,7 +3012,7 @@ html { scroll-padding-top: 4.5rem; }
     };
     ORDER.forEach(function (d) {
       var r = DAYREF[d], head = r.day.querySelector('.date');
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'dtog'; b.innerHTML = '<span aria-hidden="true">⌄</span>';
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'dtog'; b.innerHTML = '<span class="mi chv" aria-hidden="true">expand_more</span>';
       head.appendChild(b); r.tog = b;
       var pv = document.createElement('p'); pv.className = 'dprev'; head.insertAdjacentElement('afterend', pv); r.prev = pv;
       head.addEventListener('click', function (e) { if (e.target.closest('a')) return; setDay(d, r.day.classList.contains('collapsed')); save(); });
@@ -3006,7 +3058,7 @@ html { scroll-padding-top: 4.5rem; }
       while (h2.nextSibling) body.appendChild(h2.nextSibling);
       sec.appendChild(body);
       var b = document.createElement('button'); b.type = 'button'; b.className = 'stog';
-      b.innerHTML = '<span class="st-t"></span><span aria-hidden="true" class="chev">⌄</span>';
+      b.innerHTML = '<span class="st-t"></span><span aria-hidden="true" class="chev"><span class="mi chv">expand_more</span></span>';
       b.querySelector('.st-t').textContent = h2.textContent; h2.textContent = ''; h2.appendChild(b);
       var set = function (open) { sec.classList.toggle('sec-off', !open); b.setAttribute('aria-expanded', String(open)); (st.sec = st.sec || {})[x[0]] = open ? 1 : 0; };
       set(st.sec && st.sec[x[0]] !== undefined ? !!st.sec[x[0]] : x[1]);
@@ -3018,25 +3070,25 @@ html { scroll-padding-top: 4.5rem; }
   /* ---------- Iconografía: símbolos en lugar de texto donde el significado se sobreentiende ---------- */
   (function () {
     var ICO = {
-      act: '🎟️', trans: '🚗', fly: '✈️', food: '🍜', lodge: '🏨', tick: '🎟️', sleep: '🏨', tet: '🧧',
-      swap: '🔄', add: '➕'
+      act: 'confirmation_number', trans: 'directions_car', fly: 'flight', food: 'restaurant', lodge: 'hotel', tick: 'confirmation_number', sleep: 'hotel', tet: 'celebration',
+      swap: 'swap_horiz', add: 'add_circle'
     };
     var RULES = [
-      [/tiro/i, '🎯'], [/t[uú]neles/i, '🕳️'], [/clase de cocina|cocina vietnamita/i, '👩‍🍳'], [/tai chi/i, '🧘'],
-      [/masaje|spa\b/i, '💆'], [/fiesta|copas|discoteca|rooftop|bia h/i, '🍹'], [/fuegos|giao th/i, '🎆'],
-      [/vuelo|aterrizaje|despegue|aeropuerto|llegada a madrid/i, '✈️'], [/tren /i, '🚆'], [/ferry|barco|crucero|kayak|lancha|embarque|sampán|fondeo|desembarco/i, '🚤'],
-      [/caf[eé]|cà phê/i, '☕'], [/almuerzo|cena|desayuno|brunch|comida|phở|bún|pesca de calamares/i, '🍜'],
-      [/templo|pagoda|catedral|mausoleo|ciudadela|tumba|santuario|bái đính|linh phư/i, '🛕'],
-      [/museo|prisión|vestigios|teatro|marionetas|ópera/i, '🏛️'], [/compras|sastrer|mercado|bến thành|linternas/i, '🛍️'],
-      [/bici|ciclo/i, '🚲'], [/playa|mỹ khê|an bàng|surf/i, '🏖️'], [/cueva|gruta|karst|bahía|isla|hang m|tràng an|tam cốc|arrozales|lago|río|cascada|paso de|mirador|skydeck|landmark|bà nà|fansipan|sa pa|valle/i, '🏞️'],
-      [/check-in|hotel|descanso|maletas|alojamiento|homestay/i, '🧳'], [/salida|traslado|regreso|autobús|shuttle|coche|taxi|grab/i, '🚗'],
-      [/flores|calle de las/i, '🌸'], [/paseo|centro|casco|old quarter|distrito/i, '🚶']
+      [/tiro/i, 'target'], [/t[uú]neles/i, 'terrain'], [/clase de cocina|cocina vietnamita/i, 'soup_kitchen'], [/tai chi/i, 'self_improvement'],
+      [/masaje|spa\b/i, 'spa'], [/fiesta|copas|discoteca|rooftop|bia h/i, 'local_bar'], [/fuegos|giao th/i, 'celebration'],
+      [/vuelo|aterrizaje|despegue|aeropuerto|llegada a madrid/i, 'flight'], [/tren /i, 'train'], [/ferry|barco|crucero|kayak|lancha|embarque|sampán|fondeo|desembarco/i, 'directions_boat'],
+      [/caf[eé]|cà phê/i, 'local_cafe'], [/almuerzo|cena|desayuno|brunch|comida|phở|bún|pesca de calamares/i, 'restaurant'],
+      [/templo|pagoda|catedral|mausoleo|ciudadela|tumba|santuario|bái đính|linh phư/i, 'temple_buddhist'],
+      [/museo|prisión|vestigios|teatro|marionetas|ópera/i, 'museum'], [/compras|sastrer|mercado|bến thành|linternas/i, 'shopping_bag'],
+      [/bici|ciclo/i, 'directions_bike'], [/playa|mỹ khê|an bàng|surf/i, 'beach_access'], [/cueva|gruta|karst|bahía|isla|hang m|tràng an|tam cốc|arrozales|lago|río|cascada|paso de|mirador|skydeck|landmark|bà nà|fansipan|sa pa|valle/i, 'landscape'],
+      [/check-in|hotel|descanso|maletas|alojamiento|homestay/i, 'luggage'], [/salida|traslado|regreso|autobús|shuttle|coche|taxi|grab/i, 'directions_car'],
+      [/flores|calle de las/i, 'local_florist'], [/paseo|centro|casco|old quarter|distrito/i, 'directions_walk']
     ];
-    var iconFor = function (t) { for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(t)) return RULES[i][1]; return '📍'; };
+    var iconFor = function (t) { for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(t)) return RULES[i][1]; return 'place'; };
     var pre = function (el, ico) {
       if (!el || el.getAttribute('data-ic')) return;
       el.setAttribute('data-ic', '1');
-      var s = document.createElement('span'); s.className = 'ic'; s.setAttribute('aria-hidden', 'true'); s.textContent = ico;
+      if (!ico) return; var s = document.createElement('span'); s.className = 'ic mi'; s.setAttribute('aria-hidden', 'true'); s.textContent = ico;
       el.insertBefore(s, el.firstChild);
     };
     var decorate = function () {
@@ -3044,32 +3096,47 @@ html { scroll-padding-top: 4.5rem; }
       document.querySelectorAll('.chip.act, .chip.trans, .chip.fly, .chip.food').forEach(function (c) { pre(c, ICO[c.className.split(' ')[1]]); });
       document.querySelectorAll('.sum small').forEach(function (sm) {
         var t = sm.textContent.toLowerCase();
-        pre(sm, /entradas/.test(t) ? ICO.act : /transp/.test(t) ? ICO.trans : /vuelo/.test(t) ? ICO.fly : /comida/.test(t) ? ICO.food : /aloj/.test(t) ? ICO.lodge : '∑');
+        pre(sm, /entradas/.test(t) ? ICO.act : /transp/.test(t) ? ICO.trans : /vuelo/.test(t) ? ICO.fly : /comida/.test(t) ? ICO.food : /aloj/.test(t) ? ICO.lodge : 'functions');
       });
       document.querySelectorAll('.tab').forEach(function (b) { var k = b.className.split(' ')[1]; pre(b, ICO[k] || ''); });
-      document.querySelectorAll('.dinfo > summary b').forEach(function (b) { pre(b, 'ℹ️'); });
-      document.querySelectorAll('.dot-t').forEach(function (b) { pre(b, '🧭'); });
+      document.querySelectorAll('.dinfo > summary b').forEach(function (b) { pre(b, 'info'); });
+      document.querySelectorAll('.dot-t').forEach(function (b) { pre(b, 'tune'); });
       document.querySelectorAll('.ac-k').forEach(function (b) { pre(b, /Añade/.test(b.textContent) ? ICO.add : ICO.swap); });
-      document.querySelectorAll('.dopts legend').forEach(function (l) { pre(l, /Añadir/.test(l.textContent) ? ICO.add : '🔄'); });
-      document.querySelectorAll('.badge.lunar').forEach(function (b) { pre(b, '🌙'); });
-      document.querySelectorAll('.fl small').forEach(function (b) { pre(b, /Ida/.test(b.textContent) ? '🛫' : '🛬'); });
-      document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, '💶'); });
+      document.querySelectorAll('.dopts legend').forEach(function (l) { pre(l, /Añadir/.test(l.textContent) ? ICO.add : ICO.swap); });
+      document.querySelectorAll('.badge.lunar').forEach(function (b) { pre(b, 'dark_mode'); });
+      document.querySelectorAll('.fl small').forEach(function (b) { pre(b, /Ida/.test(b.textContent) ? 'flight_takeoff' : 'flight_land'); });
+      document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, 'payments'); });
       document.querySelectorAll('.nav a.txt').forEach(function (a) {
-        var m = { '#ruta': '🗺️', '#actividades': '✅', '#alternativas': '🔀', '#presupuesto': '💶', '#notas': '📝' }; pre(a, m[a.getAttribute('href')] || '');
+        var m = { '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
       });
       document.querySelectorAll('.stog .st-t').forEach(function (t) {
-        var s = t.textContent; pre(t, /ruta/i.test(s) ? '🗺️' : /actividades/i.test(s) ? '✅' : /alternativas/i.test(s) ? '🔀' : /presupuesto/i.test(s) ? '💶' : '');
+        var s = t.textContent; pre(t, /ruta/i.test(s) ? 'map' : /actividades/i.test(s) ? 'checklist' : /alternativas/i.test(s) ? 'alt_route' : /presupuesto/i.test(s) ? 'payments' : '');
       });
-      document.querySelectorAll('.altbar, .actbar').forEach(function (b) { pre(b, '📊'); });
+      document.querySelectorAll('.altbar, .actbar').forEach(function (b) { pre(b, 'bar_chart'); });
       document.querySelectorAll('.altgrp h3').forEach(function (h) {
-        var t = h.textContent, m = [[/Compras/, '🛍️'], [/fiesta/, '🍹'], [/Excursiones/, '🚐'], [/Cruceros/, '🚢'], [/norte/, '🏔️'], [/Antes/, '🧳'], [/Plan B/, '🧧'], [/Huế/, '🏯'], [/Hội An/, '🏮'], [/Hà Nội/, '🏙️'], [/Ninh/, '⛰️'], [/Ho Chi Minh/, '🌆']];
+        var t = h.textContent, m = [[/Compras/, 'shopping_bag'], [/fiesta/, 'local_bar'], [/Excursiones/, 'airport_shuttle'], [/Cruceros/, 'directions_boat'], [/norte/, 'landscape'], [/Antes/, 'luggage'], [/Plan B/, 'celebration'], [/Huế/, 'temple_buddhist'], [/Hội An/, 'festival'], [/Hà Nội/, 'location_city'], [/Ninh/, 'landscape'], [/Ho Chi Minh/, 'location_city']];
         for (var i = 0; i < m.length; i++) if (m[i][0].test(t)) { pre(h, m[i][1]); return; }
       });
-      document.querySelectorAll('.dpr.pos, .dpr.neg').forEach(function () {});
     };
     var prev = afterRender;
     afterRender = function () { if (prev) prev(); decorate(); };
     decorate();
+  })();
+
+  /* ---------- Menú modal de secciones ---------- */
+  (function () {
+    var dlg = document.getElementById('menuDlg'), btn = document.getElementById('menuBtn');
+    if (!dlg || !dlg.showModal) { btn.hidden = true; return; }
+    var fill = function () {
+      var n = document.querySelectorAll('#altList .altcard.on').length, t = document.querySelector('#budgetTiles .tile.main b'), bar = document.getElementById('actBar');
+      var q = function (k) { return dlg.querySelector('[data-k="' + k + '"]'); };
+      q('alt').textContent = n ? n + (n > 1 ? ' elegidas' : ' elegida') + ' · cambiar o añadir' : 'Cambiar o añadir';
+      if (t) q('bud').textContent = 'Total con vuelo ' + t.textContent + ' p. p.';
+      if (bar) { var b = bar.querySelector('b'); if (b) q('act').textContent = b.textContent + ' marcadas'; }
+    };
+    btn.addEventListener('click', function () { fill(); dlg.showModal(); });
+    dlg.querySelector('.mclose').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target.closest('a.mopt')) dlg.close(); });
   })();
 })();
 </script>
