@@ -168,6 +168,30 @@ details.opts > summary small { color: var(--muted); font-weight: 500; }
 .msg { padding: 20px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); }
 footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-size: .85rem; }
 
+/* Reservar y descargar */
+details.dl { position: relative; }
+details.dl > summary { list-style: none; }
+details.dl > summary::-webkit-details-marker { display: none; }
+.dlm { position: absolute; right: 0; top: calc(100% + 6px); z-index: 60; min-width: 260px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); padding: 6px; display: grid; }
+.dlm a, .dlm button { display: grid; grid-template-columns: 28px 1fr; column-gap: 8px; text-align: left; padding: 8px 10px; border: 0; background: none; border-radius: 10px; cursor: pointer; min-height: 48px; align-items: center; text-decoration: none; }
+.dlm a:hover, .dlm button:hover { background: color-mix(in srgb, var(--gold) 14%, transparent); }
+.dlm .mi { grid-row: span 2; font-size: 1.5rem; color: var(--gold); }
+.dlm small { color: var(--muted); font-size: .78rem; }
+.dlm hr { border: 0; border-top: 1px solid var(--line); margin: 4px 6px; }
+.dlm button:disabled { opacity: .5; cursor: progress; }
+.bklist { list-style: none; margin: 0; padding: 0 14px 12px; display: grid; gap: 8px; }
+.bklist li { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.bklist li > div { flex: 1 1 200px; min-width: 0; }
+.bklist b { display: block; font-size: .92rem; line-height: 1.25; }
+.bklist small { color: var(--muted); font-size: .8rem; }
+.bklist .bi { font-size: 1.5rem; color: var(--gold); }
+.bklist li.isdone { opacity: .6; }
+.btn.mini { min-height: 38px; padding: 0 12px; font-size: .8rem; }
+.btn.ghost { background: none; }
+.btn.best { background: var(--red); border-color: var(--red); color: var(--on-red); }
+.done { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 6px; cursor: pointer; font-size: .85rem; font-weight: 700; }
+.done input { width: 22px; height: 22px; accent-color: var(--jade); cursor: pointer; }
+
 @media (max-width: 960px) {
   .grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .mapcol { order: -1; position: sticky; top: var(--hdr); z-index: 30; height: 36vh; min-height: 230px; margin-inline: -16px; border-radius: 0; border-inline: 0; }
@@ -202,6 +226,7 @@ footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-s
         <button type="button" id="mMine" aria-pressed="true" title="Con las alternativas que habéis elegido en la web principal"><span class="mi" aria-hidden="true">star</span>Mi elección</button>
         <button type="button" id="mBase" aria-pressed="false" title="Solo el plan base, sin alternativas"><span class="mi" aria-hidden="true">route</span>Plan base</button>
       </div>
+      <details class="dl" id="rsDl"><summary class="ibtn" aria-label="Reservar y descargar" title="Reservar y descargar"><span class="mi" aria-hidden="true">shopping_cart</span></summary><div class="dlm" role="menu"><a href="estancia.html" role="menuitem"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small>Dónde dormir, por precios</small></a><a href="transporte.html" role="menuitem"><span class="mi" aria-hidden="true">directions_transit</span><b>Transporte</b><small>Vuelos, trenes y traslados</small></a><a href="eventos.html" role="menuitem"><span class="mi" aria-hidden="true">confirmation_number</span><b>Eventos</b><small>Entradas y excursiones</small></a><hr><button type="button" role="menuitem" data-fmt="ics"><span class="mi" aria-hidden="true">calendar_month</span><b>Descargar calendario (.ics)</b><small>Del itinerario seleccionado</small></button><button type="button" role="menuitem" data-fmt="txt"><span class="mi" aria-hidden="true">description</span><b>Descargar texto (.txt)</b><small>Día a día, para leer o imprimir</small></button></div></details>
       <button type="button" class="ibtn" id="btnDet" aria-pressed="false" aria-label="Mostrar todos los detalles" title="Mostrar u ocultar los detalles de cada parada"><span class="mi" aria-hidden="true">notes</span></button>
       <button type="button" class="ibtn" id="themeBtn" aria-label="Cambiar entre modo claro y nocturno" title="Modo claro o nocturno"><span class="mi" aria-hidden="true">contrast</span></button>
     </div>
@@ -229,6 +254,7 @@ footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-s
 <noscript><p class="wrap msg">Esta página necesita JavaScript.</p></noscript>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/book.js"></script>
 <script>
 (function () {
   var P = VN.P, MAPS = VN.MAPS, EVP = VN.EVP, COST = VN.COST, NAMES = VN.NAMES, ALTS = VN.ALTS;
@@ -494,9 +520,11 @@ footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-s
       var pills = (d.badge ? '<span class="pill tet">' + esc(d.badge) + '</span>' : '') + (sw ? '<span class="pill ok"><span class="mi" aria-hidden="true">swap_horiz</span>Alternativa</span>' : '') + (adds.length ? '<span class="pill ok"><span class="mi" aria-hidden="true">add</span>' + adds.length + (adds.length > 1 ? ' extras' : ' extra') + '</span>' : '');
       var banner = sw ? '<p class="banner"><b>Plan elegido: ' + sw.title + '.</b> Sustituye al plan base de este día.</p>' : '';
       var optsH = opts.length ? '<details class="opts"' + (showAll ? ' open' : '') + '><summary><span class="mi" aria-hidden="true">alt_route</span>Otras opciones <small>' + opts.length + ' · alternativas y extras de este día</small><span class="mi chv" aria-hidden="true">expand_more</span></summary><div class="ocards">' + opts.map(function (a) { return optH(a, d); }).join('') + '</div></details>' : '';
+      var bk = VNB.dayHtml(d.id), nb = bk ? (bk.match(/<li>/g) || []).length : 0;
+      var bkH = bk ? '<details class="opts"><summary><span class="mi" aria-hidden="true">shopping_cart</span>Reservar para este día <small>' + nb + (nb > 1 ? ' cosas' : ' cosa') + ' · alojamiento, transporte y entradas</small><span class="mi chv" aria-hidden="true">expand_more</span></summary>' + bk + '</details>' : '';
       return '<section class="tday" id="d-' + d.id + '" style="--z: var(' + z[1] + ')" data-day="' + d.id + '"><button type="button" class="tdh" data-sel="' + d.id + '" aria-label="Ver ' + NAMES[d.id] + ' en el mapa"><span class="tdn"><small>' + esc(d.dow.slice(0, 3)) + '</small><b>' + esc(d.num) + '</b></span>' +
         '<span class="tdt"><b>' + esc(d.place) + '</b><small>' + z[0] + ' · ' + items.length + ' paradas</small></span><span class="tdp">' + pills + '</span></button>' + banner +
-        '<ol class="tl">' + items.map(function (i) { return evH(i); }).join('') + '</ol>' + optsH + '</section>';
+        '<ol class="tl">' + items.map(function (i) { return evH(i); }).join('') + '</ol>' + optsH + bkH + '</section>';
     }).join('');
     $('sum').innerHTML = '<span><b>' + DAYS.length + '</b> días</span><span><b>' + totalStops + '</b> paradas en el mapa</span><span>' + (mode === 'mine' ? '<b>' + nSel + '</b> alternativas elegidas' : 'Plan base, sin alternativas') + '</span>';
     document.body.classList.toggle('showall', showAll);
@@ -551,9 +579,9 @@ footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-s
   $('btnAll').addEventListener('click', function () { preview = null; showOverview(); });
   $('mMine').addEventListener('click', function () { setMode('mine'); });
   $('mBase').addEventListener('click', function () { setMode('base'); });
-  var setMode = function (m) { mode = m; try { localStorage.setItem(MK, m); } catch (e) {} preview = null; render(); rewatch(); if (!curDay) showOverview(); };
+  var setMode = function (m) { mode = m; VNB.setMode(m); try { localStorage.setItem(MK, m); } catch (e) {} preview = null; render(); rewatch(); if (!curDay) showOverview(); };
   $('btnDet').addEventListener('click', function () { showAll = !showAll; render(); rewatch(); });
-  window.addEventListener('storage', function (e) { if (e.key === SK) { sel = loadSel(); render(); rewatch(); if (!curDay) showOverview(); } });
+  window.addEventListener('storage', function (e) { if (e.key === SK) { sel = loadSel(); VNB.reload(); render(); rewatch(); if (!curDay) showOverview(); } });
   /* En móvil el mapa se puede plegar */
   var syncMin = function () { $('btnMin').hidden = !mm.matches; if (!mm.matches) $('mapCol').classList.remove('min'); };
   if (mm.addEventListener) mm.addEventListener('change', syncMin); syncMin();
@@ -570,6 +598,10 @@ footer.f { text-align: center; padding: 24px 0 50px; color: var(--muted); font-s
 
   /* ---------- Arranque ---------- */
   $('legend').innerHTML = Object.keys(ZONES).map(function (k) { return '<li style="--c: var(' + ZONES[k][1] + ')">' + ZONES[k][0] + '</li>'; }).join('') + '<li class="alt">Línea discontinua: alternativa o vuelo</li>';
+  VNB.setMode(mode); VNB.bind($('tlDays'));
+  document.getElementById('rsDl').addEventListener('click', function (e) { var b = e.target.closest('[data-fmt]'); if (!b) return; b.disabled = true; var dd = this; VNBdl(b.dataset.fmt).then(function () { b.disabled = false; dd.open = false; }); });
+  var VNBdl = function (f) { return VNB.download(f).catch(function () { alert('No se ha podido preparar la descarga.'); }); };
+  document.addEventListener('click', function (e) { var dd = document.getElementById('rsDl'); if (!dd.contains(e.target)) dd.open = false; });
   var hasMap = initMap();
   fetch('index.html').then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (html) {
     parse(html);

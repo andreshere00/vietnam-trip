@@ -615,6 +615,30 @@ html { scroll-padding-top: 4.5rem; }
 .ac-pref { display: inline-flex; align-items: center; gap: .15rem; font-size: .74rem; font-weight: 700; color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); background: color-mix(in srgb, var(--gold) 12%, var(--surface)); padding: .1rem .5rem .1rem .3rem; border-radius: 999px; white-space: nowrap; }
 .ac-pref .mi { font-size: 1rem; }
 .dpref { color: var(--gold); font-size: 1.1rem; margin-right: .2rem; vertical-align: -.2em; }
+
+/* Reservar y descargar */
+.reservas { padding-block: 1rem 2.5rem; scroll-margin-top: 4.5rem; }
+.reservas h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .25rem; }
+.rgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .75rem; margin: 1rem 0; }
+.rcard { display: grid; grid-template-columns: 2.4rem 1fr; column-gap: .75rem; align-items: center; padding: .85rem 1rem; min-height: 4.5rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.rcard:hover { border-color: var(--gold); }
+.rcard .mi { grid-row: span 2; font-size: 2rem; color: var(--gold); }
+.rcard b { font-family: var(--display); font-size: 1.1rem; }
+.rcard small { color: var(--muted); font-size: .85rem; }
+.rtools { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; }
+.rtools .rprog { color: var(--muted); font-size: .92rem; }
+.rtools .rprog b { color: var(--fg); }
+details.dl { position: relative; }
+details.dl > summary { list-style: none; }
+details.dl > summary::-webkit-details-marker { display: none; }
+.rtools .btn { min-height: 2.75rem; padding: 0 1.1rem; border-radius: 1.4rem; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 700; font-size: .92rem; display: inline-flex; align-items: center; gap: .4rem; }
+.rtools .btn:hover { border-color: var(--gold); }
+.dlm { position: absolute; left: 0; top: calc(100% + .4rem); z-index: 40; min-width: 16rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); padding: .4rem; display: grid; }
+.dlm button { display: grid; grid-template-columns: 2rem 1fr; column-gap: .5rem; text-align: left; padding: .5rem .65rem; border: 0; background: none; border-radius: 10px; cursor: pointer; min-height: 3.25rem; align-items: center; font: inherit; color: inherit; }
+.dlm button:hover { background: color-mix(in srgb, var(--gold) 14%, transparent); }
+.dlm button .mi { grid-row: span 2; font-size: 1.5rem; color: var(--gold); }
+.dlm button small { color: var(--muted); font-size: .78rem; }
+.dlm button:disabled { opacity: .5; cursor: progress; }
 </style>
 </head>
 <body>
@@ -626,6 +650,7 @@ html { scroll-padding-top: 4.5rem; }
     <a class="mopt" href="itinerario.html"><span class="mi" aria-hidden="true">timeline</span><b>Línea de tiempo</b><small>Días, opciones y mapa en otra página</small></a>
     <a class="mopt" href="#actividades"><span class="mi" aria-hidden="true">checklist</span><b>Actividades</b><small data-k="act">Lista para marcar</small></a>
     <a class="mopt" href="#alternativas"><span class="mi" aria-hidden="true">alt_route</span><b>Alternativas</b><small data-k="alt">Cambiar o añadir</small></a>
+    <a class="mopt" href="#reservas"><span class="mi" aria-hidden="true">shopping_cart</span><b>Reservar</b><small data-k="res">Estancia, transporte y eventos</small></a>
     <a class="mopt" href="#presupuesto"><span class="mi" aria-hidden="true">payments</span><b>Presupuesto</b><small data-k="bud">Total y por día</small></a>
     <a class="mopt" href="#notas"><span class="mi" aria-hidden="true">sticky_note_2</span><b>Notas</b><small>Clima, qué llevar y por qué este orden</small></a>
   </nav>
@@ -708,6 +733,7 @@ html { scroll-padding-top: 4.5rem; }
       <li><a class="txt" href="itinerario.html">Línea de tiempo</a></li>
       <li><a class="txt" href="#actividades">Actividades</a></li>
       <li><a class="txt" href="#alternativas">Alternativas</a></li>
+      <li><a class="txt" href="#reservas">Reservar</a></li>
       <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
       <li><a class="txt" href="#notas">Notas</a></li>
     </ul>
@@ -980,6 +1006,17 @@ html { scroll-padding-top: 4.5rem; }
   <div id="altList"></div>
 </section>
 
+<section class="wrap reservas" id="reservas" aria-labelledby="res-h">
+  <h2 id="res-h">Reservar y descargar</h2>
+  <p class="sub">Tres páginas con lo que hay que comprar según el itinerario que hayáis elegido, y el mejor sitio para cada cosa. Si cambiáis las alternativas, las listas cambian con ellas.</p>
+  <div class="rgrid">
+    <a class="rcard" href="estancia.html"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small id="rsStay">Dónde dormir, por categorías de precio</small></a>
+    <a class="rcard" href="transporte.html"><span class="mi" aria-hidden="true">directions_transit</span><b>Transporte</b><small id="rsLeg">Vuelos, trenes, autobuses y traslados</small></a>
+    <a class="rcard" href="eventos.html"><span class="mi" aria-hidden="true">confirmation_number</span><b>Eventos</b><small id="rsEv">Entradas, excursiones y extras</small></a>
+  </div>
+  <div class="rtools"><span id="dlMount"></span><span class="rprog" id="rsProg"></span></div>
+</section>
+
 <section class="wrap budget" id="presupuesto">
   <h2>Presupuesto estimado</h2>
   <p class="sub">Euros por persona, para tres viajeros que comparten habitación triple, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
@@ -1071,6 +1108,7 @@ html { scroll-padding-top: 4.5rem; }
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/book.js"></script>
 <script>
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
@@ -2686,7 +2724,7 @@ html { scroll-padding-top: 4.5rem; }
       document.querySelectorAll('.fl small').forEach(function (b) { pre(b, /Ida/.test(b.textContent) ? 'flight_takeoff' : 'flight_land'); });
       document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, 'payments'); });
       document.querySelectorAll('.nav a.txt').forEach(function (a) {
-        var m = { 'itinerario.html': 'timeline', '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
+        var m = { 'itinerario.html': 'timeline', '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#reservas': 'shopping_cart', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
       });
       document.querySelectorAll('.stog .st-t').forEach(function (t) {
         var s = t.textContent; pre(t, /ruta/i.test(s) ? 'map' : /actividades/i.test(s) ? 'checklist' : /alternativas/i.test(s) ? 'alt_route' : /presupuesto/i.test(s) ? 'payments' : '');
@@ -2716,6 +2754,23 @@ html { scroll-padding-top: 4.5rem; }
     btn.addEventListener('click', function () { fill(); dlg.showModal(); });
     dlg.querySelector('.mclose').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target.closest('a.mopt')) dlg.close(); });
+  })();
+
+  /* ---------- Reservar y descargar ---------- */
+  (function () {
+    VNB.mountDownload(document.getElementById('dlMount'));
+    var upd = function () {
+      VNB.reload();
+      var c = VNB.counts(), q = function (id, t) { document.getElementById(id).textContent = t; };
+      q('rsStay', c.stays + (c.stays === 1 ? ' alojamiento' : ' alojamientos') + ' · 4 categorías de precio');
+      q('rsLeg', c.legs + (c.legs === 1 ? ' traslado' : ' traslados') + ' con 2–3 opciones');
+      q('rsEv', c.events + ' entradas y excursiones');
+      document.getElementById('rsProg').innerHTML = '<b>' + c.done + '</b> de <b>' + c.total + '</b> reservas hechas';
+      var m = document.querySelector('#menuDlg [data-k="res"]'); if (m) m.textContent = c.done + ' de ' + c.total + ' hechas';
+    };
+    var prev = afterRender;
+    afterRender = function () { if (prev) prev(); upd(); };
+    upd();
   })();
 
   /* ---------- Clima: medias históricas de febrero por zona (aproximadas, no es una previsión) ---------- */
