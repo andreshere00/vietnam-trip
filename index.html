@@ -611,6 +611,10 @@ html { scroll-padding-top: 4.5rem; }
 .wxl { display: inline-flex; align-items: center; gap: .25rem; margin-top: .2rem; font-size: .82rem; font-weight: 700; color: var(--w); font-variant-numeric: tabular-nums; }
 .wxl .mi { font-size: 1.1rem; }
 @media (max-width: 760px) { .date .dwxb { grid-column: 1 / -1; grid-row: 4; justify-self: start; margin: 0; } .date .dwxb + .daytotal { grid-row: 3; } .dwx { padding: .6rem .7rem; } .wxi { font-size: 1.7rem; } }
+
+.ac-pref { display: inline-flex; align-items: center; gap: .15rem; font-size: .74rem; font-weight: 700; color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); background: color-mix(in srgb, var(--gold) 12%, var(--surface)); padding: .1rem .5rem .1rem .3rem; border-radius: 999px; white-space: nowrap; }
+.ac-pref .mi { font-size: 1rem; }
+.dpref { color: var(--gold); font-size: 1.1rem; margin-right: .2rem; vertical-align: -.2em; }
 </style>
 </head>
 <body>
@@ -959,7 +963,7 @@ html { scroll-padding-top: 4.5rem; }
   <h2 id="alt-h">Alternativas y extras</h2>
   <p class="sub">Elegid lo que más os apetezca: compras, fiesta, excursiones, cruceros y escapadas al norte. Cada alternativa aparece también dentro de su día, y el presupuesto se recalcula al elegir. Se guardan en este navegador.</p>
   <div class="altbar" id="altBar" aria-live="polite"></div>
-  <button type="button" class="altreset" id="altReset">Volver al plan base</button>
+  <button type="button" class="altreset" id="altReset">Restaurar elección recomendada</button>
   <div class="altbase">
     <h3>Ya está en el plan base</h3>
     <ul>
@@ -2481,7 +2485,7 @@ html { scroll-padding-top: 4.5rem; }
     { id: 'comp-sgn', kind: 'add', grp: 'Compras', title: 'Compras en el Distrito 1 de Ho Chi Minh', s: 'Centros comerciales y mercados antes de volar.',
       days: { sab20: { ev: [['17:30', 'Compras: Takashimaya, Saigon Square y Đồng Khởi', 'Saigon Square es de regateo (ropa, bolsos, souvenirs); Takashimaya y Vincom, de precio fijo y con aire acondicionado. Dejad la maleta en la consigna del hotel.', 'trans:3,note:Compras aparte; unos €30–80']] } } },
 
-    { id: 'fiesta-hoian', kind: 'add', grp: 'Salir de fiesta', title: 'Copas en Hội An o salida a Đà Nẵng', s: 'Cócteles junto al río o la noche de la playa de Đà Nẵng.',
+    { id: 'fiesta-hoian', pref: true, kind: 'add', grp: 'Salir de fiesta', title: 'Copas en Hội An o salida a Đà Nẵng', s: 'Cócteles junto al río o la noche de la playa de Đà Nẵng.',
       days: { jue11: { ev: [['21:30', 'Copas junto al río en Hội An o salida a Đà Nẵng', 'Hội An es tranquila de noche: cócteles y cerveza artesanal junto al río, música en directo y bares hasta medianoche. Para fiesta de verdad, Đà Nẵng está a 30 min en Grab, con bares, rooftops y discotecas junto a la playa de Mỹ Khê.', 'food:12,trans:5']] } } },
     { id: 'fiesta-hn', kind: 'add', grp: 'Salir de fiesta', title: 'Noche de fiesta en el Old Quarter', s: 'Tạ Hiện, calles peatonales y rooftops de Hà Nội.',
       days: { vie19: { ev: [['21:30', 'Fiesta en Tạ Hiện y en un rooftop del lago', 'El viernes por la noche las calles peatonales del lago Hoàn Kiếm y el Old Quarter se llenan: bia hơi en Tạ Hiện, bares y discotecas, y rooftops con vistas al lago (cócteles €5–9). Los locales cierran hacia la 1:00–2:00. Cuidado: el sábado hay que salir a las 6:45 hacia el aeropuerto (si volvéis de Sa Pa, llegáis hacia las 19:30 y la noche será corta).', 'food:15']] } } },
@@ -2542,7 +2546,7 @@ html { scroll-padding-top: 4.5rem; }
         ['16:30', 'Regreso a Hà Nội', 'Llegada hacia las 19:30.', ''],
         ['19:30', 'Cena en el Old Quarter', '', 'food:10']
       ], ex: { food: 4 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'sapa', kind: 'swap', grp: 'Escapadas al norte', title: 'Sa Pa: terrazas y Fansipan (2 días)', s: 'Sustituye el 18 y el 19: autobús a Sa Pa, aldeas de montaña, noche allí y teleférico al Fansipan. Se puede combinar con la fiesta del viernes 19 en Hà Nội.', noadd: true, okadd: ['fiesta-hn'],
+    { id: 'sapa', pref: true, kind: 'swap', grp: 'Escapadas al norte', title: 'Sa Pa: terrazas y Fansipan (2 días)', s: 'Sustituye el 18 y el 19: autobús a Sa Pa, aldeas de montaña, noche allí y teleférico al Fansipan. Se puede combinar con la fiesta del viernes 19 en Hà Nội.', noadd: true, okadd: ['fiesta-hn'],
       days: {
         jue18: { ev: [
           ['7:00', 'Salida de Hà Nội hacia Sa Pa', 'Autobús limousine, 5–6 h por la autopista a Lào Cai. Reservad con antelación: en Tết se llenan.', 'trans:12'],
@@ -2739,8 +2743,10 @@ html { scroll-padding-top: 4.5rem; }
       a.c[d] = t;
     });
   });
-  var sel = {}, SK = 'vn-alts';
-  try { (JSON.parse(localStorage.getItem(SK) || '[]') || []).forEach(function (id) { if (ALT_BY[id]) sel[id] = 1; }); } catch (e) {}
+  var sel = {}, SK = 'vn-alts2';
+  var setDefaults = function () { sel = {}; ALTS.forEach(function (a) { if (a.pref) sel[a.id] = 1; }); };
+  setDefaults();
+  try { var raw = localStorage.getItem(SK); if (raw !== null) { sel = {}; (JSON.parse(raw) || []).forEach(function (id) { if (ALT_BY[id]) sel[id] = 1; }); } } catch (e) {}
   var swapFor = function (d) {
     for (var i = 0; i < ALTS.length; i++) if (ALTS[i].kind === 'swap' && sel[ALTS[i].id] && ALTS[i].days[d]) return ALTS[i];
     return null;
@@ -2787,7 +2793,7 @@ html { scroll-padding-top: 4.5rem; }
     var c = document.createElement('div'); c.className = 'altcard k-' + a.kind;
     var dk = Object.keys(a.days), ds = dk.length > 1 ? NAMES[dk[0]] + ' – ' + NAMES[dk[dk.length - 1]] : NAMES[dk[0]];
     var showDays = !dayId || dk.length > 1;
-    c.innerHTML = '<div class="ac-top"><span class="ac-k">' + NDAYS(a) + '</span>' + (showDays ? '<span class="ac-days">' + ds + '</span>' : '') + '<span class="ac-ok" hidden><span class="mi" aria-hidden="true">check</span>Elegida</span></div>' +
+    c.innerHTML = '<div class="ac-top"><span class="ac-k">' + NDAYS(a) + '</span>' + (a.pref ? '<span class="ac-pref"><span class="mi" aria-hidden="true">star</span>Predilecta</span>' : '') + (showDays ? '<span class="ac-days">' + ds + '</span>' : '') + '<span class="ac-ok" hidden><span class="mi" aria-hidden="true">check</span>Elegida</span></div>' +
       '<h4 class="ac-t">' + a.title + '</h4><p class="ac-s">' + a.s + '</p><p class="ac-w" hidden></p>' +
       '<div class="ac-f"><div class="ac-d"><b></b><small></small></div><button type="button" class="ac-b" aria-pressed="false"></button></div>';
     var b = c.querySelector('.ac-b');
@@ -2806,7 +2812,7 @@ html { scroll-padding-top: 4.5rem; }
     var row = function (a, type) {
       var id = 'o-' + d + '-' + (a ? a.id : 'base'), sp = a ? spanTxt(a) : '';
       return '<label class="dopt" for="' + id + '"><input type="' + type + '" id="' + id + '" name="plan-' + d + '" value="' + (a ? a.id : '') + '">' +
-        '<span class="dot"><b>' + (a ? a.title : 'Plan base') + (sp ? ' <i>' + sp + '</i>' : '') + '</b><small>' + (a ? a.s : 'El itinerario tal cual aparece abajo.') + '</small><em class="dwhy" hidden></em></span>' +
+        '<span class="dot"><b>' + (a && a.pref ? '<span class="mi dpref" aria-hidden="true" title="Predilecta">star</span>' : '') + (a ? a.title : 'Plan base') + (sp ? ' <i>' + sp + '</i>' : '') + '</b><small>' + (a ? a.s : 'El itinerario tal cual aparece abajo.') + '</small><em class="dwhy" hidden></em></span>' +
         '<span class="dpr"></span></label>';
     };
     if (swaps.length) h += '<fieldset><legend>Plan del día <span>elige uno</span></legend>' + row(null, 'radio') + swaps.map(function (a) { return row(a, 'radio'); }).join('') + '</fieldset>';
@@ -2846,7 +2852,7 @@ html { scroll-padding-top: 4.5rem; }
     list.appendChild(s);
   });
   document.getElementById('altReset').addEventListener('click', function () {
-    sel = {}; try { localStorage.removeItem(SK); } catch (e) {} render();
+    setDefaults(); try { localStorage.removeItem(SK); } catch (e) {} render();
   });
 
   var drawBudget = function () {
