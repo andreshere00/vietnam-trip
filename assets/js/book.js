@@ -1,5 +1,5 @@
-/* Reservas del viaje: estancia, transporte y eventos según el itinerario elegido, y descarga del itinerario.
-   Lo usan estancia.html, transporte.html, eventos.html, itinerario.html e index.html. Necesita assets/js/data.js (VN). */
+/* Reservas del viaje: estancia, transporte, eventos y comida según el itinerario elegido, y descarga del itinerario.
+   Lo usan estancia.html, transporte.html, eventos.html, comida.html, itinerario.html e index.html. Necesita assets/js/data.js (VN); comida.html, además, assets/js/food.js. */
 var VNB = (function () {
   'use strict';
   var NAMES = VN.NAMES, ALTS = VN.ALTS;
@@ -383,9 +383,9 @@ var VNB = (function () {
   };
 
   /* ================= PÁGINAS ================= */
-  var PG = { itinerario: ['itinerario.html', 'Línea de tiempo', 'timeline'], estancia: ['estancia.html', 'Estancia', 'hotel'], transporte: ['transporte.html', 'Transporte', 'directions_transit'], eventos: ['eventos.html', 'Eventos', 'confirmation_number'] };
-  var ACC = { itinerario: '--indigo', estancia: '--teal', transporte: '--red', eventos: '--gold' };
-  var HEAD = { estancia: ['Dónde dormir', 'hotel'], transporte: ['Cómo moveros', 'directions_transit'], eventos: ['Qué reservar', 'confirmation_number'] };
+  var PG = { itinerario: ['itinerario.html', 'Línea de tiempo', 'timeline'], estancia: ['estancia.html', 'Estancia', 'hotel'], transporte: ['transporte.html', 'Transporte', 'directions_transit'], eventos: ['eventos.html', 'Eventos', 'confirmation_number'], comida: ['comida.html', 'Comida', 'restaurant'] };
+  var ACC = { itinerario: '--indigo', estancia: '--teal', transporte: '--red', eventos: '--gold', comida: '--jade' };
+  var HEAD = { estancia: ['Dónde dormir', 'hotel'], transporte: ['Cómo moveros', 'directions_transit'], eventos: ['Qué reservar', 'confirmation_number'], comida: ['Dónde comer', 'restaurant'] };
   var mIcon = { flight: 'flight', search: 'travel_explore', train: 'train', bus: 'directions_bus', taxi: 'local_taxi', car: 'directions_car', walk: 'directions_walk' };
   var $ = function (id) { return document.getElementById(id); };
   var chrome = function (key, title, lead) {
@@ -397,6 +397,7 @@ var VNB = (function () {
       document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark'); try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
     });
     mountDownload($('dlMount'), 'ic');
+    var cur = document.querySelector('.tabs a[aria-current]'); if (cur && cur.scrollIntoView) { var tb = cur.parentNode; tb.scrollLeft = cur.offsetLeft - (tb.clientWidth - cur.offsetWidth) / 2; }
   };
   var summary = function () {
     var c = counts(), ch = chosen();
@@ -498,6 +499,48 @@ var VNB = (function () {
     summary(); bind($('app'));
   };
 
-  var boot = function (page) { ({ stay: pageStay, transport: pageTransport, events: pageEvents })[page](); };
-  return { boot: boot, counts: counts, dayHtml: dayHtml, mountDownload: mountDownload, download: download, bind: function (root) { root.addEventListener('change', function (e) { var i = e.target.closest('[data-done]'); if (i) toggle(i.dataset.done, i.checked); }); }, setMode: function (m) { mode = m; }, reload: loadSel, esc: esc };
+
+  /* ================= COMIDA ================= */
+  var FOOD_OK = {
+    hcm: function () { return true; }, hoian: function () { return true; }, hue: function () { return true; }, hanoi: function () { return true; }, ninh: function () { return true; },
+    mekong: function () { var w = swapFor('dom7'); return !w || w.id === 'mekong-full' || w.id === 'dom7-privado'; },
+    halong: function () { return !swapFor('mar16'); },
+    sapa: function () { return has('sapa'); }, hagiang: function () { return has('hagiang'); }, maichau: function () { return has('maichau'); },
+    catba: function () { return has('catba'); }, dalat: function () { return has('dalat'); }
+  };
+  var NOMAP = /^(Puestos|Cena |Comida en|Tortita|Marisco del|Lẩu)/;
+  var pageFood = function () {
+    chrome('comida', 'Comida', 'Dónde comer en cada zona de vuestro itinerario, en tres tramos de precio: callejero, medio y especial. Los lugares salen de guías públicas (Michelin, Fodor’s, Time Out y prensa vietnamita) y los precios son orientativos por persona. Si cambiáis las alternativas, las zonas cambian con ellas.');
+    var F = VNFOOD, zs = F.ZONES.filter(function (z) { return FOOD_OK[z.id](); }), flt = 0;
+    var mapA = function (sp, z) { return NOMAP.test(sp.n) ? '' : '<a class="btn mini" href="https://www.google.com/maps/search/?api=1&query=' + enc(sp.n + ' ' + z.city) + '" target="_blank" rel="noopener noreferrer"><span class="mi" aria-hidden="true">map</span>Ver en Google Maps<span class="mi" aria-hidden="true">open_in_new</span></a>'; };
+    var spotH = function (sp, z) {
+      return '<li class="spot"><div class="sh"><b>' + esc(sp.n) + '</b></div><p class="pillrow"><span class="pill">' + esc(sp.k) + '</span>' + (sp.tag ? '<span class="pill ok"><span class="mi" aria-hidden="true">verified</span>' + esc(sp.tag) + '</span>' : '') + '</p><p class="d">' + esc(sp.d) + '</p><p class="sm"><span><span class="mi" aria-hidden="true">payments</span>' + esc(sp.p) + ' p. p.</span>' + (sp.a ? '<span><span class="mi" aria-hidden="true">place</span>' + esc(sp.a) + '</span>' : '') + '</p>' + mapA(sp, z) + '</li>';
+    };
+    var zoneH = function (z) {
+      var lanes = F.TIERS.map(function (t) {
+        var ss = z.spots.filter(function (x) { return x.t === t.t; });
+        return '<div class="lane" data-t="' + t.t + '" style="--tz: var(' + t.z + ')"><h3><span class="kb">' + t.k + '</span>' + t.n + '</h3>' + (ss.length ? '<ul class="spots">' + ss.map(function (x) { return spotH(x, z); }).join('') + '</ul>' : '<p class="note">Nada destacado en este tramo de precio.</p>') + '</div>';
+      }).join('');
+      return '<section class="zone" id="food-' + z.id + '" style="--z: var(' + z.c + ')"><header class="zh"><span class="zi" aria-hidden="true"><span class="mi">' + z.ic + '</span></span><div><h2>' + esc(z.n) + '</h2><p class="meta"><span class="mi" aria-hidden="true">calendar_month</span>' + esc(z.when) + (z.alt ? ' <span class="pill pref"><span class="mi" aria-hidden="true">star</span>Alternativa elegida</span>' : '') + (z.tet ? ' <span class="pill tet"><span class="mi" aria-hidden="true">celebration</span>Tết: comprobad que abre</span>' : '') + '</p></div></header>' +
+        '<p class="dishes"><span class="dl"><span class="mi" aria-hidden="true">restaurant_menu</span>Qué probar</span>' + z.dishes.map(function (d) { return '<span class="dish">' + esc(d) + '</span>'; }).join('') + '</p><p class="note">' + esc(z.tip) + '</p><div class="lanes">' + lanes + '</div></section>';
+    };
+    var apply = function () {
+      var app = $('app');
+      app.querySelectorAll('.lane').forEach(function (l) { l.hidden = !!flt && +l.dataset.t !== flt; });
+      app.querySelectorAll('.tierleg button').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.f === flt)); });
+      app.classList.toggle('one', !!flt);
+    };
+    $('app').innerHTML = '<div class="best"><span class="mi" aria-hidden="true">verified</span><div><b>Cómo usar esta página</b><p>Elegid el tramo de precio y bajad a la zona donde estéis cada día. En cada ficha, «Ver en Google Maps» abre la búsqueda del sitio para ver reseñas recientes, fotos y el horario de hoy.</p></div></div>' +
+      '<p class="warn"><span class="mi" aria-hidden="true">celebration</span><span><b>Tết (5–10 de febrero):</b> muchos locales de barrio cierran entre 3 y 7 días porque sus dueños viajan a sus pueblos. Los puestos del centro, los sitios turísticos y los hoteles suelen seguir abiertos, pero comprobad siempre el horario antes de ir y tened un plan B (el restaurante del hotel o un supermercado).</span></p>' +
+      '<div class="tierleg" role="group" aria-label="Filtrar por precio"><button type="button" data-f="0" aria-pressed="true" style="--tz: var(--red)"><span class="kb">Todo</span><b>Los tres tramos</b><small>Ver todo junto</small></button>' + F.TIERS.map(function (t) { return '<button type="button" data-f="' + t.t + '" aria-pressed="false" style="--tz: var(' + t.z + ')"><span class="kb">' + t.k + '</span><b>' + t.n + '</b><small>' + t.d + '</small></button>'; }).join('') + '</div>' +
+      '<nav class="zchips" aria-label="Ir a una zona">' + zs.map(function (z) { return '<a href="#food-' + z.id + '" style="--z: var(' + z.c + ')"><span class="mi" aria-hidden="true">' + z.ic + '</span>' + esc(z.n) + '</a>'; }).join('') + '</nav>' +
+      zs.map(zoneH).join('') + '<p class="note">Los precios son estimaciones para una comida por persona (1 € ≈ 30.000 ₫) y las direcciones se indican solo cuando constan en una fuente. Las menciones de Michelin son de las guías de 2023–2025: comprobad la edición vigente. Los locales abren, cierran y cambian: confirmad antes de ir.</p>';
+    $('app').querySelector('.tierleg').addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; flt = +b.dataset.f; apply(); });
+    $('sum').innerHTML = '<span><b>' + zs.length + '</b> zonas según vuestro itinerario</span><span>' + (chosen().length ? '<b>' + chosen().length + '</b> alternativas elegidas' : 'Plan base') + ' · <a href="index.html#alternativas">cambiar</a></span>';
+    window.addEventListener('storage', function (e) { if (e.key === SK) location.reload(); });
+    hashScroll();
+  };
+
+  var boot = function (page) { ({ stay: pageStay, transport: pageTransport, events: pageEvents, food: pageFood })[page](); };
+  return { boot: boot, counts: counts, foodZone: function (id) { return FOOD_OK[id](); }, dayHtml: dayHtml, mountDownload: mountDownload, download: download, bind: function (root) { root.addEventListener('change', function (e) { var i = e.target.closest('[data-done]'); if (i) toggle(i.dataset.done, i.checked); }); }, setMode: function (m) { mode = m; }, reload: loadSel, esc: esc };
 })();
