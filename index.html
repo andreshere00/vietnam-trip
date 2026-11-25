@@ -2280,7 +2280,28 @@ html { scroll-padding-top: 4.5rem; }
         ['14:30', 'Bici hasta la playa de An Bàng', 'Paseo de 5 km entre arrozales y chiringuitos.', 'trans:2'],
         ['17:30', 'Atardecer en el río Hoài', 'Barcas con farolillos.', 'act:4'],
         ['19:30', 'Cena junto al río', '', 'food:12']
-      ], ex: { food: 5 }, room: 55, n: 'Hội An' } } }
+      ], ex: { food: 5 }, room: 55, n: 'Hội An' } } },
+    { id: 'hue-diario', kind: 'swap', grp: 'Huế', title: 'Huế en un día desde Hội An, sin mover las maletas', s: 'Os quedáis una noche más en el mismo hotel de Hội An y vais a Huế y a Hải Vân solo con mochila. El 13 voláis de Đà Nẵng a Hà Nội, no de Huế. Hay más horas de coche (7–8 h).', noadd: true,
+      days: {
+        vie12: { ev: [
+          ['6:30', 'Salida de Hội An hacia Huế por Hải Vân', 'Coche privado con conductor, ~3 h 30 min. Las maletas se quedan en el hotel de Hội An: solo mochila de día.', 'trans:55'],
+          ['9:00', 'Paso de Hải Vân y Lăng Cô', 'Parada en el mirador del paso y en la laguna.', ''],
+          ['10:45', 'Ciudadela Imperial (Đại Nội)', 'Puerta del Mediodía, salas del trono y jardines. Reservad 2–2,5 h; confirmad el horario de Tết.', 'act:7'],
+          ['13:00', 'Almuerzo en Huế', 'Bún bò Huế o bánh bèo.', 'food:12'],
+          ['14:30', 'Pagoda de Thiên Mụ', 'La torre de siete pisos sobre el río Perfume.', ''],
+          ['15:30', 'Tumba de Khải Định', 'Mosaicos de porcelana y vidrio.', 'act:5'],
+          ['16:30', 'Regreso a Hội An', 'Llegada hacia las 20:00.', ''],
+          ['20:30', 'Cena en Hội An', 'Cao lầu o bánh xèo.', 'food:12']
+        ], ex: { food: 5 }, room: 55, n: 'Hội An (misma habitación, sin cambiar de hotel)' },
+        sab13: { ev: [
+          ['9:00', 'Mañana libre en Hội An', 'Último paseo y desayuno sin prisa; pedid late check-out.', ''],
+          ['11:00', 'Traslado al aeropuerto de Đà Nẵng', 'Unos 45 min en coche o Grab.', 'trans:7'],
+          ['13:30', 'Vuelo Đà Nẵng → Hà Nội', '1 h 20 min; hay vuelos casi cada hora. Comprad pronto: en Tết suben.', 'fly:55'],
+          ['15:30', 'Llegada a Hà Nội y traslado al Old Quarter', '28 km desde Nội Bài, 45–60 min.', 'trans:7'],
+          ['19:00', 'Cena en el Old Quarter', 'Bún chả o phở.', 'food:10']
+        ], ex: { food: 5 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
+    { id: 'vie12-equipaje', kind: 'add', grp: 'Huế', title: 'Enviar las maletas por delante a Huế', s: 'Viajáis con mochila y las maletas llegan al hotel de Huế en otro vehículo.',
+      days: { vie12: { ev: [['8:00', 'Maletas enviadas al hotel de Huế', 'Pedid al hotel de Hội An que las mande con un taxi o furgoneta (€10–20 en total) o contratad el servicio de envío de equipaje; llegan a Huế antes que vosotros. Confirmad nombre y dirección del hotel y pagad solo al recibirlas.', 'trans:8']] } } }
   ];
 
   /* ---------- Alternativas: estado, tarjetas y recálculo ---------- */
