@@ -507,7 +507,7 @@ html { scroll-padding-top: 4.5rem; }
 .dtog[aria-expanded="false"] span { transform: translateY(-3px); }
 .day.collapsed > :not(.date):not(.dprev) { display: none !important; }
 .dprev { display: none; margin: 0; }
-.day.collapsed .dprev { display: block; padding: .55rem 1.5rem .7rem; font-size: .88rem; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.day.collapsed .dprev { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding: .55rem 1.5rem 0; margin-bottom: .7rem; font-size: .88rem; color: var(--muted); line-height: 1.55; max-height: calc(.55rem + 3.1em); }
 .dprev span + span::before { content: " · "; }
 .dprev i { font-style: normal; font-weight: 700; color: var(--a); font-variant-numeric: tabular-nums; }
 .day.collapsed .date { border-bottom: 1px dashed var(--line); }
@@ -531,7 +531,20 @@ html { scroll-padding-top: 4.5rem; }
 .compact .ev { padding-block: .4rem; }
 .compact .ev h3 { font-size: 1rem; margin: 0; }
 .compact .dopt small { display: none; }
-@media (max-width: 640px) { .viewbar { top: 3.6rem; } .vb-l { width: 100%; } .day.collapsed .dprev { padding-inline: 1rem; } }
+@media (max-width: 760px) {
+  .viewbar { top: 3.6rem; padding: .45rem .5rem; gap: .35rem; }
+  .vb-l, .vb-x { display: none; }
+  .viewbar button { font-size: .82rem; padding: .2rem .6rem; min-height: 2.25rem; }
+  .viewbar .seg { margin-left: auto; }
+  .day.collapsed .dprev { padding-inline: 1rem; }
+  .date { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: .75rem; row-gap: .2rem; align-items: center; padding: .7rem 1rem; }
+  .num { grid-column: 1; grid-row: 1 / 3; font-size: 2.2rem; }
+  .dow { grid-column: 2; grid-row: 1; font-size: .72rem; }
+  .place { grid-column: 2; grid-row: 2; font-size: .9rem; line-height: 1.25; }
+  .dtog { grid-column: 3; grid-row: 1 / 3; margin: 0; }
+  .date .badge { grid-column: 1 / 3; grid-row: 3; justify-self: start; font-size: .62rem; }
+  .daytotal { grid-column: 2 / 4; grid-row: 3; justify-self: end; margin: 0; font-size: .8rem; padding: .1rem .5rem; }
+}
 </style>
 </head>
 <body>
@@ -2929,7 +2942,7 @@ html { scroll-padding-top: 4.5rem; }
     /* Barra sobre los días */
     var days = document.querySelector('.days');
     var bar = document.createElement('div'); bar.className = 'viewbar';
-    bar.innerHTML = '<span class="vb-l">Itinerario</span><button type="button" data-a="open">Desplegar todos</button><button type="button" data-a="close">Plegar todos</button>' +
+    bar.innerHTML = '<span class="vb-l">Itinerario</span><button type="button" data-a="open">Desplegar<span class="vb-x"> todos</span></button><button type="button" data-a="close">Plegar<span class="vb-x"> todos</span></button>' +
       '<span class="seg" role="group" aria-label="Nivel de detalle"><button type="button" data-v="f" aria-pressed="true">Detallado</button><button type="button" data-v="c" aria-pressed="false">Compacto</button></span>';
     days.insertBefore(bar, days.firstChild);
     /* Días */
