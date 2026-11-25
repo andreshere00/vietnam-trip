@@ -254,6 +254,7 @@ var VNB = (function () {
     s.forEach(function (x) { n++; if (done[x.id]) d++; });
     l.forEach(function (x) { n++; if (done[x.stuff]) d++; });
     e.forEach(function (x) { n++; if (done['ev-' + x.id]) d++; });
+    n++; if (done.seguro) d++;
     return { stays: s.length, legs: l.length, events: e.length, total: n, done: d };
   };
   var forDay = function (d) {
@@ -429,10 +430,36 @@ var VNB = (function () {
     summary(); bind($('app')); hashScroll();
   };
 
+
+  /* Seguro de viaje: tres niveles, con enlaces a la web de cada aseguradora (sin cotizar; los precios son orientativos) */
+  var INS = [
+    { k: 'esencial', n: 'Esencial', p: '~€20–45 p. p.', d: 'Solo asistencia médica en el extranjero, repatriación y accidentes. Sin cancelación ni equipaje amplio.',
+      pts: ['Gastos médicos de al menos 100.000 €', 'Repatriación sanitaria', 'Urgencias, hospitalización y medicinas'],
+      links: [L('IATI Seguros', 'https://www.iatiseguros.com/'), L('Intermundial', 'https://www.intermundial.es/')] },
+    { k: 'completo', n: 'Completo', p: '~€55–110 p. p.', d: 'Asistencia médica alta, equipaje, retrasos y cancelación por causas justificadas (enfermedad, accidente, etc.). La opción equilibrada.', best: true,
+      pts: ['Gastos médicos de 150.000 € o más', 'Anulación por causas cubiertas, hasta ~€1.500–3.000 p. p.', 'Equipaje, demoras y pérdida de conexiones'],
+      links: [L('IATI Seguros', 'https://www.iatiseguros.com/', 1), L('Heymondo', 'https://www.heymondo.es/'), L('Mapfre', 'https://www.mapfre.es/particulares/seguros-viaje/')] },
+    { k: 'premium', n: 'Premium', p: '~€110–200 p. p.', d: 'Como el completo, con mayor límite de anulación y más motivos cubiertos. Merece la pena si no queréis perder lo ya pagado por ninguna razón razonable.',
+      pts: ['Gastos médicos muy altos (cientos de miles de euros o más)', 'Anulación con límites altos y motivos ampliados', 'Deportes de aventura y más equipaje'],
+      links: [L('IATI Anulación Premium', 'https://www.iatiseguros.com/seguros-viaje/38897/iati-anulacion-premium/', 1), L('Allianz', 'https://www.allianz-assistance.es/'), L('Heymondo', 'https://www.heymondo.es/')] }
+  ];
+  var insHtml = function () {
+    var warn = [];
+    if (has('hagiang')) warn.push('<b>Hà Giang Loop en moto:</b> muchas pólizas excluyen la moto sin carnet adecuado, o el uso de motos de más de 125 cc. Comprobad la letra pequeña o escoged un conductor local.');
+    if (has('sapa')) warn.push('<b>Fansipan y trekking:</b> subir por sendero o a más de 3.000 m puede contar como deporte de aventura; confirmadlo en la póliza.');
+    return '<section class="card' + (done.seguro ? ' isdone' : '') + '" id="seguro" style="--z: var(--red)"><header class="ch"><div><h2>Seguro de viaje</h2><p class="meta"><span class="mi" aria-hidden="true">health_and_safety</span>Para los tres, <b>5–21 de febrero</b> (17 días) · contratadlo antes de salir</p></div>' + checkH('seguro', 'Contratado') + '</header>' +
+      '<p class="warn"><span class="mi" aria-hidden="true">schedule</span><span><b>Cuanto antes mejor:</b> los vuelos ya están comprados. Muchas aseguradoras dan la cobertura de cancelación completa si contratáis en las 24 h posteriores a la reserva o en pocos días; pasado ese plazo suele haber carencia (por ejemplo, 7 días). Mirad el plazo exacto de cada póliza antes de pagar.</span></p>' +
+      '<p class="note">En Vietnam no sirve la tarjeta sanitaria europea: la sanidad privada es cara y la evacuación aún más, así que la asistencia médica es lo que más importa. Los precios son estimaciones para 17 días y no están en el presupuesto base.</p>' +
+      warn.map(function (w) { return '<p class="warn"><span class="mi" aria-hidden="true">warning</span><span>' + w + '</span></p>'; }).join('') +
+      '<div class="tiers t3">' + INS.map(function (t) {
+        return '<div class="tier' + (t.best ? ' base' : '') + '"><div class="th"><b>' + t.n + '</b>' + (t.best ? '<span class="pill">Recomendado</span>' : '') + '</div><p class="price">' + t.p + '</p><p class="d">' + t.d + '</p><ul class="pts">' + t.pts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul><div class="lks">' + t.links.map(function (l, i) { return linkA(l, 'btn mini' + (i === 0 ? ' primary' : '')); }).join('') + '</div></div>';
+      }).join('') + '</div></section>';
+  };
+
   var pageTransport = function () {
-    chrome('transporte', 'Transporte', 'Cada traslado de vuestro itinerario con dos o tres formas de hacerlo, su precio y dónde comprarlo. Los billetes de tren se suelen abrir unos 60 días antes de la salida (confirmadlo en la web de Vietnam Railways).');
+    chrome('transporte', 'Transporte', 'El seguro de viaje y cada traslado de vuestro itinerario, con dos o tres formas de hacerlo, su precio y dónde comprarlo. Los billetes de tren se suelen abrir unos 60 días antes de la salida (confirmadlo en la web de Vietnam Railways).');
     var ls = legs();
-    $('app').innerHTML = '<div class="best"><span class="mi" aria-hidden="true">verified</span><div><b>Mejor sitio para comprar</b><p><b>Vuelos:</b> comparad en Google Flights o Skyscanner y comprad en la web de la aerolínea. <b>Tren:</b> la web oficial de Vietnam Railways o un agente autorizado como Vexere (más fácil con tarjeta extranjera). <b>Autobús y traslados:</b> 12Go o Klook. <b>Ciudad:</b> Grab.</p></div></div>' +
+    $('app').innerHTML = '<div class="best"><span class="mi" aria-hidden="true">verified</span><div><b>Mejor sitio para comprar</b><p><b>Vuelos:</b> comparad en Google Flights o Skyscanner y comprad en la web de la aerolínea. <b>Tren:</b> la web oficial de Vietnam Railways o un agente autorizado como Vexere (más fácil con tarjeta extranjera). <b>Autobús y traslados:</b> 12Go o Klook. <b>Ciudad:</b> Grab. <b>Seguro:</b> contratadlo ya, antes de nada más (ver abajo).</p></div></div>' + insHtml() +
       ls.map(function (l) {
         return '<section class="card' + (done[l.stuff] ? ' isdone' : '') + '" id="' + l.stuff + '" style="--z: var(' + (l.d ? '--teal' : '--muted') + ')"><header class="ch"><div><h2>' + esc(l.t) + '</h2><p class="meta"><span class="mi" aria-hidden="true">calendar_month</span>' + (l.d ? '<b>' + longD(l.d) + '</b> · ' : '') + esc(l.s) + '</p></div>' + checkH(l.stuff) + '</header><div class="opts">' +
           l.opts.map(function (o) {
