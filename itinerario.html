@@ -297,23 +297,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
     if (P[k]) return { k: k, lon: P[k].lon, lat: P[k].lat, l: P[k].l, full: P[k].full, ap: false };
     var x = XP[k]; return x ? { k: k, lon: x[0], lat: x[1], l: x[2], full: x[3], ap: true } : null;
   };
-  /* Punto de cada evento de una alternativa, en el orden de sus eventos */
-  var AG = {
-    'mekong-full': { dom7: ['myt', 'ton', null, 'bt', 'hsg', null] }, cuchi: { dom7: [null, 'cuchi', 'cuchi', null, null, null] },
-    dalat: { dom7: ['sgn', 'dlk', 'linhphuoc', 'dalat', 'datanla', 'dlk', 'hsg'] },
-    catba: { mar16: ['hnb', 'catba', 'viethai', 'lanha'], mie17: ['lanha', 'catba', null, 'hh2', 'hh2'] },
-    maichau: { jue18: ['hh2', 'poom', 'mc', 'mc', null, 'hh2'] },
-    sapa: { jue18: ['hh2', 'sapa', 'catcat', 'sapa'], vie19: ['fansipan', 'laochai', null, 'hh2'] },
-    hagiang: { mar16: ['hnb', 'hh2', 'hg', 'hg'], mie17: ['quanba', 'yenminh', 'dongvan', 'dongvan'], jue18: ['lungcu', 'meovac', null, 'duga', 'duga'], vie19: ['duga', 'hg', 'hg', 'hh2'] },
-    'mie10-banahills': { mie10: ['hh', 'bana', null, null, 'hh', null] }, 'mie10-thung': { mie10: ['thung'] },
-    'jue11-champan': { jue11: ['cuadai', 'clc', 'clc', 'hh', 'hoian'] }, 'vie12-tren': { vie12: ['dnst', 'hst', 'hhue', 'thienmu', 'bunbo'] },
-    'lun15-tamcoc': { lun15: ['hh2', 'hnb', null, 'hangmua', 'hnb', null] }, 'lun15-baidinh': { lun15: ['baidinh'] }, 'sab13-tuduc': { sab13: ['tuduc'] },
-    'hue-diario': { vie12: ['hh', 'haivan', 'daino', null, 'thienmu', 'khaidinh', 'hh', 'hoian'], sab13: ['hh', 'dad', null, 'hh2'] },
-    'dom7-privado': { dom7: ['myt', 'ton', null, 'bt', 'hsg', null] },
-    'fiesta-hoian': { jue11: ['hoian'] }, 'fiesta-hn': { vie19: ['tahien'] }, 'fiesta-sgn': { sab20: ['buivien'] },
-    'comp-hoian': { mar9: ['hoian'] }, 'comp-hn': { mie17: ['hh2'] }, 'comp-sgn': { sab20: ['benthanh'] },
-    'sab6-barco': { sab6: ['rio'] }, 'vie12-dragon': { vie12: ['hhue'] }, 'dom14-comida': { dom14: ['hh2'] }, 'dom14-tranvia': { dom14: ['hh2'] }, 'lun8-desayuno': { lun8: ['hsg'] }
-  };
+  /* Punto de cada evento de una alternativa, en el orden de sus eventos (assets/js/data.js) */
+  var AG = VN.AG;
 
   /* ---------- Estado: la elección se comparte con la web principal ---------- */
   var SK = 'vn-alts2', MK = 'vn-tl-mode', mode = 'mine', showAll = false;

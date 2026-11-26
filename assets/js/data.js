@@ -407,7 +407,7 @@ var VN = (function () {
   var ALTS = [
     { id: 'comp-hoian', kind: 'add', grp: 'Compras', title: 'Compras en Hội An', s: 'Linternas de seda, zapatos de cuero a medida y seda, en una tarde sin prisa.',
       days: { mar9: { ev: [['16:00', 'Compras en Hội An: linternas, cuero y seda', 'Linternas de seda plegables (€3–10), zapatos y bolsos de cuero a medida (€25–50), seda y cerámica. Regatead con una sonrisa: se baja un 20–30%. Se hace entre el sastre y el atardecer.', 'note:Compras aparte; unos €30–70']] } } },
-    { id: 'comp-hn', kind: 'add', grp: 'Compras', title: 'Compras en el Old Quarter de Hà Nội', s: 'Seda, café, té y lacados en las calles de los gremios.',
+    { id: 'comp-hn', img: ['hanoi', 'hoankiem'], kind: 'add', grp: 'Compras', title: 'Compras en el Old Quarter de Hà Nội', s: 'Seda, café, té y lacados en las calles de los gremios.',
       days: { mie17: { ev: [['16:30', 'Compras: Hàng Gai, Hàng Bông y Đồng Xuân', 'Hàng Gai es la calle de la seda y los bordados; Hàng Bông, de tejidos y ropa; Đồng Xuân, el mercado cubierto mayorista (cierra hacia las 18:00). Café en grano, té y lacados como regalo.', 'note:Compras aparte; unos €30–80']] } } },
     { id: 'comp-sgn', kind: 'add', grp: 'Compras', title: 'Compras en el Distrito 1 de Ho Chi Minh', s: 'Centros comerciales y mercados antes de volar.',
       days: { sab20: { ev: [['17:30', 'Compras: Takashimaya, Saigon Square y Đồng Khởi', 'Saigon Square es de regateo (ropa, bolsos, souvenirs); Takashimaya y Vincom, de precio fijo y con aire acondicionado. Dejad la maleta en la consigna del hotel.', 'trans:3,note:Compras aparte; unos €30–80']] } } },
@@ -428,7 +428,7 @@ var VN = (function () {
         ['17:30', 'Regreso a Ho Chi Minh', 'Llegada hacia las 19:30.', ''],
         ['20:00', 'Cena en el Distrito 1', 'Cơm tấm o bún thịt nướng.', 'food:10']
       ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'cuchi', kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Solo Củ Chi y tiro, con tarde libre', s: 'Túneles y campo de tiro por la mañana, y tarde en el centro. El Mekong queda fuera.',
+    { id: 'cuchi', img: ['cuchi'], kind: 'swap', grp: 'Excursiones desde Ho Chi Minh', title: 'Solo Củ Chi y tiro, con tarde libre', s: 'Túneles y campo de tiro por la mañana, y tarde en el centro. El Mekong queda fuera.',
       days: { dom7: { ev: [
         ['8:00', 'Salida hacia Củ Chi', 'Excursión de media jornada (4–5 h) o coche con conductor; 70 km, 1 h 15 min.', 'act:20'],
         ['9:30', 'Túneles de Củ Chi', 'Recorrido por los túneles, trampas y cocinas subterráneas; se puede bajar al tramo ensanchado.', 'note:Entrada incluida en la excursión'],
@@ -514,16 +514,16 @@ var VN = (function () {
           ['14:30', 'Autobús limousine Hà Giang → Hà Nội', '~6 h; llegada hacia las 20:30. Mejor no apurar: al día siguiente se sale a las 6:45 hacia el aeropuerto.', 'trans:10'],
           ['21:00', 'Cena en el Old Quarter', '', 'food:8']
         ], ex: { food: 3 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'vie5-esim', kind: 'add', grp: 'Antes y después del vuelo', title: 'Comprar la eSIM antes de salir', s: 'Datos nada más aterrizar, sin colas de madrugada.',
+    { id: 'vie5-esim', img: ['nguyenhue'], kind: 'add', grp: 'Antes y después del vuelo', title: 'Comprar la eSIM antes de salir', s: 'Datos nada más aterrizar, sin colas de madrugada.',
       days: { vie5: { ev: [['19:00', 'Comprar la eSIM de Vietnam', 'Se compra y se instala en casa (Airalo, Holafly u operadores locales); se activa al aterrizar. Os servirá para Grab y mapas a la 1:10 de la madrugada.', 'act:8']] } } },
-    { id: 'dom21-sala', kind: 'add', grp: 'Antes y después del vuelo', title: 'Sala VIP o ducha en SGN', s: 'Descansar y ducharse antes de 24 h de viaje.',
+    { id: 'dom21-sala', img: ['saigonriver', 'nguyenhue'], kind: 'add', grp: 'Antes y después del vuelo', title: 'Sala VIP o ducha en SGN', s: 'Descansar y ducharse antes de 24 h de viaje.',
       days: { dom21: { ev: [['0:30', 'Sala VIP o ducha en el aeropuerto de SGN', 'Muchas salas aceptan pase de día (~€20–30) con buffet, ducha y sillones. Útil tras la noche en Ho Chi Minh.', 'act:25']] } } },
 
-    { id: 'sab6-masaje', kind: 'add', grp: 'Ho Chi Minh', title: 'Masaje tras el viaje', s: 'Una hora de masaje para soltar el jet lag, en mùng 1.',
+    { id: 'sab6-masaje', img: ['nguyenhue', 'thienhau'], kind: 'add', grp: 'Ho Chi Minh', title: 'Masaje tras el viaje', s: 'Una hora de masaje para soltar el jet lag, en mùng 1.',
       days: { sab6: { ev: [['16:00', 'Masaje de una hora', 'Muchos spas abren en Tết (con recargo). Reservad por teléfono o por la app del hotel.', 'act:15']] } } },
     { id: 'sab6-barco', kind: 'add', grp: 'Ho Chi Minh', title: 'Cena en barco por el río Sài Gòn', s: 'Cena con vistas a la ciudad iluminada, en vez de la terraza.',
       days: { sab6: { ev: [['19:00', 'Cena en barco por el río Sài Gòn', 'Barcos desde el muelle de Bạch Đằng, 1 h 30 min de paseo con buffet y música en directo. Reservad: en Tết se llenan.', 'food:25']] } } },
-    { id: 'sab6-relax', kind: 'swap', grp: 'Ho Chi Minh', title: 'Día de descanso por el jet lag', s: 'Plan tranquilo: desayuno tardío, spa y paseo, en vez de los templos de Chợ Lớn.',
+    { id: 'sab6-relax', img: ['nguyenhue', 'saigonriver'], kind: 'swap', grp: 'Ho Chi Minh', title: 'Día de descanso por el jet lag', s: 'Plan tranquilo: desayuno tardío, spa y paseo, en vez de los templos de Chợ Lớn.',
       days: { sab6: { ev: [
         ['10:30', 'Desayuno tardío y café', 'Ya habéis dormido poco: phở o bánh mì sin prisa en el hotel o en un café abierto.', 'food:8'],
         ['12:30', 'Spa o masaje', 'Una hora de masaje o un baño en la piscina del hotel.', 'act:15'],
@@ -531,7 +531,7 @@ var VN = (function () {
         ['19:30', 'Cena junto al río Sài Gòn', 'Muelle de Bạch Đằng y terrazas del Distrito 1.', 'food:15']
       ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
 
-    { id: 'lun8-desayuno', kind: 'add', grp: 'Ho Chi Minh', title: 'Desayuno de phở y café vietnamita', s: 'Empezar el día como un local antes del museo.',
+    { id: 'lun8-desayuno', img: ['benthanh'], kind: 'add', grp: 'Ho Chi Minh', title: 'Desayuno de phở y café vietnamita', s: 'Empezar el día como un local antes del museo.',
       days: { lun8: { ev: [['7:30', 'Desayuno de phở y cà phê sữa đá', 'Un cuenco de phở bò y café con leche condensada en una calle del Distrito 1, antes de abrir el museo.', 'food:4']] } } },
 
     { id: 'mie10-banahills', kind: 'swap', grp: 'Hội An y Đà Nẵng', title: 'Bà Nà Hills y el Puente Dorado', s: 'En vez de Mỹ Sơn: teleférico a la montaña, jardines franceses y el Puente Dorado. Muy turístico, pero espectacular.', noadd: true,
@@ -543,7 +543,7 @@ var VN = (function () {
         ['17:30', 'Regreso a Hội An', 'Llegada hacia las 19:00.', ''],
         ['19:30', 'Cena en Hội An', 'Cao lầu o bánh xèo.', 'food:12']
       ], ex: { food: 5 }, room: 55, n: 'Hội An' } } },
-    { id: 'mie10-thung', kind: 'add', grp: 'Hội An y Đà Nẵng', title: 'Barca de cestas en Cẩm Thanh', s: 'Remar entre cocoteros de agua en una barca de cesta (thúng).',
+    { id: 'mie10-thung', img: ['hoaiboat', 'hoian'], kind: 'add', grp: 'Hội An y Đà Nẵng', title: 'Barca de cestas en Cẩm Thanh', s: 'Remar entre cocoteros de agua en una barca de cesta (thúng).',
       days: { mie10: { ev: [['16:30', 'Barca de cestas en el bosque de cocoteros de agua', 'Un barquero os lleva en una barca redonda de bambú entre cocoteros; hay espectáculo de canto y baile. A 6 km de Hội An.', 'act:8,trans:4']] } } },
     { id: 'jue11-champan', kind: 'swap', grp: 'Hội An y Đà Nẵng', title: 'Isla Cù Lao Chàm: snorkel', s: 'Día de lancha y snorkel en una reserva marina frente a Hội An.',
       days: { jue11: { ev: [
@@ -562,15 +562,15 @@ var VN = (function () {
         ['16:30', 'Pagoda de Thiên Mụ', 'La torre de siete pisos sobre el río Perfume.', 'trans:3'],
         ['19:00', 'Cena de cocina de Huế', 'Bún bò Huế, bánh bèo y nem lụi.', 'food:10']
       ], ex: { food: 5 }, room: 45, n: 'Huế' } } },
-    { id: 'vie12-dragon', kind: 'add', grp: 'Huế', title: 'Barco dragón en el río Perfume', s: 'Paseo al atardecer por el río, con música tradicional.',
+    { id: 'vie12-dragon', img: ['hueriver', 'thienmu'], kind: 'add', grp: 'Huế', title: 'Barco dragón en el río Perfume', s: 'Paseo al atardecer por el río, con música tradicional.',
       days: { vie12: { ev: [['17:45', 'Paseo en barco dragón por el río Perfume', 'Sale del muelle de Tòa Khâm; 1 h de paseo, a veces con música de cámara de Huế. Acordad el precio antes.', 'act:7']] } } },
 
     { id: 'sab13-tuduc', kind: 'add', grp: 'Huế', title: 'Tumba de Tự Đức', s: 'La tumba más serena de Huế, entre pinos y un lago.',
       days: { sab13: { ev: [['15:00', 'Tumba de Tự Đức', 'Conjunto de pabellones y lago donde el emperador Tự Đức escribió poesía; a ~7 km de la ciudad. Dedicadle 1 h.', 'act:5,trans:4']] } } },
 
-    { id: 'dom14-comida', kind: 'add', grp: 'Hà Nội', title: 'Tour de comida callejera', s: 'Probar bún chả, phở cuốn y bánh cuốn con un guía local.',
+    { id: 'dom14-comida', img: ['huevo', 'hanoi'], kind: 'add', grp: 'Hà Nội', title: 'Tour de comida callejera', s: 'Probar bún chả, phở cuốn y bánh cuốn con un guía local.',
       days: { dom14: { ev: [['11:30', 'Tour de comida callejera por el Old Quarter', 'Tres horas con guía y 5–6 paradas: bún chả, phở cuốn, bánh cuốn y cà phê trứng. Sustituye al almuerzo.', 'act:25']] } } },
-    { id: 'dom14-tranvia', kind: 'add', grp: 'Hà Nội', title: 'Paseo en ciclo por el Old Quarter', s: 'Recorrer las 36 calles en triciclo con conductor.',
+    { id: 'dom14-tranvia', img: ['hanoi', 'hoankiem'], kind: 'add', grp: 'Hà Nội', title: 'Paseo en ciclo por el Old Quarter', s: 'Recorrer las 36 calles en triciclo con conductor.',
       days: { dom14: { ev: [['15:30', 'Paseo en cyclo por el Old Quarter', '45–60 min en triciclo. Fijad el precio de antemano (€10–15 por vehículo).', 'trans:7']] } } },
 
     { id: 'lun15-tamcoc', kind: 'swap', grp: 'Ninh Bình', title: 'Tam Cốc en barca (en vez de Tràng An)', s: 'Barca remada con los pies entre arrozales y cuevas bajas.',
@@ -585,7 +585,7 @@ var VN = (function () {
     { id: 'lun15-baidinh', kind: 'add', grp: 'Ninh Bình', title: 'Pagoda de Bái Đính', s: 'El complejo budista más grande del sudeste asiático.',
       days: { lun15: { ev: [['16:30', 'Pagoda de Bái Đính', 'Complejo con corredores de arhats y budas gigantes; a 10 min de Tràng An. Dedicadle 1–1,5 h.', 'act:3,trans:4']] } } }
 ,
-    { id: 'sab6-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 1 con los templos cerrados: miradores y centros comerciales', s: 'Si Chợ Lớn y las pagodas están cerrados o abarrotados: Ópera, Landmark 81 y centros comerciales abiertos, con la calle de las flores al atardecer.',
+    { id: 'sab6-tet', img: ['nguyenhue', 'ducba'], kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 1 con los templos cerrados: miradores y centros comerciales', s: 'Si Chợ Lớn y las pagodas están cerrados o abarrotados: Ópera, Landmark 81 y centros comerciales abiertos, con la calle de las flores al atardecer.',
       days: { sab6: { ev: [
         ['10:30', 'Desayuno tardío en el hotel', 'Muchos cafés y restaurantes cierran en mùng 1: el desayuno del hotel es lo más seguro.', 'food:8'],
         ['12:00', 'Paseo exterior: Ópera, Ayuntamiento, Correos y Notre-Dame', 'Se ven por fuera aunque estén cerrados por dentro; con calles casi vacías, es el día ideal para pasear por el Distrito 1.', ''],
@@ -594,7 +594,7 @@ var VN = (function () {
         ['17:30', 'Calle de las flores de Nguyễn Huệ', 'Es la gran fiesta del Tết y está abierta al público.', ''],
         ['19:30', 'Cena en el hotel o en un restaurante reservado', 'Reservad desde ya: en mùng 1 casi todo está cerrado.', 'food:20']
       ], ex: { food: 8 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'sab6-cena', kind: 'add', grp: 'Plan B por el Tết', title: 'Cena reservada en el hotel', s: 'Cena segura en mùng 1, cuando casi todo cierra.',
+    { id: 'sab6-cena', img: ['saigonriver', 'nguyenhue'], kind: 'add', grp: 'Plan B por el Tết', title: 'Cena reservada en el hotel', s: 'Cena segura en mùng 1, cuando casi todo cierra.',
       days: { sab6: { ev: [['20:00', 'Cena reservada en el restaurante del hotel', 'Reservad antes de viajar. Menús de Tết con bánh chưng, carne estofada y sopa de melón amargo.', 'food:20']] } } },
     { id: 'dom7-privado', kind: 'swap', grp: 'Plan B por el Tết', title: 'Delta del Mekong en coche privado', s: 'Si las excursiones en grupo no salen en mùng 2: coche con conductor a Mỹ Tho y Bến Tre, a vuestro ritmo.',
       days: { dom7: { ev: [
@@ -605,14 +605,14 @@ var VN = (function () {
         ['17:30', 'Regreso a Ho Chi Minh', 'Llegada hacia las 19:30.', ''],
         ['20:00', 'Cena en el Distrito 1', 'Reservad: muchos locales siguen cerrados.', 'food:12']
       ], ex: { food: 6 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'dom7-ciudad', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 2 en la ciudad: Thảo Điền, spa y río', s: 'Si no hay excursiones al delta: día tranquilo en Ho Chi Minh, con spa y un paseo en barco por el río.',
+    { id: 'dom7-ciudad', img: ['saigonriver', 'nguyenhue'], kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 2 en la ciudad: Thảo Điền, spa y río', s: 'Si no hay excursiones al delta: día tranquilo en Ho Chi Minh, con spa y un paseo en barco por el río.',
       days: { dom7: { ev: [
         ['9:30', 'Desayuno y café en Thảo Điền', 'Barrio de cafés internacionales y tiendas, con más locales abiertos que el centro.', 'food:10,trans:4'],
         ['12:00', 'Spa o masaje', 'Una hora de masaje (€15–20); reservad.', 'act:18'],
         ['15:00', 'Paseo en barco por el río Sài Gòn', 'Barco turístico desde Bạch Đằng, 1 h 30 min.', 'act:12'],
         ['19:00', 'Cena en el Distrito 1', 'Reservada con antelación.', 'food:15']
       ], ex: { food: 5 }, room: 55, n: 'Distrito 1, Ho Chi Minh' } } },
-    { id: 'lun8-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 3: miradores en vez de museo y mercado', s: 'Si el Museo de la Guerra y Bến Thành están cerrados: paseo, Skydeck y traslado al vuelo.',
+    { id: 'lun8-tet', img: ['ducba', 'saigonriver'], kind: 'swap', grp: 'Plan B por el Tết', title: 'Mùng 3: miradores en vez de museo y mercado', s: 'Si el Museo de la Guerra y Bến Thành están cerrados: paseo, Skydeck y traslado al vuelo.',
       days: { lun8: { ev: [
         ['8:30', 'Paseo por el Distrito 1', 'Ópera, Ayuntamiento y Correos por fuera, y café en la calle Đồng Khởi.', 'food:4'],
         ['10:00', 'Bitexco Skydeck', 'Mirador a 178 m con vistas del río; ~€12.', 'act:12'],
@@ -621,7 +621,7 @@ var VN = (function () {
         ['17:00', 'Llegada a Đà Nẵng y traslado a Hội An', '~45 min.', 'trans:7'],
         ['19:30', 'Primer paseo y cena en Hội An', '', 'food:12']
       ], ex: { food: 6 }, room: 55, n: 'Hội An' } } },
-    { id: 'mar9-tet', kind: 'swap', grp: 'Plan B por el Tết', title: 'Hội An sin tiendas: bici, playa y linternas', s: 'Si el sastre y muchos locales siguen cerrados: bici entre arrozales, playa y paseo por el casco al caer la tarde.',
+    { id: 'mar9-tet', img: ['hoian', 'cuadai', 'chuacau'], kind: 'swap', grp: 'Plan B por el Tết', title: 'Hội An sin tiendas: bici, playa y linternas', s: 'Si el sastre y muchos locales siguen cerrados: bici entre arrozales, playa y paseo por el casco al caer la tarde.',
       days: { mar9: { ev: [
         ['8:30', 'Desayuno en el hotel', '', 'food:5'],
         ['9:30', 'Casco antiguo de Hội An', 'Las calles siguen abiertas; algunas casas históricas y tiendas cierran.', 'act:4'],
@@ -649,9 +649,42 @@ var VN = (function () {
           ['15:30', 'Llegada a Hà Nội y traslado al Old Quarter', '28 km desde Nội Bài, 45–60 min.', 'trans:7'],
           ['19:00', 'Cena en el Old Quarter', 'Bún chả o phở.', 'food:10']
         ], ex: { food: 5 }, room: 52, n: 'Old Quarter, Hà Nội' } } },
-    { id: 'vie12-equipaje', kind: 'add', grp: 'Huế', title: 'Enviar las maletas por delante a Huế', s: 'Viajáis con mochila y las maletas llegan al hotel de Huế en otro vehículo.',
+    { id: 'vie12-equipaje', img: ['haivan', 'langco'], kind: 'add', grp: 'Huế', title: 'Enviar las maletas por delante a Huế', s: 'Viajáis con mochila y las maletas llegan al hotel de Huế en otro vehículo.',
       days: { vie12: { ev: [['8:00', 'Maletas enviadas al hotel de Huế', 'Pedid al hotel de Hội An que las mande con un taxi o furgoneta (€10–20 en total) o contratad el servicio de envío de equipaje; llegan a Huế antes que vosotros. Confirmad nombre y dirección del hotel y pagad solo al recibirlas.', 'trans:8']] } } }
   ];
 
-  return { NAMES: NAMES, COST: COST, P: P, MAPS: MAPS, PLACE: PLACE, PH: PH, GAL: GAL, XIMG: XIMG, EVP: EVP, ALTS: ALTS };
+  /* Punto de cada evento de una alternativa, en el orden de sus eventos
+     (claves de P o, si son aproximados, de XP en itinerario.html) */
+  var AG = {
+    'mekong-full': { dom7: ['myt', 'ton', null, 'bt', 'hsg', null] }, cuchi: { dom7: [null, 'cuchi', 'cuchi', null, null, null] },
+    dalat: { dom7: ['sgn', 'dlk', 'linhphuoc', 'dalat', 'datanla', 'dlk', 'hsg'] },
+    catba: { mar16: ['hnb', 'catba', 'viethai', 'lanha'], mie17: ['lanha', 'catba', null, 'hh2', 'hh2'] },
+    maichau: { jue18: ['hh2', 'poom', 'mc', 'mc', null, 'hh2'] },
+    sapa: { jue18: ['hh2', 'sapa', 'catcat', 'sapa'], vie19: ['fansipan', 'laochai', null, 'hh2'] },
+    hagiang: { mar16: ['hnb', 'hh2', 'hg', 'hg'], mie17: ['quanba', 'yenminh', 'dongvan', 'dongvan'], jue18: ['lungcu', 'meovac', null, 'duga', 'duga'], vie19: ['duga', 'hg', 'hg', 'hh2'] },
+    'mie10-banahills': { mie10: ['hh', 'bana', null, null, 'hh', null] }, 'mie10-thung': { mie10: ['thung'] },
+    'jue11-champan': { jue11: ['cuadai', 'clc', 'clc', 'hh', 'hoian'] }, 'vie12-tren': { vie12: ['dnst', 'hst', 'hhue', 'thienmu', 'bunbo'] },
+    'lun15-tamcoc': { lun15: ['hh2', 'hnb', null, 'hangmua', 'hnb', null] }, 'lun15-baidinh': { lun15: ['baidinh'] }, 'sab13-tuduc': { sab13: ['tuduc'] },
+    'hue-diario': { vie12: ['hh', 'haivan', 'daino', null, 'thienmu', 'khaidinh', 'hh', 'hoian'], sab13: ['hh', 'dad', null, 'hh2'] },
+    'dom7-privado': { dom7: ['myt', 'ton', null, 'bt', 'hsg', null] },
+    'fiesta-hoian': { jue11: ['hoian'] }, 'fiesta-hn': { vie19: ['tahien'] }, 'fiesta-sgn': { sab20: ['buivien'] },
+    'comp-hoian': { mar9: ['hoian'] }, 'comp-hn': { mie17: ['hh2'] }, 'comp-sgn': { sab20: ['benthanh'] },
+    'sab6-barco': { sab6: ['rio'] }, 'vie12-dragon': { vie12: ['hhue'] }, 'dom14-comida': { dom14: ['hh2'] }, 'dom14-tranvia': { dom14: ['hh2'] }, 'lun8-desayuno': { lun8: ['hsg'] }
+  };
+
+  /* Fotos de una alternativa: las de su campo img o, si no lo tiene, las de los lugares de sus eventos (AG),
+     sin aeropuertos ni hoteles; devuelve claves de assets/img */
+  var altImgs = function (a) {
+    if (a.img) return a.img;
+    var out = [];
+    Object.keys(AG[a.id] || {}).forEach(function (d) {
+      AG[a.id][d].forEach(function (k) {
+        var ty = k && P[k] && P[k].t, im = k && ((PLACE[k] && PLACE[k].img) || XIMG[k]);
+        if (im && ty !== 'hub' && ty !== 'hotel' && out.indexOf(im) < 0) out.push(im);
+      });
+    });
+    return out;
+  };
+
+  return { NAMES: NAMES, COST: COST, P: P, MAPS: MAPS, PLACE: PLACE, PH: PH, GAL: GAL, XIMG: XIMG, EVP: EVP, AG: AG, ALTS: ALTS, altImgs: altImgs };
 })();
