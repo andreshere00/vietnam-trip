@@ -534,12 +534,13 @@ var VNB = (function () {
       return '<li class="spot"><div class="sh"><b>' + esc(sp.n) + '</b></div><p class="pillrow"><span class="pill">' + esc(sp.k) + '</span>' + (sp.tag ? '<span class="pill ok"><span class="mi" aria-hidden="true">verified</span>' + esc(sp.tag) + '</span>' : '') + '</p><p class="d">' + esc(sp.d) + '</p><p class="sm"><span><span class="mi" aria-hidden="true">payments</span>' + esc(sp.p) + ' p. p.</span>' + (sp.a ? '<span><span class="mi" aria-hidden="true">place</span>' + esc(sp.a) + '</span>' : '') + '</p>' + mapA(sp, z) + '</li>';
     };
     var zoneH = function (z) {
+      var rows = Math.max.apply(null, F.TIERS.map(function (t) { return Math.max(1, z.spots.filter(function (x) { return x.t === t.t; }).length); }));
       var lanes = F.TIERS.map(function (t) {
         var ss = z.spots.filter(function (x) { return x.t === t.t; });
         return '<div class="lane" data-t="' + t.t + '" style="--tz: var(' + t.z + ')"><h3><span class="kb">' + t.k + '</span>' + t.n + '</h3>' + (ss.length ? '<ul class="spots">' + ss.map(function (x) { return spotH(x, z); }).join('') + '</ul>' : '<p class="note">Nada destacado en este tramo de precio.</p>') + '</div>';
       }).join('');
       return '<section class="zone" id="food-' + z.id + '" style="--z: var(' + z.c + ')"><header class="zh"><span class="zi" aria-hidden="true"><span class="mi">' + z.ic + '</span></span><div><h2>' + esc(z.n) + '</h2><p class="meta"><span class="mi" aria-hidden="true">calendar_month</span>' + esc(z.when) + (z.alt ? ' <span class="pill pref"><span class="mi" aria-hidden="true">star</span>Alternativa elegida</span>' : '') + (z.tet ? ' <span class="pill tet"><span class="mi" aria-hidden="true">celebration</span>Tết: comprobad que abre</span>' : '') + '</p></div></header>' +
-        '<div class="zintro"' + phA(z.ph, z.n) + '><p class="dishes"><span class="dl"><span class="mi" aria-hidden="true">restaurant_menu</span>Qué probar</span>' + z.dishes.map(function (d) { return '<span class="dish">' + esc(d) + '</span>'; }).join('') + '</p><p class="note">' + esc(z.tip) + '</p></div><div class="lanes">' + lanes + '</div></section>';
+        '<div class="zintro"' + phA(z.ph, z.n) + '><p class="dishes"><span class="dl"><span class="mi" aria-hidden="true">restaurant_menu</span>Qué probar</span>' + z.dishes.map(function (d) { return '<span class="dish">' + esc(d) + '</span>'; }).join('') + '</p><p class="note">' + esc(z.tip) + '</p></div><div class="lanes" style="--r: ' + (rows + 1) + '">' + lanes + '</div></section>';
     };
     var apply = function () {
       var app = $('app');

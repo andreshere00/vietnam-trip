@@ -210,3 +210,18 @@ header.chap .sum { grid-column: 1 / -1; }
 .zintro.hasph { margin-top: 14px; }
 .zintro .dishes { margin-top: 0; }
 @media (max-width: 720px) { .hasph { grid-template-columns: minmax(0, 1fr); } .cph .gcar { aspect-ratio: 16 / 9; } }
+
+/* Comida: dentro de cada ficha, precio y botón pegados abajo; entre columnas, fichas alineadas por filas (subgrid) */
+.lane[hidden] { display: none; }
+.spot { display: flex; flex-direction: column; }
+.spot .d { flex: 1 0 auto; }
+.spot > a.btn { align-self: flex-start; }
+@media (min-width: 880px) {
+  @supports (grid-template-rows: subgrid) {
+    #app:not(.one) .lanes { row-gap: 0; }
+    #app:not(.one) .lane { display: grid; grid-template-rows: subgrid; grid-row: span var(--r); row-gap: 10px; align-content: start; }
+    #app:not(.one) .lane h3 { margin: 0; }
+    #app:not(.one) .lane .spots { display: contents; }
+    #app:not(.one) .lane > .note { margin: 0; }
+  }
+}
