@@ -86,26 +86,26 @@ h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.2rem, 7vw
 .fl span { color: var(--muted); font-size: .88rem; }
 .scene { display: block; width: 100%; height: auto; max-width: 100%; margin-top: .5rem; }
 
-/* Inmersión: al bajar de la cabecera, la escena se acerca al junco y el agua sube hasta cubrir la pantalla; después se aclara y deja ver los días. La mueve un script según el scroll (--dz de 0 a 1 para el acercamiento, --dr para la subida del agua, --df para el desvanecimiento). */
+/* Inmersión: al bajar de la cabecera se reproduce una vez (con Motion) una zambullida: la escena se acerca, el junco se hunde, el agua sube con oleaje y burbujas hasta cubrir la pantalla y después se aclara dejando ver los días. Vuelve a estar lista al regresar arriba. */
 .hero { overflow: clip; }
-.scene { transform-origin: 54% 90%; transform: scale(calc(1 + var(--dz, 0) * .35)) translateY(calc(var(--dz, 0) * 4%)); will-change: transform; }
+.scene { transform-origin: 54% 92%; }
+.scene .sink { transform-box: fill-box; transform-origin: 50% 100%; }
 .scene .junk { transform-box: fill-box; transform-origin: 50% 100%; animation: bob 4.5s ease-in-out infinite; }
 @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1.2deg); } 50% { transform: translateY(-2.5px) rotate(1.2deg); } }
-.dive { position: fixed; inset: 0; z-index: 4; pointer-events: none; visibility: hidden; overflow: hidden; }
+.dive { position: fixed; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; visibility: hidden; }
 .dive.on { visibility: visible; }
-.dive-water { position: absolute; inset: 0; transform: translateY(calc((1 - var(--dr, 0)) * 112%)); opacity: calc(1 - var(--df, 0)); will-change: transform, opacity;
-  background: linear-gradient(color-mix(in srgb, var(--water) 88%, #fff) 0%, color-mix(in srgb, var(--water) 92%, transparent) 18%, color-mix(in srgb, var(--water) 55%, #062c3a) 70%, color-mix(in srgb, var(--water) 35%, #031820) 100%); }
-.dive-water::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(105deg, transparent 0 60px, rgb(255 255 255 / .07) 60px 90px, transparent 90px 170px); animation: rays 9s linear infinite; mix-blend-mode: screen; }
+.dive-water { position: absolute; inset: 0; transform: translateY(115%);
+  background: linear-gradient(color-mix(in srgb, var(--water) 88%, #fff) 0%, color-mix(in srgb, var(--water) 94%, transparent) 16%, color-mix(in srgb, var(--water) 55%, #062c3a) 70%, color-mix(in srgb, var(--water) 35%, #031820) 100%); }
+.dive-water::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(105deg, transparent 0 60px, rgb(255 255 255 / .08) 60px 90px, transparent 90px 170px); animation: rays 9s linear infinite; mix-blend-mode: screen; }
 @keyframes rays { to { background-position: 340px 0; } }
-.dive-surf { position: absolute; left: 0; bottom: 100%; width: 200%; height: 48px; margin-bottom: -2px; animation: surf 6s linear infinite; }
+.dive-surf { position: absolute; left: 0; bottom: 100%; width: 200%; height: 56px; margin-bottom: -2px; animation: surf 2.4s linear infinite; }
 .dive-surf path { fill: color-mix(in srgb, var(--water) 88%, #fff); }
-.dive-surf .crest { fill: none; stroke: var(--roadin); stroke-opacity: .6; stroke-width: 2.5; }
+.dive-surf .crest { fill: none; stroke: var(--roadin); stroke-opacity: .7; stroke-width: 3; }
 @keyframes surf { to { transform: translateX(-50%); } }
-.dive-b { position: absolute; bottom: -2rem; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; border: 1.5px solid rgb(255 255 255 / .7); background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / .8) 0 15%, rgb(255 255 255 / .12) 40%, transparent 70%); animation: rise var(--t) ease-in infinite; animation-delay: var(--d); }
-@keyframes rise { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate(12px, -55vh); } 100% { transform: translate(-6px, -115vh); opacity: .2; } }
+.dive-b { position: absolute; bottom: -2rem; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; opacity: 0; border: 1.5px solid rgb(255 255 255 / .75); background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / .85) 0 15%, rgb(255 255 255 / .12) 40%, transparent 70%); }
 @media (prefers-reduced-motion: reduce) {
   .dive { display: none; }
-  .scene, .scene .junk { transform: none; animation: none; }
+  .scene .junk { animation: none; }
 }
 
 /* Navegación */
@@ -804,12 +804,12 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
       <path d="M0 172H900V200H0Z" fill="var(--water)"/>
       <path d="M0 184Q30 178 60 184T120 184T180 184T240 184T300 184T360 184T420 184T480 184T540 184T600 184T660 184T720 184T780 184T840 184T900 184" fill="none" stroke="var(--roadin)" stroke-opacity=".35" stroke-width="2"/>
       <path d="M0 193Q30 187 60 193T120 193T180 193T240 193T300 193T360 193T420 193T480 193T540 193T600 193T660 193T720 193T780 193T840 193T900 193" fill="none" stroke="var(--roadin)" stroke-opacity=".25" stroke-width="2"/>
-      <g class="junk">
+      <g class="sink"><g class="junk">
         <path d="M452 176H540L528 190H464Z" fill="var(--ink)"/>
         <path d="M492 176V120L530 172Z" fill="var(--red)"/>
         <path d="M482 176V138L458 172Z" fill="color-mix(in srgb, var(--red) 65%, var(--ink))"/>
         <path d="M492 120V176" stroke="var(--ink)" stroke-width="2"/>
-      </g>
+      </g></g>
     </svg>
   </div>
 </header>
@@ -817,7 +817,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
 <div class="dive" id="dive" aria-hidden="true">
   <div class="dive-water">
     <svg class="dive-surf" viewBox="0 0 1600 48" preserveAspectRatio="none"><path d="M0 24Q100 4 200 24T400 24T600 24T800 24T1000 24T1200 24T1400 24T1600 24V48H0Z"/><path class="crest" d="M0 24Q100 4 200 24T400 24T600 24T800 24T1000 24T1200 24T1400 24T1600 24"/></svg>
-    <span class="dive-b" style="--x:6%;--s:10px;--t:5.5s;--d:-1s"></span><span class="dive-b" style="--x:14%;--s:18px;--t:7s;--d:-3s"></span><span class="dive-b" style="--x:23%;--s:8px;--t:4.8s;--d:-2s"></span><span class="dive-b" style="--x:31%;--s:14px;--t:6.2s;--d:-4.5s"></span><span class="dive-b" style="--x:42%;--s:22px;--t:8s;--d:-1.5s"></span><span class="dive-b" style="--x:50%;--s:9px;--t:5s;--d:-3.5s"></span><span class="dive-b" style="--x:58%;--s:16px;--t:6.8s;--d:-.5s"></span><span class="dive-b" style="--x:67%;--s:11px;--t:5.6s;--d:-2.8s"></span><span class="dive-b" style="--x:75%;--s:20px;--t:7.6s;--d:-5s"></span><span class="dive-b" style="--x:84%;--s:8px;--t:4.6s;--d:-1.2s"></span><span class="dive-b" style="--x:92%;--s:15px;--t:6.4s;--d:-3.9s"></span>
+    <span class="dive-b" style="--x:6%;--s:10px"></span><span class="dive-b" style="--x:14%;--s:18px"></span><span class="dive-b" style="--x:23%;--s:8px"></span><span class="dive-b" style="--x:31%;--s:14px"></span><span class="dive-b" style="--x:42%;--s:22px"></span><span class="dive-b" style="--x:50%;--s:9px"></span><span class="dive-b" style="--x:58%;--s:16px"></span><span class="dive-b" style="--x:67%;--s:11px"></span><span class="dive-b" style="--x:75%;--s:20px"></span><span class="dive-b" style="--x:84%;--s:8px"></span><span class="dive-b" style="--x:92%;--s:15px"></span>
   </div>
 </div>
 
@@ -1259,6 +1259,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
 
 <footer class="wrap">Buen viaje · Chúc mừng năm mới<br>Fotos de Wikimedia Commons. <a href="https://github.com/andreshere00/vietnam-trip/blob/main/CREDITS.md">Ver créditos y licencias</a></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js" integrity="sha384-czaB7zH9slIhvFgUxhO8sSnYf4cnCeV2N3zOvDnNKFzRKu5AwqDKEZlCLsaQkoop" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/food.js"></script>
@@ -3068,27 +3069,58 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   })();
 })();
 
-// Inmersión al salir de la cabecera: p = scroll / alto de la cabecera.
-// 0,25–0,8: la escena se acerca al junco y el agua sube; 0,8–1,15: el agua se aclara y aparecen los días.
+// Inmersión al salir de la cabecera (Motion): se reproduce una vez al pasar del 35 % de la cabecera
+// bajando, y se rearma al volver arriba. Con «reducir movimiento» no se ejecuta.
 (function () {
-  var hero = document.getElementById('top'), dive = document.getElementById('dive');
-  if (!hero || !dive) return;
+  var M = window.Motion, hero = document.getElementById('top'), dive = document.getElementById('dive');
+  if (!M || !hero || !dive) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var root = document.documentElement, tick = false;
-  function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-  function ease(v) { return v * v * (3 - 2 * v); }
+  var scene = hero.querySelector('.scene'), sink = hero.querySelector('.sink'), water = dive.querySelector('.dive-water');
+  var bubbles = Array.prototype.slice.call(dive.querySelectorAll('.dive-b')), main = document.querySelector('main');
+  var played = false, run = null, tick = false;
+  function limit() { return hero.offsetHeight * .35; }
+  function play() {
+    played = true;
+    dive.classList.add('on');
+    water.style.opacity = '1';
+    var ease = [.55, 0, .35, 1], up = [.2, .7, .2, 1];
+    run = M.animate([
+      [scene, { transform: ['scale(1)', 'scale(1.35)'] }, { duration: .75, ease: ease }],
+      [sink, { transform: ['translateY(0) rotate(0deg)', 'translateY(-6px) rotate(-6deg)', 'translateY(34px) rotate(9deg)'], opacity: [1, 1, 0] }, { duration: .8, ease: 'easeIn', at: 0 }],
+      [water, { transform: ['translateY(115%)', 'translateY(0%)'] }, { duration: .7, ease: up, at: .3 }],
+      [bubbles, { transform: ['translateY(0) scale(.6)', 'translateY(-60vh) scale(1)', 'translateY(-120vh) scale(1.1)'], opacity: [0, 1, 0] }, { duration: 1.5, ease: 'easeOut', delay: M.stagger(.06, { from: 'center' }), at: .55 }],
+      [main, { transform: ['translateY(48px)', 'translateY(0px)'] }, { duration: .9, ease: up, at: 1.05 }],
+      [water, { opacity: [1, 0] }, { duration: .8, ease: 'easeOut', at: 1.1 }]
+    ]);
+    run.then(function () {
+      dive.classList.remove('on');
+      water.style.transform = ''; water.style.opacity = '';
+      main.style.transform = '';
+      bubbles.forEach(function (b) { b.style.transform = ''; b.style.opacity = ''; });
+      surface();
+    });
+  }
+  // El junco vuelve a flotar y la escena recupera su encuadre.
+  function surface() {
+    M.animate(scene, { transform: 'scale(1)' }, { duration: .8, ease: 'easeOut' });
+    M.animate(sink, { transform: 'translateY(0px) rotate(0deg)', opacity: 1 }, { type: 'spring', bounce: .45, duration: 1.1 });
+  }
+  function reset() {
+    played = false;
+    if (run) { run.stop(); run = null; }
+    dive.classList.remove('on');
+    water.style.transform = ''; water.style.opacity = ''; main.style.transform = '';
+    bubbles.forEach(function (b) { b.style.transform = ''; b.style.opacity = ''; });
+    surface();
+  }
   function upd() {
     tick = false;
-    var h = hero.offsetHeight || 1, p = window.scrollY / h;
-    var z = ease(cl((p - .2) / .6)), r = ease(cl((p - .3) / .5)), f = ease(cl((p - .85) / .3));
-    root.style.setProperty('--dz', z.toFixed(4));
-    dive.style.setProperty('--dr', r.toFixed(4));
-    dive.style.setProperty('--df', f.toFixed(4));
-    dive.classList.toggle('on', r > 0 && f < 1);
+    var y = window.scrollY;
+    if (!played && y > limit()) play();
+    else if (played && y < limit() * .25) reset();
   }
+  played = window.scrollY > limit();
   window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
-  window.addEventListener('resize', upd);
-  upd();
 })();
 </script>
 </body>
