@@ -281,6 +281,78 @@ var VN = (function () {
     hgroad: { by: 'Benjamin Smith', lic: 'CC BY-SA 4.0' }
   };
 
+  /* Más fotos de cada lugar para la galería (clave de assets/img → [archivo, autor, licencia]); ver CREDITS.md */
+  var GAL = {
+    nguyenhue: [['nguyenhue-2', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['nguyenhue-3', 'shankar s.', 'CC BY 2.0'], ['nguyenhue-4', 'Steffen Schmitz', 'CC BY-SA 4.0']],
+    ngochoang: [['ngochoang-2', 'Kevin Decherf', 'CC BY-SA 2.0'], ['ngochoang-3', 'Gary Todd', 'CC0'], ['ngochoang-4', 'Gary Todd', 'CC0']],
+    thienhau: [['thienhau-2', 'trungydang', 'CC BY 3.0'], ['thienhau-3', 'trungydang', 'CC BY 3.0'], ['thienhau-4', 'Christopher', 'CC BY 2.0']],
+    ducba: [['ducba-2', 'son do', 'CC BY 2.0'], ['ducba-3', 'son do', 'CC BY 2.0'], ['ducba-4', '4512 Image Hosting', 'CC BY 2.0']],
+    benthanh: [['benthanh-2', 'Diego Delso', 'CC BY-SA 3.0'], ['benthanh-3', 'Bahnfrend', 'CC BY-SA 4.0'], ['benthanh-4', 'Bahnfrend', 'CC BY-SA 4.0']],
+    chungtich: [['chungtich-2', 'Sistak', 'CC BY-SA 2.0'], ['chungtich-3', 'Adam Jones Adam63', 'CC BY-SA 3.0']],
+    hoian: [['hoian-2', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['hoian-3', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['hoian-4', 'Supanut Arunoprayote', 'CC BY 4.0']],
+    chuacau: [['chuacau-2', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['chuacau-3', 'katiebordner', 'CC BY 2.0'], ['chuacau-4', 'Chainwit', 'CC BY 4.0']],
+    myson: [['myson-2', 'Chainwit', 'CC BY 4.0'], ['myson-3', 'Philip Nalangan', 'CC BY 4.0']],
+    nguhanhson: [['nguhanhson-2', 'Muralikrishna m', 'CC BY-SA 4.0'], ['nguhanhson-3', 'Dominic Nelson', 'CC BY-SA 4.0']],
+    traque: [['traque-2', 'Isabell Schulz', 'CC BY-SA 2.0'], ['traque-3', 'Isabell Schulz', 'CC BY-SA 2.0'], ['traque-4', 'Calmuziclover', 'CC BY 2.0']],
+    haivan: [['haivan-2', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['haivan-3', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['haivan-4', 'Vyacheslav Argenberg', 'CC BY 4.0']],
+    thienmu: [['thienmu-2', 'CEphoto, Uwe Aranas', 'CC BY-SA 3.0'], ['thienmu-3', 'Jean-Etienne Minh-Duy Poirrier', 'CC BY-SA 2.0']],
+    daino: [['daino-2', 'Supanut Arunoprayote', 'CC BY 4.0'], ['daino-3', 'Suicasmo', 'CC BY-SA 4.0'], ['daino-4', 'P. Hughes', 'CC BY 4.0']],
+    khaidinh: [['khaidinh-2', 'dronepicr', 'CC BY 2.0'], ['khaidinh-3', 'Mig Gilbert', 'CC BY-SA 2.0'], ['khaidinh-4', 'Mig Gilbert', 'CC BY-SA 2.0']],
+    hanoi: [['hanoi-2', 'Jakub Hałun', 'CC BY 4.0'], ['hanoi-3', 'Richard Mortel', 'CC BY 2.0']],
+    hoankiem: [['hoankiem-2', 'Turgidson', 'CC BY-SA 4.0'], ['hoankiem-3', 'Ltn12345', 'CC BY-SA 4.0'], ['hoankiem-4', 'Trung geo', 'CC BY-SA 4.0']],
+    vanmieu: [['vanmieu-2', 'Daderot', 'CC0'], ['vanmieu-3', 'Jakub Hałun', 'CC BY 4.0'], ['vanmieu-4', 'Ltn12345', 'CC BY-SA 4.0']],
+    lang: [['lang-2', 'Eric Pesik', 'CC BY-SA 2.0'], ['lang-3', 'thalling55', 'CC BY 2.0']],
+    roi: [['roi-2', 'Gryffindor', 'CC BY-SA 3.0'], ['roi-3', 'Steven C. Price', 'CC BY-SA 4.0'], ['roi-4', 'She', 'Dominio público']],
+    hoalo: [['hoalo-2', 'Clay Gilliland', 'CC BY-SA 2.0'], ['hoalo-3', 'Richard Mortel', 'CC BY 2.0'], ['hoalo-4', 'Richard Mortel', 'CC BY 2.0']],
+    battrang: [['battrang-2', 'Steven C. Price', 'CC BY-SA 4.0'], ['battrang-3', 'Steven C. Price', 'CC BY-SA 4.0']],
+    trangan: [['trangan-2', 'GieohatchoHaiLy', 'CC0'], ['trangan-3', 'Jakub Hałun', 'CC BY 4.0']],
+    hangmua: [['hangmua-2', 'Shyamal', 'CC BY-SA 4.0'], ['hangmua-3', 'lumoplank', 'CC0']],
+    halong: [['halong-2', 'Thomas Hirsch', 'CC BY-SA 3.0'], ['halong-3', 'Shyamal', 'CC BY-SA 4.0'], ['halong-4', 'Vyacheslav Argenberg', 'CC BY 4.0']],
+    mytho: [['mytho-2', 'Esin Üstün', 'CC BY 2.0'], ['mytho-3', 'Martino pun', 'CC BY-SA 4.0']],
+    thoison: [['thoison-2', 'Liliawuandpartners', 'CC BY-SA 4.0'], ['thoison-3', 'Yangyayut900317', 'CC BY-SA 4.0']],
+    langco: [['langco-2', 'Vyacheslav Argenberg', 'CC BY 4.0'], ['langco-3', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['langco-4', 'Khoitran1957', 'CC BY-SA 4.0']],
+    anbang: [['anbang-2', 'Anton Zelenov', 'CC BY-SA 4.0'], ['anbang-3', 'Slyronit', 'CC BY-SA 4.0'], ['anbang-4', 'Slyronit', 'CC BY-SA 4.0']],
+    mykhe: [['mykhe-2', 'Jpatokal', 'CC BY-SA 4.0'], ['mykhe-3', 'Christophe95', 'CC BY-SA 4.0']],
+    hoaicho: [['hoaicho-2', 'Chainwit', 'CC BY 4.0'], ['hoaicho-3', 'Ekrem Canli', 'CC BY-SA 3.0'], ['hoaicho-4', 'Marc Osborn', 'CC BY 3.0']],
+    hoaiboat: [['hoaiboat-2', 'Omar David Sandoval Sida', 'CC BY-SA 4.0'], ['hoaiboat-3', 'mishmoshimoshi', 'CC BY 2.0'], ['hoaiboat-4', 'Nguyen QuocTrung', 'CC BY-SA 4.0']],
+    hueriver: [['hueriver-2', 'CEphoto, Uwe Aranas', 'CC BY-SA 3.0'], ['hueriver-3', 'CEphoto, Uwe Aranas', 'CC BY-SA 3.0']],
+    bunbo: [['bunbo-2', 'Kham Tran', 'CC BY 3.0'], ['bunbo-3', 'TarnishedPath', 'CC BY-SA 4.0'], ['bunbo-4', 'pelican', 'CC BY-SA 2.0']],
+    saigonriver: [['saigonriver-2', 'John Gremory', 'CC BY-SA 2.0'], ['saigonriver-3', 'Phi Phi Hoang', 'CC BY 2.0'], ['saigonriver-4', 'Diego Delso', 'CC BY-SA 3.0']],
+    dantoc: [['dantoc-2', 'Nam Hy Hoàng Phong', 'CC BY 3.0'], ['dantoc-3', 'Daderot', 'CC0'], ['dantoc-4', 'Daderot', 'CC0']],
+    tranquoc: [['tranquoc-2', 'Jakub Hałun', 'CC BY 4.0'], ['tranquoc-3', 'Jakub Hałun', 'CC BY 4.0']],
+    huevo: [['huevo-2', 'travel oriented', 'CC BY-SA 2.0'], ['huevo-3', 'Newone', 'CC BY 4.0'], ['huevo-4', 'mmmmngai', 'CC BY-SA 2.0']],
+    tahien: [['tahien-2', 'Ltn12345', 'CC BY-SA 4.0'], ['tahien-3', 'Ssuri', 'CC BY-SA 3.0']],
+    tamcoc: [['tamcoc-2', 'travel oriented', 'CC BY-SA 2.0'], ['tamcoc-3', 'Vyacheslav Argenberg', 'CC BY 4.0'], ['tamcoc-4', 'Tuan Mai', 'CC BY 2.0']],
+    sungsot: [['sungsot-2', 'Jakub Hałun', 'CC BY 4.0'], ['sungsot-3', 'Jakub Hałun', 'CC BY 4.0']],
+    titop: [['titop-2', 'Steffen Schmitz', 'CC BY-SA 4.0'], ['titop-3', 'Mig Gilbert', 'CC BY-SA 2.0']],
+    crucero: [['crucero-2', 'aschaf', 'CC BY 2.0'], ['crucero-3', 'Adam Jones Adam63', 'CC BY-SA 3.0'], ['crucero-4', 'David Tennent, Zeugma fr', 'Dominio público']],
+    fansipan: [['fansipan-2', 'Vivu Vietnam', 'CC BY-SA 4.0'], ['fansipan-3', 'Vivu Vietnam', 'CC BY-SA 4.0'], ['fansipan-4', 'Vivu Vietnam', 'CC BY-SA 4.0']],
+    sapa: [['sapa-2', 'Christophe95', 'CC BY-SA 4.0'], ['sapa-3', 'JakobHosp', 'CC BY 4.0'], ['sapa-4', 'JakobHosp', 'CC BY 4.0']],
+    cocina: [['cocina-2', 'Isabell Schulz', 'CC BY-SA 2.0'], ['cocina-3', 'Isabell Schulz', 'CC BY-SA 2.0']],
+    sastre: [['sastre-2', 'Fa2f', 'CC BY 3.0']],
+    mekong: [['mekong-2', 'McKay Savage', 'CC BY 2.0'], ['mekong-3', 'Jim Bendon', 'CC BY-SA 2.0'], ['mekong-4', 'David Stanley', 'CC BY 4.0']],
+    laochai: [['laochai-2', 'JakobHosp', 'CC BY 4.0'], ['laochai-3', 'JakobHosp', 'CC BY 4.0'], ['laochai-4', 'Andre Hospers', 'CC BY 4.0']],
+    hagiang: [['hagiang-2', 'Velvet', 'CC BY-SA 4.0'], ['hagiang-3', 'Vuong Tri Binh', 'CC BY-SA 4.0']],
+    mapileng: [['mapileng-2', 'Hoach Le Dinh', 'CC0'], ['mapileng-3', 'Khoitran1957', 'CC BY-SA 4.0'], ['mapileng-4', 'minhphuc_99kdd', 'CC0']],
+    lungcu: [['lungcu-2', 'Leminhel', 'Dominio público'], ['lungcu-3', 'Bich Le', 'CC BY 3.0'], ['lungcu-4', 'trungydang', 'CC BY 3.0']],
+    catba: [['catba-2', 'Jakub Hałun', 'CC BY 4.0'], ['catba-3', 'Shyamal', 'CC BY-SA 4.0']],
+    lanha: [['lanha-2', 'Velvet', 'CC BY-SA 4.0'], ['lanha-3', 'Christophe95', 'CC BY-SA 4.0']],
+    catcat: [['catcat-2', 'Jakub Hałun', 'CC BY 4.0'], ['catcat-3', 'Jakub Hałun', 'CC BY 4.0'], ['catcat-4', 'Dragfyre', 'CC BY-SA 3.0']],
+    duga: [['duga-2', 'BacLuong', 'Dominio público']],
+    maichau: [['maichau-2', 'Shyamal', 'CC BY-SA 4.0'], ['maichau-3', 'Viethavvh', 'Dominio público']],
+    poom: [['poom-2', 'Steven C. Price', 'CC BY-SA 4.0'], ['poom-3', 'Franzfoto', 'CC BY-SA 3.0'], ['poom-4', 'RG72', 'CC BY-SA 4.0']],
+    linhphuoc: [['linhphuoc-2', 'Diane Selwyn', 'Dominio público'], ['linhphuoc-3', 'Tran Anh Khoa (zorrotran)', 'CC BY-SA 2.0']],
+    datanla: [['datanla-2', 'Du Tran', 'CC BY 2.0'], ['datanla-3', 'thalling55', 'CC BY 2.0']],
+    dalat: [['dalat-2', 'Tuong Lam Photos', 'CC BY-SA 4.0'], ['dalat-3', 'EA', 'CC BY-SA 4.0'], ['dalat-4', 'Diane Selwyn', 'CC BY-SA 3.0']],
+    bana: [['bana-2', 'Vivu Vietnam', 'CC BY-SA 4.0'], ['bana-3', 'Vivu Vietnam', 'CC BY-SA 4.0'], ['bana-4', 'lumoplank', 'CC0']],
+    culaocham: [['culaocham-2', 'Lê Thy', 'Dominio público'], ['culaocham-3', 'Theguywithkpdomain', 'CC0'], ['culaocham-4', 'Bùi Đình Thiêm', 'CC BY-SA 3.0']],
+    cuadai: [['cuadai-2', 'Dragfyre', 'CC BY-SA 3.0'], ['cuadai-3', 'marfis75', 'CC BY-SA 2.0']],
+    buivien: [['buivien-2', 'Christophe95', 'CC BY-SA 4.0'], ['buivien-3', 'Vinnie Cartabiano', 'CC BY 2.0']],
+    baidinh: [['baidinh-2', 'Kien1980v', 'Dominio público'], ['baidinh-3', 'Kien1980v', 'Dominio público'], ['baidinh-4', 'Kien1980v', 'Dominio público']],
+    tuduc: [['tuduc-2', 'CEphoto, Uwe Aranas', 'CC BY-SA 3.0'], ['tuduc-3', 'CEphoto, Uwe Aranas', 'CC BY-SA 3.0'], ['tuduc-4', 'thalling55', 'CC BY 2.0']],
+    hgroad: [['hgroad-2', 'Eshlee2019', 'CC BY-SA 4.0'], ['hgroad-3', 'trungydang', 'CC BY 3.0']]
+  };
+
   /* Foto de los puntos que solo aparecen en las alternativas (clave del punto → archivo de assets/img) */
   var XIMG = {
     sapa: 'sapa',
@@ -579,5 +651,5 @@ var VN = (function () {
       days: { vie12: { ev: [['8:00', 'Maletas enviadas al hotel de Huế', 'Pedid al hotel de Hội An que las mande con un taxi o furgoneta (€10–20 en total) o contratad el servicio de envío de equipaje; llegan a Huế antes que vosotros. Confirmad nombre y dirección del hotel y pagad solo al recibirlas.', 'trans:8']] } } }
   ];
 
-  return { NAMES: NAMES, COST: COST, P: P, MAPS: MAPS, PLACE: PLACE, PH: PH, XIMG: XIMG, EVP: EVP, ALTS: ALTS };
+  return { NAMES: NAMES, COST: COST, P: P, MAPS: MAPS, PLACE: PLACE, PH: PH, GAL: GAL, XIMG: XIMG, EVP: EVP, ALTS: ALTS };
 })();
