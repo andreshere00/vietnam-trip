@@ -2042,6 +2042,31 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     return L.divIcon({ className: 'lpinw', iconSize: [30, 30], iconAnchor: [15, 36], tooltipAnchor: [16, -20],
       html: '<div class="lpin pin" data-place="' + id + '" tabindex="0" role="button" aria-label="Por qué ir: ' + esc(q.full) + '" style="--c:' + (PCOL[q.t] || '#4b4b4b') + '"><span>' + n + '</span></div>' });
   }
+  /* Rótulos de los pines sin solaparse: cada uno prueba derecha, izquierda, arriba y abajo; si no cabe
+     en ninguna, se oculta (el número sigue en el pin y el nombre, en «Distancias» y en la ficha). */
+  function declutter(map, marks) {
+    var DIRS = ['right', 'left', 'top', 'bottom'];
+    /* Desplazamiento de cada dirección para no tapar su propio pin (ancla del icono: 16, −20) */
+    var OFF = { right: [0, 0], left: [-32, 0], top: [-16, -18], bottom: [-16, 10] };
+    var over = function (a, b) { return a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1; };
+    var run = function () {
+      var taken = [];
+      marks.forEach(function (m) { var e = m.getElement(); if (e) taken.push(e.getBoundingClientRect()); });
+      marks.forEach(function (m) {
+        var tt = m.getTooltip(), el = tt && tt.getElement(); if (!el) return;
+        el.style.visibility = '';
+        for (var i = 0; i < DIRS.length; i++) {
+          tt.options.direction = DIRS[i]; tt.options.offset = OFF[DIRS[i]]; tt.update();
+          var r = el.getBoundingClientRect();
+          if (!r.width || !taken.some(function (t) { return over(r, t); })) { taken.push(r); return; }
+        }
+        el.style.visibility = 'hidden';
+      });
+    };
+    var later = function () { requestAnimationFrame(run); };
+    map.on('zoomend moveend resize', later);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
+  }
   function kmIcon(txt) { return L.divIcon({ className: 'lkmw', iconSize: [0, 0], html: '<span class="lkm">' + txt + '</span>' }); }
   function gmapsUrl(cfg, ids) {
     var seq = ids.filter(function (id, i) { return i === 0 || id !== ids[i - 1]; }).map(function (id) { return P[id].lat + ',' + P[id].lon; });
@@ -2105,12 +2130,13 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     L.polyline(ll, { className: 'lcase', weight: 9, opacity: 1, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(map);
     L.polyline(ll, { className: 'lroute', weight: 5, opacity: 1, dashArray: dash, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(map);
     mids.forEach(function (x) { L.marker([x[0][1], x[0][0]], { icon: kmIcon(fmtK(x[1])), interactive: false, keyboard: false }).addTo(map); });
-    order.forEach(function (id, n) {
+    var marks = order.map(function (id, n) {
       var q = P[id];
-      L.marker([q.lat, q.lon], { icon: pinIcon(id, n + 1), keyboard: false, riseOnHover: true })
+      return L.marker([q.lat, q.lon], { icon: pinIcon(id, n + 1), keyboard: false, riseOnHover: true })
         .bindTooltip(q.l, { permanent: true, direction: 'auto', className: 'ltip', interactive: false })
         .addTo(map);
     });
+    declutter(map, marks);
     map.__fit = function () { map.fitBounds(L.latLngBounds(ll), { paddingTopLeft: [60, 40], paddingBottomRight: [60, 30], maxZoom: 16 }); };
     if (el.clientWidth) { map.__fitted = true; map.__fit(); } else map.setView(ll[0], 12);
     L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
