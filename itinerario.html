@@ -135,8 +135,12 @@ ol.tl { list-style: none; margin: 0; padding: 4px 14px 10px; }
 .tev.hot .bd { background: color-mix(in srgb, var(--z) 14%, transparent); }
 .tev.tet h3::after { content: "Tết"; margin-left: 8px; font: 700 .68rem/1 var(--body); color: var(--red); border: 1px solid var(--red); border-radius: 8px; padding: 1px 5px; vertical-align: 2px; }
 .tev .tag { font: 700 .66rem/1 var(--body); text-transform: uppercase; letter-spacing: .04em; padding: 2px 6px; border-radius: 8px; background: color-mix(in srgb, var(--z) 18%, transparent); color: var(--fg); margin-left: 6px; vertical-align: 2px; }
-.tev .evimg { flex: none; width: 84px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); background: var(--line); margin-left: 2px; transition: width .15s, height .15s; }
-.tev.open .evimg { width: 150px; height: 104px; }
+.tev .evph { position: relative; flex: none; display: block; width: 120px; height: 84px; margin-left: 2px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--line); cursor: zoom-in; box-shadow: 0 4px 10px -6px color-mix(in srgb, var(--ink) 45%, transparent); transition: width .15s, height .15s; }
+.tev .evimg { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+@media (hover: hover) { .tev .evph:hover .evimg { transform: scale(1.07); } }
+.tev.open .evph { width: 210px; height: 140px; }
+.tev .evn { position: absolute; right: 4px; bottom: 4px; display: inline-flex; align-items: center; gap: 2px; padding: 1px 6px; border-radius: 999px; background: rgba(0,0,0,.62); color: #fff; font: 700 .7rem/1.4 var(--body); }
+.tev .evn .mi { font-size: .9rem; vertical-align: 0; }
 .tev .cr { display: none; margin: 0 0 4px; font-size: .72rem; color: var(--muted); }
 .tev.open .cr, .showall .tev .cr { display: block; }
 .tev p { margin: 2px 0 4px; font-size: .9rem; color: var(--muted); }
@@ -216,8 +220,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
   .back { padding: 0 8px; }
   .tev { grid-template-columns: 44px 28px minmax(0, 1fr); column-gap: 6px; }
   .tev::before { left: calc(44px + 6px + 13px); }
-  .tev .evimg { width: 64px; height: 48px; }
-  .tev.open .evimg { width: 104px; height: 76px; }
+  .tev .evph { width: 84px; height: 62px; }
+  .tev.open .evph { width: 132px; height: 94px; }
 }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
@@ -261,6 +265,7 @@ details.dl > summary::-webkit-details-marker { display: none; }
 <noscript><p class="wrap msg">Esta página necesita JavaScript.</p></noscript>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/gallery.js"></script>
 <script src="assets/js/book.js"></script>
 <script>
 (function () {
@@ -469,6 +474,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
       var m = L.marker([p.lat, p.lon], { icon: stopIcon(g.nums[0], col, g.alt), keyboard: false })
         .bindTooltip(g.nums.join(' y ') + ' · ' + esc(p.full) + (p.ap ? ' (aproximado)' : ''), { direction: 'auto' }).addTo(layer);
       m.on('click', function () { focusEv(d.id, g.nums[0], true, preview ? document.querySelector('#d-' + d.id + ' .ocard[data-alt="' + preview.id + '"]') : null); });
+      var pe = m.getElement(), pk = p.k, ppl = pk && VN.PLACE[pk], pim = (ppl && ppl.img) || (pk && VN.XIMG[pk]);
+      if (pe && pim) { pe.dataset.img = pim; pe.dataset.k = pk; }
       markers[g.nums[0]] = { m: m, g: g, col: col };
     });
     var any = Object.keys(groups).length > 0;
@@ -502,14 +509,14 @@ details.dl > summary::-webkit-details-marker { display: none; }
   /* Foto del lugar del evento: las del plan base (PLACE) o las de los puntos de alternativas (XIMG) */
   var photoOf = function (it) {
     var k = it.pt && it.pt.k, pl = k && VN.PLACE[k], im = (pl && pl.img) || (k && VN.XIMG[k]);
-    return im ? { f: im, alt: it.pt.full, ph: VN.PH[im] } : null;
+    return im ? { f: im, alt: it.pt.full, ph: VN.PH[im], k: k, n: VNG.photos(im).length } : null;
   };
   var evH = function (it, nVisible, inOpt) {
     var num = it.n ? '<button type="button" class="nd has" aria-label="Ver la parada ' + it.n + ' en el mapa" data-pin="' + it.n + '">' + it.n + '</button>' : '<span class="nd dot" aria-hidden="true"></span>';
     var ph = photoOf(it), pr = priceOf(it.spec), body = it.text ? '<p>' + esc(it.text) + '</p>' : '';
     var tag = it.alt && !inOpt ? '<i class="tag">' + (it.alt.kind === 'swap' ? 'Alternativa' : 'Extra') + '</i>' : '';
     return '<li class="tev' + (it.alt ? ' alt' : '') + (it.tet ? ' tet' : '') + (inOpt ? ' in-opt' : '') + '"' + (it.n ? ' data-n="' + it.n + '"' : '') + '><span class="tm">' + esc(it.time) + '</span>' + num +
-      '<div class="bd"><button type="button" class="hd" aria-expanded="false"><h3>' + esc(it.title) + tag + '</h3>' + (pr ? '<span class="price">~' + eur(pr) + '</span>' : '') + (it.text || it.spec ? '<span class="mi chv" aria-hidden="true">expand_more</span>' : '') + (ph ? '<img class="evimg" src="assets/img/' + ph.f + '.jpg" alt="' + esc(ph.alt) + '" width="84" height="60" loading="lazy" decoding="async">' : '') + '</button>' + body + (ph && ph.ph ? '<small class="cr">Foto: ' + esc(ph.ph.by) + ' · ' + esc(ph.ph.lic) + ' (Wikimedia Commons)</small>' : '') + chipsH(it.spec) + '</div></li>';
+      '<div class="bd"><button type="button" class="hd" aria-expanded="false"><h3>' + esc(it.title) + tag + '</h3>' + (pr ? '<span class="price">~' + eur(pr) + '</span>' : '') + (it.text || it.spec ? '<span class="mi chv" aria-hidden="true">expand_more</span>' : '') + (ph ? '<span class="evph" data-img="' + ph.f + '" data-k="' + esc(ph.k) + '"><img class="evimg" src="assets/img/' + ph.f + '.jpg" alt="' + esc(ph.alt) + '" width="120" height="84" loading="lazy" decoding="async">' + (ph.n > 1 ? '<span class="evn" aria-hidden="true"><span class="mi">photo_library</span>' + ph.n + '</span>' : '') + '</span>' : '') + '</button>' + body + (ph && ph.ph ? '<small class="cr">Foto: ' + esc(ph.ph.by) + ' · ' + esc(ph.ph.lic) + ' (Wikimedia Commons)</small>' : '') + chipsH(it.spec) + '</div></li>';
   };
   var optH = function (a, d) {
     var on = !!sel[a.id] && mode === 'mine', ev = dayItems(d, a), hasGeo = ev.some(function (i) { return i.pt; });
@@ -621,6 +628,14 @@ details.dl > summary::-webkit-details-marker { display: none; }
     if (location.hash.indexOf('#d-') === 0) setTimeout(function () { var el = document.querySelector(location.hash); if (el) { el.scrollIntoView(); setActive(el.dataset.day, false); } }, 150);
   }).catch(function () {
     $('tlDays').innerHTML = '<p class="msg">No se ha podido leer el itinerario. Si abrís el archivo directamente desde el disco, servid la carpeta (por ejemplo con <code>python3 -m http.server</code>) o usad la web publicada.</p>';
+  });
+  /* Fotos: ficha al pasar el ratón por una miniatura o una parada del mapa; galería al pulsar la miniatura (assets/js/gallery.js) */
+  VNG.bind({
+    hover: '.tev .evph, .lpinw[data-img]', click: '.tev .evph',
+    resolve: function (t) {
+      var k = t.dataset.k, q = k && pt(k), pl = k && VN.PLACE[k];
+      return q ? { title: q.full, why: pl ? pl.why : '', img: t.dataset.img, lat: q.lat, lon: q.lon } : null;
+    }
   });
   setHdr();
 })();
