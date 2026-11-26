@@ -3035,7 +3035,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
 })();
 
 // Inmersión al salir de la cabecera (Motion): se reproduce una vez al pasar del 35 % de la cabecera
-// bajando, y se rearma al volver arriba. Con «reducir movimiento» no se ejecuta.
+// bajando con la rueda o el dedo (no en saltos), y se rearma al volver arriba. Con «reducir movimiento» no se ejecuta.
 (function () {
   var M = window.Motion, hero = document.getElementById('top'), dive = document.getElementById('dive');
   if (!M || !hero || !dive) return;
@@ -3078,10 +3078,21 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     bubbles.forEach(function (b) { b.style.transform = ''; b.style.opacity = ''; });
     surface();
   }
+  // Un salto (enlace a un día, menú, galería o enlace directo con #) no debe tapar el destino:
+  // se marca como reproducida sin animarla. También cuenta como salto un scroll muy rápido.
+  var skipUntil = 0, lastY = window.scrollY;
+  function skip() { skipUntil = Date.now() + 1500; }
+  document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a[href^="#"]')) skip(); }, true);
+  window.addEventListener('hashchange', skip);
+  if (location.hash) skip();
   function upd() {
     tick = false;
-    var y = window.scrollY;
-    if (!played && y > limit()) play();
+    var y = window.scrollY, jump = Math.abs(y - lastY) > window.innerHeight * .4;
+    lastY = y;
+    if (!played && y > limit()) {
+      if (jump || Date.now() < skipUntil || y > hero.offsetHeight) played = true;
+      else play();
+    }
     else if (played && y < limit() * .25) reset();
   }
   played = window.scrollY > limit();
