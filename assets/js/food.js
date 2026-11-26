@@ -7,7 +7,7 @@ var VNFOOD = (function () {
   'use strict';
   var S = function (t, n, k, d, p, a, tag) { return { t: t, n: n, k: k, d: d, p: p, a: a || '', tag: tag || '' }; };
   var ZONES = [
-    { id: 'hcm', n: 'Ho Chi Minh', c: '--red', ic: 'location_city', when: '6–8 y 20–21 feb', tet: 1, city: 'Ho Chi Minh City',
+    { id: 'hcm', ph: ['benthanh', 'nguyenhue'], n: 'Ho Chi Minh', c: '--red', ic: 'location_city', when: '6–8 y 20–21 feb', tet: 1, city: 'Ho Chi Minh City',
       dishes: ['Phở bò', 'Cơm tấm', 'Bánh mì', 'Bánh xèo', 'Ốc (caracoles)'],
       tip: 'La ciudad que más come a todas horas: los puestos de calle y los locales de barrio son lo mejor. En Tết (6–8) muchos locales de barrio cierran; los puestos del centro y los sitios para turistas suelen seguir abiertos.',
       spots: [
@@ -23,7 +23,7 @@ var VNFOOD = (function () {
         S(3, 'La Villa', 'Cocina francesa', 'Cena elegante en una villa de Thảo Điền; está a unos 25 min en taxi del Distrito 1.', '€40–70', 'Thảo Điền (Distrito 2)'),
         S(3, 'The Deck Saigon', 'Junto al río', 'Terraza sobre el río con cocina fusión; mejor al atardecer.', '€20–35', 'Thảo Điền (Distrito 2)')
       ] },
-    { id: 'mekong', n: 'Delta del Mekong', c: '--jade', ic: 'sailing', when: 'dom 7 feb (excursión)', tet: 1, city: 'My Tho',
+    { id: 'mekong', ph: ['mekong', 'thoison'], n: 'Delta del Mekong', c: '--jade', ic: 'sailing', when: 'dom 7 feb (excursión)', tet: 1, city: 'My Tho',
       dishes: ['Cá tai tượng (pez oreja de elefante)', 'Hủ tiếu Mỹ Tho', 'Frutas tropicales', 'Dulces de coco'],
       tip: 'La comida suele ir incluida en el tour (en una finca). Si la excursión es por vuestra cuenta, el plato típico es el pez oreja de elefante frito, que se come enrollado con hierbas y arroz.',
       spots: [
@@ -32,7 +32,7 @@ var VNFOOD = (function () {
         S(2, 'Nhà hàng Chương Dương', 'Marisco y río', 'Restaurante junto al río con el pez oreja de elefante como especialidad; bonito al atardecer.', '€8–15', 'Mỹ Tho (10 đường 30/4)'),
         S(2, 'Thanh Tùng Seafood', 'Pescado de río', 'Sitio sencillo especializado en pescado de río fresco, también pez oreja de elefante.', '€6–12', 'Bến Tre (circunvalación 60)')
       ] },
-    { id: 'hoian', n: 'Hội An y Đà Nẵng', c: '--gold', ic: 'festival', when: '8–12 feb', tet: 1, city: 'Hoi An',
+    { id: 'hoian', ph: ['cocina', 'hoaicho', 'hoian'], n: 'Hội An y Đà Nẵng', c: '--gold', ic: 'festival', when: '8–12 feb', tet: 1, city: 'Hoi An',
       dishes: ['Cao lầu', 'Bánh mì', 'Cơm gà', 'Mì Quảng', 'Bánh bao bánh vạc'],
       tip: 'La mejor ciudad del viaje para comer: bocadillos, fideos propios y cocina de mercado. Hội An sigue abierta en Tết, pero conviene reservar las cenas buenas.',
       spots: [
@@ -46,7 +46,7 @@ var VNFOOD = (function () {
         S(3, 'Mango Rooms', 'Asia y América', 'Mezcla asiática y latina en un local colorido del casco antiguo; tiene cocteles y carta larga.', '€15–30', 'Casco antiguo (Nguyễn Thái Học)'),
         S(3, 'MÙA', 'Menú degustación', 'Menú degustación centrado en la cosecha de la zona. Reservad con antelación.', '~€35 (1.000.000 ₫)', 'Hội An')
       ] },
-    { id: 'hue', n: 'Huế', c: '--hue', ic: 'temple_buddhist', when: '12–13 feb', city: 'Hue',
+    { id: 'hue', ph: ['bunbo', 'hueriver'], n: 'Huế', c: '--hue', ic: 'temple_buddhist', when: '12–13 feb', city: 'Hue',
       dishes: ['Bún bò Huế', 'Bánh khoái', 'Nem lụi', 'Cơm hến', 'Bánh bèo, nậm y lọc'],
       tip: 'La cocina imperial se hizo en pequeñas porciones y muy bien presentadas: la ciudad es de platos pequeños para probar muchos. Muy picante: pedid «ít cay» (poco picante) si lo preferís.',
       spots: [
@@ -60,7 +60,7 @@ var VNFOOD = (function () {
         S(3, 'Tinh Gia Viên', 'Cocina imperial', 'Cena de cocina imperial en una casa-jardín tradicional, con menús de varios platos.', '€16–40', 'Huế'),
         S(3, 'Ancient Hue', 'Cocina imperial', 'Casa de madera del siglo XIX; el menú de la «cena imperial» es la opción habitual.', '€20–48', 'Huế')
       ] },
-    { id: 'hanoi', n: 'Hà Nội', c: '--indigo', ic: 'ramen_dining', when: '13–15 y 17–20 feb', city: 'Hanoi',
+    { id: 'hanoi', ph: ['huevo', 'hanoi'], n: 'Hà Nội', c: '--indigo', ic: 'ramen_dining', when: '13–15 y 17–20 feb', city: 'Hanoi',
       dishes: ['Phở bò', 'Bún chả', 'Chả cá', 'Bánh cuốn', 'Cà phê trứng'],
       tip: 'La capital gastronómica del país: el Old Quarter es una calle de comida tras otra. Muchos puestos abren solo por la mañana o hasta que se agota el caldo. A partir del 17, tras el Tết, ya ha reabierto casi todo.',
       spots: [
@@ -76,7 +76,7 @@ var VNFOOD = (function () {
         S(3, 'Gia', 'Menú degustación', 'Menú degustación de unos doce platos con una estrella Michelin; piden un depósito al reservar.', '€40–130 (según menú)', 'Hà Nội', 'Estrella Michelin'),
         S(3, 'La Badiane', 'Franco-vietnamita', 'Cocina francesa con toques vietnamitas en una villa colonial.', '€25–45', 'Hà Nội (Nam Ngư)')
       ] },
-    { id: 'ninh', n: 'Ninh Bình', c: '--lotus', ic: 'kayaking', when: '15–16 feb', city: 'Ninh Binh',
+    { id: 'ninh', ph: ['tamcoc', 'trangan'], n: 'Ninh Bình', c: '--lotus', ic: 'kayaking', when: '15–16 feb', city: 'Ninh Binh',
       dishes: ['Dê (cabra)', 'Cơm cháy', 'Rượu cần'],
       tip: 'Lo típico es la cabra de montaña (a la plancha, estofada o en rollitos) y el cơm cháy, arroz crujiente. Los restaurantes de la carretera de Tràng An sirven a grupos; en Tam Cốc hay más ambiente.',
       spots: [
@@ -87,7 +87,7 @@ var VNFOOD = (function () {
         S(2, 'Đức Dê', 'Cabra', 'Conocido por los rollitos de cabra; su dueño tiene dos locales.', '€6–10', 'Ninh Bình'),
         S(3, 'Cena en el homestay o el resort', 'Cena tranquila', 'Cena entre arrozales con menú local, que casi siempre se reserva en el alojamiento.', '€15–25', 'Tam Cốc')
       ] },
-    { id: 'halong', n: 'Bahía de Hạ Long', c: '--teal', ic: 'sailing', when: '16–17 feb', city: 'Ha Long',
+    { id: 'halong', ph: ['crucero', 'halong'], n: 'Bahía de Hạ Long', c: '--teal', ic: 'sailing', when: '16–17 feb', city: 'Ha Long',
       dishes: ['Chả mực (pastel de calamar)', 'Bánh cuốn chả mực', 'Marisco'],
       tip: 'La cena y el desayuno del crucero van incluidos. En tierra, lo típico es el chả mực, un pastel de calamar machacado a mano. Preguntad antes si cobran por cocinar cada plato.',
       spots: [
@@ -99,7 +99,7 @@ var VNFOOD = (function () {
         S(2, 'Mercado de marisco de Bãi Cháy', 'Elegir y cocinar', 'Elegís el marisco y lo cocinan al momento. Fijad el precio por kilo antes de pedir.', '€7–13', 'Bãi Cháy'),
         S(3, 'Cena de vuestro crucero', 'Incluida', 'En los cruceros de gama media y alta, la cena es un menú de varios platos con marisco.', 'Incluida', 'A bordo')
       ] },
-    { id: 'sapa', n: 'Sa Pa', c: '--indigo', ic: 'landscape', when: '18–19 feb', alt: 'sapa', city: 'Sa Pa',
+    { id: 'sapa', ph: ['sapa', 'catcat'], n: 'Sa Pa', c: '--indigo', ic: 'landscape', when: '18–19 feb', alt: 'sapa', city: 'Sa Pa',
       dishes: ['Salmón y esturión', 'Thắng cố', 'Cerdo negro', 'Setas y verduras de monte'],
       tip: 'Con 3–12 °C apetece comida caliente: los hotpots de pescado de agua fría son la especialidad. Pedid siempre el precio del hotpot antes de empezar.',
       spots: [
@@ -108,7 +108,7 @@ var VNFOOD = (function () {
         S(2, 'Red Dao House', 'Cocina de las etnias', 'En una casa de estilo dao rojo, de camino a la cascada Thác Bạc; el salmón con maracuyá es su plato.', '€8–15', '4B Thác Bạc'),
         S(2, 'Cá Tầm Vua Sapa', 'Esturión', 'Especializado en el hotpot y el sashimi de esturión.', '€10–15', 'Sa Pa')
       ] },
-    { id: 'hagiang', n: 'Hà Giang y Đồng Văn', c: '--indigo', ic: 'two_wheeler', when: '16–19 feb', alt: 'hagiang', city: 'Ha Giang',
+    { id: 'hagiang', ph: ['hagiang', 'duga'], n: 'Hà Giang y Đồng Văn', c: '--indigo', ic: 'two_wheeler', when: '16–19 feb', alt: 'hagiang', city: 'Ha Giang',
       dishes: ['Bánh cuốn', 'Phở chua', 'Thắng cố', 'Thắng dền', 'Xôi cinco colores'],
       tip: 'En el Loop, el alojamiento suele incluir la cena y el desayuno en un homestay. Los mercados de domingo de Đồng Văn y Mèo Vạc son el mejor sitio para probar la cocina local.',
       spots: [
@@ -117,21 +117,21 @@ var VNFOOD = (function () {
         S(1, 'Bà Tư Lan', 'Cocina local', 'Local con especialidades de la zona, entre ellas el thắng cố.', '€2–5', 'Đồng Văn (125, grupo 3)'),
         S(2, 'Cena de homestay', 'Casera', 'Mesa familiar con arroz, cerdo, verduras de monte y rượu de maíz: casi siempre se incluye.', '€5–9', 'Du Già y Đồng Văn')
       ] },
-    { id: 'maichau', n: 'Mai Châu', c: '--lotus', ic: 'agriculture', when: '18 feb (excursión)', alt: 'maichau', city: 'Mai Chau',
+    { id: 'maichau', ph: ['maichau', 'poom'], n: 'Mai Châu', c: '--lotus', ic: 'agriculture', when: '18 feb (excursión)', alt: 'maichau', city: 'Mai Chau',
       dishes: ['Cơm lam', 'Pescado de arroyo a la parrilla', 'Pollo de colina', 'Xôi de colores'],
       tip: 'La cocina de los thai blancos se come en esteras, en una casa sobre pilotes. Si vais de excursión, la comida suele ir incluida en el valle.',
       spots: [
         S(1, 'Puestos del mercado de Mai Châu', 'Puestos', 'Pinchos a la parrilla y xôi de colores para llevar.', '€1–3', 'Mai Châu'),
         S(2, 'Comida en un homestay del valle', 'Casera', 'Comida sobre pilotes con pollo de colina, pescado y cơm lam; se reserva en el alojamiento o con el guía.', '€6–10', 'Bản Lác y Pom Coong')
       ] },
-    { id: 'catba', n: 'Cát Bà', c: '--teal', ic: 'directions_boat', when: '16–17 feb', alt: 'catba', city: 'Cat Ba',
+    { id: 'catba', ph: ['catba', 'lanha'], n: 'Cát Bà', c: '--teal', ic: 'directions_boat', when: '16–17 feb', alt: 'catba', city: 'Cat Ba',
       dishes: ['Marisco al momento', 'Ghẹ (cangrejo azul)', 'Mực (calamar)'],
       tip: 'En el puerto elegís el marisco vivo y lo cocinan. Preguntad el precio por kilo y que lo pesen delante de vosotros.',
       spots: [
         S(1, 'Puestos del puerto de Cát Bà', 'Puestos', 'Fideos, bánh mì y tentempiés para el desayuno de la salida.', '€2–4', 'Cát Bà'),
         S(2, 'Marisco del puerto', 'Elegir y cocinar', 'Restaurantes junto al puerto donde elegís el marisco vivo y lo cocinan en el momento.', '€8–15', 'Cát Bà')
       ] },
-    { id: 'dalat', n: 'Đà Lạt', c: '--jade', ic: 'local_florist', when: 'dom 7 feb (excursión)', alt: 'dalat', tet: 1, city: 'Da Lat',
+    { id: 'dalat', ph: ['dalat', 'datanla'], n: 'Đà Lạt', c: '--jade', ic: 'local_florist', when: 'dom 7 feb (excursión)', alt: 'dalat', tet: 1, city: 'Da Lat',
       dishes: ['Bánh tráng nướng', 'Nem nướng', 'Bánh căn', 'Lẩu gà lá é'],
       tip: 'Con noches frescas se come caliente: la «pizza vietnamita» (bánh tráng nướng) y el hotpot de pollo con hierbas. Muchos sitios de Đà Lạt abren de tarde.',
       spots: [
