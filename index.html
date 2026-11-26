@@ -128,12 +128,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .1rem; min-width: 3rem; min-height: 2.75rem; padding: .2rem .55rem; border: 1px solid transparent; border-radius: 6px; text-decoration: none; line-height: 1.05; color: var(--fg); -webkit-tap-highlight-color: transparent; }
 .nav a b { font-family: var(--display); font-size: 1.05rem; }
 .nav a span { font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.nav a:not(.txt)::after { content: ""; width: .5rem; height: .5rem; margin-top: .05rem; background: var(--z); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
-.nav a.txt { flex-direction: row; font-family: var(--display); font-weight: 700; font-size: .8rem; letter-spacing: .06em; padding-inline: .8rem; }
+.nav a::after { content: ""; width: .5rem; height: .5rem; margin-top: .05rem; background: var(--z); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
 .nav a:hover { background: color-mix(in srgb, var(--yellow) 22%, var(--surface)); }
 .nav a[aria-current="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
 .nav a[aria-current="true"] span { color: inherit; opacity: .85; }
-.nav .sep { width: 1px; margin: .35rem .25rem; background: var(--line); }
 .progress { height: 3px; background: var(--line); }
 .progress span { display: block; height: 100%; width: 0; background: var(--red); }
 .legend { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; padding-block: 1.5rem .25rem; font-size: .92rem; color: var(--muted); }
@@ -564,8 +562,6 @@ html { scroll-padding-top: 4.5rem; }
 .ic { display: inline-block; margin-right: .4em; font-style: normal; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-size: .95em; line-height: 1; letter-spacing: 0; text-transform: none; }
 .ev h3 .ic { font-size: 1.05em; margin-right: .45em; }
 .chip .ic, .sum small .ic { margin-right: .3em; }
-.nav a.txt .ic { display: none; }
-@media (min-width: 900px) { .nav a.txt .ic { display: inline-block; } }
 .compact .ev h3 .ic { font-size: 1em; }
 
 /* Iconos Material */
@@ -588,8 +584,6 @@ html { scroll-padding-top: 4.5rem; }
 .gmaps .mi { font-size: 1rem; }
 .nextday .mi { font-size: 1.3rem; }
 .nextday { align-items: center; }
-.nav a.txt { display: inline-flex; align-items: center; gap: .25rem; }
-.nav a.txt .ic.mi { margin: 0; color: inherit; }
 .stog .st-t { display: inline-flex; align-items: center; }
 /* Menú modal */
 .menu-btn { margin-left: auto; }
@@ -758,10 +752,10 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   <div class="wrap">
     <p class="eyebrow">Viernes 5 – Domingo 21 de febrero · Tết Đinh Mùi 2027</p>
     <h1>Vietnam: de Ho Chi Minh a la bahía de Hạ Long</h1>
-    <p class="lede">Quince noches de sur a norte: Ho Chi Minh, el delta del Mekong, Hội An, Huế, Hà Nội, Ninh Bình y Hạ Long. El viaje coincide con el Tết, el Año Nuevo lunar (el día 1 es el sábado 6 de febrero): ciudades más tranquilas los primeros días, templos y flores por todas partes, y mucho que reservar con tiempo.</p>
+    <p class="lede">Quince noches de sur a norte, en pleno Tết (Año Nuevo lunar): calles tranquilas, templos llenos de flores y mucho que reservar con tiempo.</p>
     <div class="flights">
-      <div class="fl"><small>Ida</small><b>Vie 5 feb · 00:40 Madrid → Sáb 6 feb · 01:10 Ciudad Ho Chi Minh</b><span>Madrid (MAD) → Tân Sơn Nhất (SGN), con escala · 18 h 30 min. Salís de casa la noche del jueves 4</span></div>
-      <div class="fl"><small>Vuelta</small><b>Dom 21 feb · 02:30 Ciudad Ho Chi Minh → Dom 21 feb · 20:30 Madrid</b><span>SGN → MAD, con escala · 24 h. Horas locales: Vietnam va 6 h por delante de Madrid</span></div>
+      <div class="fl"><small>Ida</small><b>Vie 5 feb · 00:40 Madrid → Sáb 6 feb · 01:10 Ciudad Ho Chi Minh</b><span>Con escala · 18 h 30 min · salida de casa el jueves 4</span></div>
+      <div class="fl"><small>Vuelta</small><b>Dom 21 feb · 02:30 Ciudad Ho Chi Minh → Dom 21 feb · 20:30 Madrid</b><span>Con escala · 24 h · horas locales (Vietnam, +6 h)</span></div>
     </div>
     <svg class="scene" viewBox="0 0 900 200" role="img" aria-label="Farolillos rojos, islotes kársticos y un junco al atardecer en la bahía de Hạ Long" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -835,15 +829,6 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
       <li><a href="#vie19" style="--z: var(--indigo)"><b>19</b><span>Vie</span></a></li>
       <li><a href="#sab20" style="--z: var(--red)"><b>20</b><span>Sáb</span></a></li>
       <li><a href="#dom21" style="--z: var(--muted)"><b>21</b><span>Dom</span></a></li>
-      <li class="sep" aria-hidden="true"></li>
-      <li><a class="txt" href="#ruta">Ruta</a></li>
-      <li><a class="txt" href="itinerario.html">Línea de tiempo</a></li>
-      <li><a class="txt" href="#actividades">Actividades</a></li>
-      <li><a class="txt" href="#alternativas">Alternativas</a></li>
-      <li><a class="txt" href="#reservas">Reservar</a></li>
-      <li><a class="txt" href="comida.html">Comida</a></li>
-      <li><a class="txt" href="#presupuesto">Presupuesto</a></li>
-      <li><a class="txt" href="#notas">Notas</a></li>
     </ul>
     <span id="dlNav"></span>
     <button type="button" class="theme-btn menu-btn" id="menuBtn" aria-label="Abrir el menú de secciones" title="Secciones"><span class="mi" style="font-size:1.6rem" aria-hidden="true">apps</span></button>
@@ -866,18 +851,18 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <span style="--c: var(--teal)">Bahía de Hạ Long</span>
     <span style="--c: var(--muted)">Vuelos desde y hacia Madrid</span>
   </div>
-  <p class="intro">Cada día empieza con su mapa: carreteras, ríos, templos y paradas numeradas en el orden de la ruta, con las distancias entre ellas. Los mapas son esquemas con trazados aproximados: sirven para orientarse, no para navegar. Precios y tiempos son estimaciones.</p>
+  <p class="intro">Mapas orientativos; precios y tiempos, estimados.</p>
   <div class="tetbox">
     <h2>Viajar durante el Tết</h2>
-    <p>El Tết Đinh Mùi (año de la Cabra) cae el <strong>sábado 6 de febrero de 2027</strong>: despegáis en la madrugada del viernes 5 y aterrizáis a la 1:10 del sábado 6, ya en mùng 1, el primer día del año. Giao thừa, la noche de fin de año, os pilla en el aire. El Ministerio del Interior vietnamita fija el descanso oficial del 4 al 10 de febrero; muchos negocios cierran entre 3 y 7 días y los vuelos, trenes y hoteles se encarecen. Hội An, los templos, los parques y los hoteles siguen abiertos.</p>
-    <p>Cada día lleva una pestaña «Tết» con lo que cambia: cierres, tradiciones y reservas. Para los primeros días (6–9 feb), cuando más cierra, hay un <strong>plan B por el Tết</strong> en la sección «Alternativas» y dentro de cada día. El 20 de febrero es el 15.º día del año, Rằm tháng Giêng, la primera luna llena.</p>
+    <p>El Tết Đinh Mùi (año de la Cabra) cae el <strong>sábado 6 de febrero de 2027</strong>: aterrizáis ese mismo día de madrugada. Del 4 al 10 muchos negocios cierran y todo se encarece; templos, parques, hoteles y Hội An siguen abiertos.</p>
+    <p>Cada día tiene una pestaña «Tết» y, del 6 al 9, un <strong>plan B</strong> en «Alternativas».</p>
   </div>
 
   <section class="route" id="ruta" aria-labelledby="ruta-h">
     <header class="chap" data-n="01" style="--z: var(--red)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">map</span></span>
     <div><span class="chap-k">Capítulo 1 · Ruta</span><h2 id="ruta-h">La ruta de un vistazo</h2></div>
-    <p class="chap-s">Cinco bases y un crucero, con tres vuelos internos para no perder días en carretera. Los vuelos desde y hacia Madrid se suman aparte.</p>
+    <p class="chap-s">Cinco bases, un crucero y tres vuelos internos.</p>
   </header>
     <div class="routegrid">
       <figure class="ovmap" id="ovMap"><figcaption>Vietnam, de sur a norte</figcaption></figure>
@@ -895,28 +880,28 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   <header class="chap" data-n="02" style="--z: var(--gold)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">calendar_month</span></span>
     <div><span class="chap-k">Capítulo 2 · Día a día</span><h2>Día a día</h2></div>
-    <p class="chap-s">Diecisiete días, del viernes 5 al domingo 21. Cada día lleva su mapa, sus horas y su pestaña de Tết; el color de la etiqueta indica la zona.</p>
+    <p class="chap-s">Del viernes 5 al domingo 21. El color indica la zona.</p>
   </header>
   <div class="days">
 
     <section class="day trip" id="vie5">
       <div class="date"><span class="dow">Viernes</span><span class="num">5</span><span class="place">Madrid → Ho Chi Minh</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">21:30</span><div><h3>Salida hacia el aeropuerto de Madrid-Barajas (jueves 4)</h3><p>Facturación abierta unas 3 h antes del vuelo. Llevad el pasaporte (con 6 meses de validez) y los datos del vuelo de vuelta.</p></div></li>
-        <li class="ev"><span class="time">0:40</span><div><h3>Vuelo Madrid → Ciudad Ho Chi Minh</h3><p>Despegáis en la madrugada del viernes 5 y aterrizáis el sábado 6 a la 1:10 hora de Vietnam: 18 h 30 min de viaje con escala. Poneos el horario vietnamita desde el despegue y dormid en el avión.</p></div></li>
+        <li class="ev"><span class="time">21:30</span><div><h3>Salida hacia el aeropuerto de Madrid-Barajas (jueves 4)</h3><p>Llegad 3 h antes con pasaporte y vuelo de vuelta.</p></div></li>
+        <li class="ev"><span class="time">0:40</span><div><h3>Vuelo Madrid → Ciudad Ho Chi Minh</h3><p>18 h 30 min con escala. Dormid a bordo con el horario vietnamita.</p></div></li>
       </ul>
     </section>
 
     <section class="day sgn" id="sab6">
       <div class="date"><span class="dow">Sábado</span><span class="num">6</span><span class="place">Ho Chi Minh</span><span class="badge lunar">Mùng 1 · Tết</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">1:10</span><div><h3>Aterrizaje en Tân Sơn Nhất (SGN)</h3><p>Pasáis la medianoche del Tết en el aire. Inmigración y equipaje, cerca de 1 h. Con la exención de visado os sellan 45 días. Sacad dongs del cajero y activad la eSIM. Grab o taxi al Distrito 1 (25–40 min, con poco tráfico).</p></div></li>
-        <li class="ev"><span class="time">3:00</span><div><h3>Check-in en el hotel y descanso</h3><p>Avisad al hotel de la llegada de madrugada y reservad desde la noche del 5, para entrar sin esperar. Dormid hasta media mañana: es mùng 1 y todo abre tarde.</p></div></li>
-        <li class="ev tet"><span class="time">10:30</span><div><h3>Templo de Thiên Hậu (Chợ Lớn)</h3><p>Templo chino dedicado a la diosa del mar, con espirales de incienso colgando del techo. En mùng 1 las familias vienen a rezar por el año nuevo: id con respeto, hombros cubiertos.</p></div></li>
-        <li class="ev"><span class="time">12:00</span><div><h3>Pagoda del Emperador de Jade</h3><p>Templo taoísta con figuras del Emperador de Jade, guardianes y un estanque de tortugas. Poco tráfico y calles vacías: el mejor día para ir en coche.</p></div></li>
-        <li class="ev"><span class="time">13:30</span><div><h3>Almuerzo</h3><p>Muchos restaurantes cierran en mùng 1. Buscad hoteles, centros comerciales o puestos de calle que abren al mediodía.</p></div></li>
-        <li class="ev"><span class="time">15:00</span><div><h3>Catedral de Notre-Dame y Oficina de Correos</h3><p>Ladrillo rojo colonial francés frente a la estación de Correos de 1891, aún en servicio, con mapas antiguos de la ciudad. Pasead entre ambas.</p></div></li>
-        <li class="ev tet"><span class="time">17:30</span><div><h3>Calle de las flores de Nguyễn Huệ</h3><p>Cada Tết el paseo peatonal se convierte en un jardín temporal: flores de mai amarilla, bonsáis y la mascota del año. Id al atardecer, cuando se enciende.</p></div></li>
+        <li class="ev"><span class="time">1:10</span><div><h3>Aterrizaje en Tân Sơn Nhất (SGN)</h3><p>Inmigración ~1 h. Sacad dongs, activad la eSIM y Grab al Distrito 1 (25–40 min).</p></div></li>
+        <li class="ev"><span class="time">3:00</span><div><h3>Check-in en el hotel y descanso</h3><p>Avisad de la llegada de madrugada. Mùng 1: todo abre tarde.</p></div></li>
+        <li class="ev tet"><span class="time">10:30</span><div><h3>Templo de Thiên Hậu (Chợ Lớn)</h3><p>Templo chino con espirales de incienso, lleno de familias en mùng 1. Hombros cubiertos.</p></div></li>
+        <li class="ev"><span class="time">12:00</span><div><h3>Pagoda del Emperador de Jade</h3><p>Templo taoísta con estanque de tortugas.</p></div></li>
+        <li class="ev"><span class="time">13:30</span><div><h3>Almuerzo</h3><p>Muchos cierran: probad hoteles, centros comerciales o puestos.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Catedral de Notre-Dame y Oficina de Correos</h3><p>Catedral colonial y Correos de 1891, una frente a otra.</p></div></li>
+        <li class="ev tet"><span class="time">17:30</span><div><h3>Calle de las flores de Nguyễn Huệ</h3><p>El paseo se llena de flores y bonsáis por el Tết. Mejor al atardecer.</p></div></li>
         <li class="ev"><span class="time">19:30</span><div><h3>Cena y paseo junto al río Sài Gòn</h3><p>Muelle de Bạch Đằng y terrazas del Distrito 1.</p></div></li>
       </ul>
     </section>
@@ -924,12 +909,12 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <section class="day mekong" id="dom7">
       <div class="date"><span class="dow">Domingo</span><span class="num">7</span><span class="place">Củ Chi y delta del Mekong</span><span class="badge lunar">Mùng 2</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">7:00</span><div><h3>Salida hacia Củ Chi</h3><p>Excursión combinada de día completo (Củ Chi + Mekong) con recogida en el hotel: ~1 h 15 min hasta los túneles de Bến Dược.</p></div></li>
-        <li class="ev"><span class="time">8:30</span><div><h3>Túneles de Củ Chi</h3><p>La red subterránea de la guerra: se baja a un tramo ensanchado y se ven trampas, cocinas y refugios bajo tierra. Ropa cómoda; no apto para claustrofóbicos.</p></div></li>
-        <li class="ev"><span class="time">10:30</span><div><h3>Campo de tiro de Củ Chi</h3><p>Junto a los túneles: fusiles de asalto (AK-47, M16 y otros, según el día) con monitor y protección auditiva. Las balas se pagan aparte y en efectivo: unos 60.000 ₫ (~€2) cada una, en paquetes de 10. Edad mínima de 16 a 18 años según el operador.</p></div></li>
-        <li class="ev"><span class="time">12:00</span><div><h3>Almuerzo y traslado a Mỹ Tho</h3><p>Comida incluida y ~2 h por autopista hasta el delta.</p></div></li>
-        <li class="ev"><span class="time">14:00</span><div><h3>Barco por el río Tiền y la isla Thới Sơn</h3><p>Versión corta del Mekong: lancha entre islas, caramelo de coco y paseo en sampán por canales de palmeras nipa.</p></div></li>
-        <li class="ev"><span class="time">17:00</span><div><h3>Regreso a Ho Chi Minh</h3><p>Llegada hacia las 19:00–19:30. Es un día largo (11–12 h).</p></div></li>
+        <li class="ev"><span class="time">7:00</span><div><h3>Salida hacia Củ Chi</h3><p>Excursión de día completo con recogida en el hotel.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Túneles de Củ Chi</h3><p>Red subterránea de la guerra. No apto para claustrofóbicos.</p></div></li>
+        <li class="ev"><span class="time">10:30</span><div><h3>Campo de tiro de Củ Chi</h3><p>AK-47 o M16 con monitor. ~€2 por bala, en efectivo y en paquetes de 10.</p></div></li>
+        <li class="ev"><span class="time">12:00</span><div><h3>Almuerzo y traslado a Mỹ Tho</h3><p>Comida incluida; ~2 h hasta el delta.</p></div></li>
+        <li class="ev"><span class="time">14:00</span><div><h3>Barco por el río Tiền y la isla Thới Sơn</h3><p>Lancha entre islas, caramelo de coco y sampán por canales.</p></div></li>
+        <li class="ev"><span class="time">17:00</span><div><h3>Regreso a Ho Chi Minh</h3><p>Llegada hacia las 19:30.</p></div></li>
         <li class="ev"><span class="time">20:00</span><div><h3>Cena en el Distrito 1</h3><p>Cơm tấm (arroz con cerdo) o bún thịt nướng.</p></div></li>
       </ul>
     </section>
@@ -937,58 +922,58 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <section class="day hoian" id="lun8">
       <div class="date"><span class="dow">Lunes</span><span class="num">8</span><span class="place">Ho Chi Minh → Hội An</span><span class="badge lunar">Mùng 3</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:30</span><div><h3>Museo de los Vestigios de la Guerra</h3><p>Uno de los museos más visitados del país, sobre la guerra desde la mirada vietnamita. Duro pero imprescindible; reservad 1,5 h y confirmad el horario de Tết.</p></div></li>
-        <li class="ev"><span class="time">10:30</span><div><h3>Mercado de Bến Thành</h3><p>Café, fruta y souvenirs, con regateo. Si está cerrado por Tết, tomad un café en la calle Đồng Khởi.</p></div></li>
-        <li class="ev"><span class="time">12:00</span><div><h3>Traslado al aeropuerto</h3><p>Salid con margen: son mùng 3 y los aeropuertos están llenos.</p></div></li>
-        <li class="ev"><span class="time">14:30</span><div><h3>Vuelo Ho Chi Minh → Đà Nẵng</h3><p>1 h 20 min. Facturad el equipaje con 2 h de antelación.</p></div></li>
-        <li class="ev"><span class="time">17:00</span><div><h3>Llegada a Đà Nẵng y traslado a Hội An</h3><p>30 km por la carretera de la costa, unos 45 min.</p></div></li>
-        <li class="ev"><span class="time">19:30</span><div><h3>Primer paseo y cena en Hội An</h3><p>El casco antiguo se ilumina con farolillos de seda y, en Tết, con flores y ramas de melocotonero.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Museo de los Vestigios de la Guerra</h3><p>La guerra vista desde Vietnam. Duro e imprescindible (1,5 h).</p></div></li>
+        <li class="ev"><span class="time">10:30</span><div><h3>Mercado de Bến Thành</h3><p>Café, fruta y souvenirs, regateando.</p></div></li>
+        <li class="ev"><span class="time">12:00</span><div><h3>Traslado al aeropuerto</h3><p>Con margen: aeropuertos llenos en Tết.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Vuelo Ho Chi Minh → Đà Nẵng</h3><p>1 h 20 min.</p></div></li>
+        <li class="ev"><span class="time">17:00</span><div><h3>Llegada a Đà Nẵng y traslado a Hội An</h3><p>45 min por la costa.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Primer paseo y cena en Hội An</h3><p>El casco antiguo, iluminado con farolillos.</p></div></li>
       </ul>
     </section>
 
     <section class="day hoian" id="mar9">
       <div class="date"><span class="dow">Martes</span><span class="num">9</span><span class="place">Hội An</span><span class="badge lunar">Mùng 4</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:00</span><div><h3>Desayuno en el mercado</h3><p>Bánh mì, cao lầu temprano o un café de coco antes de que llegue la gente.</p></div></li>
-        <li class="ev"><span class="time">9:30</span><div><h3>Casco antiguo de Hội An</h3><p>Patrimonio UNESCO: casas de comerciantes, salas de asamblea chinas y el Puente Cubierto japonés (siglo XVII). La entrada incluye 5 sitios.</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Desayuno en el mercado</h3><p>Bánh mì o café de coco antes de que llegue la gente.</p></div></li>
+        <li class="ev"><span class="time">9:30</span><div><h3>Casco antiguo de Hội An</h3><p>Casas de comerciantes y el Puente Cubierto japonés. La entrada incluye 5 sitios.</p></div></li>
         <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo</h3><p>Mì Quảng, bánh xèo y nem lụi.</p></div></li>
-        <li class="ev"><span class="time">14:30</span><div><h3>Sastrería y artesanía</h3><p>Tomad medidas para un traje o un áo dài y recogedlo en 24–48 h. En Tết hay mucha cola: encargadlo hoy.</p></div></li>
-        <li class="ev"><span class="time">17:30</span><div><h3>Atardecer en el río Hoài</h3><p>Paseo en barca al anochecer: soltad un farolillo de papel con su vela sobre el agua y pedid un deseo (thả đèn hoa đăng).</p></div></li>
-        <li class="ev"><span class="time">19:30</span><div><h3>Cena junto al río</h3><p>Reservad mesa en terraza: en Tết se llenan.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Sastrería y artesanía</h3><p>Encargad hoy el traje o áo dài; está listo en 24–48 h.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Atardecer en el río Hoài</h3><p>Barca al anochecer: soltad un farolillo y pedid un deseo.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena junto al río</h3><p>Reservad terraza.</p></div></li>
       </ul>
     </section>
 
     <section class="day hoian" id="mie10">
       <div class="date"><span class="dow">Miércoles</span><span class="num">10</span><span class="place">Mỹ Sơn y Đà Nẵng</span><span class="badge lunar">Mùng 5</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">7:00</span><div><h3>Salida a Mỹ Sơn</h3><p>40 km, algo más de 1 h con conductor. Id a primera hora: poca gente y menos calor.</p></div></li>
-        <li class="ev"><span class="time">8:00</span><div><h3>Santuario de Mỹ Sơn</h3><p>Templos hindúes del reino de Champa (siglos IV–XIII), Patrimonio UNESCO, entre la selva. Coche eléctrico dentro y espectáculo de danza.</p></div></li>
+        <li class="ev"><span class="time">7:00</span><div><h3>Salida a Mỹ Sơn</h3><p>1 h con conductor, a primera hora.</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Santuario de Mỹ Sơn</h3><p>Templos hindúes de Champa en la selva, con danza tradicional.</p></div></li>
         <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo en Đà Nẵng</h3><p>Mì Quảng o bánh tráng cuốn thịt heo.</p></div></li>
-        <li class="ev"><span class="time">13:00</span><div><h3>Montañas de Mármol</h3><p>Cinco colinas de piedra caliza con cuevas-templo, pagodas y miradores. Hay ascensor.</p></div></li>
-        <li class="ev opt"><span class="time">15:30</span><div><h3>Playa de Mỹ Khê</h3><p>Arena larga y fina para un paseo antes de volver.</p></div></li>
-        <li class="ev"><span class="time">19:00</span><div><h3>Cena en Hội An</h3><p>Probad el bánh xèo o el mì Quảng si aún no.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Montañas de Mármol</h3><p>Colinas con cuevas-templo y miradores. Hay ascensor.</p></div></li>
+        <li class="ev opt"><span class="time">15:30</span><div><h3>Playa de Mỹ Khê</h3><p>Un paseo por la arena.</p></div></li>
+        <li class="ev"><span class="time">19:00</span><div><h3>Cena en Hội An</h3><p>Bánh xèo o mì Quảng.</p></div></li>
       </ul>
     </section>
 
     <section class="day hoian" id="jue11">
       <div class="date"><span class="dow">Jueves</span><span class="num">11</span><span class="place">Hội An</span><span class="badge lunar">Mùng 6</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:30</span><div><h3>Bici entre arrozales hasta Trà Quế</h3><p>Aldea de hortalizas a 4 km: cultivan hierbas aromáticas con algas del río. Paseo corto con el agricultor.</p></div></li>
-        <li class="ev"><span class="time">10:00</span><div><h3>Clase de cocina</h3><p>Visita al mercado y clase para preparar cao lầu, bánh xèo y rollitos. Se come lo que se cocina.</p></div></li>
-        <li class="ev"><span class="time">14:00</span><div><h3>Playa de An Bàng</h3><p>Hamacas, cócteles y arena fina junto al mar de China Meridional.</p></div></li>
-        <li class="ev"><span class="time">17:30</span><div><h3>Recoger el sastre y compras</h3><p>Últimos ajustes antes de salir mañana.</p></div></li>
-        <li class="ev"><span class="time">19:30</span><div><h3>Cena de despedida de Hội An</h3><p>Una terraza con vistas al río.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Bici entre arrozales hasta Trà Quế</h3><p>Aldea de huertos a 4 km, con el agricultor.</p></div></li>
+        <li class="ev"><span class="time">10:00</span><div><h3>Clase de cocina</h3><p>Mercado y clase de cao lầu, bánh xèo y rollitos.</p></div></li>
+        <li class="ev"><span class="time">14:00</span><div><h3>Playa de An Bàng</h3><p>Hamacas y cócteles.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Recoger el sastre y compras</h3><p>Últimos ajustes.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena de despedida de Hội An</h3><p>Terraza junto al río.</p></div></li>
       </ul>
     </section>
 
     <section class="day hue" id="vie12">
       <div class="date"><span class="dow">Viernes</span><span class="num">12</span><span class="place">Hội An → Huế</span><span class="badge lunar">Mùng 7</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:30</span><div><h3>Salida de Hội An</h3><p>Coche con conductor, unos 125 km: 4 h con paradas. Se rodea Đà Nẵng por la costa.</p></div></li>
-        <li class="ev"><span class="time">10:00</span><div><h3>Paso de Hải Vân</h3><p>Puerto de montaña de 21 km, a 496 m, antigua frontera entre Champa y Đại Việt. Vistas de la bahía y fortines. Bajad en la cumbre 30 min.</p></div></li>
-        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en Lăng Cô</h3><p>Marisco junto a la laguna: ostras, almejas y pescado a la parrilla.</p></div></li>
-        <li class="ev"><span class="time">15:00</span><div><h3>Llegada a Huế y check-in</h3><p>Orilla sur del río Perfume, cerca del puente Trường Tiền.</p></div></li>
-        <li class="ev"><span class="time">16:30</span><div><h3>Pagoda de Thiên Mụ</h3><p>Torre de siete pisos (1844) a orillas del río Perfume: el símbolo de Huế. Se puede subir en barca desde la ciudad.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Salida de Hội An</h3><p>Coche con conductor, 4 h con paradas.</p></div></li>
+        <li class="ev"><span class="time">10:00</span><div><h3>Paso de Hải Vân</h3><p>Puerto de montaña con vistas a la bahía. Parada de 30 min en la cumbre.</p></div></li>
+        <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en Lăng Cô</h3><p>Marisco junto a la laguna.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Llegada a Huế y check-in</h3><p>Junto al río Perfume.</p></div></li>
+        <li class="ev"><span class="time">16:30</span><div><h3>Pagoda de Thiên Mụ</h3><p>Torre de siete pisos, símbolo de Huế. Se llega en barca.</p></div></li>
         <li class="ev"><span class="time">19:00</span><div><h3>Cena de cocina de Huế</h3><p>Bún bò Huế, bánh bèo y nem lụi.</p></div></li>
       </ul>
     </section>
@@ -996,58 +981,58 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <section class="day hue" id="sab13">
       <div class="date"><span class="dow">Sábado</span><span class="num">13</span><span class="place">Huế → Hà Nội</span><span class="badge lunar">Mùng 8</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:00</span><div><h3>Ciudadela Imperial (Đại Nội)</h3><p>Recinto amurallado de los emperadores Nguyễn (1802–1945): puerta del Mediodía, salas del trono y jardines. Reservad 2,5–3 h.</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Ciudadela Imperial (Đại Nội)</h3><p>Recinto amurallado de los emperadores Nguyễn (2,5–3 h).</p></div></li>
         <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo</h3><p>Cơm hến (arroz con almejas) o bún bò.</p></div></li>
-        <li class="ev"><span class="time">13:00</span><div><h3>Tumba de Khải Định</h3><p>Mausoleo de 1920–1931 con mosaicos de porcelana y vidrio roto: mezcla de estilos vietnamita y europeo. A 10 km del centro.</p></div></li>
-        <li class="ev"><span class="time">16:30</span><div><h3>Traslado al aeropuerto de Phú Bài</h3><p>Unos 30 min desde el centro de Huế.</p></div></li>
-        <li class="ev"><span class="time">19:00</span><div><h3>Vuelo Huế → Hà Nội</h3><p>1 h 15 min. Sábado mùng 8: las familias vuelven a las ciudades y los vuelos van llenos.</p></div></li>
-        <li class="ev"><span class="time">20:45</span><div><h3>Llegada a Hà Nội y traslado al Old Quarter</h3><p>28 km desde Nội Bài, 45–60 min. Cena tardía de phở o bún chả.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Tumba de Khải Định</h3><p>Mausoleo con mosaicos de porcelana, a 10 km.</p></div></li>
+        <li class="ev"><span class="time">16:30</span><div><h3>Traslado al aeropuerto de Phú Bài</h3><p>30 min.</p></div></li>
+        <li class="ev"><span class="time">19:00</span><div><h3>Vuelo Huế → Hà Nội</h3><p>1 h 15 min, vuelo lleno.</p></div></li>
+        <li class="ev"><span class="time">20:45</span><div><h3>Llegada a Hà Nội y traslado al Old Quarter</h3><p>45–60 min. Cena tardía de phở.</p></div></li>
       </ul>
     </section>
 
     <section class="day hanoi" id="dom14">
       <div class="date"><span class="dow">Domingo</span><span class="num">14</span><span class="place">Hà Nội</span><span class="badge lunar">Mùng 9</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:00</span><div><h3>Lago Hoàn Kiếm y templo Ngọc Sơn</h3><p>Paseo por el lago a primera hora, con la ciudad aún tranquila. Un puente rojo lleva al templo en la isla.</p></div></li>
-        <li class="ev tet"><span class="time">9:30</span><div><h3>Templo de la Literatura</h3><p>Primera universidad de Vietnam (1076): patios con estanques y estelas de doctores sobre tortugas de piedra. En Tết hay feria de caligrafía.</p></div></li>
-        <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo</h3><p>Phở o bún chả, si el local abre.</p></div></li>
-        <li class="ev"><span class="time">13:00</span><div><h3>Mausoleo de Hồ Chí Minh y plaza Ba Đình</h3><p>Plaza donde se declaró la independencia en 1945, con el Mausoleo, la Pagoda del Pilar Único y la casa sobre pilotes. Hombros y rodillas cubiertos; el interior tiene horario limitado.</p></div></li>
-        <li class="ev"><span class="time">15:30</span><div><h3>Café de huevo</h3><p>El cà phê trứng, café con crema de yema y leche condensada.</p></div></li>
-        <li class="ev"><span class="time">18:30</span><div><h3>Marionetas sobre el agua</h3><p>Función en el teatro Thăng Long, un arte de hace mil años nacido en los arrozales del delta del Río Rojo.</p></div></li>
-        <li class="ev"><span class="time">20:00</span><div><h3>Cena en el Old Quarter</h3><p>Chả cá o bún chả y una cerveza fresca (bia hơi).</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Lago Hoàn Kiếm y templo Ngọc Sơn</h3><p>El lago a primera hora y el puente rojo al templo.</p></div></li>
+        <li class="ev tet"><span class="time">9:30</span><div><h3>Templo de la Literatura</h3><p>Primera universidad de Vietnam. En Tết, feria de caligrafía.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Almuerzo</h3><p>Phở o bún chả.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Mausoleo de Hồ Chí Minh y plaza Ba Đình</h3><p>Mausoleo y Pagoda del Pilar Único. Hombros y rodillas cubiertos.</p></div></li>
+        <li class="ev"><span class="time">15:30</span><div><h3>Café de huevo</h3><p>Cà phê trứng: café con crema de yema.</p></div></li>
+        <li class="ev"><span class="time">18:30</span><div><h3>Marionetas sobre el agua</h3><p>Teatro Thăng Long: un arte milenario.</p></div></li>
+        <li class="ev"><span class="time">20:00</span><div><h3>Cena en el Old Quarter</h3><p>Chả cá y bia hơi.</p></div></li>
       </ul>
     </section>
 
     <section class="day ninh" id="lun15">
       <div class="date"><span class="dow">Lunes</span><span class="num">15</span><span class="place">Hà Nội → Ninh Bình</span><span class="badge lunar">Mùng 10</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:00</span><div><h3>Salida hacia Ninh Bình</h3><p>95 km por autopista, unas 2 h. Coche con conductor o minibús limusina.</p></div></li>
-        <li class="ev"><span class="time">10:30</span><div><h3>Tràng An en barca</h3><p>Paseo de 2–3 h remando entre grutas y montañas kársticas, Patrimonio UNESCO. Hay varias rutas.</p></div></li>
-        <li class="ev"><span class="time">13:30</span><div><h3>Almuerzo</h3><p>Cabra de montaña (dê) y arroz crujiente (cơm cháy), el plato típico de Ninh Bình.</p></div></li>
-        <li class="ev"><span class="time">15:00</span><div><h3>Hang Múa</h3><p>500 escalones hasta el mirador del dragón, con vistas a Tam Cốc. Mejor al final de la tarde.</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Salida hacia Ninh Bình</h3><p>2 h en coche o minibús.</p></div></li>
+        <li class="ev"><span class="time">10:30</span><div><h3>Tràng An en barca</h3><p>2–3 h en barca entre grutas y karst.</p></div></li>
+        <li class="ev"><span class="time">13:30</span><div><h3>Almuerzo</h3><p>Cabra (dê) y arroz crujiente (cơm cháy).</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Hang Múa</h3><p>500 escalones hasta el mirador. Mejor por la tarde.</p></div></li>
         <li class="ev"><span class="time">17:30</span><div><h3>Check-in en el homestay y paseo en bici</h3><p>Arrozales y karst al atardecer.</p></div></li>
-        <li class="ev"><span class="time">19:30</span><div><h3>Cena casera</h3><p>Platos con verduras del huerto del homestay.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena casera</h3><p>Con verduras del huerto.</p></div></li>
       </ul>
     </section>
 
     <section class="day halong" id="mar16">
       <div class="date"><span class="dow">Martes</span><span class="num">16</span><span class="place">Ninh Bình → bahía de Hạ Long</span><span class="badge lunar">Mùng 11</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:00</span><div><h3>Salida hacia Hạ Long</h3><p>Unos 190 km por Nam Định, Thái Bình y Hải Phòng: 3 h 30 min en coche con conductor.</p></div></li>
-        <li class="ev"><span class="time">12:00</span><div><h3>Embarque en el crucero</h3><p>Bienvenida, almuerzo de marisco a bordo y salida entre los karst de la bahía.</p></div></li>
-        <li class="ev"><span class="time">14:30</span><div><h3>Cuevas y kayak</h3><p>Visita a una cueva (Sửng Sốt) y kayak o barca de bambú por una bahía tranquila.</p></div></li>
-        <li class="ev"><span class="time">17:30</span><div><h3>Atardecer y cena a bordo</h3><p>Clase de rollitos y cena de pescado en cubierta, fondeados entre los islotes.</p></div></li>
-        <li class="ev opt"><span class="time">21:00</span><div><h3>Pesca de calamares</h3><p>Si el tiempo lo permite, con luz y caña desde cubierta.</p></div></li>
+        <li class="ev"><span class="time">8:00</span><div><h3>Salida hacia Hạ Long</h3><p>3 h 30 min con conductor.</p></div></li>
+        <li class="ev"><span class="time">12:00</span><div><h3>Embarque en el crucero</h3><p>Almuerzo de marisco y salida entre los karst.</p></div></li>
+        <li class="ev"><span class="time">14:30</span><div><h3>Cuevas y kayak</h3><p>Cueva Sửng Sốt y kayak.</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Atardecer y cena a bordo</h3><p>Cena en cubierta entre los islotes.</p></div></li>
+        <li class="ev opt"><span class="time">21:00</span><div><h3>Pesca de calamares</h3><p>Desde cubierta, si el tiempo lo permite.</p></div></li>
       </ul>
     </section>
 
     <section class="day halong" id="mie17">
       <div class="date"><span class="dow">Miércoles</span><span class="num">17</span><span class="place">Hạ Long → Hà Nội</span><span class="badge lunar">Mùng 12</span></div>
       <ul class="events">
-        <li class="ev opt"><span class="time">6:30</span><div><h3>Tai chi al amanecer</h3><p>En cubierta, con la bahía entre la bruma.</p></div></li>
-        <li class="ev"><span class="time">8:30</span><div><h3>Brunch y última visita</h3><p>Isla de Ti Tốp o una cueva, según el crucero. Desembarque hacia las 11:30.</p></div></li>
-        <li class="ev"><span class="time">11:30</span><div><h3>Regreso a Hà Nội</h3><p>160 km por la autopista, unas 3 h. Shuttle del crucero o coche privado.</p></div></li>
-        <li class="ev"><span class="time">15:00</span><div><h3>Check-in en el Old Quarter</h3><p>Tarde libre: paseo por el barrio y compras de última hora.</p></div></li>
+        <li class="ev opt"><span class="time">6:30</span><div><h3>Tai chi al amanecer</h3><p>En cubierta, entre la bruma.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Brunch y última visita</h3><p>Isla de Ti Tốp o una cueva.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Regreso a Hà Nội</h3><p>3 h en shuttle o coche.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Check-in en el Old Quarter</h3><p>Tarde libre.</p></div></li>
         <li class="ev"><span class="time">19:30</span><div><h3>Cena en el Old Quarter</h3><p>Nem rán, bún đậu o phở cuốn.</p></div></li>
       </ul>
     </section>
@@ -1055,43 +1040,43 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <section class="day hanoi" id="jue18">
       <div class="date"><span class="dow">Jueves</span><span class="num">18</span><span class="place">Hà Nội</span><span class="badge lunar">Mùng 13</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">9:00</span><div><h3>Museo de Etnología</h3><p>Las 54 etnias de Vietnam, con casas tradicionales reconstruidas en el jardín.</p></div></li>
-        <li class="ev"><span class="time">11:30</span><div><h3>Pagoda de Trấn Quốc y lago del Oeste</h3><p>La pagoda más antigua de Hà Nội, en una isla del lago. Almuerzo de bánh tôm junto al agua.</p></div></li>
-        <li class="ev"><span class="time">15:00</span><div><h3>Prisión de Hỏa Lò</h3><p>Prisión colonial francesa y después el «Hanoi Hilton». Museo sobre la lucha por la independencia.</p></div></li>
-        <li class="ev"><span class="time">17:30</span><div><h3>Café con vistas en el Old Quarter</h3><p>Una azotea o un café de patio interior.</p></div></li>
-        <li class="ev"><span class="time">19:30</span><div><h3>Cena y cerveza en Tạ Hiện</h3><p>Bia hơi en taburetes de plástico: el ambiente nocturno de Hà Nội.</p></div></li>
-        <li class="ev"><span class="time">22:00</span><div><h3>Noche de fiesta en el Old Quarter</h3><p>Copas en los bares de Tạ Hiện y Lương Ngọc Quyến, un rooftop con vistas al lago Hoàn Kiếm y, para seguir, las discotecas del Old Quarter, abiertas hasta la 1:00–2:00. El viernes no hay que madrugar.</p></div></li>
+        <li class="ev"><span class="time">9:00</span><div><h3>Museo de Etnología</h3><p>Las 54 etnias, con casas tradicionales en el jardín.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Pagoda de Trấn Quốc y lago del Oeste</h3><p>La pagoda más antigua de la ciudad. Almuerzo de bánh tôm.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Prisión de Hỏa Lò</h3><p>Prisión colonial, luego el «Hanoi Hilton».</p></div></li>
+        <li class="ev"><span class="time">17:30</span><div><h3>Café con vistas en el Old Quarter</h3><p>Azotea o patio.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena y cerveza en Tạ Hiện</h3><p>Bia hơi en taburetes de plástico.</p></div></li>
+        <li class="ev"><span class="time">22:00</span><div><h3>Noche de fiesta en el Old Quarter</h3><p>Bares de Tạ Hiện, un rooftop sobre el lago y discotecas hasta las 2:00.</p></div></li>
       </ul>
     </section>
 
     <section class="day hanoi" id="vie19">
       <div class="date"><span class="dow">Viernes</span><span class="num">19</span><span class="place">Hà Nội</span><span class="badge lunar">Mùng 14</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">8:30</span><div><h3>Pueblo de cerámica de Bát Tràng</h3><p>A 13 km del centro: talleres donde se moldea y pinta la cerámica. Podéis hacer vuestra propia pieza.</p></div></li>
+        <li class="ev"><span class="time">8:30</span><div><h3>Pueblo de cerámica de Bát Tràng</h3><p>Talleres a 13 km: haced vuestra propia pieza.</p></div></li>
         <li class="ev"><span class="time">12:30</span><div><h3>Almuerzo en el pueblo</h3><p>Pollo de colina o bánh cuốn.</p></div></li>
-        <li class="ev"><span class="time">15:00</span><div><h3>Compras en el Old Quarter</h3><p>Seda, café, té, lacas y cerámica. Los comercios ya han reabierto.</p></div></li>
-        <li class="ev opt"><span class="time">17:00</span><div><h3>Masaje o spa</h3><p>Una hora para descansar antes de la despedida.</p></div></li>
-        <li class="ev"><span class="time">19:30</span><div><h3>Cena de despedida del norte</h3><p>Chả cá Lã Vọng: pescado con eneldo y cúrcuma, el clásico de Hà Nội.</p></div></li>
+        <li class="ev"><span class="time">15:00</span><div><h3>Compras en el Old Quarter</h3><p>Seda, café, té y lacas.</p></div></li>
+        <li class="ev opt"><span class="time">17:00</span><div><h3>Masaje o spa</h3><p>Una hora de descanso.</p></div></li>
+        <li class="ev"><span class="time">19:30</span><div><h3>Cena de despedida del norte</h3><p>Chả cá Lã Vọng, el clásico de Hà Nội.</p></div></li>
       </ul>
     </section>
 
     <section class="day sgn" id="sab20">
       <div class="date"><span class="dow">Sábado</span><span class="num">20</span><span class="place">Hà Nội → Ho Chi Minh → Madrid</span><span class="badge lunar">Rằm tháng Giêng</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">6:45</span><div><h3>Salida al aeropuerto de Nội Bài</h3><p>Grab, unos 45 min. Facturad 2 h antes del vuelo.</p></div></li>
-        <li class="ev"><span class="time">9:00</span><div><h3>Vuelo Hà Nội → Ho Chi Minh</h3><p>2 h 10 min. Es el vuelo de más margen: salid lo más pronto posible, porque el internacional a Madrid sale de madrugada, a las 2:30 del domingo.</p></div></li>
-        <li class="ev"><span class="time">11:30</span><div><h3>Llegada a Ho Chi Minh y traslado al centro</h3><p>Consigna de equipaje en el aeropuerto o en un hotel del Distrito 1.</p></div></li>
-        <li class="ev"><span class="time">13:00</span><div><h3>Última comida y compras</h3><p>Cơm tấm y café de Trung Nguyên y regalos en Bến Thành.</p></div></li>
-        <li class="ev tet"><span class="time">15:30</span><div><h3>Pagoda y luna llena: Rằm tháng Giêng</h3><p>El 15.º día del año es la primera luna llena y los templos se llenan de fieles con flores, frutas e incienso. Una despedida a la luz de la tradición.</p></div></li>
-        <li class="ev"><span class="time">22:00</span><div><h3>Cena y traslado al aeropuerto de SGN</h3><p>Cenad temprano y recoged el equipaje de la consigna. Llegad hacia las 23:30, 3 h antes del vuelo intercontinental de las 2:30.</p></div></li>
+        <li class="ev"><span class="time">6:45</span><div><h3>Salida al aeropuerto de Nội Bài</h3><p>Grab, 45 min.</p></div></li>
+        <li class="ev"><span class="time">9:00</span><div><h3>Vuelo Hà Nội → Ho Chi Minh</h3><p>2 h 10 min. Temprano, para tener margen.</p></div></li>
+        <li class="ev"><span class="time">11:30</span><div><h3>Llegada a Ho Chi Minh y traslado al centro</h3><p>Dejad las maletas en consigna.</p></div></li>
+        <li class="ev"><span class="time">13:00</span><div><h3>Última comida y compras</h3><p>Cơm tấm y regalos en Bến Thành.</p></div></li>
+        <li class="ev tet"><span class="time">15:30</span><div><h3>Pagoda y luna llena: Rằm tháng Giêng</h3><p>Primera luna llena del año: templos llenos de flores e incienso.</p></div></li>
+        <li class="ev"><span class="time">22:00</span><div><h3>Cena y traslado al aeropuerto de SGN</h3><p>Recoged las maletas y llegad hacia las 23:30.</p></div></li>
       </ul>
     </section>
 
     <section class="day trip" id="dom21">
       <div class="date"><span class="dow">Domingo</span><span class="num">21</span><span class="place">Ho Chi Minh → Madrid</span></div>
       <ul class="events">
-        <li class="ev"><span class="time">2:30</span><div><h3>Vuelo Ciudad Ho Chi Minh → Madrid</h3><p>Despegáis en la madrugada del domingo 21 y aterrizáis a las 20:30 hora de Madrid, tras 24 h de viaje con escala.</p></div></li>
-        <li class="ev"><span class="time">20:30</span><div><h3>Llegada a Madrid-Barajas</h3><p>Seis horas de diferencia con Vietnam: el cambio de hora hacia el oeste se lleva mejor. Metro o Cercanías a casa.</p></div></li>
+        <li class="ev"><span class="time">2:30</span><div><h3>Vuelo Ciudad Ho Chi Minh → Madrid</h3><p>24 h con escala.</p></div></li>
+        <li class="ev"><span class="time">20:30</span><div><h3>Llegada a Madrid-Barajas</h3><p>Metro o Cercanías a casa.</p></div></li>
       </ul>
     </section>
 
@@ -1104,7 +1089,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   <header class="chap" data-n="03" style="--z: var(--jade)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">checklist</span></span>
     <div><span class="chap-k">Capítulo 3 · Actividades</span><h2 id="act-h">Lista de actividades</h2></div>
-    <p class="chap-s">Todo lo que se puede hacer en el viaje, por ciudad: marcad lo que queréis hacer (se guarda en este navegador). Las alternativas, al final, se eligen aquí mismo y cambian el presupuesto.</p>
+    <p class="chap-s">Marcad lo que queréis hacer en cada ciudad. Se guarda en este navegador.</p>
   </header>
   <div class="altbar" id="actBar" aria-live="polite"></div>
   <div id="actList"></div>
@@ -1116,7 +1101,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   <header class="chap" data-n="04" style="--z: var(--indigo)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">alt_route</span></span>
     <div><span class="chap-k">Capítulo 4 · Alternativas</span><h2 id="alt-h">Alternativas y extras</h2></div>
-    <p class="chap-s">Elegid lo que más os apetezca: compras, fiesta, excursiones, cruceros y escapadas al norte. Cada alternativa aparece también dentro de su día, y el presupuesto se recalcula al elegir. Se guardan en este navegador.</p>
+    <p class="chap-s">Cambiad o añadid planes; el presupuesto se recalcula solo.</p>
   </header>
   <div class="altbar" id="altBar" aria-live="polite"></div>
   <button type="button" class="altreset" id="altReset">Restaurar elección recomendada</button>
@@ -1141,7 +1126,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   <header class="chap" data-n="05" style="--z: var(--teal)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">shopping_cart</span></span>
     <div><span class="chap-k">Capítulo 5 · Reservas y comida</span><h2 id="res-h">Reservar, comer y descargar</h2></div>
-    <p class="chap-s">Tres páginas con lo que hay que comprar según el itinerario que hayáis elegido, y el mejor sitio para cada cosa, más una guía de dónde comer en cada zona y tramo de precio. Si cambiáis las alternativas, las listas cambian con ellas.</p>
+    <p class="chap-s">Qué reservar y dónde, según vuestro itinerario.</p>
   </header>
   <div class="rgrid">
     <a class="rcard" href="estancia.html"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small id="rsStay">Dónde dormir, por categorías de precio</small></a>
@@ -1158,7 +1143,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
   <header class="chap" data-n="06" style="--z: var(--hue)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">payments</span></span>
     <div><span class="chap-k">Capítulo 6 · Presupuesto</span><h2>Presupuesto estimado</h2></div>
-    <p class="chap-s">Euros por persona, para tres viajeros que comparten habitación triple, taxi y coche. Al cambio de 1 € ≈ 30.000 ₫.</p>
+    <p class="chap-s">Euros por persona, para tres viajeros (1 € ≈ 30.000 ₫).</p>
   </header>
   <div class="tiles" id="budgetTiles"></div>
   <h3 class="bh">En qué se va el dinero</h3>
@@ -1186,18 +1171,18 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <div>
       <h3>Qué incluye</h3>
       <ul>
-        <li>Tres viajeros que comparten habitación triple (la doble más un 30 %), taxi y coche; las cifras son por persona. Con tres, el coche o taxi sale a un tercio en vez de a la mitad.</li>
-        <li>Vuelo Madrid–Ho Chi Minh ida y vuelta: €460 por persona (billetes ya comprados).</li>
-        <li>Tres vuelos internos: Ho Chi Minh → Đà Nẵng, Huế → Hà Nội y Hà Nội → Ho Chi Minh (de €55 a €65 por tramo).</li>
-        <li>Alojamiento: 15 noches. 3 en Ho Chi Minh y 4 en Hội An a ~€55, 1 en Huế a ~€45, 5 en Hà Nội a ~€52, 1 en Ninh Bình a ~€50 y 1 de crucero (cabina con comidas) a €200. Precios de habitación doble; con tres personas llevan un +30 %. Las noches del Tết llevan recargo.</li>
-        <li>El 20 y el 21 no hay noche: el vuelo a Madrid sale a las 2:30 del domingo 21. La primera noche (la del 5) se reserva igualmente, porque entráis al hotel de madrugada.</li>
+        <li>Habitación triple (doble +30 %), taxi y coche compartidos entre tres.</li>
+        <li>Vuelo Madrid–Ho Chi Minh ida y vuelta: €460 (ya comprado).</li>
+        <li>Tres vuelos internos: €55–65 por tramo.</li>
+        <li>15 noches de hotel (€45–55 la doble) y una de crucero con comidas (€200). Recargo en Tết.</li>
+        <li>La noche del 5 se reserva para entrar de madrugada; la del 20, no.</li>
       </ul>
     </div>
     <div>
       <h3>Qué no incluye</h3>
       <ul>
-        <li>eSIM (~€8), seguro de viaje, propinas y compras personales (un traje o áo dài a medida cuesta de €40 a €100).</li>
-        <li>Bebidas a bordo del crucero, Bà Nà Hills (~€30) y masajes (~€15 incluido el del 19).</li>
+        <li>eSIM (~€8), seguro, propinas y compras (traje a medida: €40–100).</li>
+        <li>Bebidas del crucero, Bà Nà Hills (~€30) y masajes (~€15).</li>
         <li>Tarifas de Tết: los precios de hoteles, vuelos y cruceros pueden subir otro 20–50% respecto a la temporada normal. Confirma todo en las webs oficiales.</li>
       </ul>
     </div>
@@ -1211,7 +1196,7 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <header class="chap full" data-n="07" style="--z: var(--lotus)">
     <span class="chap-ic" aria-hidden="true"><span class="mi">sticky_note_2</span></span>
     <div><span class="chap-k">Capítulo 7 · Notas</span><h2>Notas del viaje</h2></div>
-    <p class="chap-s">Por qué este orden, qué clima encontraréis y qué llevar.</p>
+    <p class="chap-s">Orden, clima y equipaje.</p>
   </header>
     <div>
       <h2>Por qué este orden</h2>
@@ -1238,15 +1223,14 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
     <div>
       <h2>Ideas extra si sobra energía</h2>
       <ul>
-        <li>Túneles de Củ Chi, a 70 km de Ho Chi Minh, si abren en Tết (medio día).</li>
-        <li>Bà Nà Hills y el Puente Dorado, cerca de Đà Nẵng: muy concurrido en Tết.</li>
+                <li>Bà Nà Hills y el Puente Dorado, cerca de Đà Nẵng: muy concurrido en Tết.</li>
         <li>Puente del Dragón de Đà Nẵng: escupe fuego y agua los sábados y domingos a las 21:00.</li>
         <li>Chùa Hương desde Hà Nội, con su festival de primavera (todo el día).</li>
         <li>Isla de Cát Bà, desde el crucero o en un día extra de Hạ Long.</li>
       </ul>
     </div>
     <div class="full warn">
-      <strong>Aviso:</strong> el Tết es temporada alta. Reservad ya los vuelos internos, el crucero y los hoteles; muchos restaurantes y museos cierran los primeros días, así que comprobad horarios en Google Maps o por teléfono unos días antes. Como España y Vietnam no exigen visado hasta 45 días, solo hace falta pasaporte con 6 meses de validez; verificad el requisito en la web del Ministerio de Exteriores antes de volar.
+      <strong>Aviso:</strong> reservad ya vuelos internos, crucero y hoteles, y confirmad horarios unos días antes. Sin visado hasta 45 días: basta pasaporte con 6 meses de validez.
     </div>
   </div>
 </section>
@@ -2917,9 +2901,6 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
       document.querySelectorAll('.badge.lunar').forEach(function (b) { pre(b, 'dark_mode'); });
       document.querySelectorAll('.fl small').forEach(function (b) { pre(b, /Ida/.test(b.textContent) ? 'flight_takeoff' : 'flight_land'); });
       document.querySelectorAll('.daytotal').forEach(function (b) { pre(b, 'payments'); });
-      document.querySelectorAll('.nav a.txt').forEach(function (a) {
-        var m = { 'itinerario.html': 'timeline', '#ruta': 'map', '#actividades': 'checklist', '#alternativas': 'alt_route', '#reservas': 'shopping_cart', 'comida.html': 'restaurant', '#presupuesto': 'payments', '#notas': 'sticky_note_2' }; pre(a, m[a.getAttribute('href')] || '');
-      });
       document.querySelectorAll('.altbar, .actbar').forEach(function (b) { pre(b, 'bar_chart'); });
       document.querySelectorAll('.altgrp h3').forEach(function (h) {
         var t = h.textContent, m = [[/Compras/, 'shopping_bag'], [/fiesta/, 'local_bar'], [/Excursiones/, 'airport_shuttle'], [/Cruceros/, 'directions_boat'], [/norte/, 'landscape'], [/Antes/, 'luggage'], [/Plan B/, 'celebration'], [/Huế/, 'temple_buddhist'], [/Hội An/, 'festival'], [/Hà Nội/, 'location_city'], [/Ninh/, 'landscape'], [/Ho Chi Minh/, 'location_city']];
