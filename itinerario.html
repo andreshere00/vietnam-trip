@@ -54,6 +54,7 @@ button { font: inherit; color: inherit; }
 .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); padding: 2px; }
 .seg button { white-space: nowrap; min-height: 40px; padding: 0 14px; border: 0; border-radius: 20px; background: none; cursor: pointer; font-weight: 700; font-size: .85rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
 .seg button[aria-pressed="true"] { background: var(--red); color: var(--on-red); }
+.seg .sh { display: none; }
 .ibtn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; display: grid; place-items: center; }
 .ibtn[aria-pressed="true"] { background: var(--gold); color: #fff; border-color: var(--gold); }
 .ibtn:hover { border-color: var(--gold); }
@@ -214,6 +215,12 @@ details.dl > summary::-webkit-details-marker { display: none; }
   .bar { justify-content: space-between; gap: 6px; }
   .seg button { padding: 0 10px; font-size: .8rem; }
   .seg .mi { display: none; }
+  /* Rótulos cortos y botones algo menores para que la barra quepa en 360 px */
+  .bar { gap: 4px; }
+  .bar .ibtn { width: 40px; height: 40px; flex: none; }
+  .seg button { padding: 0 9px; }
+  .seg .lg { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .seg .sh { display: inline; }
   .back span.t { display: none; }
   .mapcap .bt { display: none; }
   .mapcap button { padding: 0 9px; }
@@ -222,6 +229,10 @@ details.dl > summary::-webkit-details-marker { display: none; }
   .tev::before { left: calc(44px + 6px + 13px); }
   .tev .evph { width: 84px; height: 62px; }
   .tev.open .evph { width: 132px; height: 94px; }
+}
+@media (max-width: 400px) {
+  .bar { gap: 3px; }
+  .bar .ibtn { width: 38px; height: 38px; }
 }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
@@ -233,8 +244,8 @@ details.dl > summary::-webkit-details-marker { display: none; }
       <a class="back" href="index.html" title="Volver a la web principal"><span class="mi" aria-hidden="true">arrow_back</span><span class="t">Web principal</span></a>
       <h1 class="ttl">Línea de tiempo<small>Vietnam · 5–21 de febrero de 2027</small></h1>
       <div class="seg" role="group" aria-label="Qué plan mostrar">
-        <button type="button" id="mMine" aria-pressed="true" title="Con las alternativas que habéis elegido en la web principal"><span class="mi" aria-hidden="true">star</span>Mi elección</button>
-        <button type="button" id="mBase" aria-pressed="false" title="Solo el plan base, sin alternativas"><span class="mi" aria-hidden="true">route</span>Plan base</button>
+        <button type="button" id="mMine" aria-pressed="true" title="Con las alternativas que habéis elegido en la web principal"><span class="mi" aria-hidden="true">star</span><span class="lg">Mi elección</span><span class="sh" aria-hidden="true">Mi plan</span></button>
+        <button type="button" id="mBase" aria-pressed="false" title="Solo el plan base, sin alternativas"><span class="mi" aria-hidden="true">route</span><span class="lg">Plan base</span><span class="sh" aria-hidden="true">Base</span></button>
       </div>
       <details class="dl" id="rsDl"><summary class="ibtn" aria-label="Ir a reservas" title="Reservar"><span class="mi" aria-hidden="true">shopping_cart</span></summary><div class="dlm" role="menu"><a href="estancia.html" role="menuitem"><span class="mi" aria-hidden="true">hotel</span><b>Estancia</b><small>Dónde dormir, por precios</small></a><a href="transporte.html" role="menuitem"><span class="mi" aria-hidden="true">directions_transit</span><b>Transporte</b><small>Vuelos, trenes y traslados</small></a><a href="eventos.html" role="menuitem"><span class="mi" aria-hidden="true">confirmation_number</span><b>Eventos</b><small>Entradas y excursiones</small></a><a href="comida.html" role="menuitem"><span class="mi" aria-hidden="true">restaurant</span><b>Comida</b><small>Dónde comer, por zona y precio</small></a></div></details>
       <span id="dlNav"></span>
