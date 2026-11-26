@@ -92,6 +92,19 @@ h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.2rem, 7vw
 .scene .sink { transform-box: fill-box; transform-origin: 50% 100%; }
 .scene .junk { transform-box: fill-box; transform-origin: 50% 100%; animation: bob 4.5s ease-in-out infinite; }
 @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1.2deg); } 50% { transform: translateY(-2.5px) rotate(1.2deg); } }
+/* El junco navega despacio por el río: va hacia la derecha, vira, cruza hasta la orilla izquierda, vuelve a virar y regresa al centro. */
+.scene .voyage { transform-box: fill-box; transform-origin: 50% 100%; animation: voyage 70s ease-in-out infinite; }
+@keyframes voyage {
+  0% { transform: translateX(0) scaleX(1); }
+  22% { transform: translateX(300px) scaleX(1); }
+  25% { transform: translateX(300px) scaleX(-1); }
+  72% { transform: translateX(-380px) scaleX(-1); }
+  75% { transform: translateX(-380px) scaleX(1); }
+  100% { transform: translateX(0) scaleX(1); }
+}
+.scene .wake path { fill: none; stroke: var(--roadin); stroke-linecap: round; stroke-width: 1.6; animation: wake 1.8s ease-in-out infinite; }
+.scene .wake path + path { animation-delay: -.9s; }
+@keyframes wake { 0%, 100% { opacity: .15; transform: translateX(0); } 50% { opacity: .55; transform: translateX(-4px); } }
 .dive { position: fixed; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; visibility: hidden; }
 .dive.on { visibility: visible; }
 .dive-water { position: absolute; inset: 0; transform: translateY(115%);
@@ -105,7 +118,7 @@ h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.2rem, 7vw
 .dive-b { position: absolute; bottom: -2rem; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; opacity: 0; border: 1.5px solid rgb(255 255 255 / .75); background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / .85) 0 15%, rgb(255 255 255 / .12) 40%, transparent 70%); }
 @media (prefers-reduced-motion: reduce) {
   .dive { display: none; }
-  .scene .junk { animation: none; }
+  .scene .junk, .scene .voyage, .scene .wake path { animation: none; }
 }
 
 /* Navegación */
@@ -797,12 +810,12 @@ div.sdiv:not(.wrap) { margin-top: 2rem; }
       <path d="M0 172H900V200H0Z" fill="var(--water)"/>
       <path d="M0 184Q30 178 60 184T120 184T180 184T240 184T300 184T360 184T420 184T480 184T540 184T600 184T660 184T720 184T780 184T840 184T900 184" fill="none" stroke="var(--roadin)" stroke-opacity=".35" stroke-width="2"/>
       <path d="M0 193Q30 187 60 193T120 193T180 193T240 193T300 193T360 193T420 193T480 193T540 193T600 193T660 193T720 193T780 193T840 193T900 193" fill="none" stroke="var(--roadin)" stroke-opacity=".25" stroke-width="2"/>
-      <g class="sink"><g class="junk">
+      <g class="voyage"><g class="wake"><path d="M444 184H426M440 189H418"/><path d="M432 180H420M436 193H424"/></g><g class="sink"><g class="junk">
         <path d="M452 176H540L528 190H464Z" fill="var(--ink)"/>
         <path d="M492 176V120L530 172Z" fill="var(--red)"/>
         <path d="M482 176V138L458 172Z" fill="color-mix(in srgb, var(--red) 65%, var(--ink))"/>
         <path d="M492 120V176" stroke="var(--ink)" stroke-width="2"/>
-      </g></g>
+      </g></g></g>
     </svg>
   </div>
 </header>
