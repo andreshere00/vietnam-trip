@@ -10,6 +10,13 @@ var VNG = (function () {
     (VN.GAL[img] || []).forEach(function (g) { out.push({ src: 'assets/img/' + g[0] + '.jpg', by: g[1], lic: g[2] }); });
     return out;
   };
+  /* Fotos de varias claves (máx. 4): primero la principal de cada lugar y luego las de sus galerías */
+  var mix = function (keys, max) {
+    var all = (keys || []).map(photos), out = [];
+    all.forEach(function (ps) { if (ps[0]) out.push(ps[0]); });
+    all.forEach(function (ps) { ps.slice(1).forEach(function (p) { out.push(p); }); });
+    return out.slice(0, max || 4);
+  };
   var credit = function (p) { return p && p.by ? 'Foto: ' + esc(p.by) + ' · ' + esc(p.lic) + ' (Wikimedia Commons)' : ''; };
 
   var css = [
@@ -49,6 +56,24 @@ var VNG = (function () {
     '.gb-act a:hover, .gb-act button:hover, .gb-act a:focus-visible, .gb-act button:focus-visible { border-color: var(--gold); outline: none; filter: brightness(1.05); }',
     '.gb-x { position: absolute; top: .6rem; right: .6rem; z-index: 2; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: #1f1f1f; display: grid; place-items: center; cursor: pointer; box-shadow: 0 1px 6px rgba(0,0,0,.3); }',
     '.gb-x:focus-visible { outline: 2px solid var(--gold); }',
+    '.gcar { position: relative; overflow: hidden; background: var(--line); aspect-ratio: 16 / 9; touch-action: pan-y; }',
+    '.gc-tr { display: flex; height: 100%; transition: transform .35s ease; }',
+    '.gc-tr img { flex: none; display: block; width: 100%; height: 100%; object-fit: cover; }',
+    '.gc-open { position: absolute; inset: 0; z-index: 1; padding: 0; border: 0; background: none; cursor: zoom-in; }',
+    '.gc-open:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }',
+    '.gc-nav { position: absolute; z-index: 2; top: 50%; transform: translateY(-50%); width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 0; padding: 0; background: rgba(255,255,255,.9); color: #1f1f1f; display: grid; place-items: center; cursor: pointer; box-shadow: 0 1px 5px rgba(0,0,0,.35); opacity: .92; transition: opacity .15s ease; }',
+    '.gc-nav .mi { font-size: 1.45rem; }',
+    '.gc-nav:hover, .gc-nav:focus-visible { opacity: 1; background: #fff; outline: 2px solid var(--gold); }',
+    '.gc-prev { left: .45rem; } .gc-next { right: .45rem; }',
+    '@media (hover: hover) { .gcar .gc-nav { opacity: 0; } .gcar:hover .gc-nav, .gcar:focus-within .gc-nav { opacity: .92; } }',
+    '.gc-pg { position: absolute; z-index: 2; left: 50%; bottom: .45rem; transform: translateX(-50%); display: flex; gap: .2rem; padding: .15rem .3rem; border-radius: 999px; background: rgba(0,0,0,.45); }',
+    '.gc-pg button { width: 1.5rem; height: 1.5rem; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }',
+    '.gc-pg button::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: rgba(255,255,255,.55); transition: transform .15s ease, background .15s ease; }',
+    '.gc-pg button[aria-current="true"]::before { background: #fff; transform: scale(1.3); }',
+    '.gc-pg button:focus-visible { outline: 2px solid var(--gold); border-radius: 50%; }',
+    '.gc-n { position: absolute; z-index: 2; top: .45rem; right: .45rem; background: rgba(0,0,0,.55); color: #fff; font: 700 .72rem/1 var(--body); padding: .3rem .45rem; border-radius: 999px; font-variant-numeric: tabular-nums; pointer-events: none; }',
+    '.gc-cr { position: absolute; z-index: 2; left: .45rem; top: .45rem; max-width: calc(100% - 4rem); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; background: rgba(0,0,0,.5); color: rgba(255,255,255,.92); font: .62rem/1.2 var(--body); padding: .2rem .4rem; border-radius: 4px; pointer-events: none; }',
+    '@media (prefers-reduced-motion: reduce) { .gc-tr { transition: none; } }',
     '.gflash { animation: gflash 1.8s ease-out; }',
     '@keyframes gflash { 0%, 35% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--gold) 70%, transparent); } 100% { box-shadow: 0 0 0 4px transparent; } }',
     '@media (max-width: 860px) {',
@@ -137,7 +162,7 @@ var VNG = (function () {
   };
   var open = function (d, start) {
     setup(); hideTip();
-    info = d; list = photos(d.img);
+    info = d; list = d.list || photos(d.img);
     if (!list.length) return false;
     lastFocus = document.activeElement;
     box.querySelector('#gbT').textContent = d.title;
@@ -207,5 +232,51 @@ var VNG = (function () {
     window.addEventListener('resize', function () { if (cur) hideTip(); });
   };
 
-  return { photos: photos, credit: credit, bind: bind, open: open, close: close, flash: flash };
+  /* ---------- Carrusel paginado dentro de una tarjeta ----------
+     d = { title, why, list (fotos de mix/photos), lat, lon }; flechas, puntos, teclado (← →) y deslizamiento;
+     al pulsar la foto se abre la galería en esa foto */
+  var carousel = function (d) {
+    setup();
+    var ps = d.list || [], n = ps.length, i = 0;
+    var el = document.createElement('div'); el.className = 'gcar';
+    el.setAttribute('role', 'group'); el.setAttribute('aria-roledescription', 'carrusel'); el.setAttribute('aria-label', 'Fotos: ' + d.title);
+    if (!n) return el;
+    el.innerHTML = '<div class="gc-tr">' + ps.map(function (p, k) { return '<img src="' + p.src + '" alt="' + esc(d.title) + ' · foto ' + (k + 1) + ' de ' + n + '"' + (k ? ' loading="lazy"' : '') + ' decoding="async" draggable="false">'; }).join('') + '</div>' +
+      '<button type="button" class="gc-open" aria-label="Ver las fotos de ' + esc(d.title) + ' en grande"></button><span class="gc-cr"></span>' +
+      (n > 1 ? '<button type="button" class="gc-nav gc-prev" aria-label="Foto anterior"><span class="mi" aria-hidden="true">chevron_left</span></button>' +
+        '<button type="button" class="gc-nav gc-next" aria-label="Foto siguiente"><span class="mi" aria-hidden="true">chevron_right</span></button>' +
+        '<span class="gc-n" aria-hidden="true"></span><div class="gc-pg" role="group" aria-label="Páginas de fotos">' +
+        ps.map(function (p, k) { return '<button type="button" data-i="' + k + '" aria-label="Foto ' + (k + 1) + ' de ' + n + '"></button>'; }).join('') + '</div>' : '');
+    var tr = el.querySelector('.gc-tr'), cr = el.querySelector('.gc-cr'), cnt = el.querySelector('.gc-n'), dots = el.querySelectorAll('.gc-pg button');
+    var show = function (k) {
+      i = (k + n) % n;
+      tr.style.transform = 'translateX(' + (-100 * i) + '%)';
+      var p = ps[i]; cr.textContent = p.by ? p.by + ' · ' + p.lic : ''; cr.hidden = !p.by;
+      if (cnt) cnt.textContent = (i + 1) + ' / ' + n;
+      [].forEach.call(dots, function (b, j) { b.setAttribute('aria-current', String(j === i)); });
+    };
+    var swiped = false;
+    el.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      e.preventDefault(); e.stopPropagation();
+      if (b.classList.contains('gc-prev')) show(i - 1);
+      else if (b.classList.contains('gc-next')) show(i + 1);
+      else if (b.dataset.i) show(+b.dataset.i);
+      else if (b.classList.contains('gc-open') && !swiped) open({ title: d.title, why: d.why, list: ps, lat: d.lat, lon: d.lon }, i);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (n < 2 || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      e.preventDefault(); show(i + (e.key === 'ArrowRight' ? 1 : -1));
+    });
+    var x0 = null;
+    el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; swiped = false; }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (x0 === null || n < 2) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 35) { swiped = true; show(i + (dx < 0 ? 1 : -1)); setTimeout(function () { swiped = false; }, 400); }
+    });
+    show(0);
+    return el;
+  };
+
+  return { photos: photos, mix: mix, carousel: carousel, credit: credit, bind: bind, open: open, close: close, flash: flash };
 })();
