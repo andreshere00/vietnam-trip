@@ -10,6 +10,7 @@ Las fotos de `assets/img/` proceden de [Wikimedia Commons](https://commons.wikim
 | Catedral de Notre-Dame y Correos (Ho Chi Minh) | [Basilica of Our Lady Immaculate.jpg](https://commons.wikimedia.org/wiki/File:Basilica_of_Our_Lady_Immaculate.jpg) | Maksim Sokolov | CC BY-SA 4.0 |
 | Mercado de Bến Thành (Ho Chi Minh) | [Ben Thanh Market, 2023 (05).jpg](https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market,_2023_(05).jpg) | Bahnfrend | CC BY-SA 4.0 |
 | Museo de los Vestigios de la Guerra (Ho Chi Minh) | [War Remnants Museum, HCMC, front.JPG](https://commons.wikimedia.org/wiki/File:War_Remnants_Museum,_HCMC,_front.JPG) | Prenn | CC BY-SA 3.0 |
+| Túneles de Củ Chi | [Củ Chi tunnels entrance.JPG](https://commons.wikimedia.org/wiki/File:C%E1%BB%A7_Chi_tunnels_entrance.JPG) | Lars Curfs (Grashoofd) | CC BY-SA 3.0 NL |
 | Delta del Mekong (Bến Tre) | [20190924 Ben Tre river boat-1.jpg](https://commons.wikimedia.org/wiki/File:20190924_Ben_Tre_river_boat-1.jpg) | Balon Greyjoy | CC0 |
 | Casco antiguo de Hội An | [Hội An, Ancient Town, 2020-01 CN-10.jpg](https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ancient_Town,_2020-01_CN-10.jpg) | Steffen Schmitz | CC BY-SA 4.0 |
 | Puente Cubierto japonés (Hội An) | [Hội An, Chùa Cầu, 2020-01 CN-02.jpg](https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ch%C3%B9a_C%E1%BA%A7u,_2020-01_CN-02.jpg) | Steffen Schmitz | CC BY-SA 4.0 |
@@ -98,6 +99,8 @@ Fotos adicionales que aparecen en la ficha al pasar el ratón y en la galería q
 | Mercado de Bến Thành | `benthanh-4.jpg` | [Ben Thanh Market, 2023 (06).jpg](https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market,_2023_(06).jpg) | Bahnfrend | CC BY-SA 4.0 |
 | Museo de los Vestigios de la Guerra | `chungtich-2.jpg` | [War Remnants Museum 01 (5539737320).jpg](https://commons.wikimedia.org/wiki/File:War_Remnants_Museum_01_(5539737320).jpg) | Sistak | CC BY-SA 2.0 |
 | Museo de los Vestigios de la Guerra | `chungtich-3.jpg` | [Vietnam - Hanoi - War Remnants Museum - Guillotine.JPG](https://commons.wikimedia.org/wiki/File:Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Guillotine.JPG) | Adam Jones Adam63 | CC BY-SA 3.0 |
+| Túneles de Củ Chi | `cuchi-2.jpg` | ['TOURISTS' crawling through the Cu Chi tunnels..JPG](https://commons.wikimedia.org/wiki/File:%27TOURISTS%27_crawling_through_the_Cu_Chi_tunnels..JPG) | Rudolph.A.Furtado | CC0 |
+| Túneles de Củ Chi | `cuchi-3.jpg` | [Cu Chi Tunnels Vietnam war.jpg](https://commons.wikimedia.org/wiki/File:Cu_Chi_Tunnels_Vietnam_war.jpg) | Andre Hospers | CC BY-SA 4.0 |
 | Casco antiguo de Hội An | `hoian-2.jpg` | [Hội An, Ancient Town, 2020-01 CN-01.jpg](https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ancient_Town,_2020-01_CN-01.jpg) | Steffen Schmitz | CC BY-SA 4.0 |
 | Casco antiguo de Hội An | `hoian-3.jpg` | [Hội An, Ancient Town, 2020-01 CN-15.jpg](https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ancient_Town,_2020-01_CN-15.jpg) | Steffen Schmitz | CC BY-SA 4.0 |
 | Casco antiguo de Hội An | `hoian-4.jpg` | [Hoi An (I).jpg](https://commons.wikimedia.org/wiki/File:Hoi_An_(I).jpg) | Supanut Arunoprayote | CC BY 4.0 |
